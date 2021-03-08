@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ChambreRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ChambreRepository::class)
@@ -19,26 +20,31 @@ class Chambre
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="nom est requis")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="type de lit est requis")
      */
     private $typeLit;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Nombre de personne est requis")
      */
     private $nbr_pers;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="Prix est requis")
      */
     private $prix;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Photo est requis")
      */
     private $photo;
 
@@ -100,12 +106,12 @@ class Chambre
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getPhoto()
     {
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): self
+    public function setPhoto( $photo)
     {
         $this->photo = $photo;
 

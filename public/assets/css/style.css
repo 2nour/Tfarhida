@@ -10,16 +10,29 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  color: #444444;
+  color: #1b1e21;
+}
+.form_errors {
+  color: red;
 }
 
+.form-group{
+  margin-top: 5px;
+  width: 500px;
+  margin-left: 430px;
+}
 a {
   color: #d9232d;
 }
 
 a:hover {
-  color: #e24d55;
   text-decoration: none;
+}
+h2{
+  text-align: center;
+  margin-top: 100px;
+  padding: 15px;
+  color: #1d2124;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -686,7 +699,7 @@ section {
 
 @media (max-width: 768px) {
   .clients img {
-    max-width: 40%;
+    max-width: 80%;
   }
 }
 
@@ -1986,18 +1999,18 @@ section {
 --------------------------------------------------------------*/
 #footer {
   background: #4a5562;
-  padding: 0 0 30px 0;
+  padding: 0 0 20px 0;
   color: #fff;
   font-size: 14px;
 }
 
 #footer .footer-top {
   background: #515d6a;
-  padding: 60px 0 30px 0;
+  padding: 20px 0 15px 0;
 }
 
 #footer .footer-top .footer-info {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 #footer .footer-top .footer-info h3 {
@@ -2039,7 +2052,7 @@ section {
 
 #footer .footer-top h4 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 300;
   color: #fff;
   position: relative;
   padding-bottom: 12px;
@@ -2084,7 +2097,7 @@ section {
 }
 
 #footer .footer-top .footer-newsletter form {
-  margin-top: 30px;
+  margin-top: 15px;
   background: #fff;
   padding: 6px 10px;
   position: relative;
@@ -2118,7 +2131,7 @@ section {
 
 #footer .copyright {
   text-align: center;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 
 #footer .credits {

@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Maison d'Hote{% endblock %}
+
+{% block body %}
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/modal.jss') }}"></script>
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #f5f5f5; padding: 2px 6px; }
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+</head>
+
+<main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Maison d'hôte</h2>
+                <ol>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="blog.html">Maison d'hôte</a></li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-8 entries">
+
+                    <article class="entry entry-single">
+
+                        <div class="entry-img">
+                            <img src="{{ asset('assets/img/maison/' ~ maison.photo) }}" class="img-fluid" alt="">
+                        </div>
+
+                        <h2 class="entry-title">
+                            <a href="blog-single.html">{{ maison.nom }}</a>
+                        </h2>
+
+                        <div class="entry-meta">
+                            <ul>
+                                <li class="d-flex align-items-center"><i class="icofont-key"></i> <a href="blog-single.html">{{ maison.nbrChambre }}</a></li>
+                                <li class="d-flex align-items-center"><i class="icofont-map-pins"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{ maison.adresse }}</time></a></li>
+                                <li class="d-flex align-items-center"><i class="icofont-phone"></i> <a href="blog-single.html">{{ maison.tel }}</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="entry-content">
+                            <p>
+                               Description
+                            </p>
+
+                            <blockquote>
+                                <i class="icofont-quote-left quote-left"></i>
+                                <p>
+                                    {{ maison.description }}
+                                </p>
+                                <i class="las la-quote-right quote-right"></i>
+                                <i class="icofont-quote-right quote-right"></i>
+                            </blockquote>
+                            <div class="read-more">
+                                <a href="{{ path('add',{'id':maison.id}) }}">Ajouter Chambre</a>
+                                <a href="{{ path('mais',{'id':maison.id}) }}">Voir chambres</a>
+                                <a href="{{ path('d',{'id':maison.id}) }}">Supprimer</a>
+                                <a href="{{ path('u',{'idM':maison.id}) }}">Modifier</a>
+                            </div>
+
+                        </div>
+
+                    </article><!-- End blog entry -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

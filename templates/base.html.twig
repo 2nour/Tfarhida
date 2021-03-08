@@ -50,7 +50,10 @@
             <ul>
                 <li class="active"><a href="index.html">Accueil</a></li>
 
-                <li><a href="maison\index.html.twig">Maison d'hote</a></li>
+                <li class="drop-down"><a href="#">Maison d'hôte</a>
+                    <ul>
+                        <li><a href="{{ path('ajout')}}">Ajouter votre maison</a></li>
+                    </ul></li>
                 <li><a href="portfolio.html">Randonnée</a></li>
                 <li><a href="pricing.html">Organiser votre événement</a></li>
                 <li><a href="blog.html">Produit</a></li>
@@ -64,8 +67,8 @@
 </header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
+{% block body %}
 <section id="hero">
-    {% block body %}
     <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
         <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
@@ -112,8 +115,8 @@
         </a>
 
     </div>
-    {% endblock %}
 </section><!-- End Hero -->
+{% endblock %}
 
 <main id="main">
 
