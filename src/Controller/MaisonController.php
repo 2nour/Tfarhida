@@ -97,7 +97,7 @@ class MaisonController extends AbstractController
 
 
     /**
-     * @param ClassroomRepository $repository
+     * @param MaisonRepository $repository
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/sup/{id}",name="d")

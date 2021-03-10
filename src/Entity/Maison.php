@@ -214,6 +214,21 @@ class Maison
     }
 
 
+    public function contientFavori(int $idUser):bool
+    {
+        return $this->favoris->exists(function($key, $value) use ($idUser) {
+            return $value ->getUser()-> getId() === ($idUser);
+        });
+
+    }
+
+    public function getFavoriWithIdUser(int $idUser): Favoris
+    {
+        return $this->favoris->filter(function($value) use ($idUser) {
+            return $value ->getUser()-> getId() === ($idUser);
+        })->first();
+
+    }
 
 
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} liste des Maisons d'hôtes{% endblock %}
+{% block title %} liste des Favoris{% endblock %}
 
 {% block body %}
     <style>
@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Maisons d'Hotes</title>
+        <title>Liste des Favoris</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
@@ -25,10 +25,10 @@
             <div class="container">
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Blog</h2>
+                    <h2>Favoris</h2>
                     <ol>
                         <li><a href="index.html">Accueil</a></li>
-                        <li>Maisons d'Hotes</li>
+                        <li>Favoris</li>
                     </ol>
                 </div>
 
@@ -37,7 +37,7 @@
 
         <!-- ======= Blog Section ======= -->
         <section id="blog" class="blog">
-            <div class="container" {% for m in maison %}>
+            <div class="container" {% for f in favoris %}>
 
                 <div class="row">
 
@@ -45,27 +45,27 @@
                         <article class="entry">
 
                             <div class="entry-img">
-                                <img src="{{ asset('assets/img/maison/' ~ m.photo) }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/maison/' ~ f.maison.photo) }}" class="img-fluid" alt="">
                             </div>
 
                             <h2 class="entry-title">
-                                <a href="blog-single.html">{{ m.nom }}</a>
+                                <a href="blog-single.html">{{ f.maison.nom }}</a>
                             </h2>
 
                             <div class="entry-meta">
                                 <ul>
-                                    <li class="d-flex align-items-center"><i class="icofont-key"></i> <a href="blog-single.html">{{ m.nbrChambre }}</a></li>
-                                    <li class="d-flex align-items-center"><i class="icofont-map-pins"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{ m.adresse }}</time></a></li>
-                                    <li class="d-flex align-items-center"><a href="{{ path('favoris',{'idMaison':m.id, 'action':m.contientFavori(3) ? "del":"add"}) }}"><i class={{ m.contientFavori(3) ? "icofont-ui-love-remove":"icofont-ui-love-add" }}></i></a></li>
+                                    <li class="d-flex align-items-center"><i class="icofont-key"></i> <a href="blog-single.html">{{ f.maison.nbrChambre }}</a></li>
+                                    <li class="d-flex align-items-center"><i class="icofont-map-pins"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{ f.maison.adresse }}</time></a></li>
+                                    <li class="d-flex align-items-center"><a href="{{ path('remove',{'id':f.id}) }}"><i class="icofont-ui-love-remove"></i></a></li>
                                 </ul>
                             </div>
 
                             <div class="entry-content">
                                 <p>
-                                   {{ m.description }}
+                                    {{ f.maison.description }}
                                 </p>
                                 <div class="read-more">
-                                    <a href="{{ path('read',{'id':m.id}) }}">Voir plus</a>
+                                    <a href="{{ path('read',{'id':f.maison.id}) }}">Voir plus</a>
                                 </div>
                             </div>
 
