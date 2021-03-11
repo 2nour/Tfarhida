@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Maison;
+use App\Entity\Search;
 use App\Form\MaisonsType;
 use App\Repository\ChambreRepository;
 use App\Repository\FavorisRepository;
@@ -41,7 +42,6 @@ class MaisonController extends AbstractController
         return $this->render('maison/Affiche.html.twig',
         ['maison'=>$maison]);
     }
-
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request

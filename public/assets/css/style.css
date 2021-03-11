@@ -17,10 +17,11 @@ body {
 }
 
 .form-group{
-  margin-top: 5px;
+  margin-top: 20px;
   width: 500px;
-  margin-left: 430px;
+  margin-left: 420px;
 }
+
 a {
   color: #d9232d;
 }

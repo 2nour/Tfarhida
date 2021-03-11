@@ -25,10 +25,10 @@
             <div class="container">
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Blog</h2>
+                    <h2>Maison d'hôte</h2>
                     <ol>
-                        <li><a href="index.html">Accueil</a></li>
-                        <li>Maisons d'Hotes</li>
+                        <li><a href="{{ path('home') }}">Accueil</a></li>
+                        <li><a href="{{ path('affFav') }}"><i class="icofont-heart"> Favoris</i></a></li>
                     </ol>
                 </div>
 
@@ -37,6 +37,7 @@
 
         <!-- ======= Blog Section ======= -->
         <section id="blog" class="blog">
+
             <div class="container" {% for m in maison %}>
 
                 <div class="row">
@@ -73,6 +74,7 @@
                     </div>
                 </div {% endfor %}>
             </div>
+
         </section>
     </main>
 {% endblock %}
