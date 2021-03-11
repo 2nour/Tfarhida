@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
@@ -19,33 +22,58 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank(message="nom est requis")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="quantite est requis")
      */
     private $quantite;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="description est requis")
      */
     private $description;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="prix est requis")
      */
     private $prix;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $marque;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="image est requis")
      */
     private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Panier::class, inversedBy="produits")
+     */
+    private $panier;
+
+    /**
+     * @ORM\OneToMany(targetEntity=commentaire::class, mappedBy="produit")
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
+
+
+
+
 
     public function getId(): ?int
     {
@@ -105,7 +133,7 @@ class Produit
         return $this->marque;
     }
 
-    public function setMarque(string $marque): self
+    public function setMarque(?string $marque): self
     {
         $this->marque = $marque;
 
@@ -123,4 +151,49 @@ class Produit
 
         return $this;
     }
+
+    public function getPanier(): ?Panier
+    {
+        return $this->panier;
+    }
+
+    public function setPanier(?Panier $panier): self
+    {
+        $this->panier = $panier;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|commentaire[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(commentaire $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(commentaire $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getProduit() === $this) {
+                $comment->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 }

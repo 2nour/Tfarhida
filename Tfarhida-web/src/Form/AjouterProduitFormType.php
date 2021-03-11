@@ -22,12 +22,47 @@ class AjouterProduitFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom',TextType::class)
-            ->add('quantite',NumberType::class)
-            ->add('description',TextType::class)
-            ->add('prix',NumberType::class)
-            ->add('marque',TextType::class)
-            ->add("image",FileType::class)
+            ->add('nom',TextType::class,[
+                'attr'=> [
+                    'placeholder' => 'Saisir le nom du produit',
+                    'class' => 'form-control',
+                    'trim' => true
+                ]])
+            ->add('quantite',NumberType::class,
+                [
+                    'attr'=> [
+                        'placeholder' => 'Saisir la quantite',
+                        'class' => 'form-control',
+                        'trim' => true
+                    ]])
+            ->add('description',TextType::class,
+                [
+                    'attr'=> [
+                        'placeholder' => 'donner une description',
+                        'class' => 'form-control',
+                        'trim' => true
+                    ]])
+            ->add('prix',NumberType::class,
+                [
+                    'attr'=> [
+                        'placeholder' => 'donner le prix ',
+                        'class' => 'form-control',
+                        'trim' => true
+                    ]])
+            ->add('marque',TextType::class,
+                [
+                    'attr'=> [
+                        'placeholder' => 'Saisir la marque',
+                        'class' => 'form-control',
+                        'trim' => true
+                    ]])
+            ->add("image",FileType::class,[
+                'attr'=> [
+                    'placeholder' => 'Saisir l image',
+                    'class' => 'form-control',
+                    'data_class' => null
+                ]])
+
             ->add('submit',SubmitType::class)
         ;
     }
