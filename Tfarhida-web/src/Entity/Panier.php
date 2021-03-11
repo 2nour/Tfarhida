@@ -30,19 +30,18 @@ class Panier
     private $somme;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="paniers")
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="panier", orphanRemoval=true)
      */
-    private $produit;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Produit::class,cascade={"persist","remove"}, mappedBy="panier")
-     */
-    private $produits;
+    private $commandes;
 
     public function __construct()
     {
-        $this->produits = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
+
+
+
+
 
 
     public function getId(): ?int
@@ -75,34 +74,36 @@ class Panier
     }
 
     /**
-     * @return Collection|Produit[]
+     * @return Collection|Commande[]
      */
-    public function getProduits(): Collection
+    public function getCommandes(): Collection
     {
-        return $this->produits;
+        return $this->commandes;
     }
 
-    public function addProduit(Produit $produit): self
+    public function addCommande(Commande $commande): self
     {
-        if (!$this->produits->contains($produit)) {
-            $this->produits[] = $produit;
-            $produit->setPanier($this);
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setPanier($this);
         }
 
         return $this;
     }
 
-    public function removeProduit(Produit $produit): self
+    public function removeCommande(Commande $commande): self
     {
-        if ($this->produits->removeElement($produit)) {
+        if ($this->commandes->removeElement($commande)) {
             // set the owning side to null (unless already changed)
-            if ($produit->getPanier() === $this) {
-                $produit->setPanier(null);
+            if ($commande->getPanier() === $this) {
+                $commande->setPanier(null);
             }
         }
 
         return $this;
     }
+
+
 
 
 

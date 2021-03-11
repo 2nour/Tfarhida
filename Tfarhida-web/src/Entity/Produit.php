@@ -55,19 +55,21 @@ class Produit
      */
     private $image;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Panier::class, inversedBy="produits")
-     */
-    private $panier;
 
     /**
      * @ORM\OneToMany(targetEntity=commentaire::class, mappedBy="produit")
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="produit", orphanRemoval=true)
+     */
+    private $commandes;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
 
@@ -152,17 +154,6 @@ class Produit
         return $this;
     }
 
-    public function getPanier(): ?Panier
-    {
-        return $this->panier;
-    }
-
-    public function setPanier(?Panier $panier): self
-    {
-        $this->panier = $panier;
-
-        return $this;
-    }
 
     /**
      * @return Collection|commentaire[]
@@ -188,6 +179,36 @@ class Produit
             // set the owning side to null (unless already changed)
             if ($comment->getProduit() === $this) {
                 $comment->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getProduit() === $this) {
+                $commande->setProduit(null);
             }
         }
 

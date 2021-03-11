@@ -5,66 +5,61 @@
 {% block body %}
 
 
-
 <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
-
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>Panier</h2>
-                <ol>
-                    <li><a href="/home">Acceuil</a></li>
-                    <li>Panier</li>
-                </ol>
-            </div>
-
-        </div>
-    </section><!-- End Breadcrumbs -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-
-
-
-
-            <div class="row portfolio-container" {% for produit in produits %}>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app" >
-                    <div class="portfolio-wrap" >
-                        <img src="{{ asset('uploads/images/produit/' ~ produit.image) }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>{{ produit.nom }}</h4>
-                            <p>{{ produit.prix }}</p>
-                            <div class="portfolio-links">
-                                <a href="{{ asset('uploads/images/produit/' ~ produit.image) }}"  data-gall="portfolioGallery" class="venobox" title="{{ produit.nom }}"><i class="bx bx-plus"></i></a>
-                                <a href="{{ path("voirProduit",{ 'id': produit.id }) }}"  ><i class="bx bxs-right-arrow"></i></a>
-                                <a href="{{ path("suppProduit",{ 'id': produit.id }) }}"  ><i class="bx bxs-trash"></i></a>
-                                <a href="{{ path("produitPanier",{ 'id': produit.id }) }}"  ><i class="bx bxs-shopping-bag-alt"></i></a>
-
-
+<div class="panier">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h5><span class="glyphicon glyphicon-shopping-cart"></span> Mon Panier</h5>
+                                </div>
 
                             </div>
                         </div>
+                    </div>
+                    <div class="panel-body" {% for produit in produits %} >
+                        <div class="row">
+                            <div class="col-xs-2"><img class="img-responsive" src="{{ asset('uploads/images/produit/' ~ produit.image) }}">
+                            </div>
+                            <div class="col-xs-4">
+                                <h4 class="product-name"><strong>{{ produit.nom }}</strong></h4><h4><small>{{ produit.description }}</small></h4>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="col-xs-6 text-right">
+                                    <h6><strong>{{ produit.prix }} <span class="text-muted">dt</span></strong></h6>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="text" class="form-control input-sm" value="1">
+                                </div>
+                                <div class="col-xs-2">
+                                    <a href="{{ path("suppPanier",{ 'id': produit.id }) }}"><span class="glyphicon glyphicon-trash"> </span></a>
 
+                                </div>
+                            </div>
+                        </div>
 
-                    </div >
-
-                </div {% endfor %}>
-
-            </div >
-
-
-
-
-
-
+                    </div {% endfor %}>
+                    <div class="panel-footer">
+                        <div class="row text-center">
+                            <div class="col-xs-9">
+                                <h4 class="text-right">Total <strong>{{ total }}</strong></h4>
+                            </div>
+                            <div class="col-xs-3">
+                                <button type="button" class="btn btn-success btn-block">
+                                    payer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section><!-- End Portfolio Section -->
-
+    </div>
+</div>
 </main>
-
-
-
 {% endblock %}

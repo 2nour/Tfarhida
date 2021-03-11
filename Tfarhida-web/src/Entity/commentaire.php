@@ -20,17 +20,17 @@ class commentaire
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $contenue;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date",nullable=false)
      */
     private $datedecommentaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity=Produit::class,cascade={"persist","remove"}, inversedBy="comments")
      */
     private $produit;
 

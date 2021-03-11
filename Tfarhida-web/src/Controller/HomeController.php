@@ -14,11 +14,10 @@ class HomeController extends AbstractController
      */
     public function index(PanierRepository $panierRepository): Response
     {
-        $panier = $panierRepository->find(1);
-        $qtt=$panier->getNbproduit();
+
 
         return $this->render('base.html.twig',[
-           'items' =>$qtt
+
         ]);
     }
 }

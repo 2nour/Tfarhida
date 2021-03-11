@@ -2,77 +2,62 @@
 
 namespace App\Controller;
 
-
-use App\Entity\Produit;
 use App\Entity\Panier;
+use App\Entity\Produit;
+use App\Entity\Commande;
+
+use App\Form\PanierType;
 use App\Repository\PanierRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+
 
 class PanierController extends AbstractController
 {
     /**
-     * @Route("/panier", name="panier")
+     * @Route("/", name="panier_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(PanierRepository $panierRepository): Response
     {
         return $this->render('panier/index.html.twig', [
-            'controller_name' => 'PanierController',
+            'paniers' => $panierRepository->findAll(),
         ]);
     }
 
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route("produitPanier", name="produitPanier",defaults={"id"})
-     */
-    public function ajouterProduitauPanier(\Symfony\Component\HttpFoundation\Request $request)
-    {
-
-        $em = $this->getDoctrine()->getManager();
-        $id = $request->get("id");
-        $produit = $em->find(Produit::class, $id);
-        $panier =$em->find(Panier::class,1);
-
-
-        $panier->addProduit($produit);
-        $qtt=$panier->getNbproduit() + 1;
-        $panier->setNbproduit($qtt);
-        $somme= $produit->getPrix() * $produit->getQuantite() +$panier->getSomme();
-        $panier->setSomme($somme);
-
-        $em->persist($panier);
-        $em->persist($produit);
-        $em->flush();
-        return $this->redirectToRoute("produitListe");
-
-
-        return $this->render('produit/liste.html.twig');
-
-    }
-
-
-
-    /**
-     * @param PanierRepository $repo
+     *
      * @Route("/panierListe", name="panierListe")
      * @return \http\Env\Response
      */
-    public function afficherlisteProduit(PanierRepository $repo)
+    public function afficherPanier()
     {
 
-        $panier=$repo->findAll();
-        $produits= new ArrayCollection();
-        $produits= $panier->getProduits();
+      $panierId=2;
+      $em=$this->getDoctrine()->getManager();
+      $panier=$em->find(Panier::class,$panierId);
+      $query =$em->createQuery(
+          "SELECT produit
+         FROM  App\Entity\Produit produit
+         where produit.id IN (
+         select IDENTITY(commande.produit) from App\Entity\Commande commande
+         where commande.panier =?1)");
+        $query->setParameter(1,$panierId);
+        $produits =$query->getResult();
+        try {
+            return $this->render("panier/panier.html.twig", ['produits'=>$produits,'total' =>$panier->getSomme()]);
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
 
-        return $this->render("panier/panier.html.twig", ['produits'=>$produits]);
+
 
     }
-
 
 
 
