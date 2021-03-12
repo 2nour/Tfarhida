@@ -39,7 +39,7 @@
                         <li><strong>Prix</strong>: {{ produit.prix }}</li>
                         <li><strong>Description</strong> : {{ produit.description }}</li>
                         <li><strong>Stock</strong>: {{ produit.quantite }}d</li>
-                        <li><button type="button" class="btn btn-warning">Acheter</button></li>
+                        <a href="{{ path("updateProduit",{ 'id': produit.id }) }}"  ><i class="btn btn-info">modifier</i></a>
                     </ul>
 
                 </div>
@@ -85,20 +85,6 @@
 
 
 
-    <section>
-        {% if f is defined %}
-           {{ form_start(f,{'attr': {'novalidate' : 'novalidate'}} ) }}
-        <h3>Ajouter un commentaire</h3>
-
-        <div class="form-group">
-            <label>Commenter</label>
-            {{ form_widget(f.contenue) }}
-            {{ form_errors(f.contenue) }}
-        </div>
-        {{ form_end(f) }}
-        {% endif %}
-
-    </section>
 
 
 

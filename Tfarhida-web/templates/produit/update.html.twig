@@ -16,8 +16,8 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Produits</h2>
                     <ol>
-                        <li><a href="/home">Home</a></li>
-                        <li>Pricing</li>
+                        <li><a href="/home">modifier</a></li>
+                        <li>produit</li>
                     </ol>
                 </div>
 
@@ -25,19 +25,42 @@
         </section><!-- End Breadcrumbs -->
 
 
+
         <section id="pricing" class="pricing">
             <div class="container">
 
-                <div class="row">
+                {{ form_start(form,{'attr': {'novalidate' : 'novalidate'}} ) }}
+                <h3>Ajouter un produit</h3>
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="box">
-                            <h3>Ajouter un produit</h3>
-                            {{ form_start(form,{'attr': {'novalidate' : 'novalidate'}} ) }}
-                            {{ form(form) }}
-                        </div>
-                    </div>
+
+                <div class="form-group">
+                    <label for="">Nom de produit</label>
+                    {{ form_widget(form.nom) }}
+                    {{ form_errors(form.nom) }}
                 </div>
+                <div class="form-group">
+                    <label for="">Quantité</label>
+                    {{ form_widget(form.quantite) }}
+                    {{ form_errors(form.quantite) }}
+                </div>
+                <div class="form-group">
+                    <label for="">Description</label>
+                    {{ form_widget(form.description)}}
+                    {{ form_errors(form.description) }}
+                </div>
+                <div class="form-group">
+                    <label for="">Photo</label>
+                    {{ form_widget(form.image)}}
+                    {{ form_errors(form.image) }}
+                </div>
+                <div class="form-group">
+                    <label for="">Prix</label>
+                    {{ form_widget(form.prix)}}
+                    {{ form_errors(form.prix) }}
+                    <br>
+
+                </div>
+                {{ form_end(form) }}
             </div>
         </section>
 

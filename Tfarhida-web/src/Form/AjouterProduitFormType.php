@@ -57,10 +57,11 @@ class AjouterProduitFormType extends AbstractType
                         'trim' => true
                     ]])
             ->add("image",FileType::class,[
+                'data_class' => null,
                 'attr'=> [
                     'placeholder' => 'Saisir l image',
                     'class' => 'form-control',
-                    'data_class' => null
+
                 ]])
 
             ->add('submit',SubmitType::class)

@@ -114,30 +114,40 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @param Request $request
      * @param $id
      * @param ProduitRepository $repository
-     * @param Request $request
-     * @return \http\Env\Response
-     * @Route("produitModifier/{id}", name="modifProduit")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @Route("/updateProduit", name="updateProduit" , defaults={"id"})
+     */
 
+    public function update(Request $request,ProduitRepository $repository){
+        $em = $this->getDoctrine()->getManager();
+        $id = $request->get("id");
+        $mai = $em->find(Produit::class, $id);
 
-    public function update(Request $request,$id,ProduitRepository $repository){
-        $produit=$repository->find($id);
-        $form=$this->createForm(AjouterProduitFormType::class,$produit);
-        $form->add("Modifier",SubmitType::class);
+        $form=$this->createForm(AjouterProduitFormType::class,$mai);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $file =$mai->getImage();
+            $filename=md5(uniqid()).'.'.$file->guessExtension();
+
+            // sauvgarder l'image dans le dossier indiquer par le param 'product_image_directory' dans services.yaml
+            try {
+                $file->move($this->getParameter('product_image_directory'), $filename);
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+
             $em=$this->getDoctrine()->getManager();
+            $mai->setImage($filename);
             $em->flush();
-            return $this->redirectToRoute("listeProduit");
+            return $this->redirectToRoute("produitListe");
         }
-        return $this->render("produit/update.html.twig",[
+        return $this->render("produit/liste.html.twig",[
             'form'=>$form->createView()
         ]);
     }
-
-     **/
-
 
 }
 

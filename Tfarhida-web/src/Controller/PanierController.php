@@ -50,7 +50,7 @@ class PanierController extends AbstractController
         $query->setParameter(1,$panierId);
         $produits =$query->getResult();
         try {
-            return $this->render("panier/panier.html.twig", ['produits'=>$produits,'total' =>$panier->getSomme()]);
+            return $this->render("panier/panier.html.twig", ['produits'=>$produits,'panier' =>$panier]);
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
         }

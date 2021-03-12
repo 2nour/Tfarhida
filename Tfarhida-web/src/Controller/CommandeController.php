@@ -37,6 +37,7 @@ class CommandeController extends AbstractController
         $commande->setProduit($produit);
         $commande->setPanier($panier);
         $commande->getQuantiteProduit(1);
+        $panier->setNbproduit($panier->getNbproduit()+1);
         $commande->setPrixcommande($produit->getPrix());
         $panier->setSomme($panier->getSomme() + $commande->getPrixcommande());
 
@@ -58,36 +59,19 @@ class CommandeController extends AbstractController
         $em=$this->getDoctrine()->getManager();
         $emm=$this->getDoctrine()->getRepository(Commande::class);
         $produit=$em->find(Produit::class,$id);
-        $panier=2;
+        $panierId=2;
+        $panier=$em->find(Panier::class,$panierId);
         $commande=$emm->findOneBy(array('produit'=>$produit,'panier'=>$panier));
+
+        $panier->setSomme($panier->getSomme() - $produit->getPrix() * 1);
+        $panier->setNbproduit($panier->getNbproduit() - 1);
+        $em->persist($panier);
         $em->remove($commande);
         $em->flush();
 
         return $this->redirectToRoute("panierListe");
 
 
-
-      /*  $commande=$repo->createQueryBuilder('s')
-            ->where('s.produit=?1')
-            ->andWhere('s.panier=?2')
-            ->setParameter(2,2)
-            ->setParameter(1,$id)
-            ->getQuery();
-
-        try{
-            $comm=$commande->execute();
-
-            $em->remove($comm);
-            $em->flush();
-
-    return $this->redirectToRoute("panierListe");
-}
-
-
-
-        catch (\Doctrine\ORM\NoResultException $e) {
-        return null;
-    }*/
     }
 
 
