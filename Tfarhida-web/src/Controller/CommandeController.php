@@ -79,6 +79,32 @@ class CommandeController extends AbstractController
 
 
 
+    /**
+     * @param CommandeRepository $repo,$id
+     * @Route("/modifierCommande", name="modifierCommande",defaults={"id"})
+     * @return \http\Env\Response
+     */
+    public function modifiercommande( $id,CommandeRepository $repo )
+    {
+        $em=$this->getDoctrine()->getManager();
+        $emm=$this->getDoctrine()->getRepository(Commande::class);
+        $produit=$em->find(Produit::class,$id);
+        $panierId=2;
+        $panier=$em->find(Panier::class,$panierId);
+        $commande=$emm->findOneBy(array('produit'=>$produit,'panier'=>$panier));
+
+        $panier->setSomme($panier->getSomme() - $produit->getPrix() * 1);
+        $panier->setNbproduit($panier->getNbproduit() - 1);
+        $em->persist($panier);
+        $em->remove($commande);
+        $em->flush();
+
+        return $this->redirectToRoute("panierListe");
+
+
+    }
+
+
 
 
 
