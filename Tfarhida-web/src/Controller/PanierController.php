@@ -20,7 +20,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 class PanierController extends AbstractController
 {
     /**
-     * @Route("/", name="panier_index", methods={"GET"})
+     * @Route("/panierListe", name="panier_index", methods={"GET"})
      */
     public function index(PanierRepository $panierRepository): Response
     {
