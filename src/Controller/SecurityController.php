@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
+use Cassandra\Type\UserType;
+use phpDocumentor\Reflection\Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +33,7 @@ class SecurityController extends AbstractController
     /**
      * @Route ("/inscription", name="security_registration")
      */
-    public function registration(Request $request, UserPasswordEncoderInterface $encoder){
+    public function registration(Request $request, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer){
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
@@ -46,24 +48,60 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            //$message = (new \swift_Message('Activation de votre compte'));
-            //->setForm('votre@adresse.fr');
-            //->setTo($user->getEmail());
-            //->setBody(
-              //  $this->renderView(
-                //    'emails/activation.html.twig',['token'=>$user->getActivationToken()]
-              //  )
-                //'text/html'
-            //);
-           // $mailer->send($message);
+            $message = (new \Swift_Message('Activation de votre compte'))
+                ->setFrom('votre@adresse.tn')
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView('emails/activation.html.twig', [
+                        'token'=> $user->getActivationToken()
+                    ]),
+                    'text/html'
+                );
+            $mailer->send($message);
 
-            return $this->redirectToRoute('security_login');
+
+           return $this->redirectToRoute('security_login');
         }
 
         return $this->render('security/registration.html.twig',[
             'form' => $form->createView()]);
 
     }
+
+    /**
+     * @Route ("supp/{id}", name="d")
+     */
+    function Delete($id, UserRepository $repository){
+
+        $user= $repository->find($id);
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+        return $this->redirectToRoute('show_user');
+    }
+
+//    /**
+  //   * @Route ("update/{id}", name="update")
+   //  */
+ //   public function update(UserRepository $repository, $id, Request $request){
+   //     $user=$repository->find($id);
+     //   $form=$this->createForm(UserType::class, $user);
+       // $form->add('update',SubmitType::class);
+   //     $form->handleRequest($request);
+     //   if ($form->isSubmitted()&& $form->isValid()){
+       //     $em= $this->getDoctrine()->getManager();
+         //   $em->flush();
+           // return $this->redirectToRoute('show_user');
+
+        //}
+
+       // return $this->render('security/update.html.twig',
+        //[
+          //  'form'=>$form->createView()
+       // ]);
+   // }
+
+
 
     /**
      * @return Response
@@ -82,19 +120,29 @@ class SecurityController extends AbstractController
 
     }
 
+
     /**
      * @Route ("/server", name="server")
      */
     public function indexServer():Response
     {
-
         return $this->render('server/serve.html.twig');
+    }
 
+
+    /**
+     * @Route ("/profil", name="profil")
+     */
+    public function indexUser():Response
+    {
+        return $this->render('user/user.html.twig');
 
     }
 
+
+
     /**
-     * @Route ("/admin", name="server")
+     * @Route ("/admin", name="admins")
      * @param UserRepository $repository
      * @return Response
      */
@@ -105,6 +153,7 @@ class SecurityController extends AbstractController
             'users'=>$users
         ]);
 
+
     }
 
     /**
@@ -112,6 +161,7 @@ class SecurityController extends AbstractController
      * @param $token
      * @param UserRepository $userRepo
      * @return RedirectResponse
+     * comment
      */
     public function Activation($token, UserRepository $userRepo): Response
     {
