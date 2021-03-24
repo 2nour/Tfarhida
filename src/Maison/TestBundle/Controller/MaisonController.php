@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Controller;
-
+namespace  App\Maison\TestBundle\Controller;
 
 use App\Entity\Maison;
-use App\Entity\Search;
 use App\Form\MaisonsType;
 use App\Repository\ChambreRepository;
 use App\Repository\FavorisRepository;
@@ -16,14 +14,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Psr\Log\LoggerInterface;
 
 
 class MaisonController extends AbstractController
 {
+    private  $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     /**
      * @Route("/maison", name="maison")
      */
+
     public function index(): Response
     {
         return $this->render('maison/index.html.twig', [
@@ -53,6 +60,7 @@ class MaisonController extends AbstractController
         $form=$this->createForm(MaisonsType::class, $maison);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+
             $file =$maison->getPhoto();
             $filename=md5(uniqid()).'.'.$file->guessExtension();
 
@@ -72,6 +80,7 @@ class MaisonController extends AbstractController
             return $this->redirectToRoute("aff");
          //   return $this->redirectToRoute("add",["idMaison"=>$maison->getId()]);
         }
+
         return $this->render('maison/newMaison.html.twig',
             ['f'=>$form->createView()]
         );
@@ -145,6 +154,25 @@ class MaisonController extends AbstractController
         return $this->render("maison/Update.html.twig",[
             'f'=>$form->createView()
         ]);
+    }
+
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/searchMaison", name="searchMaison")
+     */
+    public function searchMaison(Request $request, NormalizerInterface $normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Maison::class);
+        $requestString=$request->get('searchValue');
+        $maisons = $repository->findMaisonByNom($requestString);
+        $jsonContent = $normalizer->normalize($maisons, 'json',['groups'=>'maisons']);
+        $retour=json_encode($jsonContent);
+        $this->logger->error($retour);
+        return new Response($retour);
     }
 
 }

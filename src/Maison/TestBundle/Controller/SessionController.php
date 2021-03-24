@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace  App\Maison\TestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Maisons d'Hotes</title>
+        <title>Maisons d'hôte</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
@@ -22,7 +22,7 @@
 
         <!-- ======= Breadcrumbs ======= -->
         <section id="breadcrumbs" class="breadcrumbs">
-            <div class="container">
+            <div class="container" >
 
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Maison d'hôte</h2>
@@ -32,13 +32,15 @@
                     </ol>
                 </div>
 
+                <input type="text" id="search" class="form-control" placeholder="Rechercher une maison d'hôte">
+
             </div>
         </section><!-- End Breadcrumbs -->
 
         <!-- ======= Blog Section ======= -->
         <section id="blog" class="blog">
 
-            <div class="container" {% for m in maison %}>
+            <div id="idcontainer" class="container" {% for m in maison %} >
 
                 <div class="row">
 
@@ -77,4 +79,89 @@
 
         </section>
     </main>
+{% endblock %}
+
+{% block js %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#search").keyup(function(e){
+            /* La variable value va prendre la valeur insérer dans le champ de texte
+            afin d’effectuer la recherche */
+            var value = $(this).val();
+             var runing = false;
+             if (value.length >= 3 && !runing) {
+                 /* Ajax est lancé lors du remplissage du champ texte dont l’id est
+                 « search » pour faire la recherche */
+                 runing = true;
+                 $.ajax({
+                     /* l’url est une chaine de caractères contenant l’adresse où la requête est
+                     envoyée */
+                     url: "{{ path('searchMaison') }}",
+                     /* La méthode utilisée pour transférer les données est GET */
+                     type: 'GET',
+                     /*Ici search value va prendre la chaine entrée par un utilisateur dans la
+                     zone de recherche et sera placée après l’url */
+                     data: {
+                         'searchValue': value
+                     },
+
+
+                     /*Cette fonction permet de vider le contenu du tableau pour recevoir le
+                     nouveau contenu*/
+                     success: function (retour) {
+                         if (retour) {
+                             $('#search').empty();
+                             $('#idcontainer').empty();
+
+                             $.each(JSON.parse(retour),
+                                 function (i, obj) {
+
+                                 $('#idcontainer').append("<div class=\"row\">" +
+                                     "<div class=\"col-lg-4  col-md-6 d-flex align-items-stretch\" data-aos=\"fade-up\">" +
+                                     "<article class=\"entry\">" +
+
+                                     "<div class=\"entry-img\">" +
+                                     "<img src=\'assets/img/maison/" + obj.photo + "\' class=\'img-fluid\' alt=''>" +
+                                     "</div>" +
+
+                                     "<h2 class=\"entry-title\">" +
+                                     "<a href=\"blog-single.html\">" + obj.nom + "</a>" +
+                                     "</h2>" +
+
+                                     "<div class=\"entry-meta\">" +
+                                     "<ul>" +
+                                     "<li class=\"d-flex align-items-center\"><i class=\"icofont-key\"></i>" +
+                                     " <a href=\"blog-single.html\">" + obj.nbr_chambre + "</a></li>" +
+                                     "<li class=\"d-flex align-items-center\"><i class=\"icofont-map-pins\"></i>" +
+                                     " <a href=\"blog-single.html\">" + obj.adresse + "</a></li>" +
+                                     "<li class=\"d-flex align-items-center\">" +
+                                     "<a href=\"{{ path('favoris',{'idMaison':"+obj.id+", 'action':"+obj.contientFavori(3)+" ? 'del':'add'}) }}\">" +
+                                     "<i class={{ "+obj.contientFavori(3)+" ? "icofont-ui-love-remove":"icofont-ui-love-add" }}></i></a></li>" +
+                                     "</ul>" +
+                                     "</div>" +
+
+                                     "<div class=\"entry-content\">" +
+                                     "<p>" + obj.description +
+                                     "</p>" +
+                                     "<div class=\"read-more\">" +
+                                     "<a href=\'read?id="+obj.id+"\'>Voir plus</a>" +
+                                     "</div>" +
+                                     "</div>" +
+
+                                     "</article>" +
+                                     "</div>");
+
+                             });
+                             runing = false;
+                         }
+                     },
+                 });
+                 return false;
+             }
+        });
+    });
+</script>
 {% endblock %}

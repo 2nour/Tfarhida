@@ -3,6 +3,7 @@
 {% block body %}
     {{ form_start(f,{'attr': {'novalidate': 'novalidate'}}) }}
     <h2>Ajouter Maison</h2>
+
     <div class="form-group">
         <label for="">Nom de Maison d'hote</label>
         {{ form_widget(f.nom) }}
@@ -36,4 +37,12 @@
         {{ form_end(f) }}
     </div>
 
+    {% block beelab_recaptcha2_widget -%}
+        <div class="g-recaptcha" data-sitekey="{{ site_key }}" data-size="compact"></div>
+    {%- endblock %}
+
+{% endblock %}
+
+{% block js %}
+    <script src="//www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
 {% endblock %}

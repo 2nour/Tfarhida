@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace  App\Maison\TestBundle\Controller;
 
 use App\Entity\Favoris;
 use App\Entity\User;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace  App\Maison\TestBundle\Controller;
 
 use App\Entity\Chambre;
 use App\Entity\Maison;
@@ -29,6 +29,7 @@ class ChambreController extends AbstractController
 
     /**
      * @param ChambreRepository $repository
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return Response
      * @Route("/Chambre",name="mais")
      */

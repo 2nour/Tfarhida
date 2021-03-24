@@ -5,6 +5,10 @@ namespace App\Repository;
 use App\Entity\Maison;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\Query;
+use Psr\Log\LoggerInterface;
+
 
 /**
  * @method Maison|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +18,13 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MaisonRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+    private $logger;
+
+    public function __construct(ManagerRegistry $registry, LoggerInterface $logger)
     {
         parent::__construct($registry, Maison::class);
+        $this->logger = $logger;
     }
 
     // /**
@@ -47,4 +55,23 @@ class MaisonRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findMaisonByNom($nom){
+        $this->logger->error($nom);
+        return $this->createQueryBuilder('maison')
+            ->andWhere('maison.nom LIKE :nom')
+            ->setParameter('nom', '%'.$nom.'%')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findMaisonByAdresse($str){
+       // $this->logger->error($adresse);
+        return $this->createQueryBuilder('maison')
+            ->andwhere('maison.nom LIKE :nom')
+            ->andWhere('maison.adresse LIKE :adresse')
+            ->setParameter('nom', '%'.$str.'%')
+            ->setParameter('adresse', '%'.$str.'%')
+            ->getQuery()
+            ->getResult();
+    }
 }
