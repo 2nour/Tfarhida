@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Panier;
 use App\Entity\Produit;
+use App\Entity\commentaire;
+use App\Form\CommentType;
+
 use App\Form\AjouterProduitFormType;
 use App\Repository\PanierRepository;
 use App\Repository\ProduitRepository;
@@ -87,7 +90,25 @@ class ProduitController extends AbstractController
         $p = $em->find(Produit::class, $id);
         $produit=$repo->find($p);
 
-        return $this->render("produit/voirproduit.html.twig", ['produit'=>$produit]);
+        $comment =new commentaire();
+        $form=$this->createForm( CommentType::class,$comment);
+        $form->handleRequest($request);
+
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $produit->addComment($comment);
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute("produitListe");
+        }
+        if($produit->getComments())
+
+        {
+            $comment= $produit->getComments();
+        }
+        return $this->render("produit/voirproduit.html.twig", ['produit'=>$produit,'comments'=>$comment,'form'=>$form->createView()]);
 
     }
 

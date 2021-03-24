@@ -66,11 +66,11 @@ class CommentController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $id = $request->get("id");
-        $p = $em->find(Produit::class, $id);
-        if($p->getComments())
+        $produit = $em->find(Produit::class, $id);
+        if($produit->getComments())
 
         {
-
+           $comment= $produit->getComments();
         }
 
         return $this->render("produit/voirproduit.html.twig");

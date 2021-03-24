@@ -34,6 +34,14 @@ class commentaire
      */
     private $produit;
 
+    /**
+     * commentaire constructor.
+     * @param $datedecommentaire
+     */
+    public function __construct()
+    {
+        $this->datedecommentaire = new \DateTime();
+    }
 
 
     public function getId(): ?int
