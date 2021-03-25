@@ -1,7 +1,21 @@
 {% extends 'base.html.twig'%}
 {% block body %}
 
-
+{% for message in app.flashes('message') %}
+     <div class="alert alert-success" role="alert">
+    {{ message }}
+     </div>
+{% endfor %}
+    {% for message in app.flashes('warninig') %}
+        <div class="alert alert-warning" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
 <section id="pricing" class="pricing">
     <div class="container">
         <h2>Connexion ! </h2>
@@ -22,6 +36,8 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-success">Connexion ! </button>
             </div>
+
+            <a href="{{ path('app_forgotten_password') }}" class="get-started-btn ml-auto">Mot de passe oublié </a>
 
         </form>
 

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Form\ResetPassType;
 use App\Repository\UserRepository;
 use Cassandra\Type\UserType;
 use phpDocumentor\Reflection\Type;
@@ -12,7 +13,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
 class SecurityController extends AbstractController
 {
@@ -81,25 +84,32 @@ class SecurityController extends AbstractController
     }
 
 //    /**
-  //   * @Route ("update/{id}", name="update")
-   //  */
- //   public function update(UserRepository $repository, $id, Request $request){
-   //     $user=$repository->find($id);
-     //   $form=$this->createForm(UserType::class, $user);
-       // $form->add('update',SubmitType::class);
-   //     $form->handleRequest($request);
-     //   if ($form->isSubmitted()&& $form->isValid()){
-       //     $em= $this->getDoctrine()->getManager();
-         //   $em->flush();
-           // return $this->redirectToRoute('show_user');
-
-        //}
-
-       // return $this->render('security/update.html.twig',
-        //[
-          //  'form'=>$form->createView()
-       // ]);
-   // }
+//     * @Route ("update/{id}", name="update")
+//     * @param User $user
+//     * @param UserRepository $repository
+//     * @param $id
+//     * @param Request $request
+//     * @return RedirectResponse|Response
+//     */
+//    public function update(User $user, UserRepository $repository, $id, Request $request){
+//    dd($user);
+//
+//        // $user=$repository->find($id);
+//    $form=$this->createForm(UserType::class, $user);
+//    $form->add('update',SubmitType::class);
+//     $form->handleRequest($request);
+//    if ($form->isSubmitted()&& $form->isValid()){
+//        $em= $this->getDoctrine()->getManager();
+//        $em->flush();
+//        return $this->redirectToRoute('show_user');
+//
+//    }
+//
+//    return $this->render('security/update.html.twig',
+//    [
+//        'form'=>$form->createView()
+//    ]);
+// }
 
 
 
@@ -188,5 +198,106 @@ class SecurityController extends AbstractController
 
     }
 
+    /**
+     * @param Request $request
+     * @param UserRepository $userRepo
+     * @param \Swift_Mailer $mailer
+     * @param TokenGeneratorInterface $tokenGenerator
+     * @return RedirectResponse|Response
+     * @Route("/oubli-pass", name="app_forgotten_password")
+     */
+  public function forgottenPass(Request $request, UserRepository $userRepo, \Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator)
+  {
+      //on créé le form
+      $form = $this->createForm(ResetPassType::class);
+
+      //on traite le formulaire
+      $form->handleRequest($request);
+
+      //si le form est valide
+      if ($form->isSubmitted() && $form->isValid()){
+
+          //on reccupere les données
+          $donnees = $form->getData();
+
+          //on cherche si un utilisateur  a cet mail
+          $user = $userRepo->findOneByEmail($donnees['email']);
+
+          //si l'utilisateur n'existe pas
+          if (!$user){
+              //on envois un message flash
+              $this->addFlash('danger', 'cette adresse est non disponible ');
+
+              return $this->redirectToRoute('security_login');
+          }
+
+          //on genere un token
+          $token = $tokenGenerator->generateToken();
+
+          try {
+              $user->setResetToken($token);
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($user);
+              $em->flush();
+
+          }catch (\Exception $e){
+              $this->addFlash('warning','Une erreur est survenue : '. $e->getMessage());
+              return $this->redirectToRoute('security_login');
+
+          }
+
+          //on genere l'url de  reinisialisation
+          $url = $this->generateUrl('app_reset_password',['token'=> $token,
+              UrlGeneratorInterface::ABSOLUTE_URL]);
+
+          //on envois le msg
+          $message = (new \Swift_Message('Mot de passe oublié'))
+              ->setFrom('votre@adresse.fr')
+              ->setTo($user->getEmail())
+              ->setBody("<p>Bonjour</p><p>Une demande de reinitialisation de mot de passe a ete effectuee pour le site esprit.tn. veuillez clique sur le lien suivant : " . $url .'</p>', 'text/html');
+          $mailer->send($message);
+
+          //on crée le msg flash
+          $this->addFlash('message', 'un e-mail de réinitialisation de mot de passe vou a été envoyé');
+
+          return  $this->redirectToRoute('security_login');
+      }
+      //on envoie vers la page de demande de l'email
+      return $this->render('security/forgotten_password.html.twig', [
+          'emailForm' => $form->createView()
+      ]);
+  }
+
+    /**
+     * @Route ("/reset-pass/{token}", name="app_reset_password")
+     */
+  public function resetPassword($token, Request $request, UserPasswordEncoderInterface $passwordEncoder){
+      //on cherche l'utilisateur avec le token fournis
+
+      $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['reset_token'=> $token]);
+
+      if (!$user){
+          $this->addFlash('danger', 'Token inconnu');
+          return $this->redirectToRoute('security_login');
+      }
+
+      //si le formulaire est envoyer en methode POST
+      if ($request->isMethod('POST')){
+          $user->setResetToken(null);
+          $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($user);
+          $em->flush();
+
+          $this->addFlash('message', 'Mot de passe modifié avec succes');
+
+          return $this->redirectToRoute('security_login');
+
+      }
+      else{
+          return $this->render('security/reset_password.html.twig', ['token'=> $token]);
+      }
+
+  }
 
 }
