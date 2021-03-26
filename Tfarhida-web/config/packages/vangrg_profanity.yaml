@@ -1,0 +1,6 @@
+vangrg_profanity:
+  storage: vangrg_profanity.storage.default  # By default use 'vangrg_profanity.storage.default', custom storage service must implement "Vangrg\ProfanityBundle\Storage\ProfanitiesStorageInterface"
+  allow_bound_by_words: true # Also match profanities inside words e.g. a.r.s.esomething, somethingarse, but be careful also words like glasses
+  #profanities_source:
+   # file_name:  # your custom filename with profanities
+    #format:  # profanities source format (default yaml), can be yaml, json or xml
