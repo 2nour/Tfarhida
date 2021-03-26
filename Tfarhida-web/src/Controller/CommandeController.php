@@ -51,6 +51,7 @@ class CommandeController extends AbstractController
             $em->flush();
         }
             else {
+                /*si la commande existe ajoouter un produit a cette commande*/
                 $commande->setQuantiteProduit($commande->getQuantiteProduit()+1);
                 $commande->setPrixcommande($produit->getPrix() * $commande->getQuantiteProduit());
                 $em->persist($commande);
