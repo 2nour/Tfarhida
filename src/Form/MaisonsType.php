@@ -11,8 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType;
-use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
+
 
 class MaisonsType extends AbstractType
 {
@@ -61,12 +60,6 @@ class MaisonsType extends AbstractType
                 ]
             ])
 
-            // For Invisible Recaptcha
-            /*
-            ->add('captcha', RecaptchaSubmitType::class, [
-                'label' => 'Save'
-            ])
-            */
             ->add('Envoyer', SubmitType::class, [
                 'attr'=> [
                     'class' => 'btn btn-info',

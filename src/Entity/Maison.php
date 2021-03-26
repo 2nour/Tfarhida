@@ -7,11 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass=MaisonRepository::class)
  */
-class Maison
+class Maison implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -45,7 +46,6 @@ class Maison
 
     /**
      * @ORM\OneToMany(targetEntity=Chambre::class, mappedBy="maison", cascade={"all"})
-     * @Assert\Length(max=8)
      */
     private $chambres;
 
@@ -66,6 +66,7 @@ class Maison
      */
     private $favoris;
 
+    protected $captchaCode;
 
     public function __construct()
     {
@@ -230,7 +231,15 @@ class Maison
 
     }
 
-
-
-
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->id,
+            'nom' => $this->nom,
+            'photo' => $this->photo,
+            'description' => $this->description,
+            'nbr_chambre' => $this->nbr_chambre,
+            'adresse' => $this->adresse
+        );
+    }
 }

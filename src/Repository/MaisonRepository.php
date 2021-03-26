@@ -7,8 +7,6 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
-use Psr\Log\LoggerInterface;
-
 
 /**
  * @method Maison|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,14 +17,10 @@ use Psr\Log\LoggerInterface;
 class MaisonRepository extends ServiceEntityRepository
 {
 
-    private $logger;
-
-    public function __construct(ManagerRegistry $registry, LoggerInterface $logger)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Maison::class);
-        $this->logger = $logger;
     }
-
     // /**
     //  * @return Maison[] Returns an array of Maison objects
     //  */
@@ -57,7 +51,6 @@ class MaisonRepository extends ServiceEntityRepository
     */
 
     public function findMaisonByNom($nom){
-        $this->logger->error($nom);
         return $this->createQueryBuilder('maison')
             ->andWhere('maison.nom LIKE :nom')
             ->setParameter('nom', '%'.$nom.'%')
