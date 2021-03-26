@@ -20,7 +20,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 class PanierController extends AbstractController
 {
     /**
-     * @Route("/panierListe", name="panier_index", methods={"GET"})
+     * @Route("/pan", name="panier_index", methods={"GET"})
      */
     public function index(PanierRepository $panierRepository): Response
     {
@@ -33,7 +33,7 @@ class PanierController extends AbstractController
     /**
      *
      * @Route("/panierListe", name="panierListe")
-     * @return \http\Env\Response
+     * @return Response
      */
     public function afficherPanier()
     {
@@ -49,8 +49,12 @@ class PanierController extends AbstractController
          where commande.panier =?1)");
         $query->setParameter(1,$panierId);
         $produits =$query->getResult();
+        $commandes=$em->getRepository(Commande::class)->findAll();
+
+
         try {
-            return $this->render("panier/panier.html.twig", ['produits'=>$produits,'panier' =>$panier]);
+            return $this->render("panier/panier.html.twig", ['produits'=>$produits,'panier' =>$panier,'commandes'=>$commandes
+            ]);
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
         }

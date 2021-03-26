@@ -2,14 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\commentaire;
 use App\Form\CommentType;
 
 use App\Form\AjouterProduitFormType;
+use App\Repository\CommandeRepository;
 use App\Repository\PanierRepository;
 use App\Repository\ProduitRepository;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Request;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,7 +37,7 @@ class ProduitController extends AbstractController
      * @Route("produitAjouter", name="produitAjouter")
      * @return \http\Env\Response
      */
-    public function ajouterProduit(\Symfony\Component\HttpFoundation\Request $request)
+    public function ajouterProduit(\Symfony\Component\HttpFoundation\Request $request,FlashyNotifier $flashyNotifier)
     {
         $produit =new Produit();
         $form=$this->createForm(AjouterProduitFormType::class,$produit);
@@ -56,7 +59,10 @@ class ProduitController extends AbstractController
             $produit->setImage($filename);
             $em->persist($produit);
             $em->flush();
+            $flashyNotifier->success('yeeeeeeeeey');
             return $this->redirectToRoute("produitListe");
+            $flashyNotifier->success('yeeeeeeeeey');
+
         }
 
        return $this->render('produit/ajouter.html.twig', [
@@ -69,10 +75,11 @@ class ProduitController extends AbstractController
      * @Route("produitListe", name="produitListe")
      * @return \http\Env\Response
      */
-    public function afficherlisteProduit(ProduitRepository $repo)
+    public function afficherlisteProduit(ProduitRepository $repo,FlashyNotifier $flashyNotifier)
     {
 
         $produit=$repo->findAll();
+        $flashyNotifier->success('yeeeeeeeeey');
 
          return $this->render("produit/liste.html.twig", ['produits'=>$produit]);
 
@@ -81,7 +88,7 @@ class ProduitController extends AbstractController
     /**
      * @param ProduitRepository $repo,$id
      * @Route("voirProduit", name="voirProduit",defaults={"id"})
-     * @return \http\Env\Response
+     * @return Response
      */
     public function afficherProduitById( ProduitRepository $repo, \Symfony\Component\HttpFoundation\Request $request)
     {
@@ -119,20 +126,42 @@ class ProduitController extends AbstractController
 
     /**
      * @param ProduitRepository $repo,$id
+     * @param CommandeRepository $commandeRepository
      * @Route("produitSupprimer/{id}", name="suppProduit")
-     * @return \http\Env\Response
+     * @return Response
      */
-    public function supprimerProduit( $id,ProduitRepository $repo )
+    public function supprimerProduit( $id,ProduitRepository $repo,CommandeRepository $commandeRepository )
     {
 
         $produit=$repo->find($id);
         $em=$this->getDoctrine()->getManager();
+
+        $commande= $em->getRepository(Commande::class)->findOneBy(array('produit'=>$produit));
+
+        if($commande)
+        {
+            $panier=$commande->getPanier();
+           $panier->setSomme($panier->getSomme() - $commande->getPrixcommande()*$commande->getQuantiteProduit());
+           $panier->setnbproduit($panier->getnbproduit()-$commande->getQuantiteProduit());
+
+
+        }
         $em->remove($produit);
         $em->flush();
 
         return $this->redirectToRoute("produitListe");
 
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @param Request $request
@@ -145,12 +174,12 @@ class ProduitController extends AbstractController
     public function update(Request $request,ProduitRepository $repository){
         $em = $this->getDoctrine()->getManager();
         $id = $request->get("id");
-        $mai = $em->find(Produit::class, $id);
+        $produit = $em->find(Produit::class, $id);
 
-        $form=$this->createForm(AjouterProduitFormType::class,$mai);
+        $form=$this->createForm(AjouterProduitFormType::class,$produit);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $file =$mai->getImage();
+            $file =$produit->getImage();
             $filename=md5(uniqid()).'.'.$file->guessExtension();
 
             // sauvgarder l'image dans le dossier indiquer par le param 'product_image_directory' dans services.yaml
@@ -161,11 +190,11 @@ class ProduitController extends AbstractController
             }
 
             $em=$this->getDoctrine()->getManager();
-            $mai->setImage($filename);
+            $produit->setImage($filename);
             $em->flush();
-            return $this->redirectToRoute("produitListe");
+            $this->render("produit/list.html.twig");
         }
-        return $this->render("produit/liste.html.twig",[
+        return $this->render("produit/update.html.twig",['produit'=>$produit,
             'form'=>$form->createView()
         ]);
     }

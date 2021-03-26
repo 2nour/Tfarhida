@@ -57,12 +57,12 @@ class Produit
 
 
     /**
-     * @ORM\OneToMany(targetEntity=commentaire::class, mappedBy="produit")
+     * @ORM\OneToMany(targetEntity=commentaire::class,cascade={"persist", "remove"}, mappedBy="produit")
      */
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="produit", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="produit",cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $commandes;
 

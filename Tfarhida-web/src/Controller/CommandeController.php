@@ -8,6 +8,7 @@ use App\Entity\Panier;
 
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,34 +26,57 @@ class CommandeController extends AbstractController
      * @Route("/ajouterCommande", name="ajouterCommande",defaults={"id"})
      *
      */
-    public function ajouteruneCommande(\Symfony\Component\HttpFoundation\Request $request)
+    public function ajouteruneCommande(\Symfony\Component\HttpFoundation\Request $request,FlashyNotifier $flashyNotifier)
     {
-
         $em = $this->getDoctrine()->getManager();
-        $id = $request->get("id");
-        $produit = $em->find(Produit::class, $id);
-        $panier =$em->find(Panier::class,2);
+        $idproduit = $request->get("id");
+        $idpanier=2;
+        $produit = $em->find(Produit::class, $idproduit);
+        $panier =$em->find(Panier::class,$idpanier);
+        /*verifier si le produit est deja dans le panier*/
+        $commande=$em->getRepository(Commande::class)->findOneBy(array('panier'=>$panier,'produit'=>$produit));
 
-        $commande=new Commande();
-        $commande->setProduit($produit);
-        $commande->setPanier($panier);
-        $commande->getQuantiteProduit(1);
-        $panier->setNbproduit($panier->getNbproduit()+1);
-        $commande->setPrixcommande($produit->getPrix());
-        $panier->setSomme($panier->getSomme() + $commande->getPrixcommande());
+        /*si le produit n'est pas dans le panier*/
+        if($commande== null)
+        {
+            $c=new Commande();
+            $c->setProduit($produit);
+            $c->setPanier($panier);
+            $c->setQuantiteProduit($c->getQuantiteProduit()+1);
+            $c->setPrixcommande($produit->getPrix() * $c->getQuantiteProduit());
 
-        $em->persist($commande);
-        $em->flush();
+            $panier->setNbproduit($panier->getNbproduit()+1);
+            $panier->setSomme($panier->getSomme() + $produit->getPrix() );
+            $em->persist($c);
+            $em->flush();
+        }
+            else {
+                $commande->setQuantiteProduit($commande->getQuantiteProduit()+1);
+                $commande->setPrixcommande($produit->getPrix() * $commande->getQuantiteProduit());
+                $em->persist($commande);
+                $panier->setNbproduit($panier->getNbproduit()+1);
+                $panier->setSomme($panier->getSomme() + $produit->getPrix());
+
+
+                $em->persist($panier);
+                $em->flush();
+
+
+            }
+
+
+        $flashyNotifier->success('ajoute au panier');
         return $this->redirectToRoute("produitListe");
 
 
     }
 
 
+
     /**
      * @param CommandeRepository $repo,$id
      * @Route("suppPanier/{id}", name="suppPanier")
-     * @return \http\Env\Response
+     * @return Response
      */
     public function supprimerProduit( $id,CommandeRepository $repo )
     {
@@ -63,8 +87,8 @@ class CommandeController extends AbstractController
         $panier=$em->find(Panier::class,$panierId);
         $commande=$emm->findOneBy(array('produit'=>$produit,'panier'=>$panier));
 
-        $panier->setSomme($panier->getSomme() - $produit->getPrix() * 1);
-        $panier->setNbproduit($panier->getNbproduit() - 1);
+        $panier->setSomme($panier->getSomme() - $produit->getPrix() * $commande->getQuantiteProduit());
+        $panier->setNbproduit($panier->getNbproduit() - $commande->getQuantiteProduit());
         $em->persist($panier);
         $em->remove($commande);
         $em->flush();
@@ -82,7 +106,7 @@ class CommandeController extends AbstractController
     /**
      * @param CommandeRepository $repo,$id
      * @Route("/modifierCommande", name="modifierCommande",defaults={"id"})
-     * @return \http\Env\Response
+     * @return Response
      */
     public function modifiercommande( $id,CommandeRepository $repo )
     {
@@ -103,7 +127,6 @@ class CommandeController extends AbstractController
 
 
     }
-
 
 
 

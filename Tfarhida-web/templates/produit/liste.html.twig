@@ -54,7 +54,6 @@
                             <h4>{{ produit.nom }}</h4>
                             <p>{{ produit.prix }}</p>
                             <div class="portfolio-links">
-                                <a href="{{ asset('uploads/images/produit/' ~ produit.image) }}"  data-gall="portfolioGallery" class="venobox" title="{{ produit.nom }}"><i class="bx bx-plus"></i></a>
                                 <a href="{{ path("voirProduit",{ 'id': produit.id }) }}"  ><i class="bx bxs-right-arrow"></i></a>
                                 <a href="{{ path("suppProduit",{ 'id': produit.id }) }}"  ><i class="bx bxs-trash"></i></a>
                                 <a href="{{ path("ajouterCommande",{ 'id': produit.id }) }}"  ><i class="bx bxs-shopping-bag-alt"></i></a>
