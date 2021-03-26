@@ -12,6 +12,8 @@ use App\Form\AjouterProduitFormType;
 use App\Repository\CommandeRepository;
 use App\Repository\PanierRepository;
 use App\Repository\ProduitRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Request;
 use phpDocumentor\Reflection\Types\Integer;
@@ -75,13 +77,19 @@ class ProduitController extends AbstractController
      * @Route("produitListe", name="produitListe")
      * @return \http\Env\Response
      */
-    public function afficherlisteProduit(ProduitRepository $repo,FlashyNotifier $flashyNotifier)
+    public function afficherlisteProduit(FlashyNotifier $flashyNotifier,PaginatorInterface $paginator,Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $produits=$em->getRepository(Produit::class)->findAll();
+        $pagination = $paginator->paginate(
+            $produits, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            9 /*limit per page*/
+        );
 
-        $produit=$repo->findAll();
         $flashyNotifier->success('yeeeeeeeeey');
 
-         return $this->render("produit/liste.html.twig", ['produits'=>$produit]);
+         return $this->render("produit/liste.html.twig", ['produits'=>$pagination]);
 
     }
 
