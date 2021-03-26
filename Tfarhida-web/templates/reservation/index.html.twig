@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,24 +5,19 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>{% block title %}TFARHIDA {% endblock %}</title>
+    <title>{% block title %}Sailor Bootstrap Template - Index  {% endblock %}</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     {% block CSS %}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
         <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
@@ -32,11 +25,7 @@
         <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
-        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-        <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
         <!-- Template Main CSS File -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     {% endblock %}
@@ -63,21 +52,17 @@
                 <li><a href="" class="active">Acceuil</a></li>
 
 
-                <li><a href="">Maison d'hote</a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                <li class="dropdown"><a href="#"><span>Gestion Randonnée</span> <i class="bi bi-chevron-down"></i></a>
+                <li><a href="">Maison d'hote</a></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="dropdown"><span>Randonnéer</span> <i class="bi bi-chevron-right"></i>
                     <ul>
-                        <li><a href="{{ path('AfficheRandonnee')}}">Randonnée</a></li>
-                        <li><a href="{{ path('reservationAdmin')}}">Reservation(Admin)</a></li>
-                        <li><a href="{{ path('randonnee')}}">Randonnée(Admin)</a></li>
+                        <li><a href="{{ path('AfficheRandonnee')}}">Randonné</a></li>
                         <li><a href="{{ path('AfficheReservation')}}">Reservation</a></li>
                     </ul>
-
-                </li>
                 <li><a href="">Organiser un évenement</a></li>
                 <li><a href="">Produit</a></li>
 
-
-                <li><a href="" class="getstarted">Deconnexion</a></li>
+                <li><a href="" class="getstarted">S'inscrire</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -86,17 +71,76 @@
 </header>
 
 
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+            <!-- Slide 1 -->
+            <div class="carousel-item active" style="background-image: url(assets/img/slide/camp.jpg)">
+                <div class="carousel-container">
+                    <div class="container">
+                        <h2 class="animate__animated animate__fadeInDown">Bienvenue a <span>Tfarhida</span></h2>
+                        <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item" style="background-image: url(assets/img/slide/maison.jpg)">
+                <div class="carousel-container">
+                    <div class="container">
+                        <h2 class="animate__animated animate__fadeInDown">Welcom to tfarhida</h2>
+                        <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item" style="background-image: url(assets/img/slide/sahra.jpg)">
+                <div class="carousel-container">
+                    <div class="container">
+                        <h2 class="animate__animated animate__fadeInDown">Marhba bikom fi tfarhida</h2>
+                        <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= About Section ======= -->
+
+    <!-- ======= Clients Section ======= -->
 
 
 
 
-
-{% block body %}{% endblock %}
-
+    <!-- ======= Portfolio Section ======= -->
 
 
 
-
+</main><!-- End #main -->
 
 
 <!-- ======= Footer ======= -->
@@ -127,9 +171,9 @@
                     <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Nos services</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="{{ path('randonnee')}}">Acceuil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Acceuil</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Maison d'hote</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="{{ path('AfficheRandonnee')}}">Randonné</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Randonné</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Organiser un évenement</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Produit</a></li>
                         </ul>
@@ -163,7 +207,13 @@
             <div class="copyright">
                 &copy; Copyright <strong><span>Sailor</span></strong>. All Rights Reserved
             </div>
-
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
         </div>
     </footer><!-- End Footer -->
 {% endblock %}
@@ -172,14 +222,12 @@
 
 <!-- Vendor JS Files -->
 {% block JS %}
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js" integrity="sha256-rPPF6R+AH/Gilj2aC00ZAuB2EKmnEjXlEWx5MkAp7bw=" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -187,5 +235,4 @@
 </body>
 
 </html>
-
 
