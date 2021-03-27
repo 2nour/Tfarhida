@@ -44,7 +44,7 @@ class PanierController extends AbstractController
       $query =$em->createQuery(
           "SELECT produit
          FROM  App\Entity\Produit produit
-         where produit.id IN (
+         where  produit.id IN (
          select IDENTITY(commande.produit) from App\Entity\Commande commande
          where commande.panier =?1)");
         $query->setParameter(1,$panierId);
