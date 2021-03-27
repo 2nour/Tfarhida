@@ -66,10 +66,16 @@ class Produit
      */
     private $commandes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Categorie::class, mappedBy="produit")
+     */
+    private $categories;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
 
@@ -210,6 +216,33 @@ class Produit
             if ($commande->getProduit() === $this) {
                 $commande->setProduit(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeProduit($this);
         }
 
         return $this;
