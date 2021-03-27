@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Commande;
 use App\Entity\Panier;
 use App\Entity\Produit;
@@ -9,6 +10,7 @@ use App\Entity\commentaire;
 use App\Form\CommentType;
 
 use App\Form\AjouterProduitFormType;
+use App\Form\SearchForm;
 use App\Repository\CommandeRepository;
 use App\Repository\PanierRepository;
 use App\Repository\ProduitRepository;
@@ -75,21 +77,27 @@ class ProduitController extends AbstractController
     /**
      * @param ProduitRepository $repo
      * @Route("produitListe", name="produitListe")
-     * @return \http\Env\Response
+     * @return Response
      */
-    public function afficherlisteProduit(FlashyNotifier $flashyNotifier,PaginatorInterface $paginator,Request $request)
+    public function afficherlisteProduit(PaginatorInterface $paginator,Request $request,ProduitRepository $produitRepository)
     {
-        $em = $this->getDoctrine()->getManager();
-        $produits=$em->getRepository(Produit::class)->findAll();
-        $pagination = $paginator->paginate(
-            $produits, /* query NOT result */
-            $request->query->getInt('page', 1), /*page number*/
-            9 /*limit per page*/
-        );
+        $data= new SearchData();
+        $data->page = $request->get('page', 1);
+        $form =$this->createForm(SearchForm::class,$data);
+        $form->handleRequest($request);
+        $produits=$produitRepository->findSearch($data);
 
-        $flashyNotifier->success('yeeeeeeeeey');
 
-         return $this->render("produit/liste.html.twig", ['produits'=>$pagination]);
+      //  $em = $this->getDoctrine()->getManager();
+       // $produits=$em->getRepository(Produit::class)->findAll();
+       // $pagination = $paginator->paginate(
+           // $produits, /* query NOT result */
+           // $request->query->getInt('page', 1), /*page number*/
+           // 9 /*limit per page*/
+    //    );
+
+
+         return $this->render("produit/liste.html.twig", ['produits'=>$produits,"form"=>$form->createView()]);
 
     }
 

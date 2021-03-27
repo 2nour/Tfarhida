@@ -44,6 +44,11 @@
             </div>
 
             <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        {% include 'produit/filtre.html.twig' with {form: form} only %}
+                    </div>
+                </div>
 
                 <div class="row" {% for produit in produits %}>
                     <div class="col-md-4 col-sm-6">
@@ -55,7 +60,7 @@
                             </div>
                             <div class="product-content">
                                 <h3 class="title"><a href="#">{{ produit.nom }}</a></h3>
-                                <div class="price">prix :<strong>{{ produit.prix }}</strong> dt</div>
+                                <div class="price">prix :<strong>{{ produit.prix | number_format(0,',','') }}</strong> dt</div>
                             </div>
                             <ul class="social">
                                 <li><a href="{{ path("voirProduit",{ 'id': produit.id }) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
