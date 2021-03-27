@@ -14,7 +14,7 @@ class AppFixtures extends Fixture
             $product = new Produit();
             $product->setNom("tente");
             $product->setDescription('tente pour deux personnes');
-            $product->setImage("efafff0ff15b74226a6cb0a872e2d62e.jpeg");
+            $product->setImage("61e33fc7785f99bfd138480e412d894a.jpeg");
             $product->setQuantite(20);
             $product->setMarque("tan");
             $product->setPrix(100);

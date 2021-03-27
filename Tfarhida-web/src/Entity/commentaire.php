@@ -33,7 +33,7 @@ class commentaire
     private $datedecommentaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Produit::class,cascade={"persist","remove"}, inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="comments")
      */
     private $produit;
 
