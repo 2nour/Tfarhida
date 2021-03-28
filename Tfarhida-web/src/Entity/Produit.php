@@ -67,7 +67,7 @@ class Produit
     private $commandes;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Categorie::class, mappedBy="produit")
+     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="produit")
      */
     private $categories;
 
@@ -77,6 +77,7 @@ class Produit
         $this->commandes = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
+
 
 
 

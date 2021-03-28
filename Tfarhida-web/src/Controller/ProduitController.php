@@ -61,6 +61,9 @@ class ProduitController extends AbstractController
             $em=$this->getDoctrine()->getManager();
         // sauvgarder uniquement le nom de l'image dans la bdd
             $produit->setImage($filename);
+            foreach($form["categories"]->getData()->getValues() as $categories) {
+                $produit->addCategory($categories);
+            }
             $em->persist($produit);
             $em->flush();
             $flashyNotifier->success('yeeeeeeeeey');

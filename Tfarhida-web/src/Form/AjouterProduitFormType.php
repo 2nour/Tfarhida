@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Produit;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Categorie;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -49,6 +51,13 @@ class AjouterProduitFormType extends AbstractType
                         'class' => 'form-control',
                         'trim' => true
                     ]])
+            ->add('categories', EntityType::class, [
+
+                'required' => true,
+                'class' => Categorie::class,
+                'expanded' => true,
+                'multiple' => true
+            ])
             ->add('marque',TextType::class,
                 [
                     'attr'=> [
