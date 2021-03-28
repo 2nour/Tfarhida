@@ -18,18 +18,22 @@ body {
   margin-left: 250px;
 
 }
+.card-image {
+  max-height: 20vh; /*not want to take all vertical space*/
+  object-fit: contain;
+}
 .filter
 {
 
   margin-right:2px;
 }
-.fillterr{
+/*.fillterr{
   margin-bottom: 1000px;
   margin-left: 280px;
 
 
 
-}
+}*/
 /********************* Shopping Demo-6 **********************/
 .product-grid6,.product-grid6 .product-image6{overflow:hidden}
 .product-grid6{font-family:'Open Sans',sans-serif;text-align:center;position:relative;transition:all .5s ease 0s}
