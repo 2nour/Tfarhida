@@ -27,7 +27,9 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Chambres</h2>
                 <ol>
-                    <li><a href={{ path('home') }}>Accueil</a></li>
+                    {% for c in chambre %}
+                    <li><a href={{ path('read',{'id':c.maison.id}) }}>Maison d'hôte</a></li>
+                    {% endfor %}
                     <li>Chambres</li>
                 </ol>
             </div>
@@ -58,11 +60,12 @@
                             <div class="portfolio-links">
                                 <a href="{{ asset('assets/img/maison/' ~ c.photo) }}" data-gall="portfolioGallery" class="venobox" title="Voir photo"><i class="bx bx-plus"></i></a>
                                 <a href="{{ path('h',{'id':c.id}) }}" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Détails du chambre"><i class="bx bx-link"></i></a>
+                                <a href="{{ path('dChambre',{'id':c.id}) }}" title="Supprimer"><i class="icofont-garbage"></i></a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>{% endfor %}
+                </div>{% endfor %}
+            </div>
 
         </div>
     </section>

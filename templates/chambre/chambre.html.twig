@@ -41,6 +41,7 @@
                         <li><strong>Nombre personne pour la chambre</strong> : {{ chambre.nbrPers }}</li>
                         <li><strong>Prix chambre</strong>: {{ chambre.prix }}d</li>
                         <li><button type="button" class="btn btn-warning">Réserver</button></li>
+                        <li><a href="{{ path('upCh',{'idCh':chambre.id}) }}"><i class="icofont-tick-boxed"></i>Modifier</a></li>
                     </ul>
 
                 </div>

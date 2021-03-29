@@ -68,10 +68,21 @@ class Maison implements JsonSerializable
 
     protected $captchaCode;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="maison")
+     */
+    private $commentaires;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true, options={"default" = 0})
+     */
+    private $nbrComment;
+
     public function __construct()
     {
         $this->chambres = new ArrayCollection();
         $this->favoris = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -241,5 +252,47 @@ class Maison implements JsonSerializable
             'nbr_chambre' => $this->nbr_chambre,
             'adresse' => $this->adresse
         );
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setMaison($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getMaison() === $this) {
+                $commentaire->setMaison(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNbrComment(): ?int
+    {
+        return $this->nbrComment;
+    }
+
+    public function setNbrComment(?int $nbrComment): self
+    {
+        $this->nbrComment = $nbrComment;
+
+        return $this;
     }
 }

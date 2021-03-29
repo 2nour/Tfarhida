@@ -27,14 +27,22 @@
 
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Maison d'hôte</h2>
-                <ol>
-                    <li><a href="{{ path('home') }}">Accueil</a></li>
-                    <li><a href="{{ path('aff') }}">Maison d'hôte</a></li>
-                </ol>
-            </div>
 
-        </div>
-    </section><!-- End Breadcrumbs -->
+                        <nav class="nav-menu d-none d-lg-block">
+                            <ul>
+                                <li class="drop-down"><i class="icofont-navigation-menu"></i>
+                                    <ul>
+                                        <li class="current first"><a href="{{ path('mais',{'id':maison.id}) }}">Voir chambres</a></li>
+                                        <li class="current_ancestor"><a href="{{ path('add',{'id':maison.id}) }}">Ajouter Chambre</a></li>
+                                        <li class="current_ancestor"><a href="{{ path('u',{'idM':maison.id}) }}">Modifier Maison</a></li>
+                                    </ul>
+                                    {# {{ knp_menu_render('main') }} #}
+                                </li>
+                            </ul>
+                        </nav>
+                   </div>
+                </div>
+           </section><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
@@ -75,20 +83,44 @@
                                 <i class="las la-quote-right quote-right"></i>
                                 <i class="icofont-quote-right quote-right"></i>
                             </blockquote>
-                            <div class="read-more">
-                                <a href="{{ path('mais',{'id':maison.id}) }}">Voir chambres</a>
-                                <a href="{{ path('add',{'id':maison.id}) }}">Ajouter Chambre</a>
-                                <a href="{{ path('d',{'id':maison.id}) }}">Supprimer</a>
-                                <a href="{{ path('u',{'idM':maison.id}) }}">Modifier</a>
+
+                            <div class="red">
+                                <a href="{{ path('d',{'id':maison.id}) }}" title="Supprimer"><i class="icofont-garbage"></i></a>
                             </div>
-
-
                         </div>
 
                     </article><!-- End blog entry -->
+                </div>
 
+            </div>
+        <div class="blog-comments">
+            <h4 class="comments-count">{{ maison.nbrComment }} Commentaires</h4>
+            {% for c in comment %}
+            <div id="comment-1" class="comment clearfix">
+                <img src="assets/img/comments-1.jpg" class="comment-img  float-left" alt="">
+                <h5>{{ c.user.nom }}</h5>
+                <time>{{ c.date | date('Y-m-d') }}</time>
+                <p>
+                  {{ c.comment }}
+                </p>
+                <div class="redCom">
+                    <a href="{{ path('dComment',{'id':c.id}) }}"><i class="icofont-garbage"> Supprimer</i></a>
+                </div>
+                {% endfor %}
+            </div><!-- End comment #1 -->
+        <div class="reply-form">
+            <h4>Laisser un commentaire</h4>
+            {{ form_start(f,{'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="row">
+                <div class="form-com">
+                    {{ form_widget(f.comment)}}
+                    {{ form_errors(f.comment) }}
                 </div>
             </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+            {{ form_end(f) }}
+        </div>
+        </div>
         </div>
     </section>
 </main>

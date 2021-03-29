@@ -86,7 +86,8 @@ class FavorisController extends AbstractController
        $u = $repos->find($idUser);
        $favoris=$u -> getFavoris();
         return $this->render('favoris/Affiche.html.twig',
-            ['favoris'=>$favoris]);
+            ['favoris'=>$favoris,
+                'userEnCours'=>$u]);
     }
 
     /**

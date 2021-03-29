@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,8 +27,8 @@ class ChambreType extends AbstractType
             ])
             ->add('typeLit', choiceType::class,[
                 'choices' => [
-                    'Double' => 'd',
-                    'Simple' => 's',
+                    'Double' => 'Double',
+                    'Simple' => 'Simple',
                 ],
                 'attr'=> [
                     'placeholder' => 'Saisir votr',
@@ -47,6 +48,7 @@ class ChambreType extends AbstractType
                 ]
             ])
             ->add('photo', FileType::class, [
+                'data_class' => null,
                 'attr'=> [
                     'placeholder' => 'Mettre vos photos',
                     'class' => 'form-control',
@@ -54,6 +56,11 @@ class ChambreType extends AbstractType
                     'multiple' => true,
                     'mapped'=> false,
                     'required'=>false
+                ]
+            ])
+            ->add('Envoyer', SubmitType::class, [
+                'attr'=> [
+                    'class' => 'btn btn-info',
                 ]
             ])
         ;

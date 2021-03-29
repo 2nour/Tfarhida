@@ -50,20 +50,12 @@ class MaisonRepository extends ServiceEntityRepository
     }
     */
 
-    public function findMaisonByNom($nom){
-        return $this->createQueryBuilder('maison')
-            ->andWhere('maison.nom LIKE :nom')
-            ->setParameter('nom', '%'.$nom.'%')
-            ->getQuery()
-            ->getResult();
-    }
-    public function findMaisonByAdresse($str){
+
+    public function findMaisonByNomOrAdresse($searchText){
        // $this->logger->error($adresse);
         return $this->createQueryBuilder('maison')
-            ->andwhere('maison.nom LIKE :nom')
-            ->andWhere('maison.adresse LIKE :adresse')
-            ->setParameter('nom', '%'.$str.'%')
-            ->setParameter('adresse', '%'.$str.'%')
+            ->andwhere('maison.nom LIKE :nom OR maison.adresse LIKe :adresse')
+            ->setParameters(array('nom' => '%'.$searchText.'%', 'adresse' => '%'.$searchText.'%'))
             ->getQuery()
             ->getResult();
     }

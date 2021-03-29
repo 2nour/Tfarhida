@@ -2,7 +2,10 @@
 
 namespace  App\Controller;
 
+use App\Entity\Commentaire;
 use App\Entity\Maison;
+use App\Entity\User;
+use App\Form\CommentaireType;
 use App\Form\MaisonsType;
 use App\Repository\ChambreRepository;
 use App\Repository\FavorisRepository;
@@ -86,11 +89,29 @@ class MaisonController extends AbstractController
     public function afficheMaison(MaisonRepository $repository, \Symfony\Component\HttpFoundation\Request $request){
         $em = $this->getDoctrine()->getManager();
         $id = $request->get("id");
-        $m = $em->find(Maison::class, $id);
-        $maison=$repository->find($m);
+        $mai = $em->find(Maison::class, $id);
+        $maison=$repository->find($mai);
+        $nbr=$maison->getNbrComment();
+        $comment = new Commentaire();
+        $form=$this->createForm(CommentaireType::class, $comment);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            //TODO recuperer id user après connexion
+            $users = $em->find(User::class, 2);
+            $comment->setMaison($mai);
+            $comment->setUser($users);
+            $em->persist($comment);
+            $maison->setNbrComment($nbr+1);
+            $em->flush();
+            return $this->redirectToRoute("read",["id"=>$maison->getId()]);
+        }
        // return $this->redirectToRoute("add",["idMaison"=>$maison->getId()]);
+        if($maison->getCommentaires())
+        {
+            $comment = $maison->getCommentaires();
+        }
         return $this->render('maison/Detail.html.twig',
-            ['maison'=>$maison]);
+            ['maison'=>$maison, 'comment'=>$comment, 'f'=>$form->createView()]);
     }
 
 
@@ -139,10 +160,10 @@ class MaisonController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $maison->setPhoto($filename);
             $em->flush();
-            return $this->redirectToRoute("aff");
+            return $this->redirectToRoute("read",["id"=>$maison->getId()]);
         }
         return $this->render("maison/Update.html.twig",[
-            'f'=>$form->createView()
+            'f'=>$form->createView(), 'maison'=>$maison
         ]);
     }
 
@@ -158,10 +179,11 @@ class MaisonController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Maison::class);
         $requestString=$request->get('searchValue');
-        $maisons = $repository->findMaisonByNom($requestString);
+        $maisons = $repository->findMaisonByNomOrAdresse($requestString);
         $jsonContent = $normalizer->normalize($maisons, 'json',['groups'=>'maisons']);
         $retour=json_encode($jsonContent);
         return new Response($retour);
-    }
+        }
+
 
 }

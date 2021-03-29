@@ -40,9 +40,9 @@
         <!-- ======= Blog Section ======= -->
         <section id="blog" class="blog">
 
-            <div id="idcontainer" class="container" {% for m in maison %} >
+            <div id="idcontainer" class="container">
 
-                <div class="row">
+                <div class="row" {% for m in maison %}>
 
                     <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
                         <article class="entry">
@@ -73,8 +73,8 @@
                             </div>
 
                         </article><!-- End blog entry -->
-                    </div>
-                </div {% endfor %}>
+                    </div {% endfor %}>
+                </div>
             </div>
 
         </section>

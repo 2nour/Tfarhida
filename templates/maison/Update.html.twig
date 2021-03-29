@@ -34,7 +34,11 @@
         <label for="">Description</label>
         {{ form_widget(f.description)}}
         {{ form_errors(f.description) }}
-        {{ form_end(f) }}
     </div>
-
+    {{ form_end(f) }}
+    <div class="form-group">
+        <div class="read-more">
+            <a href="{{ path('read',{'id':maison.id})}}">Annuler</a>
+        </div>
+    </div>
 {% endblock %}
