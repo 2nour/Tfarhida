@@ -84,7 +84,7 @@ class HomeController extends AbstractController
         $nbrComment = $maison->getNbrComment();
         $maison->setNbrComment($nbrComment-1);
         $em->flush();
-        return $this->redirectToRoute("aff");
+        return $this->redirectToRoute("read",["id"=>$maison->getId()]);
     }
 
 }

@@ -69,19 +69,14 @@ class ChambreController extends AbstractController
             } catch (FileException $e) {
                 // ... handle exception if something happens during file upload
             }
-            if ($request->get('submitAction') == 'ajouter')
-            {
+
                 $chambre->setMaison($mai);
                // sauvgarder uniquement le nom de limage dans la bdd
                 $chambre->setPhoto($filename);
                 $em->persist($chambre);
                 $em->flush();
                 return $this->redirectToRoute("add",["id"=>$maison->getId()]);
-            }
-            elseif ($request->get('submitAction') == 'valider')
-            {
-                return $this->redirectToRoute("read",["id"=>$maison->getId()]);
-            }
+
         }
 
         return $this->render('chambre/newChambre.html.twig',

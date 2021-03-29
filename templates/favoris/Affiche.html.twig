@@ -30,8 +30,9 @@
                         <li><a href="{{ path('home') }}">Accueil</a></li>
                         <li><a href="{{ path('aff') }}">Maison d'hote</a></li>
                        <li>
-                           {{mgilet_notification_count(userEnCours)}}{# toutes les notifications #}
-                          <div>
+                           <a href="#notif"><i class="icofont-notification"></i>{{mgilet_notification_count(userEnCours)}}</a>
+                           {# toutes les notifications #}
+                          <div id="notif">
                            {{ mgilet_notification_render(userEnCours) }}
                           </div>
                        </li>
