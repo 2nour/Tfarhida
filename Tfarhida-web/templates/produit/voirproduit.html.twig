@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} produit {% endblock %}
+
+{% block body %}
+
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs" xmlns="http://www.w3.org/1999/html">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>About</h2>
+                <ol>
+                    <li><a href="/produitListe">Liste Produits</a></li>
+                    <li>Produit</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-8">
+                    <div class="owl-carousel portfolio-details-carousel">
+                        <img src="{{ asset('uploads/images/produit/' ~ produit.image) }}" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-4 portfolio-info">
+                    <h3>Détails</h3>
+                    <ul>
+                        <li><strong>Nom: </strong>: {{ produit.nom }}</li>
+                        <li><strong>Prix</strong>: {{ produit.prix }}</li>
+                        <li><strong>Description</strong> : {{ produit.description }}</li>
+                        <li><strong>Stock</strong>: {{ produit.quantite }}d</li>
+                        <a href="{{ path("updateProduit",{ 'id': produit.id }) }}"  ><i class="btn btn-info">modifier</i></a>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Portfolio Details Section -->
+
+    <!-- comment Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            {% include 'comment/Ajoutercomment.html.twig' with {form: form} only %}
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+
+            <div class="row" >
+
+                {% for comment in comments %}
+                <div class="col-lg-6 mb-4">
+                    <div class="testimonial-item mt-4 mt-lg-0">
+                        <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                        <h5>Sara Wilsson</h5>
+                        <h4>{{ comment.datedecommentaire | date('d-m-Y') }}</h4>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            <strong>{{comment.contenue}}</strong>
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                        <a href="{{ path("commentaireSupprimer",{ 'id': comment.id }) }}"  ><i class="btn btn-danger">supprimer</i></a>
+
+                    </div>
+
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+{% endblock %}

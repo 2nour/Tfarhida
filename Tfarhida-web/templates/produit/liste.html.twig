@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} liste des Produit{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Produits</h2>
+                <ol>
+                    <li><a href="/home">Acceuil</a></li>
+                    <li>Produit</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        <li data-filter="*">Tentes et couchage</li>
+                        <li data-filter="*">Mobilier de camping</li>
+                        <li data-filter="*">Boir et manger</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        {% include 'produit/filtre.html.twig' with {form: form} only %}
+                    </div>
+                    <div class="col-md-9">
+                    <div class="row" {% for produit in produits %}>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-grid6  mb-5">
+                                <div class="card d-flex">
+                                    <div class="product-image6">
+                                        <a href="#">
+                                            <img class="card-image" src="{{ asset('uploads/images/produit/' ~ produit.image) }}">
+                                        </a>
+                                    </div>
+                                    <div class="product-content">
+                                        <h3 class="title"><a href="#">{{ produit.nom }}</a></h3>
+                                        <div class="price">prix :<strong>{{ produit.prix  }}</strong> dt</div>
+                                    </div>
+                                    <ul class="social">
+                                        <li><a href="{{ path("voirProduit",{ 'id': produit.id }) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                                        <li><a href="{{ path("suppProduit",{ 'id': produit.id }) }}" data-tip="delete"><i class="bx bxs-trash"></i></a></li>
+                                        <li><a href="{{ path("ajouterCommande",{ 'id': produit.id }) }}" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div {% endfor %}>
+                    </div>
+                    </div>
+
+
+
+
+
+                </div>
+                </div>
+
+
+
+
+
+            {# display navigation #}
+            <div class="navigation ">
+                {{ knp_pagination_render(produits) }}
+            </div>
+
+
+
+
+        </div>
+
+</main>
+
+
+
+{% endblock %}
