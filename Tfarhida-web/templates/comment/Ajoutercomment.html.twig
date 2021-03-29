@@ -1,15 +1,14 @@
-<section>
-    {% if f is defined %}
-        {{ form_start(f,{'attr': {'novalidate' : 'novalidate'}} ) }}
-        <h3>Ajouter un commentaire</h3>
+
+    {% if form is defined %}
+        {{ form_start(form,{'attr': {'novalidate' : 'novalidate'}} ) }}
+        <h5>Ajouter un commentaire</h5>
 
         <div class="form-group">
-            <label>Commenter</label>
-            {{ form_widget(f.contenue) }}
-            {{ form_errors(f.contenue) }}
+            {{ form_widget(form.contenue) }}
+            {{ form_errors(form.contenue) }}
         </div>
-        {{ form_end(f) }}
+        {{ form_end(form) }}
     {% endif %}
-</section>
+
 
 

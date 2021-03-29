@@ -127,7 +127,6 @@ class ProduitController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
-            return $this->redirectToRoute("produitListe");
         }
         if($produit->getComments())
 

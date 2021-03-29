@@ -27,8 +27,9 @@ class CommentController extends AbstractController
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request,$id
-     * @return Response
      * @Route("voirProduit", name="voirProduit",defaults={"id"})
+     * @return Response
+     *
      */
     public function ajouterCommentaireAuproduit(\Symfony\Component\HttpFoundation\Request $request)
     {
@@ -74,6 +75,25 @@ class CommentController extends AbstractController
         }
 
         return $this->render("produit/voirproduit.html.twig");
+
+    }
+
+    /**
+     * @param ProduitRepository $repo,$id
+     * @param CommandeRepository $commandeRepository
+     * @Route("commentaireSupprimer/{id}", name="commentaireSupprimer")
+     * @return Response
+     */
+    public function supprimerCommentaire($id )
+    {
+        $em=$this->getDoctrine()->getManager();
+        $comment=$em->find(commentaire::class,$id);
+        $em->remove($comment);
+        $em->flush();
+
+
+        return $this->redirectToRoute('voirProduit',['id'=>$comment->getProduit()->getId(),'produit'=>$comment->getProduit(),]);
+       // return $this->render("produit/voirproduit.html.twig",['id'=>$comment->getProduit()->getId(),'produit'=>$comment->getProduit(),]);
 
     }
 
