@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Modifier le Role d'utilisateur</h1>
+                {{ form_start(userRoleForm) }}
+                {{ form(userRoleForm) }}
+                {{ form_end(userRoleForm) }}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditRoleType;
+use App\Form\EditUserType;
 use App\Form\RegistrationType;
 use App\Form\ResetPassType;
 use App\Repository\UserRepository;
@@ -83,33 +85,37 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('show_user');
     }
 
-//    /**
-//     * @Route ("update/{id}", name="update")
-//     * @param User $user
-//     * @param UserRepository $repository
-//     * @param $id
-//     * @param Request $request
-//     * @return RedirectResponse|Response
-//     */
-//    public function update(User $user, UserRepository $repository, $id, Request $request){
-//    dd($user);
-//
-//        // $user=$repository->find($id);
-//    $form=$this->createForm(UserType::class, $user);
-//    $form->add('update',SubmitType::class);
-//     $form->handleRequest($request);
-//    if ($form->isSubmitted()&& $form->isValid()){
-//        $em= $this->getDoctrine()->getManager();
-//        $em->flush();
-//        return $this->redirectToRoute('show_user');
-//
-//    }
-//
-//    return $this->render('security/update.html.twig',
-//    [
-//        'form'=>$form->createView()
-//    ]);
-// }
+    /**
+     * @Route ("update/{id}", name="update" , methods={"GET","POST"})
+     * @param User $user
+     * @param UserRepository $repository
+     * @param $id
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
+    public function update(User $user, UserRepository $repository, $id, Request $request){
+//    dd($request);
+
+
+    $form=$this->createForm(EditUserType::class, $user);
+    //$form->add('update',SubmitType::class);
+     $form->handleRequest($request);
+
+    if ($form->isSubmitted()&& $form->isValid()){
+       // dd($form);
+        $em= $this->getDoctrine()->getManager();
+        $em->persist($user);
+
+        $em->flush();
+        return $this->redirectToRoute('show_user');
+
+    }
+
+    return $this->render('security/edituser.html.twig',
+    [
+        'formUser'=>$form->createView()
+    ]);
+ }
 
 
 
@@ -165,6 +171,29 @@ class SecurityController extends AbstractController
 
 
     }
+
+    /**
+     * @Route("/modifier/{id}", name="modifier_utilisateur")
+     */
+    public function editUser(User $user, Request $request){
+        $form = $this->createForm(EditRoleType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('message', 'Utilisateur modifié avec succés');
+            return $this->redirectToRoute('show_user');
+        }
+
+        return $this->render('security/editRole.html.twig', [
+            'userRoleForm' => $form->createView()
+        ]);
+
+    }
+
 
     /**
      * @Route ("Activation/{token}", name="activation")
