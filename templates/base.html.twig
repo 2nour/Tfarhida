@@ -10,25 +10,6 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-<<<<<<< HEAD
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    {% block css%}
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
-=======
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
@@ -49,7 +30,6 @@
     {% endblock %}
     {% block js %}
 
->>>>>>> 60d911a1e9b4d320b2c48e79199ffad7e7ddc2d7
     {% endblock %}
     <!-- =======================================================
     * Template Name: Sailor - v2.3.1
@@ -77,90 +57,81 @@
                 <li><a href="portfolio.html">Randonnée</a></li>
                 <li><a href="pricing.html">Organiser votre événement</a></li>
                 <li><a href="blog.html">Produit</a></li>
-<<<<<<< HEAD
-=======
                 {% if not app.user %}
-                <li class="nav-item">
-                    <a href="{{ path('security_login') }}" class="nav-link">
-                        Connexion
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ path('security_login') }}" class="nav-link">
+                            Connexion
+                        </a>
+                    </li>
                 {% else %}
-                <li class="nav-item">
-                    <a href="{{ path('security_logout') }}" class="nav-link">
-                        Déconnexion
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ path('security_logout') }}" class="nav-link">
+                            Déconnexion
+                        </a>
+                    </li>
                 {% endif %}
 
->>>>>>> 60d911a1e9b4d320b2c48e79199ffad7e7ddc2d7
             </ul>
 
         </nav><!-- .nav-menu -->
 
-<<<<<<< HEAD
-        <a href="index.html" class="get-started-btn ml-auto">Se connecter</a>
-=======
         <a href="{{ path('security_registration') }}" class="get-started-btn ml-auto">Créer un compte</a>
 
->>>>>>> 60d911a1e9b4d320b2c48e79199ffad7e7ddc2d7
 
     </div>
 </header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
-<section id="hero">
     {% block body %}
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+<section id="hero">
 
-        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+<div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
-        <div class="carousel-inner" role="listbox">
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
-            <!-- Slide 1 -->
-            <div class="carousel-item active" style="background-image: url(assets/img/slide/maison.jpg)">
-                <div class="carousel-container">
-                    <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown">Bienvenue à  <span>Tfarhida</span></h2>
+            <div class="carousel-inner" role="listbox">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active" style="background-image: url(assets/img/slide/maison.jpg)">
+                    <div class="carousel-container">
+                        <div class="container">
+                            <h2 class="animate__animated animate__fadeInDown">Bienvenue à  <span>Tfarhida</span></h2>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Slide 2 -->
-            <div class="carousel-item" style="background-image: url(assets/img/slide/sahra.jpg)">
-                <div class="carousel-container">
-                    <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Tfarhida</span> </h2>
+                <!-- Slide 2 -->
+                <div class="carousel-item" style="background-image: url(assets/img/slide/sahra.jpg)">
+                    <div class="carousel-container">
+                        <div class="container">
+                            <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Tfarhida</span> </h2>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Slide 3 -->
-            <div class="carousel-item" style="background-image: url(assets/img/slide/camp.jpg)">
-                <div class="carousel-container">
-                    <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown">Marhbe bikom f <span>Tfarhida</span></h2>
+                <!-- Slide 3 -->
+                <div class="carousel-item" style="background-image: url(assets/img/slide/camp.jpg)">
+                    <div class="carousel-container">
+                        <div class="container">
+                            <h2 class="animate__animated animate__fadeInDown">Marhbe bikom f <span>Tfarhida</span></h2>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon icofont-simple-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon icofont-simple-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
 
         </div>
 
-        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon icofont-simple-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-
-        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon icofont-simple-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-
-    </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 60d911a1e9b4d320b2c48e79199ffad7e7ddc2d7
     {% endblock %}
 </section><!-- End Hero -->
 
@@ -180,14 +151,11 @@
                         <p>
                             <strong>Téléphone:</strong> +214 54 100 000<br>
                             <strong>Email:</strong> tfarhida@gmail.com<br>
-<<<<<<< HEAD
-=======
-                            <li class="nav-item">
+                        <li class="nav-item">
                             <a class="bx bxl-email" href="{{ path('contact') }}">Contact</a>
                         </li>
 
 
->>>>>>> 60d911a1e9b4d320b2c48e79199ffad7e7ddc2d7
                         </p>
                         <div class="social-links mt-3">
                             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -219,22 +187,6 @@
 </footer><!-- End Footer -->
 
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-<<<<<<< HEAD
-{% block js %}
-<!-- Vendor JS Files -->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/venobox/venobox.min.js"></script>
-<script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
-{% endblock %}
-=======
 
 
 <!-- Vendor JS Files -->
@@ -249,7 +201,6 @@
 
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
->>>>>>> 60d911a1e9b4d320b2c48e79199ffad7e7ddc2d7
 </body>
 
 </html>
