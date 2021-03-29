@@ -6,11 +6,13 @@ use App\Repository\MaisonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass=MaisonRepository::class)
  */
-class Maison
+class Maison implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -21,23 +23,21 @@ class Maison
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Nom est requis")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Adresse est requis")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Nombre chambre est requis")
      */
     private $nbr_chambre;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $photo;
 
     /**
      * @ORM\Column(type="string", length=1000)
@@ -45,13 +45,44 @@ class Maison
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Chambre::class, mappedBy="maison")
+     * @ORM\OneToMany(targetEntity=Chambre::class, mappedBy="maison", cascade={"all"})
      */
     private $chambres;
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $photo;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Tel est requis")
+     */
+    private $tel;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Favoris::class, mappedBy="maison")
+     */
+    private $favoris;
+
+    protected $captchaCode;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="maison")
+     */
+    private $commentaires;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true, options={"default" = 0})
+     */
+    private $nbrComment;
 
     public function __construct()
     {
         $this->chambres = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,17 +126,7 @@ class Maison
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
 
-    public function setPhoto(string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -145,6 +166,132 @@ class Maison
                 $chambre->setMaison(null);
             }
         }
+
+        return $this;
+    }
+
+
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto( $photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getTel(): ?int
+    {
+        return $this->tel;
+    }
+
+    public function setTel(int $tel): self
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favoris[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Favoris $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+            $favori->setMaison($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Favoris $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            // set the owning side to null (unless already changed)
+            if ($favori->getMaison() === $this) {
+                $favori->setMaison(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    public function contientFavori(int $idUser):bool
+    {
+        return $this->favoris->exists(function($key, $value) use ($idUser) {
+            return $value ->getUser()-> getId() === ($idUser);
+        });
+
+    }
+
+    public function getFavoriWithIdUser(int $idUser): Favoris
+    {
+        return $this->favoris->filter(function($value) use ($idUser) {
+            return $value ->getUser()-> getId() === ($idUser);
+        })->first();
+
+    }
+
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->id,
+            'nom' => $this->nom,
+            'photo' => $this->photo,
+            'description' => $this->description,
+            'nbr_chambre' => $this->nbr_chambre,
+            'adresse' => $this->adresse
+        );
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setMaison($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getMaison() === $this) {
+                $commentaire->setMaison(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNbrComment(): ?int
+    {
+        return $this->nbrComment;
+    }
+
+    public function setNbrComment(?int $nbrComment): self
+    {
+        $this->nbrComment = $nbrComment;
 
         return $this;
     }

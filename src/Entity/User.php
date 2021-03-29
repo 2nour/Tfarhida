@@ -8,7 +8,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints\Json;
-
+use Mgilet\NotificationBundle\NotifiableInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(
@@ -16,7 +17,7 @@ use Symfony\Component\Validator\Constraints\Json;
  *     message= "l'email que vous avez indiqué est déja utilisé ! "
  *     )
  */
-class User implements UserInterface
+class User implements UserInterface,NotifiableInterface
 {
     /**
      * @ORM\Id
@@ -62,6 +63,23 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $reset_token;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Favoris::class, mappedBy="user")
+     */
+    private $favoris;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user")
+     */
+    private $commentaires;
+
+    public function __construct()
+    {
+        $this->favoris = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
+        $this->setRoles(["ROLE_USER"]);
+    }
 
 
     public function getId(): ?int
@@ -151,10 +169,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->setRoles(["ROLE_USER"]);
-    }
 
     public function getResetToken(): ?string
     {
@@ -167,5 +181,70 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+
+    /**
+     * @param mixed $favoris
+     */
+    public function setFavoris($favoris): void
+    {
+        $this->favoris = $favoris;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
+    /**
+     * @param mixed $commentaires
+     */
+    public function setCommentaires($commentaires): void
+    {
+        $this->commentaires = $commentaires;
+    }
+    public function removeFavori(Favoris $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            // set the owning side to null (unless already changed)
+            if ($favori->getUser() === $this) {
+                $favori->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function contientFavori(Favoris $fav):bool
+    {
+        return $this->favoris->exists(function($key, $value) use ($fav) {
+            return $value ->getMaison()-> getId() === ($fav ->getMaison()-> getId());
+        });
+
+    }
+
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getUser() === $this) {
+                $commentaire->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }

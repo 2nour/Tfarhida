@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+        {{ form_start(f,{'attr': {'novalidate': 'novalidate'}}) }}
+        <h2>Ajouter Chambre</h2>
+        <div class="form-group">
+            <label for="">Nom de chambre</label>
+            {{ form_widget(f.nom) }}
+            {{ form_errors(f.nom) }}
+        </div>
+        <div class="form-group">
+            <label for="">Type Lit</label>
+            {{ form_widget(f.typeLit) }}
+            {{ form_errors(f.typeLit) }}
+        </div>
+        <div class="form-group">
+            <label for="">Nombre de personne</label>
+            {{ form_widget(f.nbr_pers) }}
+            {{ form_errors(f.nbr_pers) }}
+        </div>
+        <div class="form-group">
+            <label for="">Photo</label>
+            {{ form_widget(f.photo)}}
+            {{ form_errors(f.photo) }}
+        </div>
+        <div class="form-group">
+            <label for="">Prix</label>
+            {{ form_widget(f.prix)}}
+            {{ form_errors(f.prix) }}
+            <br>
+        </div>
+    {{ form_end(f) }}
+    <div class="form-group">
+        <div class="read-more">
+            <a href="{{ path('mais',{'id':maison.id})}}">Terminer</a>
+        </div>
+    </div>
+
+{% endblock %}

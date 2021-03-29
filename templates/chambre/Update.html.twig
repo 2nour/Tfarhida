@@ -1,0 +1,47 @@
+
+    {% block css%}
+        <!-- Vendor CSS Files -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+        <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+        <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+        <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="assets/css/chambre.css" rel="stylesheet">
+    {% endblock %}
+
+    {% block body %}
+
+    {{ form_start(f,{'attr': {'novalidate': 'novalidate'}}) }}
+    <h3>Modifier Chambre</h3>
+    <div class="form-group">
+        <label for="">Nom de Chambre</label>
+        {{ form_widget(f.nom) }}
+        {{ form_errors(f.nom) }}
+    </div>
+    <div class="form-group">
+        <label for="">Type de Lit</label>
+        {{ form_widget(f.typeLit) }}
+        {{ form_errors(f.typeLit) }}
+    </div>
+    <div class="form-group">
+        <label for="">Nombre de personne</label>
+        {{ form_widget(f.nbr_pers) }}
+        {{ form_errors(f.nbr_pers) }}
+    </div>
+    <div class="form-group">
+        <label for="">Photo</label>
+
+        {{ form_widget(f.photo)}}
+        {{ form_errors(f.photo) }}
+    </div>
+    <div class="form-group">
+        <label for="">Prix</label>
+        {{ form_widget(f.prix)}}
+        {{ form_errors(f.prix) }}
+    </div>
+    {{ form_end(f) }}
+{% endblock %}

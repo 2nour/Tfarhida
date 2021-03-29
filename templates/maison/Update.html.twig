@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(f,{'attr': {'novalidate': 'novalidate'}}) }}
+    <h2>Modifier Maison</h2>
+    <div class="form-group">
+        <label for="">Nom de Maison d'hote</label>
+        {{ form_widget(f.nom) }}
+        {{ form_errors(f.nom) }}
+    </div>
+    <div class="form-group">
+        <label for="">Adresse</label>
+        {{ form_widget(f.adresse) }}
+        {{ form_errors(f.adresse) }}
+    </div>
+    <div class="form-group">
+        <label for="">Téléphone</label>
+        {{ form_widget(f.tel) }}
+        {{ form_errors(f.tel) }}
+    </div>
+    <div class="form-group">
+        <label for="">Nombre de Chambre</label>
+        {{ form_widget(f.nbr_chambre)}}
+        {{ form_errors(f.nbr_chambre) }}
+    </div>
+    <div class="form-group">
+        <label for="">Photo</label>
+
+        {{ form_widget(f.photo)}}
+        {{ form_errors(f.photo) }}
+    </div>
+    <div class="form-group">
+        <label for="">Description</label>
+        {{ form_widget(f.description)}}
+        {{ form_errors(f.description) }}
+    </div>
+    {{ form_end(f) }}
+    <div class="form-group">
+        <div class="read-more">
+            <a href="{{ path('read',{'id':maison.id})}}">Annuler</a>
+        </div>
+    </div>
+{% endblock %}

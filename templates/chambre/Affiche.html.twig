@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} liste des Chambres{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Chambres</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+</head>
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Chambres</h2>
+                <ol>
+                    {% for c in chambre %}
+                    <li><a href={{ path('read',{'id':c.maison.id}) }}>Maison d'hôte</a></li>
+                    {% endfor %}
+                    <li>Chambres</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">Chambres</li>
+                    </ul>
+                </div>
+            </div>
+
+             <div class="row portfolio-container">
+                 {% for c in chambre %}
+                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="portfolio-wrap">
+                        <img src="{{ asset('assets/img/maison/' ~ c.photo) }}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>{{ c.nom }}</h4>
+                            <p>{{ c.prix }}</p>
+                            <div class="portfolio-links">
+                                <a href="{{ asset('assets/img/maison/' ~ c.photo) }}" data-gall="portfolioGallery" class="venobox" title="Voir photo"><i class="bx bx-plus"></i></a>
+                                <a href="{{ path('h',{'id':c.id}) }}" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Détails du chambre"><i class="bx bx-link"></i></a>
+                                <a href="{{ path('dChambre',{'id':c.id}) }}" title="Supprimer"><i class="icofont-garbage"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>{% endfor %}
+            </div>
+
+        </div>
+    </section>
+</main>
+{% endblock %}
