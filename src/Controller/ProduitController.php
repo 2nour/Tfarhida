@@ -133,7 +133,7 @@ class ProduitController extends AbstractController
         {
             $comment= $produit->getComments();
         }
-        return $this->render("produit/voirproduit.html.twig", ['produit'=>$produit,'comments'=>$comment,'form'=>$form->createView()]);
+        return $this->render("produit/voirproduit.html.twig", ['produit'=>$produit,'comments'=>$comment,'f'=>$form->createView()]);
 
     }
 
@@ -210,7 +210,27 @@ class ProduitController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $produit->setImage($filename);
             $em->flush();
-            $this->render("produit/list.html.twig");
+
+            $comment =new comment();
+            $f=$this->createForm( CommentType::class,$comment);
+            $f->handleRequest($request);
+
+
+            if($f->isSubmitted() && $f->isValid())
+            {
+                $produit->addComment($comment);
+                $em=$this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->flush();
+            }
+
+            if($produit->getComments())
+
+            {
+                $comment= $produit->getComments();
+            }
+
+            return $this->render("produit/voirproduit.html.twig",['id'=>$produit->getId(),'produit'=>$produit,'f'=>$f->createView(),'comments'=>$comment]);
         }
         return $this->render("produit/update.html.twig",['produit'=>$produit,
             'form'=>$form->createView()

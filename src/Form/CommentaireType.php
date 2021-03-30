@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\comment;
+use App\Entity\commentaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +27,7 @@ class CommentaireType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => comment::class,
+            'data_class' => commentaire::class,
         ]);
     }
 }

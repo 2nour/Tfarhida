@@ -2,7 +2,7 @@
 
 namespace  App\Controller;
 
-use App\Entity\comment;
+use App\Entity\commentaire;
 use App\Entity\Maison;
 use App\Entity\User;
 use App\Form\CommentaireType;
@@ -92,7 +92,7 @@ class MaisonController extends AbstractController
         $mai = $em->find(Maison::class, $id);
         $maison=$repository->find($mai);
         $nbr=$maison->getNbrComment();
-        $comment = new comment();
+        $comment = new commentaire();
         $form=$this->createForm(CommentaireType::class, $comment);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {

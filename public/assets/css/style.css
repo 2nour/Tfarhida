@@ -13,6 +13,11 @@ body {
   color: #1b1e21;
 }
 
+.form-login{
+  margin-top: 15px;
+  margin-left: 300px;
+  width: 500px;
+}
 
 .panier{
   margin-top: 120px;
@@ -23,11 +28,7 @@ body {
   max-height: 20vh; /*not want to take all vertical space*/
   object-fit: contain;
 }
-.filter
-{
 
-  margin-right:2px;
-}
 /*.fillterr{
   margin-bottom: 1000px;
   margin-left: 280px;
@@ -67,11 +68,16 @@ body {
 .form_errors {
   color: red;
 }
-
-.form-group{
+.nessrine{
   margin-top: 20px;
   width: 500px;
-  margin-left: 420px;
+  margin-left: 350px;
+}
+
+.form-maison{
+  margin-top: 20px;
+  width: 500px;
+  margin-left: 500px;
 }
 
 .form-com {
