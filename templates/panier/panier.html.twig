@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Panier{% endblock %}
+
+{% block body %}
+
+
+<main id="main">
+
+<div class="panier">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h5><span class="glyphicon glyphicon-shopping-cart"></span> Mon Panier ({{ panier.nbproduit }})</h5>
+                                    <a></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" {% for i,produit in produits %}}>
+                        <div class="row">
+                            <div class="col-xs-2"><img class="img-responsive" src="{{ asset('uploads/images/produit/' ~ produit.image) }}">
+                            </div>
+                            <div class="col-xs-4">
+                                <h4 class="product-name"><strong>{{ produit.nom }}</strong></h4><h4><small>{{ produit.description }}</small></h4>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="col-xs-6 text-right">
+                                    <h6> <strong>{{ produit.prix }} <span class="text-muted">dt x</span></strong></h6>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="number" class="form-control input-sm" value="" placeholder="{{ commandes[i].quantiteProduit }}">
+                                </div >
+                                <div class="col-xs-2">
+                                    <a href="{{ path("suppPanier",{ 'id': produit.id }) }}"><span class="glyphicon glyphicon-trash"> </span></a>
+
+                                </div>
+                            </div>
+                        </div {% endfor %} >
+
+                    </div >
+                    <div class="panel-footer">
+                        <div class="row text-center">
+                            <div class="col-xs-9">
+                                <h4 class="text-right">Total <strong>{{ panier.somme }}</strong></h4>
+                            </div>
+                            <div class="col-xs-3">
+                                <button type="button" class="btn btn-success btn-block">
+                                    payer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock %}

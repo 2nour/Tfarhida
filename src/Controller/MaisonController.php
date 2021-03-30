@@ -2,7 +2,7 @@
 
 namespace  App\Controller;
 
-use App\Entity\Commentaire;
+use App\Entity\comment;
 use App\Entity\Maison;
 use App\Entity\User;
 use App\Form\CommentaireType;
@@ -40,10 +40,10 @@ class MaisonController extends AbstractController
      * @Route("/afficheMaison", name="aff")
      */
     public function afficher(MaisonRepository $repository){
-       // $repo=$this->getDoctrine()->getRepository(Maison::class);
+        // $repo=$this->getDoctrine()->getRepository(Maison::class);
         $maison=$repository->findAll();
         return $this->render('maison/Affiche.html.twig',
-        ['maison'=>$maison]);
+            ['maison'=>$maison]);
     }
 
     /**
@@ -61,7 +61,7 @@ class MaisonController extends AbstractController
 
             // sauvgarder l'image dans le dossier indiquer par le param 'product_image_directory' dans services.yaml
             try {
-                $file->move($this->getParameter('product_image_directory'), $filename);
+                $file->move($this->getParameter('maison_image_directory'), $filename);
             } catch (FileException $e) {
                 // ... handle exception if something happens during file upload
             }
@@ -92,7 +92,7 @@ class MaisonController extends AbstractController
         $mai = $em->find(Maison::class, $id);
         $maison=$repository->find($mai);
         $nbr=$maison->getNbrComment();
-        $comment = new Commentaire();
+        $comment = new comment();
         $form=$this->createForm(CommentaireType::class, $comment);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
@@ -105,7 +105,7 @@ class MaisonController extends AbstractController
             $em->flush();
             return $this->redirectToRoute("read",["id"=>$maison->getId()]);
         }
-       // return $this->redirectToRoute("add",["idMaison"=>$maison->getId()]);
+        // return $this->redirectToRoute("add",["idMaison"=>$maison->getId()]);
         if($maison->getCommentaires())
         {
             $comment = $maison->getCommentaires();
@@ -143,7 +143,7 @@ class MaisonController extends AbstractController
         $id = $request->get("idM");
         $mai = $em->find(Maison::class, $id);
         $maison=$repository->find($mai);
-     //   $maison=$repository->find($id);
+        //   $maison=$repository->find($id);
         $form=$this->createForm(MaisonsType::class,$maison);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -152,7 +152,7 @@ class MaisonController extends AbstractController
 
             // sauvgarder l'image dans le dossier indiquer par le param 'product_image_directory' dans services.yaml
             try {
-                $file->move($this->getParameter('product_image_directory'), $filename);
+                $file->move($this->getParameter('maison_image_directory'), $filename);
             } catch (FileException $e) {
                 // ... handle exception if something happens during file upload
             }
@@ -183,7 +183,7 @@ class MaisonController extends AbstractController
         $jsonContent = $normalizer->normalize($maisons, 'json',['groups'=>'maisons']);
         $retour=json_encode($jsonContent);
         return new Response($retour);
-        }
+    }
 
 
 }

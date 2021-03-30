@@ -234,7 +234,7 @@ class User implements UserInterface,NotifiableInterface
     }
 
 
-    public function removeCommentaire(Commentaire $commentaire): self
+    public function removeCommentaire(comment $commentaire): self
     {
         if ($this->commentaires->removeElement($commentaire)) {
             // set the owning side to null (unless already changed)

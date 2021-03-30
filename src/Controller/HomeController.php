@@ -1,38 +1,40 @@
 <?php
 
-namespace  App\Controller;
-
-use App\Entity\Commentaire;
+namespace App\Controller;
+use App\Entity\comment;
 use App\Entity\Maison;
 use App\Entity\Search;
 use App\Entity\User;
 use App\Form\CommentaireType;
 use App\Form\SearchType;
-use App\Repository\CommentaireRepository;
+use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\PanierRepository;
 
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(PanierRepository $panierRepository): Response
     {
-        return $this->render('base.html.twig', [
-            'controller_name' => 'HomeController',
+
+
+        return $this->render('base.html.twig',[
+
         ]);
     }
 
     /**
-     * @param CommentaireRepository $repository
+     * @param CommentRepository $repository
      * @param Request $request
      * @return Response
      * @Route("/affichComment", name="affichComment", defaults={"id"})
      */
-    public function affiche(CommentaireRepository $repository, Request $request){
+    public function affiche(CommentRepository $repository, Request $request){
         $repo=$this->getDoctrine()->getRepository(Maison::class);
         $idMaison = $request->get("idMaison");
         $maison = $repo->find($idMaison);
@@ -44,20 +46,20 @@ class HomeController extends AbstractController
 
     /**
      * @param Request $request
-     * @param CommentaireRepository $repository
+     * @param CommentRepository $repository
      * @return Response
      * @Route("/comment", name="comment", defaults={"idMaison"})
      */
 
-    public function addComment(\Symfony\Component\HttpFoundation\Request $request, CommentaireRepository $repository){
-        $comment = new Commentaire();
+    public function addComment(\Symfony\Component\HttpFoundation\Request $request, CommentRepository $repository){
+        $comment = new comment();
         $form=$this->createForm(CommentaireType::class, $comment);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $idMaison = $request->get("idMaison");
             //TODO recuperer id user après connexion
-            $users = $em->find(User::class, 1);
+            $users = $em->find(User::class, 2);
             $mai = $em->find(Maison::class, $idMaison);
             $comment->setMaison($mai);
             $comment->setUser($users);
@@ -65,18 +67,18 @@ class HomeController extends AbstractController
             $em->flush();
             //return $this->redirectToRoute("affich_Comment");
         }
-        return $this->render("commentaire/newComment.html.twig",[
+        return $this->render("comment/newComment.html.twig",[
             'f'=>$form->createView()
         ]);
     }
 
     /**
-     * @param CommentaireRepository $repository
+     * @param CommentRepository $repository
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/dComment/{id}",name="dComment")
      */
-    public function delete(CommentaireRepository $repository,$id){
+    public function delete(CommentRepository $repository, $id){
         $comment=$repository->find($id);
         $maison = $comment->getMaison();
         $em=$this->getDoctrine()->getManager();

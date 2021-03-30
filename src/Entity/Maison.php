@@ -255,14 +255,14 @@ class Maison implements JsonSerializable
     }
 
     /**
-     * @return Collection|Commentaire[]
+     * @return Collection|comment[]
      */
     public function getCommentaires(): Collection
     {
         return $this->commentaires;
     }
 
-    public function addCommentaire(Commentaire $commentaire): self
+    public function addCommentaire(comment $commentaire): self
     {
         if (!$this->commentaires->contains($commentaire)) {
             $this->commentaires[] = $commentaire;
@@ -272,7 +272,7 @@ class Maison implements JsonSerializable
         return $this;
     }
 
-    public function removeCommentaire(Commentaire $commentaire): self
+    public function removeCommentaire(comment $commentaire): self
     {
         if ($this->commentaires->removeElement($commentaire)) {
             // set the owning side to null (unless already changed)

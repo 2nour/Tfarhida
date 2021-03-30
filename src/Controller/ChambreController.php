@@ -65,17 +65,17 @@ class ChambreController extends AbstractController
 
             // sauvgarder l'image dans le dossier indiquer par le param 'product_image_directory' dans services.yaml
             try {
-                $file->move($this->getParameter('product_image_directory'), $filename);
+                $file->move($this->getParameter('maison_image_directory'), $filename);
             } catch (FileException $e) {
                 // ... handle exception if something happens during file upload
             }
 
-                $chambre->setMaison($mai);
-               // sauvgarder uniquement le nom de limage dans la bdd
-                $chambre->setPhoto($filename);
-                $em->persist($chambre);
-                $em->flush();
-                return $this->redirectToRoute("add",["id"=>$maison->getId()]);
+            $chambre->setMaison($mai);
+            // sauvgarder uniquement le nom de limage dans la bdd
+            $chambre->setPhoto($filename);
+            $em->persist($chambre);
+            $em->flush();
+            return $this->redirectToRoute("add",["id"=>$maison->getId()]);
 
         }
 
@@ -135,7 +135,7 @@ class ChambreController extends AbstractController
 
             // sauvgarder l'image dans le dossier indiquer par le param 'product_image_directory' dans services.yaml
             try {
-                $file->move($this->getParameter('product_image_directory'), $filename);
+                $file->move($this->getParameter('maison_image_directory'), $filename);
             } catch (FileException $e) {
                 // ... handle exception if something happens during file upload
             }
