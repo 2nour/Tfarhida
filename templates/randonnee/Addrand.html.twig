@@ -1,0 +1,114 @@
+{% extends 'index.html.twig' %}
+{% block body %}
+    {% block title %}Ajouter Randonnee{% endblock %}
+    <br><br><br><br>
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+
+    <center><h3>Ajouter Randonnée </h3></center><br>
+
+    <div class="row"><center>
+        <div class="col-md-6 form-group"><br>
+            {{ form_label(form.villedepart,"VilleDepart") }}
+            {{ form_widget(form.villedepart, { 'attr': {'class': 'form-control ','placeholder':"VilleDepart" } }) }}
+            {{ form_errors(form.villedepart) }}
+        </div>
+
+        <div class="col-md-6 form-group"><br>
+            {{ form_label(form.villearrivee,"VilleArrivee") }}
+            {{ form_widget(form.villearrivee, { 'attr': {'class': 'form-control ','placeholder':"VilleArrivee" } }) }}
+            {{ form_errors(form.villearrivee) }}
+        </div>
+
+    <div class="col-md-6 form-group"><br>
+        {{ form_label(form.description,"Description*") }}
+        {{ form_widget(form.description, { 'attr': {'class': 'form-control ','placeholder':"Description"  } }) }}
+        {{ form_errors(form.description) }}
+    </div>
+
+    <div class="col-md-6 form-group"><br>
+        {{ form_label(form.activite,"Activite*") }}
+        {{ form_widget(form.activite, { 'attr': {'class': 'form-control ','placeholder':"Activite"  } }) }}
+        {{ form_errors(form.activite) }}
+    </div>
+
+        <div class="col-md-6 form-group"><br>
+        {{ form_label(form.image,"Image*") }}
+        {{ form_widget(form.image) }}
+        {{ form_errors(form.image) }}
+        </div>
+
+    <div class="col-md-6 form-group"><br>
+        {{ form_label(form.duree,"Duree*") }}
+        {{ form_widget(form.duree, { 'attr': {'class': 'form-control ','placeholder':"Duree"  } }) }}
+        {{ form_errors(form.duree) }}
+    </div>
+
+    <div class="col-md-6 form-group"><br>
+        {{ form_label(form.difficulte,"Difficulte*") }}
+        {{ form_widget(form.difficulte, { 'attr': {'class': 'form-control ','placeholder':"difficulte"  } }) }}
+        {{ form_errors(form.difficulte) }}
+    </div>
+    <div class="col-md-6 form-group"><br>
+        {{ form_label(form.budget,"Budget*") }}
+        {{ form_widget(form.budget, { 'attr': {'class': 'form-control ','placeholder':"Budget"  } }) }}
+        {{ form_errors(form.budget) }}
+    </div>
+
+
+                <div class="col-md-6 form-group"> <br>
+                    {{ form_label(form.datedepart,"DateDepart*") }}
+                    {{ form_widget(form.datedepart, { 'attr': {'class': 'form-control ','placeholder':"DateDepart" } }) }}
+                    {{ form_errors(form.datedepart) }}
+
+                </div>
+
+                    <div class="col-md-6 form-group"> <br>
+                        {{ form_label(form.dateretour,"DateRetour*") }}
+                        {{ form_widget(form.dateretour, { 'attr': {'class': 'form-control ','placeholder':"DateRetour" } }) }}
+                        {{ form_errors(form.dateretour) }}
+
+                    </div>
+            </div>
+    <div class="text-center">
+        <button class="btn btn-info my-3" type="submit">Ajouter</button>
+        <a href="{{ path('randonnee')}}"> <button class="btn btn-danger my-3" >Annuler</button></a>
+
+    </div>
+
+        </center>
+    </div>
+    </div>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #;
+        }
+
+
+    </style>
+
+
+
+
+
+
+
+
+
+    {{ form_end(form) }}</center>
+
+{% endblock %}
+

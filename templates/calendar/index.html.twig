@@ -1,0 +1,49 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Calendar index{% endblock %}<br><br><br><br><br><br><br><br>
+
+{% block body %}<br><br><br><br><br><br><br><br>
+  <div align="center"> <h1>Liste Rendez_vous des Randonnée</h1></div><br><br><br><br><br><br><br><br>
+
+    <table class="table"><br><br><br><br><br><br><br><br>
+        <thead><br><br><br><br><br><br><br><br>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Description</th>
+                <th>All_day</th>
+                <th>Background_color</th>
+                <th>Border_color</th>
+                <th>Text_color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for calendar in calendars %}
+            <tr>
+                <td>{{ calendar.id }}</td>
+                <td>{{ calendar.title }}</td>
+                <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ calendar.description }}</td>
+                <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
+                <td>{{ calendar.backgroundColor }}</td>
+                <td>{{ calendar.borderColor }}</td>
+                <td>{{ calendar.textColor }}</td>
+                <td>
+                    <a href="{{ path('calendar_show', {'id': calendar.id}) }}">show</a>
+                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('calendar_new') }}">Create new</a><br>
+{% endblock %}
