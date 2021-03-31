@@ -19,17 +19,16 @@ class RegistrationType extends AbstractType
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class)
 
-//            ->add('roles', ChoiceType::class,[
-//                'choices' => [
-//                    'Utilisateur' => 'ROLE_USER',
-//                    'Hébérgeur' => 'ROLE_HEBERGEUR',
-//                    'Administrateur' => 'ROLE_ADMIN'
-//                ],
-//'mapped' => false,
-////                'expanded' => true,
-////                'multiple' => true,
-//                'label' => 'Roles'
-//            ])
+            ->add('roles', ChoiceType::class,[
+                'choices' => [
+                    'Utilisateur' => 'ROLE_USER',
+                    'Hébérgeur' => 'ROLE_HEBERGEUR'
+                ],
+                'mapped' => false,
+//                'expanded' => true,
+//                'multiple' => true,
+                'label' => 'Roles'
+            ])
         ;
     }
 
