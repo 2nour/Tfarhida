@@ -1,0 +1,57 @@
+{% extends 'index.html.twig' %}
+{% block title %}Liste des réservations{% endblock %}
+{% block body %}
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Liste des réservations</h2>
+                <ol>
+                    <li><a href="index.html">Acceuil</a></li>
+                    <li><a href="{{ path('add_reservation') }}">Ajouter Réservation</a></li>
+                </ol>
+            </div>
+
+        </div>
+    </section><br>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>NumReservation</th>
+            <th>DateReservation</th>
+            <th>Observation</th>
+            <th>Montant</th>
+            <th>NombrePersonne</th>
+            <th class="bg-light">Etat</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservation %}
+        <tr>
+
+            {% if (reservation.etat=="En cours") %}
+                <td>{{ reservation.numreservation }}</td>
+                <td>{{ reservation.datereservation|date('Y-m-d') }}</td>
+                <td>{{ reservation.observation }}</td>
+                <td>{{ reservation.montant }}</td>
+                <td>{{ reservation.nombrepersonne }}</td>
+            <td>
+                <a href="{{ path('reservationAdmin', {'idAffected': reservation.id } ) }}"> <button class="btn btn-success my-3" >Accepter</button></a>
+                <a href="{{ path('reservationAdmin', {'idRefuser': reservation.id } ) }}"> <button class="btn btn-danger my-3" >Refuser</button></a>
+            </td>
+           {% endif %}
+
+
+        </tr> {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+{% endblock %}

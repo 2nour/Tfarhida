@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+
+
 use App\Entity\comment;
 use App\Entity\Maison;
 use App\Entity\Search;
@@ -13,6 +15,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PanierRepository;
+
+
 
 class HomeController extends AbstractController
 {
@@ -88,5 +92,6 @@ class HomeController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("read",["id"=>$maison->getId()]);
     }
+
 
 }

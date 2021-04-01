@@ -1,0 +1,77 @@
+{% extends 'index.html.twig' %}
+{% block title %}Liste des réservations{% endblock %}
+{% block body %}
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Liste des réservations</h2>
+                <ol>
+                    <li><a href="index.html">Acceuil</a></li>
+                    <li><a href="#"> Réservation</a></li>
+                </ol>
+            </div>
+
+        </div>
+    </section><br>
+
+    <div class="sidebar">
+
+    <h3 class="sidebar-title">Search</h3>
+    <div class="sidebar-item search-form">
+        <form action="{{ path('AfficheReservation') }}" method="post">
+            <input type="text" id="search" name="search">
+            <button type="submit" name="submit"><i class="bi bi-search"></i></button>
+        </form>
+    </div><br>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>NumReservation</th>
+            <th>DateReservation</th>
+            <th>Observation</th>
+            <th>Montant</th>
+            <th>NombrePersonne</th>
+            <th class="bg-light">Etat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservation %}
+            <tr>
+                <td>{{ reservation.numreservation }}</td>
+                <td>{{ reservation.datereservation|date('Y-m-d') }}</td>
+                <td>{{ reservation.observation }}</td>
+                <td>{{ reservation.montant }}</td>
+                <td>{{ reservation.nombrepersonne }}</td>
+                {% if (reservation.etat=="Affected") %}
+                    <td class="bg-success"> {{ reservation.etat }}</td>
+                {% endif %}
+                {% if (reservation.etat=="Refuser") %}
+                    <td class="bg-danger"> {{ reservation.etat }}</td>
+                {% endif %}
+                {% if (reservation.etat=="En cours") %}
+                    <td class="bg-warning"> {{ reservation.etat }}</td>
+                {% endif %}
+                <td>
+                    <a href="{{ path('reservation_show', {'id': reservation.id}) }}"><button class="btn btn-success my-3" >Details</button></a>
+                    <a href="{{ path('modif', {'id': reservation.id}) }}"><button class="btn btn-primary my-3" >Modifier</button></a>
+                    <a href="{{ path('deletereservation', {'id': reservation.id}) }}"><button class="btn btn-danger my-3" >Supprimer</button></a>
+
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <div align="center"><a href="{{ path('liste_reservation') }}"<span class="fa fa-print fa-lg">Imprimer</a> </span><br><br>
+    </div>
+
+
+
+
+
+
+{% endblock %}

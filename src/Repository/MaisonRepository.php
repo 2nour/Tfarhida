@@ -5,8 +5,10 @@ namespace App\Repository;
 use App\Entity\Maison;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query;
+
 
 /**
  * @method Maison|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,11 +18,11 @@ use Doctrine\ORM\Query;
  */
 class MaisonRepository extends ServiceEntityRepository
 {
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Maison::class);
     }
+
     // /**
     //  * @return Maison[] Returns an array of Maison objects
     //  */

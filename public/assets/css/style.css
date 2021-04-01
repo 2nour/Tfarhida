@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
 * Template Name: Sailor - v2.3.1
+=======
+* Template Name: Sailor - v4.0.1
+>>>>>>> origin/master
 * Template URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
@@ -10,6 +14,7 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
+<<<<<<< HEAD
   color: #1b1e21;
 }
 
@@ -97,6 +102,13 @@ body {
   font-size: 18px;
 }
 a {
+=======
+  color: #444444;
+}
+
+a {
+  text-decoration: none;
+>>>>>>> origin/master
   color: #d9232d;
 }
 
@@ -104,12 +116,15 @@ a:hover {
   color: #e24d55;
   text-decoration: none;
 }
+<<<<<<< HEAD
 h2{
   text-align: center;
   margin-top: 100px;
   padding: 15px;
   color: #1d2124;
 }
+=======
+>>>>>>> origin/master
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
@@ -120,6 +135,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 .back-to-top {
   position: fixed;
+<<<<<<< HEAD
   display: none;
   right: 15px;
   bottom: 15px;
@@ -140,10 +156,39 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .back-to-top i:hover {
+=======
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: #d9232d;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 28px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+>>>>>>> origin/master
   background: #e1444d;
   color: #fff;
 }
 
+<<<<<<< HEAD
+=======
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+>>>>>>> origin/master
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -180,6 +225,7 @@ h1, h2, h3, h4, h5, h6 {
   max-height: 40px;
 }
 
+<<<<<<< HEAD
 @media (max-width: 992px) {
   #header {
     padding: 12px 0;
@@ -229,11 +275,83 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0;
   visibility: hidden;
   padding: 10px 0;
+=======
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation 
+*/
+.navbar {
+  padding: 0;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar li {
+  position: relative;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #556270;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.navbar a i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+}
+
+.navbar a:hover, .navbar .active, .navbar li:hover > a {
+  color: #d9232d;
+}
+
+.navbar .getstarted {
+  background: #d9232d;
+  padding: 8px 25px;
+  margin-left: 30px;
+  border-radius: 4px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.navbar .getstarted:hover {
+  color: #fff;
+  background: #e1444d;
+}
+
+.navbar .dropdown ul {
+  display: block;
+  position: absolute;
+  left: 14px;
+  top: calc(100% + 30px);
+  margin: 0;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+>>>>>>> origin/master
   background: #fff;
   box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
   transition: 0.3s;
 }
 
+<<<<<<< HEAD
 .nav-menu .drop-down:hover > ul {
   opacity: 1;
   top: 100%;
@@ -312,10 +430,73 @@ h1, h2, h3, h4, h5, h6 {
 
 .get-started-btn:hover {
   background: #e1444d;
+=======
+.navbar .dropdown ul li {
+  min-width: 200px;
+}
+
+.navbar .dropdown ul a {
+  padding: 10px 20px;
+  font-size: 15px;
+  text-transform: none;
+  font-weight: 400;
+}
+
+.navbar .dropdown ul a i {
+  font-size: 12px;
+}
+
+.navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
+  color: #d9232d;
+}
+
+.navbar .dropdown:hover > ul {
+  opacity: 1;
+  top: 100%;
+  visibility: visible;
+}
+
+.navbar .dropdown .dropdown ul {
+  top: 0;
+  left: calc(100% - 30px);
+  visibility: hidden;
+}
+
+.navbar .dropdown .dropdown:hover > ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
+  visibility: visible;
+}
+
+@media (max-width: 1366px) {
+  .navbar .dropdown .dropdown ul {
+    left: -90%;
+  }
+  .navbar .dropdown .dropdown:hover > ul {
+    left: -100%;
+  }
+}
+
+/**
+* Mobile Navigation 
+*/
+.mobile-nav-toggle {
+  color: #556270;
+  font-size: 28px;
+  cursor: pointer;
+  display: none;
+  line-height: 0;
+  transition: 0.5s;
+}
+
+.mobile-nav-toggle.bi-x {
+>>>>>>> origin/master
   color: #fff;
 }
 
 @media (max-width: 991px) {
+<<<<<<< HEAD
   .get-started-btn {
     margin: 0 48px 0 0;
     padding: 6px 18px;
@@ -344,10 +525,42 @@ h1, h2, h3, h4, h5, h6 {
 
 .mobile-nav {
   position: fixed;
+=======
+  .mobile-nav-toggle {
+    display: block;
+  }
+  .navbar ul {
+    display: none;
+  }
+}
+
+.navbar-mobile {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(63, 73, 83, 0.9);
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.navbar-mobile .mobile-nav-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.navbar-mobile ul {
+  display: block;
+  position: absolute;
+>>>>>>> origin/master
   top: 55px;
   right: 15px;
   bottom: 15px;
   left: 15px;
+<<<<<<< HEAD
   z-index: 9999;
   overflow-y: auto;
   background: #fff;
@@ -427,6 +640,58 @@ h1, h2, h3, h4, h5, h6 {
 
 .mobile-nav-active .mobile-nav-toggle i {
   color: #fff;
+=======
+  padding: 10px 0;
+  background-color: #fff;
+  overflow-y: auto;
+  transition: 0.3s;
+}
+
+.navbar-mobile a {
+  padding: 10px 20px;
+  font-size: 15px;
+  color: #556270;
+}
+
+.navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
+  color: #d9232d;
+}
+
+.navbar-mobile .getstarted {
+  margin: 15px;
+}
+
+.navbar-mobile .dropdown ul {
+  position: static;
+  display: none;
+  margin: 10px 20px;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 1;
+  visibility: visible;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+}
+
+.navbar-mobile .dropdown ul li {
+  min-width: 200px;
+}
+
+.navbar-mobile .dropdown ul a {
+  padding: 10px 20px;
+}
+
+.navbar-mobile .dropdown ul a i {
+  font-size: 12px;
+}
+
+.navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
+  color: #d9232d;
+}
+
+.navbar-mobile .dropdown > .dropdown-active {
+  display: block;
+>>>>>>> origin/master
 }
 
 /*--------------------------------------------------------------
@@ -494,26 +759,42 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .carousel-inner .carousel-item,
+<<<<<<< HEAD
 #hero .carousel-inner .active.carousel-item-left,
 #hero .carousel-inner .active.carousel-item-right {
+=======
+#hero .carousel-inner .active.carousel-item-start,
+#hero .carousel-inner .active.carousel-item-end {
+>>>>>>> origin/master
   opacity: 0;
 }
 
 #hero .carousel-inner .active,
+<<<<<<< HEAD
 #hero .carousel-inner .carousel-item-next.carousel-item-left,
 #hero .carousel-inner .carousel-item-prev.carousel-item-right {
+=======
+#hero .carousel-inner .carousel-item-next.carousel-item-start,
+#hero .carousel-inner .carousel-item-prev.carousel-item-end {
+>>>>>>> origin/master
   opacity: 1;
   transition: 0.5s;
 }
 
 #hero .carousel-inner .carousel-item-next,
 #hero .carousel-inner .carousel-item-prev,
+<<<<<<< HEAD
 #hero .carousel-inner .active.carousel-item-left,
 #hero .carousel-inner .active.carousel-item-right {
+=======
+#hero .carousel-inner .active.carousel-item-start,
+#hero .carousel-inner .active.carousel-item-end {
+>>>>>>> origin/master
   left: 0;
   transform: translate3d(0, 0, 0);
 }
 
+<<<<<<< HEAD
 #hero .carousel-control-prev, #hero .carousel-control-next {
   width: 10%;
   top: 112px;
@@ -529,13 +810,29 @@ h1, h2, h3, h4, h5, h6 {
   background: none;
   font-size: 36px;
   line-height: 1;
+=======
+#hero .carousel-control-next-icon, #hero .carousel-control-prev-icon {
+  background: none;
+  font-size: 30px;
+  line-height: 0;
+>>>>>>> origin/master
   width: auto;
   height: auto;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50px;
+<<<<<<< HEAD
   padding: 10px;
   transition: 0.3s;
   color: rgba(255, 255, 255, 0.5);
+=======
+  transition: 0.3s;
+  color: rgba(255, 255, 255, 0.5);
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+>>>>>>> origin/master
 }
 
 #hero .carousel-control-next-icon:hover, #hero .carousel-control-prev-icon:hover {
@@ -612,6 +909,10 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 section {
   padding: 60px 0;
+<<<<<<< HEAD
+=======
+  overflow: hidden;
+>>>>>>> origin/master
 }
 
 .section-bg, .services .icon-box {
@@ -660,6 +961,7 @@ section {
   padding: 18px 0;
   background: #f8f9fa;
   min-height: 40px;
+<<<<<<< HEAD
   margin-top: 86px;
 }
 
@@ -667,6 +969,9 @@ section {
   .breadcrumbs {
     margin-top: 58px;
   }
+=======
+  margin-top: 80px;
+>>>>>>> origin/master
 }
 
 .breadcrumbs h2 {
@@ -681,7 +986,11 @@ section {
   list-style: none;
   padding: 0;
   margin: 0;
+<<<<<<< HEAD
   font-size: 16px;
+=======
+  font-size: 14px;
+>>>>>>> origin/master
 }
 
 .breadcrumbs ol li + li {
@@ -775,7 +1084,11 @@ section {
 
 @media (max-width: 768px) {
   .clients img {
+<<<<<<< HEAD
     max-width: 80%;
+=======
+    max-width: 40%;
+>>>>>>> origin/master
   }
 }
 
@@ -939,6 +1252,74 @@ section {
 }
 
 /*--------------------------------------------------------------
+<<<<<<< HEAD
+=======
+# Portfolio Details
+--------------------------------------------------------------*/
+.portfolio-details {
+  padding-top: 40px;
+}
+
+.portfolio-details .portfolio-details-slider img {
+  width: 100%;
+}
+
+.portfolio-details .portfolio-details-slider .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid #d9232d;
+}
+
+.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #d9232d;
+}
+
+.portfolio-details .portfolio-info {
+  padding: 30px;
+  box-shadow: 0px 0 30px rgba(85, 98, 112, 0.08);
+}
+
+.portfolio-details .portfolio-info h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.portfolio-details .portfolio-info ul {
+  list-style: none;
+  padding: 0;
+  font-size: 15px;
+}
+
+.portfolio-details .portfolio-info ul li + li {
+  margin-top: 10px;
+}
+
+.portfolio-details .portfolio-description {
+  padding-top: 30px;
+}
+
+.portfolio-details .portfolio-description h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.portfolio-details .portfolio-description p {
+  padding: 0;
+}
+
+/*--------------------------------------------------------------
+>>>>>>> origin/master
 # Our Team
 --------------------------------------------------------------*/
 .team .member {
@@ -1034,14 +1415,25 @@ section {
 # Our Skills
 --------------------------------------------------------------*/
 .skills .progress {
+<<<<<<< HEAD
   height: 50px;
   display: block;
   background: none;
+=======
+  height: 60px;
+  display: block;
+  background: none;
+  border-radius: 0;
+>>>>>>> origin/master
 }
 
 .skills .progress .skill {
   padding: 10px 0;
+<<<<<<< HEAD
   margin: 0 0 6px 0;
+=======
+  margin: 0;
+>>>>>>> origin/master
   text-transform: uppercase;
   display: block;
   font-weight: 600;
@@ -1055,7 +1447,11 @@ section {
 }
 
 .skills .progress-bar-wrap {
+<<<<<<< HEAD
   background: white;
+=======
+  background: #edeff1;
+>>>>>>> origin/master
 }
 
 .skills .progress-bar {
@@ -1378,6 +1774,7 @@ section {
   padding-bottom: 8px;
 }
 
+<<<<<<< HEAD
 .contact .php-email-form .validate {
   display: none;
   color: red;
@@ -1386,6 +1783,8 @@ section {
   font-size: 13px;
 }
 
+=======
+>>>>>>> origin/master
 .contact .php-email-form .error-message {
   display: none;
   color: #fff;
@@ -1479,6 +1878,7 @@ section {
 }
 
 /*--------------------------------------------------------------
+<<<<<<< HEAD
 # Portfolio Details
 --------------------------------------------------------------*/
 .portfolio-details .portfolio-title {
@@ -1547,18 +1947,38 @@ section {
   padding: 20px;
   margin-bottom: 60px;
   overflow: hidden;
+=======
+# Blog
+--------------------------------------------------------------*/
+.blog {
+  padding: 40px 0 20px 0;
+}
+
+.blog .entry {
+  padding: 30px;
+  margin-bottom: 60px;
+>>>>>>> origin/master
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .blog .entry .entry-img {
+<<<<<<< HEAD
   max-height: 400px;
   margin: -20px -20px 20px -20px;
+=======
+  max-height: 440px;
+  margin: -30px -30px 20px -30px;
+>>>>>>> origin/master
   overflow: hidden;
 }
 
 .blog .entry .entry-title {
+<<<<<<< HEAD
   font-size: 20px;
   line-height: 26px;
+=======
+  font-size: 28px;
+>>>>>>> origin/master
   font-weight: bold;
   padding: 0;
   margin: 0 0 20px 0;
@@ -1582,6 +2002,10 @@ section {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+<<<<<<< HEAD
+=======
+  align-items: center;
+>>>>>>> origin/master
   padding: 0;
   margin: 0;
 }
@@ -1591,12 +2015,22 @@ section {
 }
 
 .blog .entry .entry-meta i {
+<<<<<<< HEAD
   font-size: 14px;
   padding-right: 4px;
 }
 
 .blog .entry .entry-meta a {
   color: #a4afba;
+=======
+  font-size: 16px;
+  margin-right: 8px;
+  line-height: 0;
+}
+
+.blog .entry .entry-meta a {
+  color: #777777;
+>>>>>>> origin/master
   font-size: 14px;
   display: inline-block;
   line-height: 1;
@@ -1604,7 +2038,10 @@ section {
 
 .blog .entry .entry-content p {
   line-height: 24px;
+<<<<<<< HEAD
   font-size: 15px;
+=======
+>>>>>>> origin/master
 }
 
 .blog .entry .entry-content .read-more {
@@ -1616,14 +2053,22 @@ section {
   display: inline-block;
   background: #d9232d;
   color: #fff;
+<<<<<<< HEAD
   padding: 6px 20px 7px;
+=======
+  padding: 6px 20px;
+>>>>>>> origin/master
   transition: 0.3s;
   font-size: 14px;
   border-radius: 4px;
 }
 
 .blog .entry .entry-content .read-more a:hover {
+<<<<<<< HEAD
   background: #e1444d;
+=======
+  background: #df3740;
+>>>>>>> origin/master
 }
 
 .blog .entry .entry-content h3 {
@@ -1650,6 +2095,7 @@ section {
   font-size: 22px;
 }
 
+<<<<<<< HEAD
 .blog .entry .entry-content blockquote .quote-left {
   position: absolute;
   left: 20px;
@@ -1666,6 +2112,8 @@ section {
   color: #e7e7e7;
 }
 
+=======
+>>>>>>> origin/master
 .blog .entry .entry-content blockquote::after {
   content: '';
   position: absolute;
@@ -1684,12 +2132,20 @@ section {
 }
 
 .blog .entry .entry-footer i {
+<<<<<<< HEAD
   color: #8795a4;
+=======
+  color: #a4afba;
+>>>>>>> origin/master
   display: inline;
 }
 
 .blog .entry .entry-footer a {
+<<<<<<< HEAD
   color: #a4afba;
+=======
+  color: #606f7e;
+>>>>>>> origin/master
   transition: 0.3s;
 }
 
@@ -1737,11 +2193,14 @@ section {
   margin-bottom: 30px;
 }
 
+<<<<<<< HEAD
 .blog .entry-single .entry-title {
   font-size: 32px;
   line-height: 38px;
 }
 
+=======
+>>>>>>> origin/master
 .blog .blog-author {
   padding: 20px;
   margin-bottom: 30px;
@@ -1750,14 +2209,22 @@ section {
 
 .blog .blog-author img {
   width: 120px;
+<<<<<<< HEAD
 }
 
 .blog .blog-author h4 {
   margin-left: 140px;
+=======
+  margin-right: 20px;
+}
+
+.blog .blog-author h4 {
+>>>>>>> origin/master
   font-weight: 600;
   font-size: 22px;
   margin-bottom: 0px;
   padding: 0;
+<<<<<<< HEAD
 }
 
 .blog .blog-author .social-links {
@@ -1770,6 +2237,21 @@ section {
 
 .blog .blog-author p {
   margin-left: 140px;
+=======
+  color: #556270;
+}
+
+.blog .blog-author .social-links {
+  margin: 0 10px 10px 0;
+}
+
+.blog .blog-author .social-links a {
+  color: rgba(85, 98, 112, 0.5);
+  margin-right: 5px;
+}
+
+.blog .blog-author p {
+>>>>>>> origin/master
   font-style: italic;
   color: #b7b7b7;
 }
@@ -1788,11 +2270,22 @@ section {
 }
 
 .blog .blog-comments .comment .comment-img {
+<<<<<<< HEAD
   width: 50px;
 }
 
 .blog .blog-comments .comment h5 {
   margin-left: 65px;
+=======
+  margin-right: 14px;
+}
+
+.blog .blog-comments .comment .comment-img img {
+  width: 60px;
+}
+
+.blog .blog-comments .comment h5 {
+>>>>>>> origin/master
   font-size: 16px;
   margin-bottom: 2px;
 }
@@ -1812,6 +2305,7 @@ section {
   color: #556270;
 }
 
+<<<<<<< HEAD
 .blog .blog-comments .comment time {
   margin-left: 65px;
   display: block;
@@ -1824,6 +2318,19 @@ section {
   margin-left: 65px;
 }
 
+=======
+.blog .blog-comments .comment h5 .reply i {
+  font-size: 20px;
+}
+
+.blog .blog-comments .comment time {
+  display: block;
+  font-size: 14px;
+  color: #6b7b8d;
+  margin-bottom: 5px;
+}
+
+>>>>>>> origin/master
 .blog .blog-comments .comment.comment-reply {
   padding-left: 40px;
 }
@@ -1844,8 +2351,13 @@ section {
 }
 
 .blog .blog-comments .reply-form input {
+<<<<<<< HEAD
   border-radius: 0;
   padding: 20px 10px;
+=======
+  border-radius: 4px;
+  padding: 10px 10px;
+>>>>>>> origin/master
   font-size: 14px;
 }
 
@@ -1855,7 +2367,11 @@ section {
 }
 
 .blog .blog-comments .reply-form textarea {
+<<<<<<< HEAD
   border-radius: 0;
+=======
+  border-radius: 4px;
+>>>>>>> origin/master
   padding: 10px 10px;
   font-size: 14px;
 }
@@ -1867,19 +2383,30 @@ section {
 
 .blog .blog-comments .reply-form .form-group {
   margin-bottom: 25px;
+<<<<<<< HEAD
   margin-right: 10px;
   margin-left: 100px;
 }
 
 .blog .blog-comments .reply-form .btn-primary {
   border-radius: 4;
+=======
+}
+
+.blog .blog-comments .reply-form .btn-primary {
+  border-radius: 4px;
+>>>>>>> origin/master
   padding: 10px 20px;
   border: 0;
   background-color: #556270;
 }
 
 .blog .blog-comments .reply-form .btn-primary:hover {
+<<<<<<< HEAD
   background-color: #d9232d;
+=======
+  background-color: #606f7e;
+>>>>>>> origin/master
 }
 
 .blog .blog-pagination {
@@ -1888,16 +2415,25 @@ section {
 
 .blog .blog-pagination ul {
   display: flex;
+<<<<<<< HEAD
   padding-left: 0;
+=======
+  padding: 0;
+  margin: 0;
+>>>>>>> origin/master
   list-style: none;
 }
 
 .blog .blog-pagination li {
+<<<<<<< HEAD
   border: 1px solid #edeff1;
+=======
+>>>>>>> origin/master
   margin: 0 5px;
   transition: 0.3s;
 }
 
+<<<<<<< HEAD
 .blog .blog-pagination li.active {
   background: white;
 }
@@ -1906,17 +2442,29 @@ section {
   color: #aaaaaa;
   padding: 7px 16px;
   display: inline-block;
+=======
+.blog .blog-pagination li a {
+  color: #556270;
+  padding: 7px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+>>>>>>> origin/master
 }
 
 .blog .blog-pagination li.active, .blog .blog-pagination li:hover {
   background: #d9232d;
+<<<<<<< HEAD
   border: 1px solid #d9232d;
+=======
+>>>>>>> origin/master
 }
 
 .blog .blog-pagination li.active a, .blog .blog-pagination li:hover a {
   color: #fff;
 }
 
+<<<<<<< HEAD
 .blog .blog-pagination li.disabled {
   background: #fff;
   border: 1px solid white;
@@ -1928,6 +2476,8 @@ section {
   display: inline-block;
 }
 
+=======
+>>>>>>> origin/master
 .blog .sidebar {
   padding: 30px;
   margin: 0 0 60px 20px;
@@ -1949,28 +2499,43 @@ section {
 
 .blog .sidebar .search-form form {
   background: #fff;
+<<<<<<< HEAD
   border: 1px solid #556270;
   padding: 3px 10px;
   position: relative;
   border-radius: 4px;
+=======
+  border: 1px solid #ddd;
+  padding: 3px 10px;
+  position: relative;
+>>>>>>> origin/master
 }
 
 .blog .sidebar .search-form form input[type="text"] {
   border: 0;
   padding: 4px;
+<<<<<<< HEAD
+=======
+  border-radius: 4px;
+>>>>>>> origin/master
   width: calc(100% - 40px);
 }
 
 .blog .sidebar .search-form form button {
   position: absolute;
   top: 0;
+<<<<<<< HEAD
   right: -2px;
+=======
+  right: 0;
+>>>>>>> origin/master
   bottom: 0;
   border: 0;
   background: none;
   font-size: 16px;
   padding: 0 15px;
   margin: -1px;
+<<<<<<< HEAD
   background: #556270;
   color: #fff;
   transition: 0.3s;
@@ -1979,6 +2544,21 @@ section {
 
 .blog .sidebar .search-form form button:hover {
   background: #6b7b8d;
+=======
+  background: #d9232d;
+  color: #fff;
+  transition: 0.3s;
+  border-radius: 0 4px 4px 0;
+  line-height: 0;
+}
+
+.blog .sidebar .search-form form button i {
+  line-height: 0;
+}
+
+.blog .sidebar .search-form form button:hover {
+  background: #de323c;
+>>>>>>> origin/master
 }
 
 .blog .sidebar .categories ul {
@@ -1991,7 +2571,12 @@ section {
 }
 
 .blog .sidebar .categories ul a {
+<<<<<<< HEAD
   color: #6b7b8d;
+=======
+  color: #556270;
+  transition: 0.3s;
+>>>>>>> origin/master
 }
 
 .blog .sidebar .categories ul a:hover {
@@ -2000,7 +2585,11 @@ section {
 
 .blog .sidebar .categories ul a span {
   padding-left: 5px;
+<<<<<<< HEAD
   color: #c1c8d0;
+=======
+  color: #aaaaaa;
+>>>>>>> origin/master
   font-size: 14px;
 }
 
@@ -2020,7 +2609,11 @@ section {
 }
 
 .blog .sidebar .recent-posts h4 a {
+<<<<<<< HEAD
   color: #292f36;
+=======
+  color: #556270;
+>>>>>>> origin/master
   transition: 0.3s;
 }
 
@@ -2033,7 +2626,11 @@ section {
   margin-left: 95px;
   font-style: italic;
   font-size: 14px;
+<<<<<<< HEAD
   color: #c1c8d0;
+=======
+  color: #aaaaaa;
+>>>>>>> origin/master
 }
 
 .blog .sidebar .tags {
@@ -2054,9 +2651,14 @@ section {
   font-size: 14px;
   padding: 6px 14px;
   margin: 0 6px 8px 0;
+<<<<<<< HEAD
   border: 1px solid #dee2e6;
   display: inline-block;
   border-radius: 4px;
+=======
+  border: 1px solid white;
+  display: inline-block;
+>>>>>>> origin/master
   transition: 0.3s;
 }
 
@@ -2077,6 +2679,7 @@ section {
 --------------------------------------------------------------*/
 #footer {
   background: #4a5562;
+<<<<<<< HEAD
   padding: 0 0 20px 0;
   color: #fff;
   font-size: 14px;
@@ -2087,10 +2690,14 @@ section {
 .ft{
   background: #4a5562;
   padding: 0 0 20px 0;
+=======
+  padding: 0 0 30px 0;
+>>>>>>> origin/master
   color: #fff;
   font-size: 14px;
 }
 
+<<<<<<< HEAD
 
 #footer .footer-top {
   background: grey;
@@ -2100,6 +2707,15 @@ section {
 
 #footer .footer-top .footer-info {
   margin-bottom: 10px;
+=======
+#footer .footer-top {
+  background: #515d6a;
+  padding: 60px 0 30px 0;
+}
+
+#footer .footer-top .footer-info {
+  margin-bottom: 30px;
+>>>>>>> origin/master
 }
 
 #footer .footer-top .footer-info h3 {
@@ -2111,12 +2727,19 @@ section {
 }
 
 #footer .footer-top .footer-info p {
+<<<<<<< HEAD
   font-size: 15px;
+=======
+  font-size: 14px;
+>>>>>>> origin/master
   line-height: 24px;
   margin-bottom: 0;
   font-family: "Raleway", sans-serif;
   color: #fff;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 }
 
 #footer .footer-top .social-links a {
@@ -2142,7 +2765,11 @@ section {
 
 #footer .footer-top h4 {
   font-size: 16px;
+<<<<<<< HEAD
   font-weight: 300;
+=======
+  font-weight: 600;
+>>>>>>> origin/master
   color: #fff;
   position: relative;
   padding-bottom: 12px;
@@ -2187,10 +2814,17 @@ section {
 }
 
 #footer .footer-top .footer-newsletter form {
+<<<<<<< HEAD
   margin-top: 15px;
   background: #fff;
   padding: 6px 10px;
   margin-bottom: 200px;
+=======
+  margin-top: 30px;
+  background: #fff;
+  padding: 6px 10px;
+  position: relative;
+>>>>>>> origin/master
   border-radius: 4px;
 }
 
@@ -2221,7 +2855,11 @@ section {
 
 #footer .copyright {
   text-align: center;
+<<<<<<< HEAD
   padding-top: 10px;
+=======
+  padding-top: 30px;
+>>>>>>> origin/master
 }
 
 #footer .credits {

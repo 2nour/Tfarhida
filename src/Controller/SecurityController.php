@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+
 use App\Form\EditRoleType;
 use App\Form\EditUserType;
+
 use App\Form\RegistrationType;
 use App\Form\ResetPassType;
 use App\Repository\UserRepository;
@@ -85,6 +87,7 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('show_user');
     }
 
+
     /**
      * @Route ("update/{id}", name="update" , methods={"GET","POST"})
      * @param User $user
@@ -116,6 +119,34 @@ class SecurityController extends AbstractController
         'formUser'=>$form->createView()
     ]);
  }
+
+//    /**
+//     * @Route ("update/{id}", name="update")
+//     * @param User $user
+//     * @param UserRepository $repository
+//     * @param $id
+//     * @param Request $request
+//     * @return RedirectResponse|Response
+//     */
+//    public function update(User $user, UserRepository $repository, $id, Request $request){
+//    dd($user);
+//
+//        // $user=$repository->find($id);
+//    $form=$this->createForm(UserType::class, $user);
+//    $form->add('update',SubmitType::class);
+//     $form->handleRequest($request);
+//    if ($form->isSubmitted()&& $form->isValid()){
+//        $em= $this->getDoctrine()->getManager();
+//        $em->flush();
+//        return $this->redirectToRoute('show_user');
+//
+//    }
+//
+//    return $this->render('security/update.html.twig',
+//    [
+//        'form'=>$form->createView()
+//    ]);
+// }
 
 
 
@@ -196,6 +227,7 @@ class SecurityController extends AbstractController
 
 
     /**
+
      * @Route ("Activation/{token}", name="activation")
      * @param $token
      * @param UserRepository $userRepo

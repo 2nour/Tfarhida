@@ -1,5 +1,9 @@
 /*!
+<<<<<<< HEAD
  * Bootstrap Reboot v4.6.0 (https://getbootstrap.com/)
+=======
+ * Bootstrap Reboot v5.0.0-beta2 (https://getbootstrap.com/)
+>>>>>>> origin/master
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -11,6 +15,7 @@
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -20,17 +25,33 @@ html {
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
+=======
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+>>>>>>> origin/master
 }
 
 body {
   margin: 0;
+<<<<<<< HEAD
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+=======
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+>>>>>>> origin/master
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
+<<<<<<< HEAD
   text-align: left;
   background-color: #fff;
+=======
+  background-color: #fff;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+>>>>>>> origin/master
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -38,6 +59,7 @@ body {
 }
 
 hr {
+<<<<<<< HEAD
   box-sizing: content-box;
   height: 0;
   overflow: visible;
@@ -46,6 +68,68 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+=======
+  margin: 1rem 0;
+  color: inherit;
+  background-color: currentColor;
+  border: 0;
+  opacity: 0.25;
+}
+
+hr:not([size]) {
+  height: 1px;
+}
+
+h6, h5, h4, h3, h2, h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: calc(1.375rem + 1.5vw);
+}
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: calc(1.325rem + 0.9vw);
+}
+@media (min-width: 1200px) {
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  font-size: calc(1.3rem + 0.6vw);
+}
+@media (min-width: 1200px) {
+  h3 {
+    font-size: 1.75rem;
+  }
+}
+
+h4 {
+  font-size: calc(1.275rem + 0.3vw);
+}
+@media (min-width: 1200px) {
+  h4 {
+    font-size: 1.5rem;
+  }
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+>>>>>>> origin/master
 }
 
 p {
@@ -54,12 +138,19 @@ p {
 }
 
 abbr[title],
+<<<<<<< HEAD
 abbr[data-original-title] {
+=======
+abbr[data-bs-original-title] {
+>>>>>>> origin/master
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
   cursor: help;
+<<<<<<< HEAD
   border-bottom: 0;
+=======
+>>>>>>> origin/master
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
@@ -71,6 +162,14 @@ address {
 }
 
 ol,
+<<<<<<< HEAD
+=======
+ul {
+  padding-left: 2rem;
+}
+
+ol,
+>>>>>>> origin/master
 ul,
 dl {
   margin-top: 0;
@@ -89,7 +188,11 @@ dt {
 }
 
 dd {
+<<<<<<< HEAD
   margin-bottom: .5rem;
+=======
+  margin-bottom: 0.5rem;
+>>>>>>> origin/master
   margin-left: 0;
 }
 
@@ -103,18 +206,32 @@ strong {
 }
 
 small {
+<<<<<<< HEAD
   font-size: 80%;
+=======
+  font-size: 0.875em;
+}
+
+mark {
+  padding: 0.2em;
+  background-color: #fcf8e3;
+>>>>>>> origin/master
 }
 
 sub,
 sup {
   position: relative;
+<<<<<<< HEAD
   font-size: 75%;
+=======
+  font-size: 0.75em;
+>>>>>>> origin/master
   line-height: 0;
   vertical-align: baseline;
 }
 
 sub {
+<<<<<<< HEAD
   bottom: -.25em;
 }
 
@@ -139,6 +256,24 @@ a:not([href]):not([class]) {
 }
 
 a:not([href]):not([class]):hover {
+=======
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+a {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+a:hover {
+  color: #0a58ca;
+}
+
+a:not([href]):not([class]), a:not([href]):not([class]):hover {
+>>>>>>> origin/master
   color: inherit;
   text-decoration: none;
 }
@@ -149,6 +284,7 @@ kbd,
 samp {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
+<<<<<<< HEAD
 }
 
 pre {
@@ -169,19 +305,77 @@ img {
 
 svg {
   overflow: hidden;
+=======
+  direction: ltr /* rtl:ignore */;
+  unicode-bidi: bidi-override;
+}
+
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  font-size: 0.875em;
+}
+pre code {
+  font-size: inherit;
+  color: inherit;
+  word-break: normal;
+}
+
+code {
+  font-size: 0.875em;
+  color: #d63384;
+  word-wrap: break-word;
+}
+a > code {
+  color: inherit;
+}
+
+kbd {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.875em;
+  color: #fff;
+  background-color: #212529;
+  border-radius: 0.2rem;
+}
+kbd kbd {
+  padding: 0;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+figure {
+  margin: 0 0 1rem;
+}
+
+img,
+svg {
+>>>>>>> origin/master
   vertical-align: middle;
 }
 
 table {
+<<<<<<< HEAD
+=======
+  caption-side: bottom;
+>>>>>>> origin/master
   border-collapse: collapse;
 }
 
 caption {
+<<<<<<< HEAD
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   color: #6c757d;
   text-align: left;
   caption-side: bottom;
+=======
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: #6c757d;
+  text-align: left;
+>>>>>>> origin/master
 }
 
 th {
@@ -189,9 +383,25 @@ th {
   text-align: -webkit-match-parent;
 }
 
+<<<<<<< HEAD
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
+=======
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+label {
+  display: inline-block;
+>>>>>>> origin/master
 }
 
 button {
@@ -214,16 +424,23 @@ textarea {
 }
 
 button,
+<<<<<<< HEAD
 input {
   overflow: visible;
 }
 
 button,
+=======
+>>>>>>> origin/master
 select {
   text-transform: none;
 }
 
+<<<<<<< HEAD
 [role="button"] {
+=======
+[role=button] {
+>>>>>>> origin/master
   cursor: pointer;
 }
 
@@ -231,6 +448,7 @@ select {
   word-wrap: normal;
 }
 
+<<<<<<< HEAD
 button,
 [type="button"],
 [type="reset"],
@@ -249,10 +467,31 @@ button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
 [type="submit"]::-moz-focus-inner {
+=======
+[list]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+button:not(:disabled),
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled) {
+  cursor: pointer;
+}
+
+::-moz-focus-inner {
+>>>>>>> origin/master
   padding: 0;
   border-style: none;
 }
 
+<<<<<<< HEAD
 input[type="radio"],
 input[type="checkbox"] {
   box-sizing: border-box;
@@ -261,6 +500,9 @@ input[type="checkbox"] {
 
 textarea {
   overflow: auto;
+=======
+textarea {
+>>>>>>> origin/master
   resize: vertical;
 }
 
@@ -272,6 +514,7 @@ fieldset {
 }
 
 legend {
+<<<<<<< HEAD
   display: block;
   width: 100%;
   max-width: 100%;
@@ -301,6 +544,63 @@ progress {
   -webkit-appearance: none;
 }
 
+=======
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: calc(1.275rem + 0.3vw);
+  line-height: inherit;
+}
+@media (min-width: 1200px) {
+  legend {
+    font-size: 1.5rem;
+  }
+}
+legend + * {
+  clear: left;
+}
+
+::-webkit-datetime-edit-fields-wrapper,
+::-webkit-datetime-edit-text,
+::-webkit-datetime-edit-minute,
+::-webkit-datetime-edit-hour-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-year-field {
+  padding: 0;
+}
+
+::-webkit-inner-spin-button {
+  height: auto;
+}
+
+[type=search] {
+  outline-offset: -2px;
+  -webkit-appearance: textfield;
+}
+
+/* rtl:raw:
+[type="tel"],
+[type="url"],
+[type="email"],
+[type="number"] {
+  direction: ltr;
+}
+*/
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+::file-selector-button {
+  font: inherit;
+}
+
+>>>>>>> origin/master
 ::-webkit-file-upload-button {
   font: inherit;
   -webkit-appearance: button;
@@ -310,16 +610,32 @@ output {
   display: inline-block;
 }
 
+<<<<<<< HEAD
+=======
+iframe {
+  border: 0;
+}
+
+>>>>>>> origin/master
 summary {
   display: list-item;
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 template {
   display: none;
+=======
+progress {
+  vertical-align: baseline;
+>>>>>>> origin/master
 }
 
 [hidden] {
   display: none !important;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 /*# sourceMappingURL=bootstrap-reboot.css.map */

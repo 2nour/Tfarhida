@@ -1,0 +1,51 @@
+
+{% block body %}
+
+                <h2 align="center">Liste des réservations</h2>
+
+
+    <table class="table" class="table table-condensed">
+        <thead>
+        <tr>
+            <th>NumReservation</th>
+            <th>DateReservation</th>
+            <th>Observation</th>
+            <th>Montant</th>
+            <th>NombrePersonne</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservation %}
+            <tr>
+                <td>{{ reservation.numreservation }}</td>
+                <td>{{ reservation.datereservation|date('Y-m-d') }}</td>
+                <td>{{ reservation.observation }}</td>
+                <td>{{ reservation.montant }}</td>
+                <td>{{ reservation.nombrepersonne }}</td>
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        #t01 {
+            width: 100%;
+            background-color: #f1f1c1;
+        }
+    </style>
+
+
+{% endblock %}

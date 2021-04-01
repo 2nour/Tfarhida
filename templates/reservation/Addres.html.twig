@@ -1,0 +1,69 @@
+{% extends 'index.html.twig' %}
+{% block body %}
+    {% block title %}Ajouter Réservation{% endblock %}
+    <br><br><br><br>
+
+
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+
+    <center><h3>Ajouter Réservation </h3></center><br>
+
+
+
+    <div class="row"><center>
+            <div class="col-md-6 form-group"><br>
+                {{ form_label(form.numreservation,"NumReservation*") }}
+                {{ form_widget(form.numreservation, { 'attr': {'class': 'form-control ','placeholder':"NumReservation" } }) }}
+                {{ form_errors(form.numreservation) }}
+
+
+                <div class="row">
+                    <div class="col-md-6 form-group"> <br>
+                        {{ form_label(form.datereservation,"DateReservation*") }}
+                        {{ form_widget(form.datereservation, { 'attr': {'class': 'form-control ','placeholder':"DateReservation" } }) }}
+                        {{ form_errors(form.datereservation) }}
+
+                    </div>
+
+                    <div class="col-md-6 form-group"><br>
+                        {{ form_label(form.observation,"Observation*") }}
+                        {{ form_widget(form.observation, { 'attr': {'class': 'form-control ','placeholder':"Observation"  } }) }}
+                        {{ form_errors(form.observation) }}
+                    </div>
+                    <div class="col-md-6 form-group"><br>
+                        {{ form_label(form.montant,"Montant*") }}
+                        {{ form_widget(form.montant, { 'attr': {'class': 'form-control ','placeholder':"Montant"  } }) }}
+                        {{ form_errors(form.montant) }}
+                    </div>
+                    <div class="col-md-6 form-group"><br>
+                        {{ form_label(form.nombrepersonne,"nombrepersonne*") }}
+                        {{ form_widget(form.nombrepersonne, { 'attr': {'class': 'form-control ','placeholder':"NombrePersonne"  } }) }}
+                        {{ form_errors(form.nombrepersonne) }}
+                    </div>
+
+                    <div class="col-md-6 form-group"><br>
+                        <label for="ExempleCaptchaReservation">Are you a robot?</label>
+                        {{ form_widget(form.captchaCode, { 'attr': {'class': 'form-control ' } }) }}
+                    </div>
+                </div>
+            </div>
+        </center>
+                </div>
+            </div>
+            {{ form_widget(form.idRandonnee, { 'attr': { 'value' :  app.request.get('idRandonnee')  } }) }}
+        </center></div>
+
+
+
+    <div class="text-center"><button class="btn btn-info my-3" type="submit">Ajouter</button></div><br>
+    </div></center>
+
+
+
+
+    {{ form_end(form) }}
+
+{% endblock %}
+

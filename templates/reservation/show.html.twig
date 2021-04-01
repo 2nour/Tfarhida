@@ -1,0 +1,48 @@
+{% extends 'index.html.twig' %}
+{% block title %}Details{% endblock %}
+{% block body %}
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Details</h2>
+          <ol>
+            <li><a href="index.html">Acceuil</a></li>
+            <li>Details</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+
+    <table class="table"><br><br>
+        <tbody>
+        <tr>
+            <th>NumReservation</th>
+            <td>{{ reservation.numreservation }}</td>
+        </tr>
+        <tr>
+            <th>DateReservation</th>
+            <td>{{ reservation.datereservation|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th>Observation</th>
+            <td>{{ reservation.observation }}</td>
+        </tr>
+        <tr>
+            <th>Montant</th>
+            <td>{{ reservation.montant }}</td>
+        </tr>
+        <tr>
+            <th>NombrePersonne</th>
+            <td>{{ reservation.nombrepersonne }}</td>
+        </tr>
+        </tbody>
+    </table><br><br>
+
+
+
+
+
+{% endblock %}

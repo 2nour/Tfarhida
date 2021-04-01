@@ -20,13 +20,13 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 
+
+
 class MaisonController extends AbstractController
 {
-
     /**
      * @Route("/maison", name="maison")
      */
-
     public function index(): Response
     {
         return $this->render('maison/index.html.twig', [
@@ -187,3 +187,4 @@ class MaisonController extends AbstractController
 
 
 }
+
