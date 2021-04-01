@@ -43,6 +43,18 @@ class RegistrationType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
+            ->add('roles', ChoiceType::class,[
+                'choices' => [
+                    'Utilisateur' => 'ROLE_USER',
+                    'Hébérgeur' => 'ROLE_HEBERGEUR'
+                ],
+                'mapped' => false,
+//                'expanded' => true,
+//                'multiple' => true,
+                'label' => 'Roles'
+            ])
+
+
             ->add("submit",SubmitType::class);
 
 //            ->add('roles', ChoiceType::class,[

@@ -82,7 +82,7 @@ class ProduitController extends AbstractController
      * @Route("produitListe", name="produitListe")
      * @return Response
      */
-    public function afficherlisteProduit(PaginatorInterface $paginator,Request $request,ProduitRepository $produitRepository)
+    public function afficherlisteProduit(Request $request,ProduitRepository $produitRepository)
     {
         $data= new SearchData();
         $data->page = $request->get('page', 1);
@@ -91,13 +91,7 @@ class ProduitController extends AbstractController
         $produits=$produitRepository->findSearch($data);
 
 
-      //  $em = $this->getDoctrine()->getManager();
-       // $produits=$em->getRepository(Produit::class)->findAll();
-       // $pagination = $paginator->paginate(
-           // $produits, /* query NOT result */
-           // $request->query->getInt('page', 1), /*page number*/
-           // 9 /*limit per page*/
-    //    );
+
 
 
          return $this->render("produit/liste.html.twig", ['produits'=>$produits,"form"=>$form->createView()]);

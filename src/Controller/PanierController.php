@@ -6,6 +6,7 @@ use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\Commande;
 
+use App\Form\CommandeType;
 use App\Form\PanierType;
 use App\Repository\PanierRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,7 +36,7 @@ class PanierController extends AbstractController
      * @Route("/panierListe", name="panierListe")
      * @return Response
      */
-    public function afficherPanier()
+    public function afficherPanier(Request $request)
     {
 
       $panierId=2;
@@ -50,6 +51,7 @@ class PanierController extends AbstractController
         $query->setParameter(1,$panierId);
         $produits =$query->getResult();
         $commandes=$em->getRepository(Commande::class)->findAll();
+
 
 
         try {

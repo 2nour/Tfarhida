@@ -6,10 +6,9 @@
 
 {% block css%}
     <!-- Vendor CSS Files -->
+    <link href="assets/img/logo/logo.png" rel="icon">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -60,7 +59,10 @@
                                     <h6> <strong>{{ produit.prix }} <span class="text-muted">dt x</span></strong></h6>
                                 </div>
                                 <div class="col-xs-4">
-                                    <input type="number" class="form-control input-sm" value="" placeholder="{{ commandes[i].quantiteProduit }}">
+
+
+                                    <input type="number" min="1" max="{{ produit.quantite }}" class="form-control input-sm" name="qtt" value="" placeholder="{{ commandes[i].quantiteProduit }}">
+
                                 </div >
                                 <div class="col-xs-2">
                                     <a href="{{ path("suppPanier",{ 'id': produit.id }) }}"><span class="glyphicon glyphicon-trash"> </span></a>

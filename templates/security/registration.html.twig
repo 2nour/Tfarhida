@@ -19,11 +19,16 @@
                     <div class="nessrine">
                         {{ form_row(form.password, {'label':'Mot de passe'}) }}
                     </div>
+
                     <div>
                     <div class="nessrine">
                         {{ form_row(form.confirm_password, {'label':'Confiration du mot de passe'}) }}
-                        {{ form_end(form) }}
+
                     </div>
+                        <div class="nessrine">
+                            {{ form_row(form.roles, {'label':'Choisir votre Role' }) }}
+                            {{ form_end(form) }}
+                        </div>
 
                 </div>
             </div>
