@@ -26,16 +26,19 @@ class Reservation
 
     /**
      * @ORM\Column(type="date", type="datetime")
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $datereservation;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $observation;
 
     /**
      * @ORM\Column(type="float")
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $montant;
 
@@ -46,6 +49,7 @@ class Reservation
 
     /**
      * @ORM\Column(type="integer")
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $nombrepersonne;
 

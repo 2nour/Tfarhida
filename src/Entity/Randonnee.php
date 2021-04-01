@@ -47,41 +47,49 @@ class Randonnee
 
     /**
      * @ORM\Column(type="datetime",nullable=true)
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $datedepart;
 
     /**
      * @ORM\Column(type="datetime",nullable=true)
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $dateretour;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $activite;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $image;
 
     /**
      * @ORM\Column(type="integer")
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $duree;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $difficulte;
 
     /**
      * @ORM\Column(type="integer")
+     * * @Assert\NotBlank(message="nom est requis")
      */
     private $budget;
 

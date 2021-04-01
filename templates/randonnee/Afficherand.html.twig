@@ -31,6 +31,7 @@
                 <div class="col-lg-8 entries">
                     <tbody id="all">
                     {% for r in randonnee %}
+
                     <article class="entry" >
 
                         <div class="entry-img">
@@ -44,7 +45,7 @@
                         <div class="entry-meta">
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-person"></i> Hana Jenhani</li>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><b>DEPART:&nbsp;&nbsp; </b></a><span> {{ r.datedepart|date('Y-m-d H:i')}}</span> <a><b> &nbsp;==>&nbsp;RETOUR:&nbsp; </b>&nbsp;</a> <span> {{ r.dateretour|date('Y-m-d H:i:s') }}</span></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><b>DEPART:&nbsp;&nbsp; </b></a><span> {{ r.datedepart|date("Y-m-d")}}</span> <a><b> &nbsp;==>&nbsp;RETOUR:&nbsp; </b>&nbsp;</a> <span> {{ r.dateretour|date("Y-m-d") }}</span></li>
 
 
                             </ul>
@@ -52,7 +53,7 @@
 
                         <div class="entry-content">
                             <p>
-                           {{ r.description}}.<br>
+                         <b> Description: </b>  <span>{{ r.description}}</span>.<br>
                                <b> Activite: </b> <span>&nbsp;{{ r.activite }}</span><br>
                                 <b> Budget: </b> <span>&nbsp;{{ r.budget }} Dt</span><br>
                                <b> Durée: </b> <span>&nbsp;{{ r.duree }} jours</span><br>
@@ -63,7 +64,16 @@
                             <div class="read-more">
                                 <a href="{{ path('add_reservation',{'idRandonnee':r.id}) }}">Réserver</a>
                             </div>
+                            <a href="{{ path('post_like', {'id': r.id}) }}" class="btn btn-link js-like">
+                                {% if app.user and post.isLikedByUser(app.user) %}
+                                    <i class="fa fa-thumbs-up"></i>
+                                {% else %}
+                                    <i class="fa fa-thumbs-up"></i>
+                                {% endif %}
+                                <span class="js-likes"> {{ r.likes | length }}</span>
+                                <span class="js-label">J'aime</span>
 
+                            </a>
 
 
 
@@ -81,6 +91,49 @@
                         </div>
 
 
+                            <div class="blog-comments"><br>
+
+                                <h4 class="comments-count">Commentaire</h4>
+                                <div id="comment-1" class="comment">
+
+                                </div>
+
+                                <!-- End comment #1 -->
+                                {% for c in commentaires %}
+                                    {% if c.randonne.id==r.id %}
+                                        <div id="comment-1" class="comment">
+                                            <div class="d-flex">
+                                                <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div>
+                                                <div>
+                                                    <h5><a href="">{{ c.user.username }}</a> </h5>
+                                                    <time datetime="2020-01-01">{{ c.datedecommentaire |date("Y-m-d") }}</time>
+                                                    <p>
+{{ c.contenue }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="reply-form">
+
+
+                                    <form action="{{ path('comment_add') }}" method="post">
+
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                <textarea name="body" id="body" class="form-control" placeholder="Ajouter votre Commentaire*"></textarea>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="randonnee_id" value="{{ r.id }}">
+
+                                        <input type="submit" class="btn btn-primary" value="Envoyer" />
+
+                                    </form>
+
+                                </div>
+                            </div>
                     </article><!-- End blog entry -->
 
                     {% endfor %}
@@ -136,8 +189,6 @@
                             </div>
                         {% endfor %}
                         </tbody>
-
-
 
 
 

@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Controller;
-//use App\Entity\PostLiike;
-//use App\Entity\Useer;
+use App\Entity\PostLike;
+use App\Entity\User;
+use App\Entity\Commentaire;
+use App\Form\CommentaireFormType;
 use App\Form\RandonneeeType;
 use App\Entity\Randonnee;
-
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-//use App\Repository\PostLiikeRepository;
 use App\Repository\RandonneeRepository;
+use App\Repository\PostLikeRepository;
 use App\Repository\ReservationRepository;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,10 +58,21 @@ class RandonneeController extends AbstractController
                 ['randonnee'=>$randonnee]);
         }
         $randonnee=$repository->findAll();
+        $commentaires=$this->getDoctrine()->getRepository(Commentaire::class)->findAll();
         return $this->render('randonnee/Afficherand.html.twig',
-            ['randonnee'=>$randonnee]);
+            ['randonnee'=>$randonnee,
+             'commentaires' =>$commentaires]);
 
     }
+    /**
+     * @Route("/randonnee/show/{id}", name="randonnee_show")
+     */
+    public function show($id) {
+        $randonnee = $this->getDoctrine()->getRepository(Randonnee::class)->find($id);
+
+        return $this->render('randonnee/show.html.twig', array('randonnee' => $randonnee));
+    }
+
 
     /**
      * @Route("/Supp/{id}", name="rand")
@@ -76,20 +88,6 @@ class RandonneeController extends AbstractController
     }
 
 
-    /**
-     * @Route("/searchVilleArrivee ", name="searchVilleArrivee")
-     */
-    public function searchVilleArrivee(Request $request,NormalizerInterface $Normalizer)
- {
- $repository = $this->getDoctrine()->getRepository(Randonnee::class);
- $requestString=$request->get('searchValue');
- $VilleArrivee = $repository->findRandonneeByVilleArrivee($requestString);
- $jsonContent = $Normalizer->normalize($VilleArrivee, 'json',['groups'=>'villes']);
- $retour=json_encode($jsonContent);
- return new Response($retour);
- }
-
-
      /**
      *
      * @Route("/randonnee/Add", name="addrandonnee")
@@ -99,6 +97,8 @@ class RandonneeController extends AbstractController
     {
         $randonnee = new Randonnee();
         $form = $this->createForm(RandonneeeType::class,$randonnee);
+
+
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $dated=$request->request->get("datedepart");
@@ -119,16 +119,13 @@ class RandonneeController extends AbstractController
 
             $randonnee->setDatedepart(new  \DateTime($dd));
             $randonnee->setDateretour(new \DateTime($da));
+
             $em->persist($randonnee);
             $em->flush();
-            $this->addFlash(
-                'notice',
-                'Super ! une nouvelle randonnée a été ajoutée !!!'
-            );
 
             return $this->redirectToRoute('randonnee');
         }
-        return $this->render('randonnee/Addrand.html.twig',[
+        return $this->render('randonnee\Addrand.html.twig',[
             'form'=>$form->createView()
         ]);
     }
@@ -163,45 +160,43 @@ class RandonneeController extends AbstractController
      *
      * @Route("/Randonnee/{id}/like", name="post_like")
      * @param Post $post
-     * @param PostLikeRepository $likeRepository
+     * @param PostLikeRepository $liikeRepository
      */
 
-    //public function like1(Randonnee $post, PostLikeRepository $likeRepository):Response
-     //{
-       // $manager = $this->getDoctrine()->getManager();
+    public function like1(Randonnee $post, PostLikeRepository $liikeRepository):Response
+    {
+        $manager = $this->getDoctrine()->getManager();
 
-       // $user = $this->getUser();
-       /* if (!$user) return $this->json([
-            'code' => 403,
-            'message' => "Unauthorized"
-        ], 403);*/
-    //   $user=$manager->getRepository(Useer::class)->find(3);
-    //  if ($post->isLikedByUser($user)){
-    //   $like = $manager->getRepository(PostLiike::class)->findOneBy([
-    //    'post' => $post,
-    //   'useer' => $user
-    //   ]);
-    //   $manager->remove($like);
-    //  $manager->flush();
-    //     return $this->json([
-    //   'code' => 200,
-    //   'message' => 'Like bien supprimé',
-    //   'likes' => $likeRepository->count(['post' => $post] )
-    //   ], 200);
-    //   }
+        // $user = $this->getUser();
+        /* if (!$user) return $this->json([
+             'code' => 403,
+             'message' => "Unauthorized"
+         ], 403);*/
+        $user=$manager->getRepository(User::class)->find(1);
+        if ($post->isLikedByUser($user)){
+            $like = $manager->getRepository(PostLike::class)->findOneBy([
+                'randonnee' => $post,
+                'user' => $user
+            ]);
+            $manager->remove($like);
+            $manager->flush();
+           /* return $this->json([
+                'code' => 200,
+                'message' => 'Like bien supprimé',
+                'likes' => $liikeRepository->count(['randonnee' => $post] )
+            ], 200);*/
+            return $this->redirectToRoute('AfficheRandonnee');
+        }
 
-//   $like = new PostLike();
-// $like->setPost($post)
-     //  ->setUseer($user);
-// $manager->persist($like);
-// $manager->flush();
+        $like = new PostLike();
+        $like->setRandonnee($post)
+            ->setUser($user);
+        $manager->persist($like);
+        $manager->flush();
 
-    // return $this->json([
-     //  'code' => 200,
-     //  'message' => "like bien ajoutee",
-      //  'likes' => $likeRepository->count(['post' => $post])
-      //  ], 200);
-   //  }
+        return $this->redirectToRoute('AfficheRandonnee');
+    }
+
 
 
 

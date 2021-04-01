@@ -23,7 +23,7 @@ class RandonneeeType extends AbstractType
             ->add('datedepart', DateType::class,['label' => 'Date depart:   : ','widget' => 'single_text'])
             ->add('dateretour', DateType::class,['label' => 'Date retour:   : ','widget' => 'single_text'])
             ->add('description', TextareaType::class)
-            ->add('image',FileType::class)
+            ->add('image',FileType::class, array('data_class' => null))
             ->add('duree')
             ->add('difficulte')
             ->add('budget')

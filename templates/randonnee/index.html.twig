@@ -18,7 +18,7 @@
                     <ol>
                         <li><a href="index.html">Acceuil</a></li>
                         <li>Randonnée</li>
-                        <li><a href="{{ path('addrandonnee') }}"><button class="btn btn-success" type="submit">Ajouter</button></a>
+
                         </li>
                     </ol>
                 </div>
@@ -63,6 +63,7 @@
 
                                     </p>
 
+                                    <li><a href="{{ path('addrandonnee') }}"><button class="btn btn-success" type="submit">Ajouter</button></a>
                                     <a href="{{ path('modifrand',{'id':r.id}) }}">  <button class="btn btn-warning" type="submit">Modifier</button></a>
 
 
@@ -115,7 +116,20 @@
                                 </ul>
                             </div>
 
+                            <h3 class="sidebar-title">Recent Posts</h3>
+                            <tbody id="all">
+                            {% for r in randonnee %}
+                                <div class="sidebar-item recent-posts">
+                                    <div class="post-item clearfix">
+                                        <img src="{{ asset('uploads/images/randonnee/' ~ r.image) }}" alt="" class="img-fluid">
+                                        <h4><a href="blog-single.html">   {{  r.villedepart }} vers {{  r.villearrivee }}</a></h4>
+                                        <time datetime="2020-01-01">{{ r.datedepart|date('Y-m-d H:i')}}</time>
+                                    </div>
 
+
+                                </div>
+                            {% endfor %}
+                            </tbody>
 
 
 
