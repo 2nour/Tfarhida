@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.AfficheReservationController">
+   <children>
+      <TableView fx:id="tbreservation" layoutX="154.0" layoutY="291.0" prefHeight="392.0" prefWidth="918.0" stylesheets="@afficherandonnee.css">
+        <columns>
+          <TableColumn fx:id="colid" prefWidth="40.0" text="ID" />
+          <TableColumn fx:id="colnumres" prefWidth="107.0" text="NumReservation" />
+            <TableColumn fx:id="coldateres" prefWidth="138.0" text="DateReservation" />
+            <TableColumn fx:id="colobs" prefWidth="114.0" text="Observation" />
+            <TableColumn fx:id="colmontant" prefWidth="154.0" text="Montant" />
+            <TableColumn fx:id="colnbpersonne" prefWidth="192.0" text="NombrePersonne" />
+            <TableColumn fx:id="coletat" prefWidth="172.0" text="Etat" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="10.0" layoutY="24.0" prefHeight="56.0" prefWidth="1247.0" style="-fx-background-color: #B22222;">
+         <children>
+            <Text fill="#f8f5f5" layoutX="186.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Reservation" wrappingWidth="372.9999994188547">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
+            <FontAwesomeIconView glyphName="HOME" layoutX="157.0" layoutY="32.0" size="20" text="" wrappingWidth="15.911458015441895" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="674.0" layoutY="245.0" prefHeight="39.0" prefWidth="104.0" text="Rechercher">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtchercher" layoutX="791.0" layoutY="249.0" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="200.0" promptText="Rechercher" />
+      <DatePicker fx:id="datepickeresr" layoutX="245.0" layoutY="177.0" prefHeight="25.0" prefWidth="200.0" promptText="DateReserrvation" />
+      <TextField fx:id="tfnumres" layoutX="248.0" layoutY="138.0" prefHeight="25.0" prefWidth="193.0" promptText="NumReservation" />
+      <TextField fx:id="tfid" layoutX="248.0" layoutY="101.0" prefHeight="25.0" prefWidth="193.0" promptText="ID" />
+      <Label layoutX="152.0" layoutY="100.0" lineSpacing="17.0" prefHeight="27.0" prefWidth="57.0" text="ID">
+         <font>
+            <Font name="AngsanaUPC Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="150.0" layoutY="137.0" lineSpacing="15.0" text="NumReservation">
+         <font>
+            <Font name="AngsanaUPC Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="149.0" layoutY="176.0" lineSpacing="10.0" text="DateReservation">
+         <font>
+            <Font name="AngsanaUPC Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="148.0" layoutY="212.0" prefHeight="27.0" prefWidth="94.0" text="Observation">
+         <font>
+            <Font name="Angsana New Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="154.0" layoutY="251.0" lineSpacing="15.0" prefHeight="27.0" prefWidth="53.0" text="Montant">
+         <font>
+            <Font name="Angsana New Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="674.0" layoutY="114.0" lineSpacing="15.0" text="Randonnee">
+         <font>
+            <Font name="Angsana New Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="674.0" layoutY="151.0" prefHeight="27.0" prefWidth="104.0" text="NbrePersonne">
+         <font>
+            <Font name="Angsana New Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfobs" layoutX="249.0" layoutY="213.0" prefHeight="25.0" prefWidth="193.0" promptText="observation" />
+      <TextField fx:id="tfmont" layoutX="248.0" layoutY="251.0" prefHeight="25.0" prefWidth="193.0" promptText="Montant" />
+      <TextField fx:id="tfnbperrsonne" layoutX="795.0" layoutY="148.0" prefHeight="25.0" prefWidth="193.0" promptText="Nombrepersonne" />
+      <Label layoutX="674.0" layoutY="199.0" prefHeight="27.0" prefWidth="104.0" text="Etat">
+         <font>
+            <Font name="Angsana New Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cbetat" layoutX="791.0" layoutY="189.0" prefHeight="28.0" prefWidth="193.0" promptText="Encours" />
+      <Button fx:id="ajoutreservation" layoutX="364.0" layoutY="702.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: ForestGreen;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="modifierreservation" layoutX="467.0" layoutY="702.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: GoldenRod;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="supprimerreservation" layoutX="558.0" layoutY="702.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="92.0" style="-fx-background-color: FireBrick;" text="Supprimer" textFill="#fffefe">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="DetailsReservation" layoutX="674.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="81.0" style="-fx-background-color: MediumPurple;" text="Details" textFill="#fffbfb">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_imprime" layoutX="771.0" layoutY="701.0" mnemonicParsing="false" onAction="#download" prefHeight="39.0" prefWidth="96.0" style="-fx-background-color: LightSlateGray;" text="Imprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="randonnee_id" layoutX="793.0" layoutY="115.0" prefHeight="26.0" prefWidth="193.0" />
+   </children>
+</AnchorPane>
