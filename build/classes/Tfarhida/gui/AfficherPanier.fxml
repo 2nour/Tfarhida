@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Tfarhida.gui.AfficherPanierController">
+   <children>
+      <Separator layoutX="10.0" layoutY="64.0" prefHeight="9.0" prefWidth="768.0" />
+      <Label layoutX="24.0" layoutY="24.0" prefHeight="14.0" prefWidth="179.0" text="Mon Panier">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableProduits" layoutY="69.0" onMouseClicked="#getSelected" prefHeight="494.0" prefWidth="778.0">
+         <columns>
+            <TableColumn fx:id="colNomProd" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="colQttProd" prefWidth="75.0" text="Quantite" />
+            <TableColumn fx:id="colPrixProd" prefWidth="75.0" text="Prix" />
+            <TableColumn fx:id="colIdProd" prefWidth="75.0" text="ID" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
