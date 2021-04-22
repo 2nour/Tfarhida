@@ -1,0 +1,10 @@
+.sidebar-icon{
+    -fx-fill:#292F35;
+}
+.sidebar-icon:hover{
+    -fx-fill:#2BBFBD;
+}
+.online-dot{
+    -fx-background-color: #00cc33;
+    -fx-background-radius: 100%;    
+}

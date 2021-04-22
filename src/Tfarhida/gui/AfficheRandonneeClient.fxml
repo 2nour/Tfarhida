@@ -37,7 +37,7 @@
          </font>
       </Label>
       <JFXTextField fx:id="txchercher" layoutX="846.0" layoutY="140.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="161.0" promptText="Chercher" />
-      <FontAwesomeIconView glyphName="SEARCH" layoutX="702.0" layoutY="163.0" size="30" wrappingWidth="20.142857551574707" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="1007.0" layoutY="163.0" size="15" wrappingWidth="20.142857551574707" />
       <AnchorPane layoutX="10.0" layoutY="24.0" prefHeight="56.0" prefWidth="1247.0" style="-fx-background-color: #B22222;">
          <children>
             <Text fill="#f8f5f5" layoutX="181.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Randonnee" wrappingWidth="372.9999994188547">

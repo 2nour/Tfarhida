@@ -69,25 +69,20 @@
             <Font name="Angsana New Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="674.0" layoutY="114.0" lineSpacing="15.0" text="Randonnee">
-         <font>
-            <Font name="Angsana New Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="674.0" layoutY="151.0" prefHeight="27.0" prefWidth="104.0" text="NbrePersonne">
+      <Label layoutX="663.0" layoutY="114.0" prefHeight="27.0" prefWidth="104.0" text="NbrePersonne">
          <font>
             <Font name="Angsana New Bold" size="20.0" />
          </font>
       </Label>
       <TextField fx:id="tfobs" layoutX="249.0" layoutY="213.0" prefHeight="25.0" prefWidth="193.0" promptText="observation" />
       <TextField fx:id="tfmont" layoutX="248.0" layoutY="251.0" prefHeight="25.0" prefWidth="193.0" promptText="Montant" />
-      <TextField fx:id="tfnbperrsonne" layoutX="795.0" layoutY="148.0" prefHeight="25.0" prefWidth="193.0" promptText="Nombrepersonne" />
-      <Label layoutX="674.0" layoutY="199.0" prefHeight="27.0" prefWidth="104.0" text="Etat">
+      <TextField fx:id="tfnbperrsonne" layoutX="795.0" layoutY="114.0" prefHeight="25.0" prefWidth="193.0" promptText="Nombrepersonne" />
+      <Label layoutX="663.0" layoutY="155.0" prefHeight="27.0" prefWidth="104.0" text="Etat">
          <font>
             <Font name="Angsana New Bold" size="20.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cbetat" layoutX="791.0" layoutY="189.0" prefHeight="28.0" prefWidth="193.0" promptText="Encours" />
+      <JFXComboBox fx:id="cbetat" layoutX="795.0" layoutY="150.0" prefHeight="28.0" prefWidth="193.0" promptText="Encours" />
       <Button fx:id="ajoutreservation" layoutX="364.0" layoutY="702.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: ForestGreen;" text="Ajouter" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -113,6 +108,5 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="randonnee_id" layoutX="793.0" layoutY="115.0" prefHeight="26.0" prefWidth="193.0" />
    </children>
 </AnchorPane>

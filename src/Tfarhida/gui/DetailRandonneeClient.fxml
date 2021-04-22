@@ -42,7 +42,7 @@
             <Font size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField layoutX="505.0" layoutY="337.0" prefHeight="25.0" prefWidth="150.0" promptText="Duree">
+      <JFXTextField layoutX="505.0" layoutY="344.0" prefHeight="25.0" prefWidth="150.0" promptText="Duree">
          <font>
             <Font size="13.0" />
          </font>
@@ -59,7 +59,7 @@
       </JFXTextField>
       <JFXTextArea fx:id="Text_description" layoutX="216.0" layoutY="426.0" prefHeight="76.0" prefWidth="443.0" promptText="Description" />
       <ImageView fx:id="image_Randonnee" fitHeight="298.0" fitWidth="492.0" layoutX="708.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="ReserverRandonnee" layoutX="321.0" layoutY="587.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="140.0" style="-fx-background-color: ForestGreen;" text="Réserver" textFill="#ebe2e2">
+      <Button fx:id="ReserverRandonnee" layoutX="321.0" layoutY="587.0" mnemonicParsing="false" onAction="#handlebuttonReserver" prefHeight="44.0" prefWidth="140.0" style="-fx-background-color: ForestGreen;" text="Réserver" textFill="#ebe2e2">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

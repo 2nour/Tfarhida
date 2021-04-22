@@ -6,15 +6,23 @@
 package Tfarhida.gui;
 
 import Tfarhida.entities.Randonnee;
+import static Tfarhida.gui.AfficheRandonneeClientController.r;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
@@ -22,7 +30,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 /**
@@ -64,13 +74,16 @@ public class DetailRandonneeClientController implements Initializable {
 
      @FXML
     private ImageView image_Randonnee;
-   
+      @FXML
+    private TextField Text_duree;
+       @FXML
+    private AnchorPane anchropane;
      
     @FXML
     private Button ReserverRandonnee;
     
-     @FXML
-    private TextField Text_duree;
+    
+    
      
     public Randonnee r1= AfficheRandonneeClientController.r;
       
@@ -83,7 +96,7 @@ public class DetailRandonneeClientController implements Initializable {
      Image image = new Image("/images/randonnee.jpg"); 
      image_Randonnee.setImage(image);
         System.out.println(r1);
-        Text_id.setText(Integer.toString(r1.getId()));
+       // Text_id.setText(Integer.toString(r1.getId()));
         
         Text_activite.setText(r1.getActivite());
         Text_villedepart.setText(r1.getVilledepart());
@@ -93,6 +106,7 @@ public class DetailRandonneeClientController implements Initializable {
         Text_difficulte.setText(r1.getDifficulte());
         Text_budget.setText(Integer.toString(r1.getBudget()));
         Text_description.setText(r1.getDescription());
+         Text_duree.setText(Integer.toString(r1.getDuree()));
         
         
      
@@ -113,17 +127,7 @@ public class DetailRandonneeClientController implements Initializable {
        // Datepicker_retour.setValue(LocalDate.parse(r.getDateretour()));
         
     }
-      
-     
-        
-        
-        
-        
-        
-        
-      
-      
-      
-   
     
+       
 }
+    

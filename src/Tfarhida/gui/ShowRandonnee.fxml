@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.ShowRandonneeController">
+    <stylesheets>
+        <URL value="@showrandonnee.css" />
+    </stylesheets>
+   <children>
+      <VBox prefHeight="619.0" prefWidth="100.0" />
+      <HBox alignment="CENTER_LEFT" layoutX="94.0" layoutY="23.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="1304.0" style="-fx-background-color: #fff;">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox layoutX="87.0" layoutY="230.0" />
+      <VBox layoutX="100.0" layoutY="255.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="250.0">
+         <children>
+            <VBox style="-fx-background-color: #fff;" />
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #fff;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="254.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../images/Randonnée-à-Haouaria-Nabeul.jpg" />
+                     </image>
+                  </ImageView>
+                  <FontAwesomeIconView size="2" />
+                  <Label lineSpacing="5.0" prefHeight="16.0" prefWidth="242.0" text="RANDONNÉE À HAOUARIA NABEUL" textFill="#685f5f">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="388.0" layoutY="255.0" prefHeight="200.0" prefWidth="257.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="259.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/Baignade-Ain-Mistir.jpg" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView size="2" />
+            <Label lineSpacing="5.0" prefHeight="16.0" prefWidth="242.0" text="BAIGNADE AIN MISTIR" textFill="#685f5f">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="703.0" layoutY="255.0" prefHeight="200.0" prefWidth="257.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="267.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/Camping-À-Oued-Abid-avec-avaloon.jpg" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView size="2" />
+            <Label lineSpacing="5.0" prefHeight="16.0" prefWidth="242.0" text="CAMPING À OUED ABID AVEC AVALOON" textFill="#685f5f">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></VBox>
+      <VBox layoutX="94.0" layoutY="519.0" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="259.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/Camping-Ain-Damous.jpg" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView size="2" />
+            <Label lineSpacing="5.0" prefHeight="16.0" prefWidth="242.0" text="CAMPING AIN DAMOUS(BIZERTE)" textFill="#685f5f">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="388.0" layoutY="519.0" prefHeight="200.0" prefWidth="257.0">
+         <children>
+            <ImageView fitHeight="147.0" fitWidth="259.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/maxresdefault.jpg" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView size="1" />
+            <Label lineSpacing="5.0" prefHeight="16.0" prefWidth="242.0" text="CAMPING OUED EL KSAB " textFill="#685f5f">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="703.0" layoutY="513.0" prefHeight="200.0" prefWidth="257.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="267.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/croisiere-zembra-et-zembretta.jpg" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView size="1" />
+            <Label lineSpacing="5.0" prefHeight="16.0" prefWidth="242.0" text="CROISIERE ZEMBRA ET ZEMBRETTA" textFill="#685f5f">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="1036.0" layoutY="248.0" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fitHeight="157.0" fitWidth="267.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/Baignade-dans-la-grotte-Nautique-De-Cap-Hmam.jpg" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView />
+            <Label lineSpacing="5.0" prefHeight="16.0" prefWidth="357.0" text="BAIGNADE DANS GROTTE  CAP HMAM" textFill="#685f5f">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></VBox>
+      <VBox layoutX="1036.0" layoutY="503.0" prefHeight="200.0" prefWidth="257.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fitHeight="159.0" fitWidth="268.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/Camping-La-Galite.jpg" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView size="1" />
+            <Label lineSpacing="5.0" prefHeight="16.0" prefWidth="242.0" text="CAMPING LA GALITE" textFill="#685f5f">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></VBox>
+      <HBox layoutX="99.0" layoutY="40.0" prefHeight="100.0" prefWidth="1210.0" style="-fx-background-color: Cornsilk;">
+         <children>
+            <Label lineSpacing="10.0" />
+            <Text fill="#ff5a5a" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Randonnee" wrappingWidth="372.9999994188547">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
+         </children></HBox>
+   </children>
+</AnchorPane>

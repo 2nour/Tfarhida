@@ -93,6 +93,7 @@ public class AfficheRandonneeController implements Initializable {
     @FXML
     private TableView<Randonnee> tableRand;
     public static ObservableList<Randonnee> list;
+    private ImageView photo;
 
 
     @FXML
@@ -204,7 +205,7 @@ public class AfficheRandonneeController implements Initializable {
       
   public  void importerImage(ActionEvent event){
        FileChooser fc = new FileChooser();
-       fc.setInitialDirectory(new File("C:\\Users\\PC\\Desktop\\Document\\image"));
+      
        fc.getExtensionFilters().add(new ExtensionFilter("Image Files", "*.png","*.jpg" ));
        File f = fc.showOpenDialog(null);
        if(f != null){
@@ -252,6 +253,7 @@ public class AfficheRandonneeController implements Initializable {
         SortedList<Randonnee> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tableRand.comparatorProperty());
         tableRand.setItems(sortedData);
+     
      
         } catch (SQLException ex) {
             Logger.getLogger(AfficheRandonneeController.class.getName()).log(Level.SEVERE, null, ex);
@@ -315,6 +317,7 @@ public class AfficheRandonneeController implements Initializable {
         rand_duree.setCellValueFactory(new PropertyValueFactory<>("duree"));
         rand_diff.setCellValueFactory(new PropertyValueFactory<>("difficulte"));
         rand_budget.setCellValueFactory(new PropertyValueFactory<>("budget"));
+  
         tableRand.setItems(list);
         
            

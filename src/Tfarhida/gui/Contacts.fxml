@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <Label layoutX="19.0" layoutY="17.0" prefHeight="29.0" prefWidth="207.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #B22222;" text="Gestion Randonnee" />
+      <Separator layoutX="3.0" layoutY="55.0" prefHeight="4.0" prefWidth="1213.0" />
+      <VBox layoutX="71.0" layoutY="143.0" spacing="30.0">
+         <children>
+            <AnchorPane prefHeight="361.0" prefWidth="509.0" style="-fx-background-radius: 3; -fx-border-radius: 3; -fx-border-color: #c3c3c3;">
+               <children>
+                  <Label layoutX="22.0" layoutY="45.0" prefHeight="30.0" prefWidth="105.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="VilleArrivee" />
+                  <Label layoutX="22.0" layoutY="13.0" prefHeight="30.0" prefWidth="118.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="VilleDepart" />
+                  <TextField fx:id="Text_villedepart" layoutX="123.0" layoutY="15.0" prefHeight="25.0" prefWidth="176.0" promptText="VilleDepart" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dee3e8" height="200.0" layoutX="313.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                  <TextField fx:id="Text_villearrivee" layoutX="123.0" layoutY="48.0" prefHeight="25.0" prefWidth="176.0" promptText="VilleArrivee" />
+                  <Label layoutX="22.0" layoutY="73.0" prefHeight="30.0" prefWidth="105.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="DateDepart" />
+                  <DatePicker fx:id="Datepicker_depart" layoutX="125.0" layoutY="76.0" prefHeight="25.0" prefWidth="176.0" />
+                  <Label layoutX="22.0" layoutY="103.0" prefHeight="30.0" prefWidth="105.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="DateRetour" />
+                  <DatePicker fx:id="Datepicker_retour" layoutX="123.0" layoutY="106.0" prefHeight="25.0" prefWidth="176.0" />
+                  <Label layoutX="21.0" layoutY="133.0" prefHeight="30.0" prefWidth="105.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Activite" />
+                  <TextField fx:id="Text_activite" layoutX="123.0" layoutY="136.0" prefHeight="25.0" prefWidth="176.0" promptText="Activite" />
+                  <Label layoutX="22.0" layoutY="163.0" prefHeight="30.0" prefWidth="105.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Duree" />
+                  <TextField fx:id="rand_duree" layoutX="123.0" layoutY="166.0" prefHeight="25.0" prefWidth="176.0" promptText="Duree" />
+                  <Label layoutX="19.0" layoutY="195.0" prefHeight="30.0" prefWidth="105.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Difficulte" />
+                  <TextField fx:id="Text_difficulte" layoutX="125.0" layoutY="197.0" prefHeight="25.0" prefWidth="176.0" promptText="Difficulte" />
+                  <Label layoutX="20.0" layoutY="225.0" prefHeight="30.0" prefWidth="105.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Budget" />
+                  <TextField fx:id="Text_budget" layoutX="123.0" layoutY="228.0" prefHeight="25.0" prefWidth="176.0" promptText="Budget" />
+                  <Label layoutX="18.0" layoutY="255.0" prefHeight="30.0" prefWidth="105.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Description" />
+                  <TextArea fx:id="Text_description" layoutX="123.0" layoutY="255.0" prefHeight="59.0" prefWidth="176.0" promptText="Description" />
+                  <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="313.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox layoutX="636.0" layoutY="143.0" spacing="30.0" />
+      <Pagination layoutX="469.0" layoutY="71.0" prefHeight="50.0" prefWidth="281.0" />
+      
+      
+   </children>
+</AnchorPane>

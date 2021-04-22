@@ -24,24 +24,23 @@ import javafx.stage.StageStyle;
  *
  * @author PC
  */
-public class testreservationclient extends Application {
+public class tess extends Application {
     
     @Override
     public void start(Stage primaryStage) {
          try {
-         
-            primaryStage.setTitle("JavaFX 8 - Number ID Validate");
-            Parent parent = FXMLLoader.load(getClass().getResource("AfficheReservationClient.fxml"));
-            
+            Parent parent = FXMLLoader.load(getClass().getResource("AjoutRandonnee.fxml"));
             Scene scene = new Scene(parent);
             scene.setFill(Color.TRANSPARENT);
             primaryStage.setScene(scene);
             primaryStage.initStyle(StageStyle.TRANSPARENT);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(AfficheReservationClientController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AfficheRandonneeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
 
     /**
      * @param args the command line arguments
