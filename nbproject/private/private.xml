@@ -12,8 +12,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/menu/Graphic03SliderController.java</file>
-            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/menu/MenuController.java</file>
+            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/Card.fxml</file>
+            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/testtemplate.css</file>
+            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/AfficherListeProduitsController.java</file>
+            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/TestTemplateController.java</file>
+            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/entities/Produit.java</file>
+            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/CardController.java</file>
+            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/VoirProduitController.java</file>
+            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/testTemplate.fxml</file>
+            <file>file:/C:/Users/Nour/Desktop/desktop/Tfarhida/src/Tfarhida/gui/Menu/MenuController.java</file>
         </group>
     </open-files>
 </project-private>

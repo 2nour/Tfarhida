@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.AfficherListeProduitsController">
    <children>
-      <TableView fx:id="tableProduits" layoutX="50.0" layoutY="54.0" onMouseClicked="#getSelected" prefHeight="800.0" prefWidth="810.0" AnchorPane.leftAnchor="50.0">
+      <TableView fx:id="tableProduits" layoutX="112.0" layoutY="115.0" onMouseClicked="#getSelected" prefHeight="685.0" prefWidth="736.0" AnchorPane.leftAnchor="112.0">
         <columns>
           <TableColumn fx:id="colNomProd" prefWidth="75.0" text="Nom" />
           <TableColumn fx:id="colQttProd" prefWidth="75.0" text="Quantite" />
@@ -23,15 +24,8 @@
             <TableColumn fx:id="colIdProd" prefWidth="75.0" text="ID" />
         </columns>
       </TableView>
-      <Separator layoutY="54.0" prefHeight="9.0" prefWidth="768.0" />
-      <TitledPane animated="false" layoutX="-32.0" layoutY="-248.0" text="untitled" />
-      <Label layoutX="26.0" layoutY="16.0" prefHeight="14.0" prefWidth="179.0" text="Liste des produits">
-         <font>
-            <Font name="System Bold Italic" size="19.0" />
-         </font>
-      </Label>
-      <Button layoutX="689.0" layoutY="14.0" mnemonicParsing="false" onAction="#VoIRPANIER" text="Voir panier" />
-      <AnchorPane layoutX="919.0" layoutY="63.0" prefHeight="807.0" prefWidth="281.0" style="-fx-background-color: #D7D7E0;">
+      <Button layoutX="1026.0" layoutY="124.0" mnemonicParsing="false" onAction="#VoIRPANIER" prefHeight="32.0" prefWidth="100.0" text="Voir panier" />
+      <AnchorPane fx:id="paneAjout" layoutX="864.0" layoutY="229.0" prefHeight="540.0" prefWidth="324.0" style="-fx-background-color: #F9EBEA;">
          <children>
             <Label layoutX="3.0" layoutY="81.0" text="Nom" textFill="#101010" />
             <Label layoutX="4.0" layoutY="292.0" text="Quantite" />
@@ -39,28 +33,40 @@
             <Label layoutX="10.0" layoutY="207.0" text="Image" />
             <Label layoutX="6.0" layoutY="165.0" text="Marque" />
             <Label layoutX="-1.0" layoutY="120.0" text="Description" />
-            <Button fx:id="AddProd" layoutX="80.0" layoutY="333.0" mnemonicParsing="false" onAction="#Addproduit" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #48C9B0;" text="Ajouter " textFill="#fffdfd">
+            <Button fx:id="AddProd" layoutX="18.0" layoutY="376.0" mnemonicParsing="false" onAction="#Addproduit" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #48C9B0;" text="Ajouter " textFill="#fffdfd">
                <opaqueInsets>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </opaqueInsets>
             </Button>
-            <Button layoutX="80.0" layoutY="376.0" mnemonicParsing="false" onAction="#ModifierProduit" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F39C12;" text="Modifier " textFill="WHITE" />
+            <Button layoutX="18.0" layoutY="421.0" mnemonicParsing="false" onAction="#ModifierProduit" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F39C12;" text="Modifier " textFill="WHITE" />
             <TextField fx:id="txt_nom_produit" layoutX="88.0" layoutY="77.0" prefHeight="25.0" prefWidth="100.0" />
             <TextField fx:id="txt_quantite_produit" layoutX="87.0" layoutY="288.0" prefHeight="25.0" prefWidth="100.0" />
             <TextField fx:id="txt_prix_produit" layoutX="87.0" layoutY="243.0" prefHeight="25.0" prefWidth="100.0" />
-            <TextField id="txt_image_produit" fx:id="txt_image_produit" layoutX="87.0" layoutY="203.0" prefHeight="25.0" prefWidth="100.0" />
             <TextField id="txt_marque_produit" fx:id="txt_marque_produit" layoutX="87.0" layoutY="161.0" prefHeight="25.0" prefWidth="100.0" />
             <TextField id="txt_description_produit" fx:id="btxt_description_produit" layoutX="88.0" layoutY="116.0" prefHeight="25.0" prefWidth="100.0" />
-            <Button fx:id="btn_Add_IMG" layoutX="188.0" layoutY="205.0" minHeight="18.0" minWidth="46.0" mnemonicParsing="false" onAction="#ajouterIMGProduit" prefHeight="30.0" prefWidth="74.0" text="Images" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+            <Button fx:id="btn_Add_IMG" layoutX="88.0" layoutY="201.0" minHeight="18.0" minWidth="46.0" mnemonicParsing="false" onAction="#ajouterIMGProduit" prefHeight="30.0" prefWidth="74.0" text="Images" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
             <Label layoutX="5.0" layoutY="40.0" text="ID" />
             <TextField fx:id="txt_id_prod" layoutX="88.0" layoutY="36.0" prefHeight="25.0" prefWidth="100.0" />
-            <Button layoutX="78.0" layoutY="426.0" mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #E74C3C;" text="Supprimer" textFill="WHITE" />
-            <Button layoutX="78.0" layoutY="469.0" maxHeight="30.0" maxWidth="120.0" minHeight="0.0" mnemonicParsing="false" onAction="#ajouterPANIER" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #5499C7;" text="Panier" />
+            <Button layoutX="200.0" layoutY="376.0" mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #E74C3C;" text="Supprimer" textFill="WHITE" />
+            <Button layoutX="200.0" layoutY="421.0" maxHeight="30.0" maxWidth="120.0" minHeight="0.0" mnemonicParsing="false" onAction="#ajouterPANIER" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #5499C7;" text="Panier" />
+            <ImageView fx:id="prodImage" fitHeight="95.0" fitWidth="100.0" layoutX="210.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
+      <MaterialDesignIconView />
+      <Pane layoutX="-3.0" layoutY="24.0" prefHeight="72.0" prefWidth="1200.0" style="-fx-background-color: #F9EBEA;">
+         <children>
+            <Label layoutX="101.0" layoutY="14.0" prefHeight="36.0" prefWidth="243.0" style="-fx-background-color: #F2D7D5;" text="Liste des produits">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button layoutX="875.0" layoutY="124.0" mnemonicParsing="false" onAction="#showAddproduit" prefHeight="32.0" prefWidth="100.0" text="voir options" />
+      <Button layoutX="875.0" layoutY="178.0" mnemonicParsing="false" onAction="#voirproduit" prefHeight="32.0" prefWidth="100.0" text="voir produit" />
    </children>
 </AnchorPane>

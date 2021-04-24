@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.VoirProduitController">
+   <children>
+      <Pane layoutY="44.0" prefHeight="72.0" prefWidth="1200.0" style="-fx-background-color: #F9EBEA;">
+         <children>
+            <Label layoutX="84.0" layoutY="22.0" prefHeight="14.0" prefWidth="179.0" text="Voir Produit">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label fx:id="lnom" layoutX="61.0" layoutY="194.0" text="Label" />
+      <Label fx:id="lprix" layoutX="61.0" layoutY="248.0" text="Label" />
+      <Label fx:id="lqtt" layoutX="61.0" layoutY="291.0" text="Label" />
+      <Label fx:id="lmarque" layoutX="61.0" layoutY="346.0" text="Label" />
+      <Pane layoutX="26.0" layoutY="390.0" prefHeight="179.0" prefWidth="446.0" style="-fx-background-color: #F9EBEA;">
+         <children>
+            <Label layoutX="11.0" layoutY="7.0" prefHeight="27.0" prefWidth="193.0" text="Ajouter commentaire">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="commentText" layoutX="11.0" layoutY="41.0" prefHeight="118.0" prefWidth="313.0" />
+            <JFXButton fx:id="ajouterComment" layoutX="340.0" layoutY="128.0" onAction="#ajouterComment" prefHeight="31.0" prefWidth="92.0" text="comment" />
+         </children>
+      </Pane>
+      <TableView fx:id="commTable" layoutX="600.0" layoutY="168.0" prefHeight="357.0" prefWidth="545.0">
+        <columns>
+            <TableColumn fx:id="idcomment" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="coluser" prefWidth="117.0" text="username" />
+          <TableColumn fx:id="colcontenue" prefWidth="130.0" text="contenue" />
+            <TableColumn fx:id="datedecomm" prefWidth="209.0" text="datedecommentaire" />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="1024.0" layoutY="538.0" onAction="#supprimerComment" prefHeight="31.0" prefWidth="121.0" text="Supprimer" />
+   </children>
+</AnchorPane>

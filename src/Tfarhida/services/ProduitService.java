@@ -81,7 +81,8 @@ public class ProduitService {
       
        public void ModifierProduit(Produit p) {
 
-        String query = "UPDATE produit SET nom ='" +p.getNom()+"',quantite = '"+p.getQuantite()+"',description='"+p.getDescription()+"',prix='"+p.getPrix()+"',marque='"+p.getMarque()+"";
+        String query = "UPDATE produit SET nom= '"+p.getNom()+"',quantite= '"+p.getQuantite()+"',description='"+p.getDescription()+"'"
+              + ",image='"+p.getImage()+"',prix='"+p.getPrix()+"',marque='"+p.getMarque()+"' where id='"+p.getId()+"'";
         try {
 
              stm = cnx.createStatement();

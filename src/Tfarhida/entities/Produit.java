@@ -5,6 +5,8 @@
  */
 package Tfarhida.entities;
 
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author Nour
@@ -17,6 +19,7 @@ public class Produit {
     double prix;
     String marque;
     String image;
+    ImageView img;
 
     public Produit() {
     };
@@ -39,6 +42,16 @@ public class Produit {
         this.marque = marque;
         this.image = image;
     }
+
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+    
+    
 
     
     public int getId() {
