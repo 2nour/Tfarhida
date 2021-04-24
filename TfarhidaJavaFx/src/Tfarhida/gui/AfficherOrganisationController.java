@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,13 +29,29 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ResourceBundle;
 import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
-
 /**
  * FXML Controller class
  *
@@ -88,19 +105,28 @@ public class AfficherOrganisationController implements Initializable {
     private Label labellieu;
     @FXML
     private Label labelcommentaire;
+    @FXML
+    private TextField filtreField;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+      
         try {
-             // list des activites
-        ObservableList<String> list = FXCollections.observableArrayList("Camping", "TourVelo", "CircuitSahara");
-        selectActivite.setItems(list);
-        //liste des lieux
-        ObservableList<String> listlieu = FXCollections.observableArrayList("Tunis", "Beja", "Jendouba");
-        selectLieu.setItems(listlieu);
+            //  try {
+            // list des activites
+            ObservableList<String> list = FXCollections.observableArrayList("Camping", "TourVelo", "CircuitSahara");
+            selectActivite.setItems(list);
+            //liste des lieux
+            ObservableList<String> listlieu = FXCollections.observableArrayList("Tunis", "Beja", "Jendouba");
+            
+            selectLieu.setItems(listlieu);
+            //
+            
+            
             OrganisationService os = new OrganisationService();
             List<Organisation> lo = os.afficherOrganisation();
             ObservableList<Organisation> data = FXCollections.observableArrayList(lo);
@@ -115,9 +141,50 @@ public class AfficherOrganisationController implements Initializable {
             clnlieu.setCellValueFactory(new PropertyValueFactory<>("Lieu"));
 
             tableview.setItems(data);
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            
+            
+            // } catch (SQLException ex) {
+            //   System.out.println(ex.getMessage());
+            //}
+            
+            FilteredList<Organisation> filteredData = new FilteredList<>(data, b -> true);
+            
+            // 2. Set the filter Predicate whenever the filter changes.
+            filtreField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(pharm -> {
+                    // If filter text is empty, display all persons.
+                    
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    
+                    // Compare first name and last name of every person with filter text.
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    
+                    if (pharm.getActivite().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+                        return true; // Filter matches first name.
+                    } else if (pharm.getLieu().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                        return true; // Filter matches last name.
+                    }
+                    else if (String.valueOf(pharm.getId()).indexOf(lowerCaseFilter)!=-1)
+                        return true;
+                    
+                    else
+                        return false; // Does not match.
+                });
+            });
+            
+            // 3. Wrap the FilteredList in a SortedList.
+            SortedList<Organisation> sortedData = new SortedList<>(filteredData);
+            
+            // 4. Bind the SortedList comparator to the TableView comparator.
+            // 	  Otherwise, sorting the TableView would have no effect.
+            sortedData.comparatorProperty().bind(tableview.comparatorProperty());
+            
+            // 5. Add sorted (and filtered) data to the table.
+            tableview.setItems(sortedData);
+        } catch (SQLException ex) {  
+            Logger.getLogger(AfficherOrganisationController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
