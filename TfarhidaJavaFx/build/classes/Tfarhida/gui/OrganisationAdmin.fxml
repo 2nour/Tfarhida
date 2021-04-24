@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1895.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.OrganisationAdminController">
+   <children>
+      <TableView fx:id="tableview" layoutX="383.0" layoutY="90.0" onMouseClicked="#ligneselectionner" prefHeight="395.0" prefWidth="1195.0">
+         <columns>
+            <TableColumn fx:id="clnid" prefWidth="88.0" text="Id" />
+            <TableColumn fx:id="clnbpersonne" prefWidth="152.0" text="nb_Personne" />
+            <TableColumn fx:id="clnnbJours" prefWidth="82.0" text="Nb_jours" />
+            <TableColumn fx:id="clndate" prefWidth="164.0" text="Date" />
+            <TableColumn fx:id="clnactivite" prefWidth="229.0" text="Activité" />
+            <TableColumn fx:id="clnlieu" prefWidth="145.0" text="Lieu" />
+            <TableColumn fx:id="clnCommentaire" prefWidth="169.0" text="Commentaire" />
+            <TableColumn fx:id="clnEtat" prefWidth="143.0" text="Etat" />
+         </columns>
+      </TableView>
+      <Button fx:id="Approuver" layoutX="678.0" layoutY="513.0" mnemonicParsing="false" onAction="#approuver" prefHeight="50.0" prefWidth="250.0" text="Approuver" />
+      <Button fx:id="Refuser" layoutX="981.0" layoutY="510.0" mnemonicParsing="false" onAction="#refuser" prefHeight="50.0" prefWidth="250.0" text="Refuser" />
+      <Label layoutX="383.0" layoutY="34.0" prefHeight="30.0" prefWidth="700.0" text="La liste des demandes " textFill="#eb2525" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

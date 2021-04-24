@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="913.0" prefWidth="1869.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Tfarhida.gui.AfficheBestOrgController">
+   <children>
+      <TableView fx:id="tableview" layoutX="80.0" layoutY="213.0"  prefHeight="313.0" prefWidth="1578.0">
+         <columns>
+            <TableColumn fx:id="clnid" prefWidth="88.0" text="Id" />
+            <TableColumn fx:id="clnbpersonne" prefWidth="152.0" text="nb_Personne" />
+            <TableColumn fx:id="clnnbJours" prefWidth="82.0" text="Nb_jours" />
+            <TableColumn fx:id="clndate" prefWidth="164.0" text="Date" />
+            <TableColumn fx:id="clnactivite" prefWidth="229.0" text="Activité" />
+            <TableColumn fx:id="clnlieu" prefWidth="145.0" text="Lieu" />
+            <TableColumn fx:id="clnCommentaire" prefWidth="180.0" text="Commentaire" />
+            <TableColumn fx:id="clnEtat" prefWidth="187.0" text="Etat" />
+            <TableColumn fx:id="clnnote" prefWidth="319.0" text="Note" />
+         </columns>
+      </TableView>
+      <Label layoutX="101.0" layoutY="41.0" prefHeight="86.0" prefWidth="501.0" text="Les meilleurs programmes  " textFill="#ae1919">
+         <font>
+            <Font name="System Bold Italic" size="29.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
