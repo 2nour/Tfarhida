@@ -284,7 +284,7 @@ public class AfficherListeProduitsController implements Initializable {
     @FXML
     private void VoIRPANIER(ActionEvent event) {
         try{
-        Parent parent = FXMLLoader.load(getClass().getResource("AfficherPanier.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/AfficherPanier.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setScene(scene);

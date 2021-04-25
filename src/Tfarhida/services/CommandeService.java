@@ -98,6 +98,27 @@ public class CommandeService {
             System.out.println(ex.getMessage());
         }
     }
-    
-    
+     
+     public Integer getQtt(Produit p,Panier pi)
+     {
+         int qtt=0;
+     
+          try { 
+            //verifier si la commande existe
+            String exsist= "select * from commande where panier_id='" +pi.getId()+"'"+" and produit_id='"+p.getId()+"'";
+            stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery(exsist);
+            if(rst.next())
+            {
+               qtt=rst.getInt("quantite_produit");
+               
+            }
+            
+     }
+    catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+       }
+       return qtt;
+
+}
 }

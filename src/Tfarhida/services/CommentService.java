@@ -90,7 +90,7 @@ public class CommentService {
       
         public List<Comment> AfficherComments(Produit p) {
         List<Comment>Comments = new ArrayList<>();
-
+        
         String query = "Select * from comment where produit_id="+p.getId()+"";
         try  {
              stm = cnx.createStatement();
@@ -98,10 +98,22 @@ public class CommentService {
 
             while(rst.next()) {
                 Comment U = new Comment();
+                String sentimentmeaning ="";
                 U.setId(rst.getInt("ID"));
                 U.setContenue(rst.getString("contenue"));
                 U.setDatedecommentaire(rst.getDate("datedecommentaire"));
-                U.setSentiment(rst.getString("sentiment"));
+                String sentimentRes=rst.getString("sentiment");
+                 switch(sentimentRes){
+                   case "P+": sentimentmeaning ="excellent";break;
+                   case "P": sentimentmeaning ="bon";break;
+                   case"NEU":sentimentmeaning ="neutre";break;
+                   case "N": sentimentmeaning ="mauvais";break;
+                   case "N+":sentimentmeaning ="horrible";break;
+                   default:sentimentmeaning ="aucun";break;
+               }
+                    
+                        
+                U.setSentiment(sentimentmeaning);
                 U.setUsername(u.getUsername());
                
                 Comments.add(U);

@@ -9,16 +9,21 @@ import Tfarhida.entities.Comment;
 import Tfarhida.entities.Produit;
 import Tfarhida.entities.Utilisateur;
 import Tfarhida.outils.Outils;
+import Tfarhida.outils.constants;
 import Tfarhida.services.CommandeService;
 import Tfarhida.services.CommentService;
 import Tfarhida.services.ProduitService;
 import com.jfoenix.controls.JFXButton;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +33,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import org.json.JSONException;
 
@@ -40,6 +47,7 @@ public class VoirProduitController implements Initializable {
 
     Produit p;
     int index =-1;
+    File file;
     CommentService cms=new CommentService();
     Utilisateur u = new Utilisateur(1,"jo@gmail.com","jo","12345678","ROLE_USER");
     @FXML
@@ -64,6 +72,10 @@ public class VoirProduitController implements Initializable {
     private TableView<Comment> commTable;
     @FXML
     private TableColumn<Comment,Integer> idcomment;
+    @FXML
+    private TableColumn<Comment, String> sentemint;
+    @FXML
+    private ImageView prodImage;
     /**
      * Initializes the controller class.
      */
@@ -76,7 +88,7 @@ public class VoirProduitController implements Initializable {
     }  
      void refresh(Produit p){
        idcomment.setCellValueFactory(new PropertyValueFactory<Comment,Integer>("id"));
-       //coluser.setCellValueFactory(new PropertyValueFactory<>("nom"));
+       sentemint.setCellValueFactory(new PropertyValueFactory<Comment, String>("sentiment"));
        colcontenue.setCellValueFactory(new PropertyValueFactory<Comment,String>("contenue"));
        datedecomm.setCellValueFactory(new PropertyValueFactory<Comment,Date>("datedecommentaire"));
        if(p!=null){
@@ -87,7 +99,11 @@ public class VoirProduitController implements Initializable {
     
     public void setProduit(Produit p){
        this.p=p; 
-       voirprod(p);
+        try {
+            voirprod(p);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(VoirProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
        refresh(p); 
     }
 
@@ -96,7 +112,7 @@ public class VoirProduitController implements Initializable {
     }
      
     
-    private void voirprod(Produit p) {
+    private void voirprod(Produit p) throws MalformedURLException {
     if (p != null) {
        
         // Fill the labels with info from the person object.
@@ -104,6 +120,16 @@ public class VoirProduitController implements Initializable {
         lprix.setText(Double.toString(p.getPrix()));
         lqtt.setText(Integer.toString(p.getQuantite()));
         lmarque.setText(p.getMarque());
+           
+          file = new File(constants.getImagePath() + "produits\\" + p.getImage());
+       
+            Image img = new Image(file.toURI().toURL().toExternalForm());
+            ImageView i = new ImageView(img);
+             System.out.println(p.getNom());   
+
+             prodImage.setImage(i.getImage());
+
+
         
         
         // TODO: We need a way to convert the birthday into a String!

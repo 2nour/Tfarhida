@@ -36,7 +36,7 @@ public class PanierService {
      public List<Produit> AfficherProduits() {
         List<Produit>produits = new ArrayList<>();
 
-        String query = "Select p.id,p.nom,p.description,p.prix,c.quantite_produit from produit p, commande c where p.id = c.produit_id and c.panier_id=2";
+        String query = "Select p.id,p.nom,p.description,p.prix,c.quantite_produit,p.image from produit p, commande c where p.id = c.produit_id and c.panier_id=2";
         try  {
              stm = cnx.createStatement();
             ResultSet rst = stm.executeQuery(query);
@@ -48,6 +48,7 @@ public class PanierService {
                 U.setPrix(rst.getDouble("prix"));
                 U.setDescription(rst.getString("description"));
                 U.setQuantite(rst.getInt("quantite_produit"));
+                U.setImage(rst.getString("image"));
 
                 produits.add(U);/*
                 
