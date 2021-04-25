@@ -8,7 +8,7 @@ package Tfarhida.gui;
 import Tfarhida.base.MaConnexion;
 import Tfarhida.entities.Panier;
 import Tfarhida.entities.Produit;
-import Tfarhida.entities.constants.constants;
+import Tfarhida.outils.constants;
 import Tfarhida.services.CommandeService;
 import Tfarhida.services.ProduitService;
 import java.awt.event.MouseEvent;

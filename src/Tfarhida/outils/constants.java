@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tfarhida.entities.constants;
+package Tfarhida.outils;
+
 
 /**
  *
@@ -13,6 +14,7 @@ public class constants {
     
     private static final String dossierImagePath="C:\\Users\\Nour\\Desktop\\desktop\\Tfarhida\\src\\Tfarhida\\images\\";
     private static String dossierImageUtilEventPath ="C:\\Users\\D\\Desktop\\\\desktop\\\\Tfarhida\\\\src\\\\Tfarhida\\\\images\\\\ah\\Desktop\\ProdigiesDev\\assetsEvenement\\";
+    public static final String keyMeaningcloudApi = "5292ec366a95aba1f93c430d7de45907";
 
     public static String getImagePath() {
         return dossierImagePath;
@@ -21,6 +23,8 @@ public class constants {
     public static String getDossierImageUtilEventPath() {
         return dossierImageUtilEventPath;
     }
-        
+    public static String getKeyMeaningcloudApi() {
+        return keyMeaningcloudApi;
+    }    
     
 }

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package Tfarhida.gui;
+import Tfarhida.outils.constants;
 
 import Tfarhida.entities.Produit;
-import Tfarhida.entities.constants.constants;
 import Tfarhida.services.ProduitService;
 import java.io.File;
 import java.net.MalformedURLException;

@@ -8,10 +8,12 @@ package Tfarhida.gui;
 import Tfarhida.entities.Comment;
 import Tfarhida.entities.Produit;
 import Tfarhida.entities.Utilisateur;
+import Tfarhida.outils.Outils;
 import Tfarhida.services.CommandeService;
 import Tfarhida.services.CommentService;
 import Tfarhida.services.ProduitService;
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -27,6 +29,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JOptionPane;
+import org.json.JSONException;
 
 /**
  * FXML Controller class
@@ -116,13 +119,19 @@ public class VoirProduitController implements Initializable {
 }
 
     @FXML
-    private void ajouterComment(ActionEvent event) {
+    private void ajouterComment(ActionEvent event) throws IOException, JSONException {
      
         String content =commentText.getText();
         LocalDate datecomment= java.time.LocalDate.now();
         java.sql.Date sqlDate = java.sql.Date.valueOf( datecomment );
         int user_id = u.getId();
-        Comment comment= new Comment(p.getId(),content,sqlDate,user_id);
+        
+         if (Outils.containsBadWords(content)) {
+            JOptionPane.showMessageDialog(null, "Cet Avis ne respecte pas nos standards de la communauté en matière de contenus indésirables");
+            return;
+        }
+        
+        Comment comment= new Comment(p.getId(),content,sqlDate,user_id,u.getUsername());
         cms.ajouterCommentProduit(p, comment);
         JOptionPane.showMessageDialog(null, "comment ajouté");
         refresh(p);
