@@ -25,7 +25,7 @@ public class OrganisationG extends Application {
 //Parent root = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/AfficheBestOrg.fxml"));
             Parent root = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/Menu/Accueil.fxml"));
             //   Parent root = FXMLLoader.load(getClass().getResource("AjouterOrganisation.fxml"));
-            //   Parent root = FXMLLoader.load(getClass().getResource("OrganisationAdmin.fxml"));
+              // Parent root = FXMLLoader.load(getClass().getResource("OrganisationAdmin.fxml"));
             //           Parent root = FXMLLoader.load(getClass().getResource("AfficherOrganisation.fxml"));
             Scene scene = new Scene(root, 1900, 900);
 

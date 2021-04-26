@@ -30,7 +30,6 @@ public class AfficheBestOrgController implements Initializable {
 
     @FXML
     private TableView<Organisation> tableview;
-    @FXML
     private TableColumn<?, ?> clnid;
     @FXML
     private TableColumn<?, ?> clnbpersonne;
@@ -44,7 +43,6 @@ public class AfficheBestOrgController implements Initializable {
     private TableColumn<?, ?> clnlieu;
     @FXML
     private TableColumn<?, ?> clnCommentaire;
-    @FXML
     private TableColumn<?, ?> clnEtat;
     @FXML
     private TableColumn<?, ?> clnnote;
@@ -58,11 +56,11 @@ public class AfficheBestOrgController implements Initializable {
             OrganisationService os = new OrganisationService();
             List<Organisation> lo = os.afficherLesMeilleursOrganisation();
             ObservableList<Organisation> data = FXCollections.observableArrayList(lo);
-            clnid.setCellValueFactory(new PropertyValueFactory<>("id"));
+           
 
             clnbpersonne.setCellValueFactory(new PropertyValueFactory<>("nbrpersonne"));
-            clnCommentaire.setCellValueFactory(new PropertyValueFactory<>("commentaire"));
-            clnEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+         
+           
             clnnbJours.setCellValueFactory(new PropertyValueFactory<>("nbrjours"));
             clndate.setCellValueFactory(new PropertyValueFactory<>("date"));
             clnactivite.setCellValueFactory(new PropertyValueFactory<>("activite"));

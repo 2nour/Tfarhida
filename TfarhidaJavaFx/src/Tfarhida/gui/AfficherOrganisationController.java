@@ -174,14 +174,12 @@ public class AfficherOrganisationController implements Initializable {
                 });
             });
             
-            // 3. Wrap the FilteredList in a SortedList.
+         
             SortedList<Organisation> sortedData = new SortedList<>(filteredData);
             
-            // 4. Bind the SortedList comparator to the TableView comparator.
-            // 	  Otherwise, sorting the TableView would have no effect.
+        
             sortedData.comparatorProperty().bind(tableview.comparatorProperty());
-            
-            // 5. Add sorted (and filtered) data to the table.
+         
             tableview.setItems(sortedData);
         } catch (SQLException ex) {  
             Logger.getLogger(AfficherOrganisationController.class.getName()).log(Level.SEVERE, null, ex);

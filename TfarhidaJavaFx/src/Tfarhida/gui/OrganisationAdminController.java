@@ -6,14 +6,19 @@
 package Tfarhida.gui;
 
 import Tfarhida.entities.Organisation;
+import static Tfarhida.gui.Mail.sendMail;
 import Tfarhida.services.OrganisationService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +29,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-
+import javax.mail.MessagingException;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.control.TextField;
 /**
  * FXML Controller class
  *
@@ -56,6 +64,8 @@ public class OrganisationAdminController implements Initializable {
     private Button Approuver;
     @FXML
     private Button Refuser;
+    @FXML
+    private TextField filtreField;
 
     /**
      * Initializes the controller class.
@@ -78,6 +88,40 @@ public class OrganisationAdminController implements Initializable {
             clnlieu.setCellValueFactory(new PropertyValueFactory<>("Lieu"));
 
             tableview.setItems(data);
+              FilteredList<Organisation> filteredData = new FilteredList<>(data, b -> true);
+            
+            // 2. Set the filter Predicate whenever the filter changes.
+            filtreField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(pharm -> {
+                    // If filter text is empty, display all persons.
+                    
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    
+                    // Compare first name and last name of every person with filter text.
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    
+                    if (pharm.getActivite().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+                        return true; // Filter matches first name.
+                    } else if (pharm.getLieu().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                        return true; // Filter matches last name.
+                    }
+                    else if (String.valueOf(pharm.getId()).indexOf(lowerCaseFilter)!=-1)
+                        return true;
+                    
+                    else
+                        return false; // Does not match.
+                });
+            });
+            
+         
+            SortedList<Organisation> sortedData = new SortedList<>(filteredData);
+            
+        
+            sortedData.comparatorProperty().bind(tableview.comparatorProperty());
+         
+            tableview.setItems(sortedData);
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -96,6 +140,14 @@ public class OrganisationAdminController implements Initializable {
     private void approuver(ActionEvent event) throws SQLException, IOException {
         OrganisationService os = new OrganisationService();
         os.ApprouverAdmin(OrganisationAdminController.idOrganisation);
+       
+        try {
+            sendMail("sourour.chelbi@esprit.tn");
+        } catch (MessagingException ex) {
+            Logger.getLogger(OrganisationAdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         FXMLLoader l = new FXMLLoader(getClass().getResource("OrganisationAdmin.fxml"));
         Parent root = l.load();
         tableview.getScene().setRoot(root);
@@ -105,6 +157,11 @@ public class OrganisationAdminController implements Initializable {
     private void refuser(ActionEvent event) throws SQLException, IOException {
         OrganisationService os = new OrganisationService();
         os.RefuserAdmin(OrganisationAdminController.idOrganisation);
+         try {
+            sendMail("sourour.chelbi@esprit.tn");
+        } catch (MessagingException ex) {
+            Logger.getLogger(OrganisationAdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FXMLLoader l = new FXMLLoader(getClass().getResource("/Tfarhida/gui/Menu/Accueil.fxml"));
 
         //   FXMLLoader l=new FXMLLoader(getClass().getResource("OrganisationAdmin.fxml"));

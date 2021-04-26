@@ -22,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -96,60 +97,58 @@ public class EvaluerOrganisationController implements Initializable {
     }
 
     @FXML
-    private void ligneselectionner(MouseEvent event) {
+    private void ligneselectionner(MouseEvent event) throws SQLException {
+        OrganisationService os = new OrganisationService();
         Organisation o = tableview.getSelectionModel().getSelectedItem();
         EvaluerOrganisationController.idOrganisation = o.getId();
-        label.setText("");
-        //
-        if(o.getNote()==1){
+        int noteOrganisation = os.getNoteOrganisationById(idOrganisation) ;
+        if (noteOrganisation == 1) {
             etoile1.setImage(new Image("/image/filled.png"));
             etoile2.setImage(new Image("/image/empty.png"));
             etoile3.setImage(new Image("/image/empty.png"));
             etoile4.setImage(new Image("/image/empty.png"));
             etoile5.setImage(new Image("/image/empty.png"));
         }
-        
-         if(o.getNote()==2){
+
+        if (noteOrganisation == 2) {
             etoile1.setImage(new Image("/image/filled.png"));
             etoile2.setImage(new Image("/image/filled.png"));
             etoile3.setImage(new Image("/image/empty.png"));
             etoile4.setImage(new Image("/image/empty.png"));
             etoile5.setImage(new Image("/image/empty.png"));
         }
-          if(o.getNote()==1){
+        if (noteOrganisation == 3) {
             etoile1.setImage(new Image("/image/filled.png"));
             etoile2.setImage(new Image("/image/filled.png"));
             etoile3.setImage(new Image("/image/filled.png"));
             etoile4.setImage(new Image("/image/empty.png"));
             etoile5.setImage(new Image("/image/empty.png"));
         }
-           if(o.getNote()==1){
+        if (noteOrganisation == 4) {
             etoile1.setImage(new Image("/image/filled.png"));
             etoile2.setImage(new Image("/image/filled.png"));
             etoile3.setImage(new Image("/image/filled.png"));
             etoile4.setImage(new Image("/image/filled.png"));
             etoile5.setImage(new Image("/image/empty.png"));
         }
-            if(o.getNote()==5){
+        if (noteOrganisation == 5) {
             etoile1.setImage(new Image("/image/filled.png"));
             etoile2.setImage(new Image("/image/filled.png"));
             etoile3.setImage(new Image("/image/filled.png"));
             etoile4.setImage(new Image("/image/filled.png"));
             etoile5.setImage(new Image("/image/filled.png"));
         }
-        
-        
-   
-       if ((o.getEtat().equals("Refuser")) || (o.getEtat().equals("En attente")))  {
+
+        if ((o.getEtat().equals("Refuser")) || (o.getEtat().equals("En attente"))) {
             etoile1.setImage(null);
             etoile2.setImage(null);
             etoile3.setImage(null);
             etoile4.setImage(null);
             etoile5.setImage(null);
-            label.setText("Vous ne pouvez pas évaluer une organisation qui n'est pas encore accepté");
-           
-       }
-        
+
+            JOptionPane.showMessageDialog(null, "Vous ne pouvez pas évaluer une organisation qui n'est pas encore accepté");
+
+        }
 
     }
 
@@ -164,6 +163,7 @@ public class EvaluerOrganisationController implements Initializable {
         etoile3.setImage(new Image("/image/empty.png"));
         etoile4.setImage(new Image("/image/empty.png"));
         etoile5.setImage(new Image("/image/empty.png"));
+
     }
 
     @FXML
@@ -172,7 +172,7 @@ public class EvaluerOrganisationController implements Initializable {
         OrganisationService og = new OrganisationService();
         System.out.println("ID =" + EvaluerOrganisationController.idOrganisation);
         og.mettreEvaluation(EvaluerOrganisationController.idOrganisation, 2);
-         etoile1.setImage(new Image("/image/filled.png"));
+        etoile1.setImage(new Image("/image/filled.png"));
         etoile2.setImage(new Image("/image/filled.png"));
         etoile3.setImage(new Image("/image/empty.png"));
         etoile4.setImage(new Image("/image/empty.png"));
@@ -185,7 +185,7 @@ public class EvaluerOrganisationController implements Initializable {
         OrganisationService og = new OrganisationService();
         System.out.println("ID =" + EvaluerOrganisationController.idOrganisation);
         og.mettreEvaluation(EvaluerOrganisationController.idOrganisation, 3);
-         etoile1.setImage(new Image("/image/filled.png"));
+        etoile1.setImage(new Image("/image/filled.png"));
         etoile2.setImage(new Image("/image/filled.png"));
         etoile3.setImage(new Image("/image/filled.png"));
         etoile4.setImage(new Image("/image/empty.png"));
@@ -198,7 +198,7 @@ public class EvaluerOrganisationController implements Initializable {
         OrganisationService og = new OrganisationService();
         System.out.println("ID =" + EvaluerOrganisationController.idOrganisation);
         og.mettreEvaluation(EvaluerOrganisationController.idOrganisation, 4);
-         etoile1.setImage(new Image("/image/filled.png"));
+        etoile1.setImage(new Image("/image/filled.png"));
         etoile2.setImage(new Image("/image/filled.png"));
         etoile3.setImage(new Image("/image/filled.png"));
         etoile4.setImage(new Image("/image/filled.png"));
@@ -211,7 +211,7 @@ public class EvaluerOrganisationController implements Initializable {
         OrganisationService og = new OrganisationService();
         System.out.println("ID =" + EvaluerOrganisationController.idOrganisation);
         og.mettreEvaluation(EvaluerOrganisationController.idOrganisation, 5);
-         etoile1.setImage(new Image("/image/filled.png"));
+        etoile1.setImage(new Image("/image/filled.png"));
         etoile2.setImage(new Image("/image/filled.png"));
         etoile3.setImage(new Image("/image/filled.png"));
         etoile4.setImage(new Image("/image/filled.png"));

@@ -119,6 +119,7 @@ public class OrganisationService {
             System.out.println(ex.getMessage());
         }
 
+        
     }
 
     public void supprimerOrganisation(int id) {
@@ -195,6 +196,19 @@ public class OrganisationService {
         return lo;
 
     }
-        
+      
+          
+    public int getNoteOrganisationById(int id) throws SQLException {
+        Statement st = cnx.createStatement();
+        String req = "SELECT note FROM ORGANISATION where id="+id;
+        ResultSet rs = st.executeQuery(req);
+
+        if (rs.next()) {
+              return(rs.getInt("note"));
+        }
+        return -1;
+
+    }
+
         
 }

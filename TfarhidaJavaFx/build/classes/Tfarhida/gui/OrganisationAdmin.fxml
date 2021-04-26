@@ -4,12 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1895.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.OrganisationAdminController">
    <children>
-      <TableView fx:id="tableview" layoutX="383.0" layoutY="90.0" onMouseClicked="#ligneselectionner" prefHeight="395.0" prefWidth="1195.0">
+      <TableView fx:id="tableview" layoutX="331.0" layoutY="190.0" onMouseClicked="#ligneselectionner" prefHeight="395.0" prefWidth="1195.0">
          <columns>
             <TableColumn fx:id="clnid" prefWidth="88.0" text="Id" />
             <TableColumn fx:id="clnbpersonne" prefWidth="152.0" text="nb_Personne" />
@@ -21,12 +22,13 @@
             <TableColumn fx:id="clnEtat" prefWidth="143.0" text="Etat" />
          </columns>
       </TableView>
-      <Button fx:id="Approuver" layoutX="678.0" layoutY="513.0" mnemonicParsing="false" onAction="#approuver" prefHeight="50.0" prefWidth="250.0" text="Approuver" />
-      <Button fx:id="Refuser" layoutX="981.0" layoutY="510.0" mnemonicParsing="false" onAction="#refuser" prefHeight="50.0" prefWidth="250.0" text="Refuser" />
-      <Label layoutX="383.0" layoutY="34.0" prefHeight="30.0" prefWidth="700.0" text="La liste des demandes " textFill="#eb2525" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="Approuver" layoutX="677.0" layoutY="623.0" mnemonicParsing="false" onAction="#approuver" prefHeight="50.0" prefWidth="250.0" text="Approuver" />
+      <Button fx:id="Refuser" layoutX="980.0" layoutY="620.0" mnemonicParsing="false" onAction="#refuser" prefHeight="50.0" prefWidth="250.0" text="Refuser" />
+      <Label layoutX="327.0" layoutY="47.0" prefHeight="30.0" prefWidth="700.0" text="La liste des demandes " textFill="#c62222" textOverrun="WORD_ELLIPSIS">
          <font>
-            <Font name="System Bold Italic" size="24.0" />
+            <Font name="System Bold Italic" size="29.0" />
          </font>
       </Label>
+      <TextField fx:id="filtreField" layoutX="331.0" layoutY="159.0" prefHeight="31.0" prefWidth="301.0" promptText="Filtrer par Activité , Lieu " style="-fx-background-radius: 50;" />
    </children>
 </AnchorPane>
