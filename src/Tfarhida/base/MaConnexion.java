@@ -8,9 +8,7 @@ import javax.swing.JFileChooser;
 
 public class MaConnexion {
     
-    String filename= null;
-    public static String path;
-    Connection conn = null;
+    
         
     
     public String url = "jdbc:mysql://localhost:3306/tfarhida?useSSL=false";
@@ -40,27 +38,7 @@ public class MaConnexion {
         return cnx;
     }
     
-    public void filen(){
-        try{
-        JFileChooser chooser = new JFileChooser();
-        chooser.setDialogTitle("choisir une image");
-        chooser.setApproveButtonText("ajouter une image");
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        filename= f.getAbsolutePath();
-        this.path=(filename);
-        
-        }
-        catch(Exception e){
-            
-            System.out.println(e.getMessage());
-            
-        }
-        
-    }
-    
-    public String getP(){
-         return path;
-    }
+   
+  
     
 }

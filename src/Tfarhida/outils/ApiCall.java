@@ -34,10 +34,15 @@ public class ApiCall {
             return conn;
         } catch (MalformedURLException ex) {
             Logger.getLogger(ApiCall.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage()+"im in Api call.java");
         } catch (ProtocolException ex) {
             Logger.getLogger(ApiCall.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println(ex.getMessage()+"im in Api call.java");
+
         } catch (IOException ex) {
             Logger.getLogger(ApiCall.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println(ex.getMessage()+"im in Api call.java");
+
         }
         
         return null;

@@ -77,12 +77,12 @@ public class AccueilController implements Initializable {
                             break;  
                             
                         case "randonnée":
-                            Node randonnée = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/AfficherListeProduits.fxml"));
+                            Node randonnée = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/produit/AfficherListeProduits.fxml"));
                             content.getChildren().setAll(randonnée);
                             break;   
                             
                         case "produit": 
-                            Node produit = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/testTemplate.fxml"));
+                            Node produit = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/produit/testTemplate.fxml"));
                             content.getChildren().setAll(produit);
                              break;  
                              
