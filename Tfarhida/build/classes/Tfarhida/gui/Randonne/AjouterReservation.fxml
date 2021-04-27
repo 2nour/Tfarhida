@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.Randonne.AjouterReservationController">
+   <children>
+      <AnchorPane layoutX="56.0" layoutY="-6.0" prefHeight="611.0" prefWidth="494.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Label layoutX="118.0" layoutY="57.0" text="Demande Reservation" textFill="#eb2121">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Button fx:id="AjouterReservation" layoutX="137.0" layoutY="397.0" mnemonicParsing="false" onAction="#AjouterReservation" onMouseClicked="#notifier" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: ForestGreen;" text="Ajouter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <TextField fx:id="tfnumres" layoutX="134.0" layoutY="149.0" prefHeight="25.0" prefWidth="280.0" promptText="NumReservation" style="-fx-border-color: Pink;" />
+            <DatePicker fx:id="datepickeresr" layoutX="134.0" layoutY="196.0" prefHeight="25.0" prefWidth="280.0" promptText="DateReserrvation" style="-fx-border-color: Pink;" />
+            <TextField fx:id="tfmont" layoutX="134.0" layoutY="288.0" prefHeight="25.0" prefWidth="280.0" promptText="Montant" style="-fx-border-color: Pink;" />
+            <TextField fx:id="tfobs" layoutX="134.0" layoutY="242.0" prefHeight="25.0" prefWidth="280.0" promptText="observation" style="-fx-border-color: Pink;" />
+            <TextField fx:id="tfnbperrsonne2" layoutX="137.0" layoutY="340.0" prefHeight="25.0" prefWidth="280.0" promptText="Nombrepersonne" style="-fx-border-color: Pink;" />
+            <Label layoutX="27.0" layoutY="148.0" lineSpacing="15.0" text="NumReservation" textFill="#f12d2d">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="195.0" lineSpacing="10.0" text="DateReservation" textFill="#f12d2d">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="240.0" prefHeight="27.0" prefWidth="94.0" text="Observation" textFill="#f12d2d">
+               <font>
+                  <Font name="Angsana New Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="27.0" layoutY="337.0" prefHeight="27.0" prefWidth="104.0" text="NbrePersonne" textFill="#f12d2d">
+               <font>
+                  <Font name="Angsana New Bold" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="84.0" layoutY="289.0" lineSpacing="15.0" prefHeight="30.0" prefWidth="94.0" text="Montant" textFill="#f12d2d">
+         <font>
+            <Font name="Angsana New Bold" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

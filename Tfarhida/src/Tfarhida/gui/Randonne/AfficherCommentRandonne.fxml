@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Tfarhida.gui.AfficherCommentRandonneController">
+   <children>
+      <Pane layoutX="5.0" layoutY="55.0" prefHeight="124.0" prefWidth="1300.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="72.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Commentaires" wrappingWidth="423.5279846191406">
+               <font>
+                  <Font name="Ackermann" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <TableView fx:id="tabListCommentaire" layoutX="41.0" layoutY="230.0" prefHeight="467.0" prefWidth="614.0">
+         <columns>
+            <TableColumn fx:id="NomUserComment" prefWidth="126.0" text="User" />
+            <TableColumn fx:id="commentM" prefWidth="343.0" text="Commentaire" />
+            <TableColumn fx:id="dateComment" prefWidth="144.0" text="Date" />
+         </columns>
+      </TableView>
+     
+   </children>
+</AnchorPane>
