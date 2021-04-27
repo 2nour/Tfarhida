@@ -111,7 +111,7 @@ public class LoginUserController implements Initializable {
     }
 
     @FXML
-    private void loginButtonOnAction(ActionEvent event) {
+    private void loginButtonOnAction(ActionEvent event) throws IOException {
         
         UserService su = new UserService();
         
@@ -146,8 +146,9 @@ public class LoginUserController implements Initializable {
                
                
                 // redirection vers la page d'accueil 
-                
-                 Node node = (Node) event.getSource();
+                if(u.getAuth()==0 || u.getAuth()==2)
+                {
+                Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
                 FXMLLoader loader = new FXMLLoader ();
                 loader.setLocation(getClass().getResource("/Tfarhida/gui/Menu/Accueil.fxml"));
@@ -165,9 +166,18 @@ public class LoginUserController implements Initializable {
                     stage.show(); 
                     
 }
+             else{
+                  
+        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("Dashbord.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Admin Dashobrd!");
+        primaryStage.setScene(scene);
+        primaryStage.show();           
         }
         
         
     }
 
 }
+    }}

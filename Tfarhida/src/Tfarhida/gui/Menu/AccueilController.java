@@ -65,7 +65,7 @@ public class AccueilController implements Initializable {
                     try {
                       switch(n.getAccessibleText()){ 
                         case "accueil":
-                            Node accueil = FXMLLoader.load(getClass().getResource(""));
+                            Node accueil = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/UserPage.fxml"));
                             content.getChildren().setAll(accueil);                    
                             break;
                             
@@ -105,7 +105,7 @@ public class AccueilController implements Initializable {
                             break;   
                             
                         case "produit": 
-                            Node produit = FXMLLoader.load(getClass().getResource(""));
+                            Node produit = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/produit/testTemplateproduit.fxml"));
                             content.getChildren().setAll(produit);
                              break;  
                              

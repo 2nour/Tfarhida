@@ -71,7 +71,7 @@ public class Ajouter2UserController implements Initializable {
            
        
             
-            User u = new User();
+            User u = new User(email,username,password,confirm_password,roles);
             UserService ps = new UserService();
             ps.ajouterUser(u);
             try{

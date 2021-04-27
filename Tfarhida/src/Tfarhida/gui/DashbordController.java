@@ -38,9 +38,21 @@ public class DashbordController implements Initializable {
     @FXML
     private void redirecttooo(ActionEvent event) throws IOException {
         
-           btnUsers.getScene().getWindow().hide();
+       btnUsers.getScene().getWindow().hide();
 
         AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("GererUser.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Welcome!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+    }
+
+    @FXML
+    private void gererProduit(ActionEvent event) throws IOException {
+        
+        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Tfarhida/gui/produit/AfficherListeProduits.fxml"));
         Scene scene = new Scene(root);
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Welcome!");

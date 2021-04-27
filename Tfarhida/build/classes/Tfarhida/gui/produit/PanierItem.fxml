@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane onMouseClicked="#click" prefHeight="176.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.produit.PanierItemController">
+   <children>
+      <ImageView fx:id="prodImg" fitHeight="78.0" fitWidth="99.0" layoutX="32.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/img_1.PNG" />
+         </image>
+      </ImageView>
+      <Text fx:id="ProdNom" fill="#3b3b3b" layoutX="137.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GRILLED CHICKEN MUSHROM" wrappingWidth="246.13671875">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="ProdDesc" fill="#a4a4a6" layoutX="137.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Served with 2 side dishes :rice,French&#10;fries.mashed potatoes,corn" wrappingWidth="246.13671875" />
+      <Pane layoutX="468.0" layoutY="25.0" prefHeight="127.0" prefWidth="69.0" styleClass="sty_1" stylesheets="@style.css">
+         <children>
+            <Text fx:id="ProdQtt" fill="#4a4747" layoutX="24.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="04" wrappingWidth="25.13671875">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="plusid" contentDisplay="GRAPHIC_ONLY" layoutX="12.0" layoutY="7.0" onAction="#plus" prefHeight="36.0" prefWidth="40.0" style="-fx-background-color: #d9232d;" />
+            <JFXButton fx:id="minusid" contentDisplay="GRAPHIC_ONLY" layoutX="12.0" layoutY="83.0" onAction="#minus" prefHeight="36.0" prefWidth="40.0" style="-fx-background-color: #d9232d;" />
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="27.0" layoutY="31.0" size="15" wrappingWidth="14.428571701049805" />
+            <FontAwesomeIconView fill="WHITE" glyphName="MINUS" layoutX="27.0" layoutY="106.0" size="15" wrappingWidth="14.428571701049805" />
+         </children>
+      </Pane>
+      <Text fx:id="ProdPrix" fill="#868080" layoutX="403.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 15.2" wrappingWidth="46.13671875">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <Pane layoutX="547.0" layoutY="25.0" prefHeight="127.0" prefWidth="69.0" styleClass="sty_1" stylesheets="@style.css">
+         <children>
+            <FontAwesomeIconView fill="#e10404" glyphName="TRASH" layoutX="22.0" layoutY="69.0" onMouseClicked="#delete" size="25" wrappingWidth="25.136728733778" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

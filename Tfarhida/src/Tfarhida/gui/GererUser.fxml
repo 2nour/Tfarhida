@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" minHeight="800.0" minWidth="1699.0" prefHeight="800.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.GererUserController">
+<AnchorPane id="AnchorPane" minHeight="800.0" minWidth="1699.0" prefHeight="800.0" prefWidth="625.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.GererUserController">
    <children>
       <Pane prefHeight="151.0" prefWidth="1699.0" style="-fx-background-color: #d9232d;">
          <children>
-            <Label layoutX="511.0" layoutY="14.0" text="Gérer les Utilisateurs" textFill="WHITE">
+            <Label layoutX="717.0" layoutY="14.0" text="Gérer les Utilisateurs" textFill="WHITE">
                <font>
                   <Font name="Javanese Text" size="37.0" />
                </font>
@@ -57,23 +57,23 @@
             </Label>
          </children>
       </VBox>
-      <TableView fx:id="tvuser" layoutX="745.0" layoutY="196.0" onMouseClicked="#Afficher_tab" prefHeight="452.0" prefWidth="548.0">
+      <TableView fx:id="tvuser" layoutX="803.0" layoutY="195.0" onMouseClicked="#Afficher_tab" prefHeight="489.0" prefWidth="778.0">
         <columns>
-            <TableColumn fx:id="colnom" prefWidth="142.0" text="Nom" />
-            <TableColumn fx:id="colemail" prefWidth="237.0" text="Email" />
-            <TableColumn fx:id="colrole" prefWidth="186.0" text="Role" />
+            <TableColumn fx:id="colnom" prefWidth="219.0" text="Nom" />
+            <TableColumn fx:id="colemail" minWidth="6.0" prefWidth="337.0" text="Email" />
+            <TableColumn fx:id="colrole" prefWidth="221.0" text="Role" />
         </columns>
       </TableView>
       <JFXTextField fx:id="tfnom" layoutX="453.0" layoutY="273.0" prefHeight="25.0" prefWidth="224.0" promptText="NOM" unFocusColor="BLACK" />
       <JFXTextField fx:id="tfemail" layoutX="453.0" layoutY="334.0" prefHeight="25.0" prefWidth="224.0" promptText="EMAIL" unFocusColor="BLACK" />
       <JFXPasswordField fx:id="pfpassword" layoutX="453.0" layoutY="405.0" prefHeight="25.0" prefWidth="224.0" promptText="PASSWORD" unFocusColor="BLACK" />
       <ComboBox fx:id="boxrole" layoutX="453.0" layoutY="547.0" prefHeight="25.0" prefWidth="224.0" promptText="ROLE" />
-      <Button fx:id="btninsert" layoutX="245.0" layoutY="642.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="40.0" prefWidth="96.0" style="-fx-background-color: #228B22;" text="Ajouter" textFill="WHITE">
+      <Button fx:id="btninsert" layoutX="245.0" layoutY="642.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="40.0" prefWidth="96.0" style="-fx-background-color: #48C9B0;" text="Ajouter" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="btnupdate" layoutX="380.0" layoutY="642.0" mnemonicParsing="false" onAction="#ModifierUser" prefHeight="40.0" prefWidth="96.0" style="-fx-background-color: #B22222;" text="Modifier" textFill="WHITE">
+      <Button fx:id="btnupdate" layoutX="380.0" layoutY="642.0" mnemonicParsing="false" onAction="#ModifierUser" prefHeight="40.0" prefWidth="96.0" style="-fx-background-color: #F39C12;" text="Modifier" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

@@ -91,7 +91,7 @@ public class UserPageController implements Initializable {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("Dashbord.fxml"));
+            loader.setLocation(getClass().getResource("/Tfarhida/gui/Dashbord.fxml"));
             try {
                 loader.load();
 
@@ -115,7 +115,7 @@ public class UserPageController implements Initializable {
     private void logOut(ActionEvent event) throws IOException {
 
         btnlogout.getScene().getWindow().hide();
-        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Tfarhida/gui/LoginUser.fxml"));
         Scene scene = new Scene(root);
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Tfarhida!");
@@ -128,7 +128,7 @@ public class UserPageController implements Initializable {
 
         btnAffiche.getScene().getWindow().hide();
 
-        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("AfficheUser.fxml"));
+        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Tfarhida/gui/AfficheUser.fxml"));
         Scene scene = new Scene(root);
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Welcome!");
@@ -140,7 +140,7 @@ public class UserPageController implements Initializable {
     private void Modif(ActionEvent event) throws IOException {
         btnModif.getScene().getWindow().hide();
 
-        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("reclamation/FirstPageRec.fxml"));
+        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Tfarhida/gui/reclamation/FirstPageRec.fxml"));
         Scene scene = new Scene(root);
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Welcome!");
