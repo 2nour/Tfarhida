@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.MaisonDHote.AfficherCommentController">
+   <children>
+      <TableView fx:id="tabListReservation" layoutX="74.0" layoutY="276.0" prefHeight="467.0" prefWidth="614.0">
+         <columns>
+            <TableColumn fx:id="NomUserComment" prefWidth="126.0" text="Nom d'utilisateur" />
+            <TableColumn fx:id="commentM" prefWidth="343.0" text="Commentaire" />
+            <TableColumn fx:id="dateComment" prefWidth="144.0" text="Date" />
+         </columns>
+      </TableView>
+      <Pane layoutX="-1.0" layoutY="62.0" prefHeight="124.0" prefWidth="1300.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="72.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Commentaires" wrappingWidth="423.5279846191406">
+               <font>
+                  <Font name="Ackermann" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <ImageView fx:id="refreshComment" fitHeight="41.0" fitWidth="40.0" layoutX="129.0" layoutY="209.0" onMouseClicked="#RefreshTable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/refresh2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="suppComment" fitHeight="50.0" fitWidth="53.0" layoutX="748.0" layoutY="387.0" onMouseClicked="#DeleteComment" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/delete.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

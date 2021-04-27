@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minHeight="800.0" minWidth="1699.0" prefHeight="800.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.Ajouter2UserController">
+   <children>
+      <Label layoutX="425.0" layoutY="219.0" text="Email">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="420.0" layoutY="302.0" text="Prénom">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="404.0" layoutY="377.0" text="Mot de passe ">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="359.0" layoutY="468.0" text="Confirmer votre mot de passe">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="443.0" layoutY="555.0" text="Roles">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="txtEmail" layoutX="731.0" layoutY="201.0" prefHeight="44.0" prefWidth="388.0" promptText="Votre Email" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="txtPrénom" layoutX="731.0" layoutY="283.0" prefHeight="44.0" prefWidth="388.0" promptText="Votre Prénom" style="-fx-background-color: #ffffff;" />
+      <Button fx:id="btnAjout" layoutX="993.0" layoutY="609.0" mnemonicParsing="false" onAction="#addUser" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #d9232d;" text="Ajouter" textFill="#fffdfd">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <ComboBox fx:id="typeUser" layoutX="731.0" layoutY="536.0" onAction="#SelectRole" prefHeight="44.0" prefWidth="388.0" promptText="Choisir votre Role" style="-fx-background-color: #ffffff;" />
+      <JFXPasswordField fx:id="txtPassword" layoutX="731.0" layoutY="358.0" prefHeight="44.0" prefWidth="388.0" promptText="Taper votre Mot de passe" style="-fx-background-color: #ffffff;" unFocusColor="WHITE" />
+      <JFXPasswordField fx:id="txtConfirmPassword" layoutX="731.0" layoutY="449.0" prefHeight="44.0" prefWidth="388.0" promptText="Retapez votre Mot de passe" style="-fx-background-color: #ffffff;" unFocusColor="WHITE" />
+      <Pane layoutX="-3.0" prefHeight="144.0" prefWidth="1731.0" style="-fx-background-color: #d9232d;">
+         <children>
+            <Label layoutX="516.0" layoutY="33.0" text="Créer votre compte" textFill="WHITE">
+               <font>
+                  <Font name="Javanese Text" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

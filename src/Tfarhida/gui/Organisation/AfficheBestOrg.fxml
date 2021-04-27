@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="913.0" prefWidth="1869.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.Organisation.AfficheBestOrgController">
+   <children>
+      <TableView fx:id="tableview" layoutX="343.0" layoutY="229.0" prefHeight="313.0" prefWidth="913.0">
+         <columns>
+            <TableColumn fx:id="clnbpersonne" prefWidth="152.0" text="Nombre personne" />
+            <TableColumn fx:id="clnnbJours" prefWidth="152.0" text="Nombre jours" />
+            <TableColumn fx:id="clndate" prefWidth="152.0" text="Date" />
+            <TableColumn fx:id="clnactivite" prefWidth="152.0" text="Activité" />
+            <TableColumn fx:id="clnlieu" prefWidth="152.0" text="Lieu" />
+            <TableColumn fx:id="clnnote" prefWidth="152.0" text="Note" />
+         </columns>
+      </TableView>
+      <Label layoutX="356.0" layoutY="71.0" prefHeight="86.0" prefWidth="501.0" text="Les meilleurs programmes  " textFill="#ae1919">
+         <font>
+            <Font name="System Bold Italic" size="29.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1200.0" prefHeight="975.0" prefWidth="1699.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.MaisonDHote.TestTemplateController">
+   <children>
+      <ScrollPane fx:id="scroll" layoutX="130.0" layoutY="47.0" prefHeight="912.0" prefWidth="1602.0" style="-fx-background-color: transparent;">
+         <content>
+            <GridPane fx:id="grid" prefHeight="772.0" prefWidth="1085.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="823.0" minWidth="10.0" prefWidth="348.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="660.0" minWidth="10.0" prefWidth="360.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="581.0" minWidth="0.0" prefWidth="357.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="313.0" minHeight="10.0" prefHeight="272.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="353.0" minHeight="10.0" prefHeight="262.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="412.0" minHeight="0.0" prefHeight="235.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Pane layoutY="64.0" prefHeight="124.0" prefWidth="1699.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="185.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maisons d'Hotes">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+            <TextField fx:id="serachM" layoutX="840.0" layoutY="53.0" prefHeight="36.0" prefWidth="315.0" promptText="Rechercher" />
+            <MenuBar layoutX="1175.0" layoutY="59.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Menu">
+                  <items>
+                    <MenuItem fx:id="btnAjoutM" mnemonicParsing="false" onAction="#AjouterMaison" text="Ajouter Maisaom" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

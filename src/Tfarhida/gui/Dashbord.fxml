@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minHeight="800.0" minWidth="1699.0" prefHeight="800.0" prefWidth="625.0" style="-fx-background-color: #FFFAFA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.DashbordController">
+   <children>
+      <AnchorPane prefHeight="800.0" prefWidth="285.0" style="-fx-background-color: #d9232d;">
+         <children>
+            <JFXButton fx:id="btnUsers" layoutX="43.0" layoutY="342.0" onAction="#redirecttooo" prefHeight="58.0" prefWidth="183.0" style="-fx-background-color: #ffffff;" text="Gérer les utilisateurs">
+               <font>
+                  <Font size="15.0" />
+               </font></JFXButton>
+            <Label layoutX="55.0" layoutY="116.0" prefHeight="94.0" prefWidth="174.0" text="Dashbord" textFill="WHITE">
+               <font>
+                  <Font name="Javanese Text" size="34.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="43.0" layoutY="484.0" onAction="#gererProduit" prefHeight="58.0" prefWidth="183.0" style="-fx-background-color: #ffffff;" text="Gérer la liste des produit">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <Label layoutX="784.0" layoutY="26.0" text="Bienvenue sur Tfarhida">
+         <font>
+            <Font name="Javanese Text" size="40.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="500.0" fitWidth="1450.0" layoutX="504.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/hello.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
