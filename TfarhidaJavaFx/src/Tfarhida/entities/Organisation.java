@@ -6,11 +6,14 @@ import java.util.Date;
 
 public class Organisation {
     
-    private int id , nbrjours ;
+    private int id , nbrjours , id_user;
     private String commentaire , activite, nbrpersonne,Lieu;
     private String  etat ;
     private Date date;
     private int note ;
+    
+    
+    
 
     public Organisation(){};
     

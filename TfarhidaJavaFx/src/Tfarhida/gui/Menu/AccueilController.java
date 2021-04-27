@@ -64,24 +64,30 @@ public class AccueilController implements Initializable {
                     try {
                       switch(n.getAccessibleText()){ 
                         case "accueil":
-                            Node accueil = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/AfficheBestOrg.fxml"));
+                            Node accueil = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/Organisation/AfficheBestOrg.fxml"));
                             content.getChildren().setAll(accueil);                    
                             break;
+                              case "BestProgram":
+                            Node BestProgram = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/Organisation/AfficheBestOrg.fxml"));
+                            content.getChildren().setAll(BestProgram);                    
+                            break;
+                            
                              case "Evaluer":
-                            Node EvaluerOrganisation = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/EvaluerOrganisation.fxml"));
+                            Node EvaluerOrganisation = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/Organisation/EvaluerOrganisation.fxml"));
                             content.getChildren().setAll(EvaluerOrganisation);                    
                             break;
                             
+                            
                         case "organiserEve": 
-                            Node organiserEve = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/AjouterOrganisation.fxml"));
+                            Node organiserEve = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/Organisation/AjouterOrganisation.fxml"));
                             content.getChildren().setAll(organiserEve);
                              break;  
                                case "Suiviorganisation": 
-                            Node SuiviOrganisation = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/AfficherOrganisation.fxml"));
+                            Node SuiviOrganisation = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/Organisation/AfficherOrganisation.fxml"));
                             content.getChildren().setAll(SuiviOrganisation);
                              break; 
                                case "OrganisationsAdmin": 
-                            Node OrganisationsAdmin = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/OrganisationAdmin.fxml"));
+                            Node OrganisationsAdmin = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/Organisation/OrganisationAdmin.fxml"));
                             content.getChildren().setAll(OrganisationsAdmin);
                              break; 
                         

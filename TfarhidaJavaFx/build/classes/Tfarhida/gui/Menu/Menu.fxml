@@ -25,6 +25,14 @@
             <Insets right="10.0" top="10.0" />
          </VBox.margin>
       </JFXButton>
+       <JFXButton accessibleText="BestProgram" maxWidth="1.7976931348623157E308" prefHeight="50.0" ripplerFill="#09c337" text="Les meilleurs programme" textFill="#dad7d7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets right="10.0" top="10.0" />
+         </VBox.margin>
+      </JFXButton>
       <JFXButton accessibleText="organiserEve" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="187.0" ripplerFill="#f2263e" text="Organiser un programme" textFill="#dad7d7">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -49,7 +57,7 @@
             <Insets right="10.0" />
          </VBox.margin>
       </JFXButton>
-       <JFXButton accessibleText="Evaluer" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="187.0" ripplerFill="#f2263e" text="Evaluer les organisations" textFill="#dad7d7">
+       <JFXButton accessibleText="Evaluer" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="187.0" ripplerFill="#f2263e" text="Evaluer un programme" textFill="#dad7d7">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

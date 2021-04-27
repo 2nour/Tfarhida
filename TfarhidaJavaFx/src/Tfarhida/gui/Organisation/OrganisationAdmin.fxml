@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1895.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.OrganisationAdminController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1895.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.Organisation.OrganisationAdminController">
    <children>
       <TableView fx:id="tableview" layoutX="331.0" layoutY="190.0" onMouseClicked="#ligneselectionner" prefHeight="395.0" prefWidth="1195.0">
          <columns>
