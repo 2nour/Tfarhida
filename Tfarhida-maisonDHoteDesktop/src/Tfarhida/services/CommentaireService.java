@@ -44,10 +44,7 @@ public class CommentaireService {
         }
     }
     
-    public void setMaison(Maison maison){
-        this.maison = maison;
-        afficherComments();
-    }
+   
     
     public List<Commentaire> afficherComments(){
         List<Commentaire> comments = new ArrayList<>();
@@ -55,6 +52,7 @@ public class CommentaireService {
             String sql = "select * from commentaire";
             ste = cnx.prepareStatement(sql);
             ResultSet rs = ste.executeQuery();
+            if(rs.next()){
             while(rs.next()){
                 Commentaire m = new Commentaire();
                 m.setId(rs.getInt("id"));
@@ -64,8 +62,10 @@ public class CommentaireService {
                 m.setDate(rs.getDate("date"));
                 comments.add(m);
             }
+            }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           // System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         return comments;
     }

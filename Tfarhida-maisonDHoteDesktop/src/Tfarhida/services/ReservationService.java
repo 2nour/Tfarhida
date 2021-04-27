@@ -7,10 +7,17 @@ package Tfarhida.services;
 
 import Tfarhida.base.MaConnexion;
 import Tfarhida.entities.Chambre;
+import Tfarhida.entities.Maison;
 import Tfarhida.entities.Reservation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,8 +29,12 @@ public class ReservationService {
     
     PreparedStatement ste;
     
-    public ReservationService() throws ClassNotFoundException{
-        cnx = MaConnexion.getinstance().getCnx();
+    public ReservationService(){
+        try {
+            cnx = MaConnexion.getinstance().getCnx();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReservationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void ajouterReservation(Reservation ch){
@@ -44,5 +55,55 @@ public class ReservationService {
         }
     }
     
+    public List<Reservation> afficherReservations(){
+        List<Reservation> reservations = new ArrayList<>();
+        try {
+            String sql = "select * from reservation_maison";
+            ste = cnx.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while(rs.next()){
+                Reservation m = new Reservation();
+                m.setId(rs.getInt("id"));
+                m.setChambre_id(rs.getInt("chambre_id"));
+                m.setUser_id(rs.getInt("user_id"));
+                m.setDate(new Date(rs.getDate("date_reservation").getTime()));
+                m.setEtats(rs.getString("etats"));
+                m.setNbrJour(rs.getInt("nbrJour"));
+                m.setTotalPrix(rs.getDouble("totalPrix"));
+                reservations.add(m);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return reservations;
+    }
+    
+    public Boolean testDate(java.sql.Date date){
+        List<Reservation> reservations = new ArrayList<>();
+         try {
+            String sql = "select * from reservation_maison m WHERE m.date_reservation="+date;
+            ste = cnx.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery();
+            while(rs.next()){
+                Reservation m = new Reservation();
+                m.setId(rs.getInt("id"));
+                m.setChambre_id(rs.getInt("chambre_id"));
+                m.setUser_id(rs.getInt("user_id"));
+                m.setDate(new Date(rs.getDate("date_reservation").getTime()));
+                m.setEtats(rs.getString("etats"));
+                m.setNbrJour(rs.getInt("nbrJour"));
+                m.setTotalPrix(rs.getDouble("totalPrix"));
+                reservations.add(m);
+                System.out.println(reservations);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+         if(reservations.size()>0){
+        return true;
+    }else
+        return false;
+    }
     
 }

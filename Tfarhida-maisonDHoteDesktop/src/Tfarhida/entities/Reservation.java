@@ -11,9 +11,18 @@ public class Reservation {
     private String etats, nom, nomCh;
     private double totalPrix;
    
+    public Reservation(){
+        
+    }
 
     public Reservation(int id, int chambre_id, int user_id, Date date, String etats, int nbrJour, double totalPrix) {
-        this(id, chambre_id, user_id, date, etats, nbrJour, totalPrix, "", "");
+        this.id = id;
+        this.chambre_id = chambre_id;
+        this.user_id = user_id;
+        this.date = date;
+        this.etats = etats;
+        this.nbrJour = nbrJour;
+        this.totalPrix = totalPrix;
     }
     
      public Reservation(int id, int chambre_id, int user_id, Date date, String etats, int nbrJour, double totalPrix, String nom, String nomCh) {
@@ -31,6 +40,8 @@ public class Reservation {
     public Reservation(int chambre_id, int user_id, Date date, String etats, int nbrJour, double totalPrix) {
          this(0, chambre_id, user_id, date, etats, nbrJour, totalPrix, "", "");
     }
+
+   
 
     public String getNom() {
         return nom;

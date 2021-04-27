@@ -75,7 +75,7 @@ public class AccueilController implements Initializable {
                              break;  
                         
                         case "maison":
-                            Node maison = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/TestTemplate.fxml"));
+                            Node maison = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/MaisonDHote/TestTemplate.fxml"));
                             content.getChildren().setAll(maison);
                             break;  
                             
@@ -94,7 +94,7 @@ public class AccueilController implements Initializable {
                         
           
                         case "connexion": 
-                            Node connexion = FXMLLoader.load(getClass().getResource(""));
+                            Node connexion = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/LoginUser.fxml"));
                             content.getChildren().setAll(connexion);
                              break;  
                              

@@ -8,8 +8,6 @@ import javax.swing.JOptionPane;
 
 
 public class MaConnexion {
-    String filename= null;
-    public static String path;
     public String url = "jdbc:mysql://localhost:3306/tfarhida?useSSL=false";
     public String user = "root";
     public String pwd = "";
@@ -37,25 +35,5 @@ public class MaConnexion {
         return cnx;
     }
     
-    public void filen(){
-        try{
-        JFileChooser chooser = new JFileChooser();
-        chooser.setDialogTitle("choisir une image");
-        chooser.setApproveButtonText("Ajouter une image");
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        filename= f.getAbsolutePath();
-        this.path=(filename);
-        }catch(Exception e){
-            System.out.println(e);
-            JOptionPane.showMessageDialog(null, "Veuiller choisir une image");
-        }
-  
-    }
-    
-     public String getp(){
-            return path;
-        }
-    
-    
+   
 }
