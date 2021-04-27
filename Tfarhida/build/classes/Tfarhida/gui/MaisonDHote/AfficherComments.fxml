@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="125.0" prefWidth="601.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.MaisonDHote.AfficherCommentsController">
+    <stylesheets>
+        <URL value="@affichercomments.css" />
+    </stylesheets>
+   <children>
+      <VBox fx:id="card" prefHeight="118.0" prefWidth="601.0">
+         <children>
+            <ImageView fitHeight="91.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/user.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <Text fx:id="NomUser" fill="#8d3535" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="70.0" top="-75.0" />
+               </VBox.margin>
+            </Text>
+            <Label fx:id="dateComment" text="Label" textFill="#a8a5a5">
+               <VBox.margin>
+                  <Insets left="70.0" top="4.0" />
+               </VBox.margin>
+            </Label>
+            <Pane prefHeight="38.0" prefWidth="531.0">
+               <children>
+                  <Label fx:id="comment" prefHeight="39.0" prefWidth="481.0" style="-fx-background-color: #FFF0F5;" text="Label" textFill="#1e1e1e" />
+                  <ImageView fx:id="suppComment" fitHeight="28.0" fitWidth="30.0" layoutX="482.0" layoutY="5.0" onMouseClicked="#supprimerComment" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/supp.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets left="70.0" top="10.0" />
+               </VBox.margin>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="562.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.MaisonDHote.EtatsReservationController">
+   <children>
+      <SplitPane dividerPositions="0.1907514450867052" orientation="VERTICAL" prefHeight="694.0" prefWidth="696.0">
+         <items>
+            <AnchorPane prefHeight="76.0" prefWidth="696.0">
+               <children>
+                  <Label layoutX="30.0" layoutY="54.0" text="Liste des demandes de reservation :" textFill="#404040">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="599.0" prefWidth="677.0">
+               <children>
+                  <TableView fx:id="tabListReservation" layoutX="19.0" layoutY="31.0" prefHeight="449.0" prefWidth="537.0">
+                     <columns>
+                        <TableColumn fx:id="idCh" prefWidth="106.0" text="Chambre" />
+                        <TableColumn fx:id="idUser" prefWidth="133.0" text="Client" />
+                        <TableColumn fx:id="dateReser" prefWidth="123.0" text="Date reservation" />
+                        <TableColumn fx:id="nbrJourReserv" prefWidth="89.0" text="Nbr Jour" />
+                        <TableColumn fx:id="etatsReserv" prefWidth="96.0" text="Etats" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="accepterReserv" layoutX="580.0" layoutY="121.0" mnemonicParsing="false" onAction="#AccepterReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #3CB371;" text="Accepter" textFill="WHITE" />
+                  <Button fx:id="refuserReserv" layoutX="580.0" layoutY="153.0" mnemonicParsing="false" onAction="#RefuserReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #d01616;" text="Refuser" textFill="#fcf9f9" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
