@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1298.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.EtatsReservationController">
+   <children>
+      <TableView fx:id="tabListReservation" layoutX="79.0" layoutY="245.0" prefHeight="449.0" prefWidth="537.0">
+         <columns>
+            <TableColumn fx:id="idUser" prefWidth="106.0" text="User" />
+            <TableColumn fx:id="idCh" prefWidth="133.0" text="Chambre" />
+            <TableColumn fx:id="dateReser" prefWidth="123.0" text="Date reservation" />
+            <TableColumn fx:id="nbrJourReserv" prefWidth="89.0" text="Nbr Jour" />
+            <TableColumn fx:id="etatsReserv" prefWidth="96.0" text="Etats" />
+         </columns>
+      </TableView>
+      <Button fx:id="accepterReserv" layoutX="632.0" layoutY="338.0" mnemonicParsing="false" onAction="#AccepterReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #3CB371;" text="Accepter" textFill="WHITE" />
+      <Button fx:id="refuserReserv" layoutX="632.0" layoutY="370.0" mnemonicParsing="false" onAction="#RefuserReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #d01616;" text="Refuser" textFill="#fcf9f9" />
+      <Pane layoutX="-1.0" layoutY="64.0" prefHeight="124.0" prefWidth="1396.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="70.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Demande de Réservation">
+               <font>
+                  <Font name="Ackermann" size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <ImageView fx:id="refreshM" fitHeight="38.0" fitWidth="41.0" layoutX="38.0" layoutY="202.0" onMouseClicked="#RefreshTabReservation" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/refresh2.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

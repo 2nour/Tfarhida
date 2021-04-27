@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.AfficherMaisonController">
+   <children>
+      <TableView fx:id="maisontabel" layoutX="309.0" layoutY="304.0" onMouseClicked="#SelectMaison" prefHeight="433.0" prefWidth="788.0">
+        <columns>
+          <TableColumn fx:id="NomMaison" prefWidth="100.0" text="  Nom" />
+          <TableColumn fx:id="AdresseMaison" prefWidth="85.0" text="  Adresse" />
+            <TableColumn fx:id="NbrMaison" prefWidth="103.0" text="  Nbr Chambre" />
+            <TableColumn fx:id="TelMaison" prefWidth="107.0" text="  Tel" />
+            <TableColumn fx:id="PhotoMaison" prefWidth="173.0" text="     Image" />
+            <TableColumn fx:id="DescMaison" prefWidth="219.0" text="    Description" />
+        </columns>
+      </TableView>
+      <Pane layoutY="54.0" prefHeight="124.0" prefWidth="1396.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="287.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maisons d'Hotes">
+               <font>
+                  <Font name="Ackermann" size="33.0" />
+               </font>
+            </Text>
+         </children></Pane>
+      <HBox alignment="CENTER" layoutX="743.0" layoutY="25.0" />
+      <HBox layoutX="105.0" layoutY="189.0" prefHeight="35.0" prefWidth="40.0" />
+      <ImageView fx:id="maisonAj" fitHeight="47.0" fitWidth="47.0" layoutX="372.0" layoutY="215.0" onMouseClicked="#AjoutMaison" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/add%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="refreshM" fitHeight="49.0" fitWidth="47.0" layoutX="443.0" layoutY="215.0" onMouseClicked="#RefreshTable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/refresh2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="voirPlusM" fitHeight="47.0" fitWidth="47.0" layoutX="516.0" layoutY="215.0" onMouseClicked="#voirDetailsMaison" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/plus2.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
