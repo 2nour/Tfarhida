@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.randonne.DetailRandonneController">
+   <children>
+      <Pane layoutY="36.0" prefHeight="110.0" prefWidth="1310.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="126.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details Randonne">
+               <font>
+                  <Font name="Ackermann" size="33.0" />
+               </font>
+            </Text>
+            <MenuBar layoutX="1130.0" layoutY="53.0">
+               <menus>
+                  <Menu fx:id="voirChM" mnemonicParsing="false" text="Menu">
+                     <items>
+                        <MenuItem fx:id="ListeRandonne" mnemonicParsing="false" onAction="#ListeRandonne" text="Liste Randonnee" />
+                        <MenuItem fx:id="AjoutRandonne" mnemonicParsing="false" onAction="#AjoutRandonne" text="Ajouter Randonne" />
+                        <MenuItem fx:id="listeRestbtn" mnemonicParsing="false" onAction="#ListeReservation" text="Liste Reservation" />
+                     
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </Pane>
+      <AnchorPane layoutX="24.0" layoutY="160.0" prefHeight="544.0" prefWidth="716.0" style="-fx-background-radius: 3; -fx-border-radius: 3; -fx-border-color: #c3c3c3 #EFE2E2; -fx-background-color: #EFE2E2;">
+         <children>
+            <Label layoutX="19.0" layoutY="38.0" text="VilleDepart" textFill="#da3939">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="117.0" text="DateDepart" textFill="#da3939">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="Text_villedepart" layoutX="108.0" layoutY="39.0" prefHeight="25.0" prefWidth="318.0" />
+            <TextField fx:id="Text_villearrivee" layoutX="108.0" layoutY="77.0" prefHeight="25.0" prefWidth="318.0" />
+            <DatePicker fx:id="Datepicker_depart" layoutX="108.0" layoutY="118.0" prefHeight="25.0" prefWidth="318.0" />
+            <DatePicker fx:id="Datepicker_retour" layoutX="108.0" layoutY="160.0" prefHeight="25.0" prefWidth="318.0" />
+            <TextField fx:id="Text_activite" layoutX="108.0" layoutY="199.0" prefHeight="25.0" prefWidth="318.0" />
+           
+            <TextField fx:id="Text_difficulte" layoutX="108.0" layoutY="274.0" prefHeight="25.0" prefWidth="318.0" />
+            <TextField fx:id="Text_budget" layoutX="108.0" layoutY="313.0" prefHeight="25.0" prefWidth="318.0" />
+            <TextArea fx:id="Text_description" layoutX="108.0" layoutY="345.0" prefHeight="87.0" prefWidth="318.0" />
+            <Label layoutX="17.0" layoutY="77.0" text="VilleArrivee" textFill="#da3939">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="160.0" text="DateRetour" textFill="#da3939">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="195.0" prefHeight="17.0" prefWidth="61.0" text="Activite" textFill="#da3939">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="18.0" layoutY="233.0" prefHeight="19.0" prefWidth="87.0" text="Duree" textFill="#da3939">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="271.0" text="Difficulte" textFill="#da3939">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="311.0" prefHeight="19.0" prefWidth="49.0" text="Budget" textFill="#da3939">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="18.0" layoutY="359.0" text="Description" textFill="#da3939">
+               <font>
+                  <Font name="AngsanaUPC Bold" size="20.0" />
+               </font>
+            </Label>
+            <Pane layoutX="2.0" layoutY="476.0" prefHeight="61.0" prefWidth="712.0" style="-fx-border-radius: 0 0 3 3; -fx-background-color: #E5E8EB; -fx-border-color: #C3C3C3; -fx-border-width: 1 0 0 0;">
+               <children>
+                  <JFXButton fx:id="supprimerRandonne" layoutX="580.0" layoutY="9.0" onAction="#DeleteRandonne" prefHeight="32.0" prefWidth="118.0" style="-fx-background-color: Red; -fx-text-fill: white; -fx-font-size: 14; -fx-background-color: ;" text="Supprimer" />
+                  <Button fx:id="modifrandonnee" layoutX="436.0" layoutY="9.0" mnemonicParsing="false" onAction="#UpdateRandonne" prefHeight="32.0" prefWidth="134.0" style="-fx-background-color: GoldenRod;" text="Modifier" textFill="#fcf3f3" />
+               </children>
+            </Pane>
+            <TextField fx:id="Text_duree" layoutX="106.0" layoutY="235.0" prefHeight="25.0" prefWidth="318.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebeef2" height="213.0" layoutX="434.0" layoutY="17.0" stroke="#cdc9c9" strokeType="INSIDE" width="277.0" />
+            <ImageView fx:id="image_Randonnee" fitHeight="213.0" fitWidth="277.0" layoutX="436.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="lab_url" layoutX="110.0" layoutY="441.0" prefHeight="27.0" prefWidth="223.0" promptText="Image" style="-fx-border-color: Pink;" />
+            <Button fx:id="image" layoutX="333.0" layoutY="442.0" mnemonicParsing="false" onAction="#importerImage" onMouseClicked="#importerImage" prefHeight="25.0" prefWidth="91.0" style="-fx-border-color: Pink;" text="Parcourir" />
+         </children>
+      </AnchorPane>
+      <FontAwesomeIconView fx:id="retour" glyphName="ARROW_LEFT" layoutX="1163.0" layoutY="671.0" onMouseClicked="#retourlisteRand" size="25" />
+   </children>
+</AnchorPane>

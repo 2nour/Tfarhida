@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="938.0" prefWidth="1380.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.Organisation.AfficherOrganisationController">
+   <children>
+      <Button fx:id="btnModifier" layoutX="90.0" layoutY="604.0" mnemonicParsing="false" onAction="#modifierOrganisation" prefHeight="39.0" prefWidth="187.0" text="Modifier" />
+      <Button fx:id="btnsupp" layoutX="90.0" layoutY="666.0" mnemonicParsing="false" onAction="#deleteorg" prefHeight="39.0" prefWidth="187.0" style="-fx-background-color: c62222;" text="Supprimer" textFill="#fcf9f9">
+         <font>
+            <Font size="13.0" />
+         </font></Button>
+      <Label fx:id="label" layoutX="122.0" layoutY="24.0" />
+      <TextField fx:id="txtnbrpersonne" layoutX="89.0" layoutY="296.0" prefHeight="31.0" prefWidth="187.0" promptText="Nombre de personne" />
+      <TextField fx:id="txtnbrjours" layoutX="89.0" layoutY="346.0" prefHeight="31.0" prefWidth="187.0" promptText="Nombre de jours" />
+      <TextField fx:id="txtcommentaire" layoutX="89.0" layoutY="546.0" prefHeight="31.0" prefWidth="187.0" promptText="Commentaire" />
+      <ComboBox fx:id="selectLieu" layoutX="90.0" layoutY="502.0" onAction="#selectlieu" prefHeight="31.0" prefWidth="187.0" promptText="Lieu" />
+      <ComboBox fx:id="selectActivite" layoutX="90.0" layoutY="452.0" onAction="#selectactivite" prefHeight="31.0" prefWidth="187.0" promptText="Activité" />
+      <DatePicker fx:id="txtdate" layoutX="89.0" layoutY="402.0" prefHeight="31.0" prefWidth="187.0" promptText="Date" />
+      <Label fx:id="labelnbp" layoutX="578.0" layoutY="73.0" />
+      <Label fx:id="labelnbj" layoutX="578.0" layoutY="118.0" />
+      <Label fx:id="labelactivite" layoutX="578.0" layoutY="214.0" />
+      <Label fx:id="labellieu" layoutX="578.0" layoutY="251.0" />
+      <Label fx:id="labelcommentaire" layoutX="578.0" layoutY="295.0" />
+      <TextField fx:id="filtreField" layoutX="1035.0" layoutY="229.0" prefHeight="31.0" prefWidth="301.0" promptText="Filtrer selon Activité , Lieu" style="-fx-background-radius: 50;" />
+      <TableView fx:id="tableview" layoutX="336.0" layoutY="293.0" onMouseClicked="#ligneselectionner" prefHeight="448.0" prefWidth="1030.0">
+         <columns>
+            <TableColumn fx:id="clnid" prefWidth="84.0" text="Id" />
+            <TableColumn fx:id="clnbpersonne" prefWidth="104.0" text="nb_Personne" />
+            <TableColumn fx:id="clnnbJours" prefWidth="91.0" text="Nb_jours" />
+            <TableColumn fx:id="clndate" prefWidth="117.0" text="Date" />
+            <TableColumn fx:id="clnactivite" prefWidth="153.0" text="Activité" />
+            <TableColumn fx:id="clnlieu" prefWidth="126.0" text="Lieu" />
+            <TableColumn fx:id="clnCommentaire" minWidth="0.0" prefWidth="254.0" text="Commentaire" />
+            <TableColumn fx:id="clnEtat" prefWidth="99.0" text="Etats" />
+         </columns>
+      </TableView>
+      <Pane layoutY="46.0" prefHeight="124.0" prefWidth="1396.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="200.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suivi Programme">
+               <font>
+                  <Font name="Ackermann" size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

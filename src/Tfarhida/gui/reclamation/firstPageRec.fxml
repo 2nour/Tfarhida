@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minHeight="800.0" minWidth="1699.0" prefHeight="800.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.reclamation.FirstPageRecController">
+   <children>
+      <Pane layoutX="-6.0" prefHeight="154.0" prefWidth="1732.0" style="-fx-background-color: #d9232d;">
+         <children>
+            <Label layoutX="409.0" layoutY="33.0" text="Bienvenue dans votre espace reclamation" textFill="WHITE">
+               <font>
+                  <Font name="Javanese Text" size="32.0" />
+               </font>
+            </Label>
+            <Button fx:id="returntoo" layoutY="2.0" mnemonicParsing="false" onAction="#returntoo" prefHeight="71.0" prefWidth="149.0" style="-fx-background-color: #d9232d;" text="&lt;-" textFill="WHITE">
+               <font>
+                  <Font name="Bauhaus 93" size="46.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <ImageView fitHeight="507.0" fitWidth="756.0" layoutX="354.0" layoutY="177.0" opacity="0.24" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/images12.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="Consulter" layoutX="801.0" layoutY="399.0" mnemonicParsing="false" onAction="#redirectToConsulter" prefHeight="63.0" prefWidth="206.0" style="-fx-background-color: #d9232d;" text="Consulter reclamation " textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="envoyer" layoutX="378.0" layoutY="399.0" mnemonicParsing="false" onAction="#redirecttoenvoyer" prefHeight="63.0" prefWidth="206.0" style="-fx-background-color: #d9232d;" text="Envoyer reclamation " textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

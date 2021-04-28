@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.Organisation.OrganisationAdminController">
+   <children>
+      <TableView fx:id="tableview" layoutX="303.0" layoutY="297.0" onMouseClicked="#ligneselectionner" prefHeight="395.0" prefWidth="1001.0">
+         <columns>
+            <TableColumn fx:id="clnid" prefWidth="67.0" text="Id" />
+            <TableColumn fx:id="clnbpersonne" prefWidth="97.0" text="nb_Personne" />
+            <TableColumn fx:id="clnnbJours" prefWidth="87.0" text="Nb_jours" />
+            <TableColumn fx:id="clndate" prefWidth="113.0" text="Date" />
+            <TableColumn fx:id="clnactivite" prefWidth="135.0" text="Activité" />
+            <TableColumn fx:id="clnlieu" prefWidth="125.0" text="Lieu" />
+            <TableColumn fx:id="clnCommentaire" prefWidth="248.0" text="Commentaire" />
+            <TableColumn fx:id="clnEtat" prefWidth="129.0" text="Etat" />
+         </columns>
+      </TableView>
+      <Button fx:id="Approuver" layoutX="1352.0" layoutY="380.0" mnemonicParsing="false" onAction="#approuver" prefHeight="43.0" prefWidth="161.0" style="-fx-background-color: #3CB371;" text="Approuver" textFill="#f8f8f8">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="Refuser" layoutX="1352.0" layoutY="448.0" mnemonicParsing="false" onAction="#refuser" prefHeight="43.0" prefWidth="161.0" style="-fx-background-color: #d01616;" text="Refuser" textFill="#f2eeee">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <TextField fx:id="filtreField" layoutX="331.0" layoutY="159.0" prefHeight="31.0" prefWidth="301.0" promptText="Filtrer par Activité , Lieu " style="-fx-background-radius: 50;" />
+      <Pane layoutY="74.0" prefHeight="124.0" prefWidth="1798.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="334.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La liste des demandes ">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.randonne.AfficherRandonneClientController">
+   <children>
+      <Pane layoutY="74.0" prefHeight="124.0" prefWidth="1416.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="287.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion  Randonnee">
+               <font>
+                  <Font name="Ackermann" size="33.0" />
+               </font>
+            </Text>
+            <MenuBar layoutX="1057.0" layoutY="62.0">
+               <menus>
+                  <Menu fx:id="voirChM" mnemonicParsing="false" text="Menu">
+                     <items>
+                        <MenuItem fx:id="ListeRandonne" mnemonicParsing="false" onAction="#ListeRandonne" text="Liste Randonnee" />
+                  
+                        <MenuItem fx:id="listeresrrvationbtn" mnemonicParsing="false" onAction="#ListeReservation" text="Liste Reservation" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </Pane>
+      <ImageView fx:id="image_Randonnee" fitHeight="504.0" fitWidth="1416.0" layoutY="197.0" pickOnBounds="true">
+         <image>
+            <Image url="@reservation.jpg" />
+         </image>
+      </ImageView>
+      <FontAwesomeIconView fx:id="suivant" glyphName="ARROW_RIGHT" layoutX="1324.0" layoutY="49.0" onMouseClicked="#suivdetail" size="25" />
+      <TableView fx:id="tableRand" layoutX="203.0" layoutY="258.0" prefHeight="417.0" prefWidth="893.0">
+         <columns>
+            <TableColumn fx:id="rand_vdepart" prefWidth="76.0" text="Ville depart" />
+            <TableColumn fx:id="rand_varrive" prefWidth="89.0" text="Ville Arrive" />
+            <TableColumn fx:id="rand_dated" prefWidth="99.0" text="Date Depart" />
+            <TableColumn fx:id="rand_dater" prefWidth="96.0" text="Date Retour" />
+            <TableColumn fx:id="rand_activite" prefWidth="90.0" text="Activite" />
+            <TableColumn fx:id="rand_desc" prefWidth="96.0" text="Description" />
+            <TableColumn fx:id="rand_diff1" prefWidth="96.0" text="Image" />
+            <TableColumn fx:id="rand_duree" prefWidth="62.0" text="Duree" />
+            <TableColumn fx:id="rand_diff" prefWidth="83.0" text="Difficulté" />
+            <TableColumn fx:id="rand_budget" prefWidth="106.0" text="Budget" />
+         </columns>
+      </TableView>
+      <FontAwesomeIconView fx:id="detailrandonne" glyphName="SEARCH" layoutX="226.0" layoutY="247.0" onMouseClicked="#voirDetailsRandonne" size="25" />
+      <TextField fx:id="txchercher" layoutX="940.0" layoutY="214.0" prefHeight="25.0" prefWidth="154.0" promptText="Chercher" />
+   </children>
+</AnchorPane>

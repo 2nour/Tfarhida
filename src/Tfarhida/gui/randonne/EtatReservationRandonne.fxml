@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.randonne.EtatReservationRandonneController">
+   <children>
+      <Pane layoutX="-5.0" layoutY="57.0" prefHeight="124.0" prefWidth="1396.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="173.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Demande de Réservation">
+               <font>
+                  <Font name="Ackermann" size="33.0" />
+               </font>
+            </Text>
+            <MenuBar layoutX="1173.0" layoutY="61.0">
+               <menus>
+                  <Menu fx:id="voirChM" mnemonicParsing="false" text="Menu">
+                     <items>
+                        <MenuItem fx:id="ListeRandonne" mnemonicParsing="false" onAction="#ListeRandonne" text="Liste Randonnee" />
+                        <MenuItem fx:id="AjoutRandonne" mnemonicParsing="false" onAction="#AjoutRandonne" text="Ajouter Randonne" />
+                        <MenuItem fx:id="listecommentrand" mnemonicParsing="false" onAction="#ListeReservation" text="Liste Reservation" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </Pane>
+      <ImageView fitHeight="519.0" fitWidth="1396.0" layoutX="-3.0" layoutY="183.0" pickOnBounds="true">
+         <image>
+            <Image url="@reservation.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tbreservation" layoutX="158.0" layoutY="265.0" onMouseClicked="#test" prefHeight="404.0" prefWidth="943.0" stylesheets="@../../../../../9/Tfarhida/src/Tfarhida/gui/afficherandonnee.css">
+         <columns>
+            <TableColumn fx:id="colnumres" prefWidth="107.0" text="NumReservation" />
+            <TableColumn fx:id="coldateres" prefWidth="138.0" text="DateReservation" />
+            <TableColumn fx:id="colobs" prefWidth="114.0" text="Observation" />
+            <TableColumn fx:id="colmontant" prefWidth="154.0" text="Montant" />
+            <TableColumn fx:id="colnbpersonne" prefWidth="225.0" text="NombrePersonne" />
+            <TableColumn fx:id="coletat" prefWidth="204.0" text="Etat" />
+         </columns>
+      </TableView>
+      <Button fx:id="accepterReserv" layoutX="265.0" layoutY="229.0" mnemonicParsing="false" onAction="#AccepterReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #3CB371;" text="Accepter" textFill="WHITE" />
+      <Button fx:id="refuserReserv" layoutX="351.0" layoutY="229.0" mnemonicParsing="false" onAction="#RefuserReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #d01616;" text="Refuser" textFill="#fcf9f9" />
+    
+   </children>
+</AnchorPane>

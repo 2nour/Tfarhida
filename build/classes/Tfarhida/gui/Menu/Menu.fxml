@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="slider" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="223.0" spacing="5.0" style="-fx-background-color: #d9232d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.Menu.MenuController">
+   <children>
+      <Label prefHeight="44.0" prefWidth="147.0" text="Tfarhida" textFill="WHITE">
+         <font>
+            <Font name="Ackermann" size="34.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="40.0" left="42.0" right="30.0" top="55.0" />
+         </VBox.margin>
+      </Label>
+      <JFXButton accessibleText="accueil" maxWidth="1.7976931348623157E308" prefHeight="50.0" ripplerFill="#09c337" text="Accueil" textFill="#dad7d7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets right="10.0" top="10.0" />
+         </VBox.margin>
+      </JFXButton>
+      <JFXButton accessibleText="BestProgram" maxWidth="1.7976931348623157E308" prefHeight="50.0" ripplerFill="#09c337" text="Les meilleurs programme" textFill="#dad7d7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets right="10.0" top="10.0" />
+         </VBox.margin>
+      </JFXButton>
+      <JFXButton accessibleText="organiserEve" maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="187.0" ripplerFill="#f2263e" text="Organisation" textFill="#dad7d7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets right="10.0" />
+         </VBox.margin>
+      </JFXButton>
+      <JFXButton accessibleText="maison" maxWidth="1.7976931348623157E308" prefHeight="50.0" ripplerFill="#f29408" text="Maison d'hôte" textFill="#dad7d7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets right="10.0" />
+         </VBox.margin>
+      </JFXButton>
+      <JFXButton accessibleText="randonnée" maxWidth="1.7976931348623157E308" prefHeight="50.0" ripplerFill="#ee0e0e" text="Randonnée" textFill="#dad7d7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets right="10.0" />
+         </VBox.margin>
+      </JFXButton>
+      <JFXButton accessibleText="produit" maxWidth="1.7976931348623157E308" prefHeight="50.0" ripplerFill="#ed11d9" text="Produit" textFill="#dad7d7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets right="10.0" />
+         </VBox.margin>
+      </JFXButton>
+      <Pane prefHeight="1.0" prefWidth="195.0" style="-fx-background-color: #dad7d7;">
+         <VBox.margin>
+            <Insets bottom="10.0" left="30.0" right="30.0" top="40.0" />
+         </VBox.margin>
+      </Pane>
+      <JFXButton accessibleText="connexion" maxWidth="1.7976931348623157E308" prefHeight="50.0" ripplerFill="#f2263e" text="Connexion" textFill="#dad7d7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets right="10.0" top="10.0" />
+         </VBox.margin>
+      </JFXButton>
+      <JFXButton accessibleText="Exit" maxWidth="1.7976931348623157E308" prefHeight="50.0" ripplerFill="#f2263e" text="Exit" textFill="#dad7d7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets right="10.0" />
+         </VBox.margin>
+      </JFXButton>
+   </children>
+</VBox>
