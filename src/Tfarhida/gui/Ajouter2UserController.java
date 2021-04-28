@@ -81,6 +81,25 @@ public class Ajouter2UserController implements Initializable {
         String password = txtPassword.getText();
         String confirm_password = txtConfirmPassword.getText();
         String roles = typeUser.getSelectionModel().getSelectedItem().toString();
+        
+        if (txtPrénom.getText().length() == 0) {
+
+            txtPrénom.setStyle("-fx-border-color: red ;  -fx-border-width: 2px ;");
+            new animatefx.animation.Shake(txtPrénom).play();
+        }
+
+        if (txtEmail.getText().length() == 0) {
+
+            txtEmail.setStyle("-fx-border-color: red ;  -fx-border-width: 2px ;");
+            new animatefx.animation.Shake(txtEmail).play();
+        }
+        
+        if (txtPassword.getText().length() == 0) {
+
+            txtPassword.setStyle("-fx-border-color: red ;  -fx-border-width: 2px ;");
+            new animatefx.animation.Shake(txtPassword).play();
+        }
+        
 
         Boolean MailConf = ControlEmail(email);
 

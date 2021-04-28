@@ -26,6 +26,8 @@ public class DashbordController implements Initializable {
 
     @FXML
     private JFXButton btnUsers;
+    @FXML
+    private JFXButton btnDemandeOrg;
 
     /**
      * Initializes the controller class.
@@ -59,6 +61,16 @@ public class DashbordController implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.show();
         
+    }
+
+    @FXML
+    private void DemandeOrganisation(ActionEvent event) throws IOException {
+        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Tfarhida/gui/Organisation/OrganisationAdmin.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Welcome!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
     
 }
