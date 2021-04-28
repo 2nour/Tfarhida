@@ -43,13 +43,14 @@ public class UserService {
     public void ajouterUser(User u) {
 
         try {
-            String sql = "insert into user(email,username,password,confirm_password,roles)" + "values(?,?,?,?,?)";
+            String sql = "insert into user(email,username,password,confirm_password,roles,Auth)" + "values(?,?,?,?,?,?)";
             ste = cnx.prepareStatement(sql);
             ste.setString(1, u.getEmail());
             ste.setString(2, u.getUsername());
             ste.setString(3, u.getPassword());
             ste.setString(4, u.getConfirm_password());
             ste.setString(5, u.getRoles());
+            ste.setInt(6, u.getAuth());
             ste.executeUpdate();
             System.out.println("user ajouter");
 
@@ -98,6 +99,25 @@ public class UserService {
         }
         return false;
     }
+    
+    public boolean ValidateUsername(String username){
+        String UserVerif = "SELECT count(1) FROM user WHERE username = '"+username+"' ";
+        try {
+            Statement stm = cnx.createStatement();
+            ResultSet queryResult = stm.executeQuery(UserVerif);
+
+            // verifier et afficher si username existe
+            while (queryResult.next()) {
+                if (queryResult.getInt(1) != 1) {
+                    return true ;
+                }
+            }
+
+        } catch(Exception e) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE,null,e);
+        }
+        return false;
+    }
 
     public List<User> AfficherUser() {
         List<User> User = new ArrayList<>();
@@ -132,9 +152,12 @@ public class UserService {
     public void ModifierUser(User u) throws ClassNotFoundException {
 
         try {
-            String requete = "UPDATE `user` SET `email`=?, `username`=?,`password`=?,`confirm_password`=?,`roles`=? WHERE id=?";
-            PreparedStatement pst = MaConnexion.getinstance().getCnx()
-                    .prepareStatement(requete);
+            String requete = "UPDATE `user` SET `email`=?, `username`=?,`password`=?,`confirm_password`=?,`roles`=?, `Auth`=? WHERE id=?";
+            PreparedStatement pst;
+          
+                pst = MaConnexion.getinstance().getCnx()
+                        .prepareStatement(requete);
+         
 
             //
             pst.setString(1, u.getEmail());
@@ -142,7 +165,8 @@ public class UserService {
             pst.setString(3, u.getPassword());
             pst.setString(4, u.getConfirm_password());
             pst.setString(5, u.getRoles());
-            pst.setInt(6, u.getId());
+            pst.setInt(6, u.getAuth());
+            pst.setInt(7, u.getId());
 
             //
             pst.executeUpdate();

@@ -71,20 +71,27 @@ public class OrganisationService {
     public void ajouterOrganisation(Organisation o) {
 
         try {
-            String sql = "insert into organisation (nbrjours, nbrpersonne,date, activite,commentaire,Lieu, etat )"
-                    + "values(?,?,?,?,?,?,?)";
+            String sql = "insert into organisation (id,nbrpersonne,commentaire,nbrjours ,etat,date, activite,Lieu, user_id )"
+                    + "values(?,?,?,?,?,?,?,?,?)";
+            
             ste = cnx.prepareStatement(sql);
-            ste.setInt(1, o.getNbrjours());
+            ste.setInt(1,o.getId());
             ste.setString(2, o.getNbrpersonne());
-
+              ste.setString(3, o.getCommentaire());
+            ste.setInt(4, o.getNbrjours());
+             ste.setString(5, "en attente");
+           
             Date date = o.getDate();
             DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String strdate = dateformat.format(date);
-            ste.setString(3, strdate);
-            ste.setString(4, o.getActivite());
-            ste.setString(6, o.getLieu());
-            ste.setString(5, o.getCommentaire());
-            ste.setString(7, "en attente");
+            ste.setString(6, strdate);
+            ste.setString(7, o.getActivite());
+            ste.setString(8, o.getLieu());
+          
+           
+                        ste.setInt(9, o.getUser_id());
+
+            
 
             ste.executeUpdate();
             System.out.println("Organisation Ajoutée ");
@@ -99,7 +106,7 @@ public class OrganisationService {
 
         try {
            // System.out.println(o);
-            String sql2 = "UPDATE organisation SET nbrjours=?,nbrpersonne=?,date=?,activite=?,commentaire=?, Lieu=? WHERE id="+o.getId();
+            String sql2 = "UPDATE organisation SET nbrjours=?,nbrpersonne=?,date=?,activite=?,commentaire=?, Lieu=?  WHERE id="+o.getId();
 
             ste = cnx.prepareStatement(sql2);
             ste.setInt(1, o.getNbrjours());
@@ -113,6 +120,7 @@ public class OrganisationService {
             ste.setString(6, o.getLieu());
             ste.setString(5, o.getCommentaire());
             //  ste.setString(7, "en attente"); 
+             // ste.setInt(7, o.getUser_id());
 
             ste.executeUpdate();
 

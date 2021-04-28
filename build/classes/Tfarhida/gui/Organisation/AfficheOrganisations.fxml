@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="783.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.Organisation.AfficheOrganisationsController">
+   <children>
+      <TextField fx:id="filtreField" layoutX="339.0" layoutY="291.0" prefHeight="31.0" prefWidth="301.0" promptText="Filtrer selon Activité , Lieu" style="-fx-background-radius: 50;" />
+      <TableView fx:id="tableview" layoutX="301.0" layoutY="350.0" prefHeight="403.0" prefWidth="1010.0">
+         <columns>
+            <TableColumn fx:id="clnid" prefWidth="75.00003051757812" text="Id" />
+            <TableColumn fx:id="clnbpersonne" prefWidth="102.0" text="nb_Personne" />
+            <TableColumn fx:id="clnnbJours" prefWidth="105.0" text="Nb_jours" />
+            <TableColumn fx:id="clndate" prefWidth="131.0" text="Date" />
+            <TableColumn fx:id="clnactivite" prefWidth="130.0" text="Activité" />
+            <TableColumn fx:id="clnlieu" prefWidth="114.0" text="Lieu" />
+            <TableColumn fx:id="clnCommentaire" prefWidth="253.0" text="Commentaire" />
+            <TableColumn fx:id="clnEtat" prefWidth="100.0" text="Etat" />
+         </columns>
+      </TableView>
+      <Pane layoutY="64.0" prefHeight="124.0" prefWidth="1798.0" style="-fx-background-color: #EFE2E2;">
+         <children>
+            <Text fill="#d01616" layoutX="334.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les organisations ">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <MenuBar layoutX="1101.0" layoutY="50.0">
+              <menus>
+                <Menu fx:id="Ajout" mnemonicParsing="false" onAction="#AjoutOrganisation" text="Ajout">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Ajout" />
+                  </items>
+                </Menu>
+                <Menu fx:id="Suivi" mnemonicParsing="false" onAction="#SuiviOrganisation" text="Suivi">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Suivi" />
+                  </items>
+                </Menu>
+                <Menu fx:id="Evaluation" mnemonicParsing="false" onAction="#EvaluationOrganisation" text="Evaluation">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Evaluation" />
+                  </items>
+                </Menu>
+                  <Menu fx:id="Admin" mnemonicParsing="false" onAction="#AdminOrganisation" text="Admin ">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Admin" />
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

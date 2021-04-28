@@ -1,6 +1,7 @@
 
 
 package Tfarhida.gui.Organisation;
+import Tfarhida.base.UserSession;
 import Tfarhida.entities.Organisation;
 import Tfarhida.services.OrganisationService;
 import java.io.IOException;
@@ -56,7 +57,7 @@ public class AjouterOrganisationController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("Camping", "TourVelo", "CircuitSahara");
         selectActivite.setItems(list);
         //liste des lieux
-        ObservableList<String> listlieu = FXCollections.observableArrayList("Tunis", "Beja", "Jendouba");
+        ObservableList<String> listlieu = FXCollections.observableArrayList("Tunis", "Beja", "Jendouba", "Nabeul", "Douz", "Bizert", "Sousse");
         selectLieu.setItems(listlieu);
 
     }
@@ -84,8 +85,8 @@ public class AjouterOrganisationController implements Initializable {
             JOptionPane.showMessageDialog(null, "Date non valide , merci de bien vérifier la date svp");
             return;
         }
-
-        Organisation o = new Organisation(50, nb, nbrpersonne, dd, activite, commentaire, lieu, "En attente");
+ int user_id = UserSession.getId();
+        Organisation o = new Organisation(nb, nbrpersonne, dd, activite, commentaire, lieu, "En attente", user_id);
         orgser = new OrganisationService();
         orgser.ajouterOrganisation(o);
         JOptionPane.showMessageDialog(null, "Votre demande de programme a été envoyer");

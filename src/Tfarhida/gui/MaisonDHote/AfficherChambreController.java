@@ -96,13 +96,13 @@ public class AfficherChambreController implements Initializable {
     @FXML
     private MenuItem listReservbtn1;
     @FXML
-    private Menu voirChM;
-    @FXML
     private MenuItem demandeReservbtn1;
     
     File file;
     @FXML
     private Label PrixChD1;
+    @FXML
+    private Menu voirChM1;
 
     /**
      * Initializes the controller class.

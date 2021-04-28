@@ -77,22 +77,23 @@ public class PanierService {
    
      public Panier getPanier(int userid){
         
-         Panier p = new Panier();  
          String sql="select * from panier where user_id="+UserSession.getId()+"";
+         
          try  {
              stm = cnx.createStatement();
             ResultSet rst = stm.executeQuery(sql);
             if(rst.next()){
-                while(rst.next()) {
-         
+               
+                    Panier p = new Panier();  
+
                     p.setId(rst.getInt("id"));
                     p.setSomme(rst.getDouble("somme"));
                     p.setNbproduit(rst.getInt("nbproduit"));
                     p.setUser_id(rst.getInt("user_id"));
-                    
-                             }
-                
-                return p;
+                                            
+                    //System.out.println("old panier"+p);
+
+                     return p;
   
             }
             if(!rst.next()) {
@@ -106,16 +107,51 @@ public class PanierService {
             ste.setDouble(3,0);
            
             ste.executeUpdate();
-            getPanier(userid);
-            System.out.println("new panier");
+            Panier pan= getPanier(userid);
+           // System.out.println("new panier"+pan);
+            return pan;
                 } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
                 }
+              
             }
          
          } catch(Exception e){
                 Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE,null,e);
         }
-         return p;
+         return null;
      }
+     
+    
+
+    public PanierService(Connection cnx, PreparedStatement ste, Statement stm) {
+        this.cnx = cnx;
+        this.ste = ste;
+        this.stm = stm;
+    }
+     
+     
+     public void ProduitestSupprimer(int p) throws SQLException{
+         
+         String sql="select * from commande where produit_id="+p+"";
+          stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery(sql);
+            if(rst.next()){
+                while (rst.next()) {
+                String getPanier="select * from panier where id="+Integer.valueOf(rst.getInt("panier_id"))+"";
+                stm = cnx.createStatement();
+                ResultSet rs = stm.executeQuery(getPanier);
+                
+                int nbprod= rs.getInt("nbproduit") - rst.getInt("quantite_produit");
+                Double somme = rs.getDouble("somme") - rst.getDouble("prixcommande");
+                String update = "update panier set nbproduit="+nbprod+","+"somme="+somme+" whereid="+rs.getInt("id")+"";
+                ste.executeUpdate();
+                    
+                }
+                
+     }
+}
+     
+     
+    
 }

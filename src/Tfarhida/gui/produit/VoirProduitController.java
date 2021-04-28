@@ -14,6 +14,7 @@ import Tfarhida.services.venteproduit.CommandeService;
 import Tfarhida.services.venteproduit.CommentService;
 import Tfarhida.services.venteproduit.ProduitService;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -81,6 +82,8 @@ public class VoirProduitController implements Initializable {
     private VBox vbox;
     @FXML
     private Text nbComments;
+    @FXML
+    private JFXComboBox<String> combo;
     
     
     /**
@@ -89,7 +92,9 @@ public class VoirProduitController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+       combo.getItems().add("Tout les commentaires");
+       combo.getItems().add("meilleurs feedback");
+       
        refresh(p);
         try {
             voirprod(p);
@@ -131,7 +136,15 @@ public class VoirProduitController implements Initializable {
     }
   
     public void refresh(Produit p){
-        ArrayList<Comment>  comments = (ArrayList<Comment>) cms.AfficherComments(p);
+        ArrayList<Comment>  comments=(ArrayList<Comment>) cms.AfficherComments(p);;
+      
+        if(combo.getValue()=="meilleurs feedback"){
+          comments= (ArrayList<Comment>) cms.getPostivesAvis(p);
+        }
+          else{
+         comments = (ArrayList<Comment>) cms.AfficherComments(p);   
+        }
+        
         commentStatistic(p); 
         nbComments.setText(String.valueOf(comments.size()));
 
@@ -223,7 +236,7 @@ public class VoirProduitController implements Initializable {
             return;
         }
         
-        Comment comment= new Comment(p.getId(),content,sqlDate,user_id,UserSession.getUsername());
+        Comment comment= new Comment(p.getId(),content,sqlDate,user_id);
         cms.ajouterCommentProduit(p, comment);
         JOptionPane.showMessageDialog(null, "comment ajouté");
         vbox.getChildren().clear();
@@ -241,6 +254,15 @@ public class VoirProduitController implements Initializable {
         refresh(p);
         commentStatistic(p);
     }
+
+    @FXML
+    private void reloadlist(ActionEvent event) {
+        vbox.getChildren().clear();
+        refresh(p);
+        commentStatistic(p);
+    }
+
+   
     
     
 

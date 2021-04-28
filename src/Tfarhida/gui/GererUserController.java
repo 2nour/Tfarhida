@@ -83,7 +83,7 @@ public class GererUserController implements Initializable {
         try {
             // TODO
             
-            ObservableList<String> list = FXCollections.observableArrayList("Utilisateur", "Hébérgeur");
+            ObservableList<String> list = FXCollections.observableArrayList("[\"ROLE_USER\"]","[\"ROLE_HEBERGEUR\"]","[\"ROLE_ADMIN\"]");
             boxrole.setItems(list);
             
             showUser();
@@ -160,6 +160,14 @@ public class GererUserController implements Initializable {
         u.setPassword(pfpassword.getText());
         u.setConfirm_password(confirmpasswd.getText());
         u.setRoles(boxrole.getSelectionModel().getSelectedItem().toString());
+        String roles =boxrole.getSelectionModel().getSelectedItem().toString();
+         
+        int Auth=1;
+            if(roles == "[\"ROLE_USER\"]" ){Auth=0;}
+            if(roles == "[\"ROLE_HEBERGEUR\"]" ){Auth=2;}
+            if(roles == "[\"ROLE_ADMIN\"]" ){Auth=1;}
+         u.setAuth(Auth);
+         
         cr.ajouterUser(u);
         showUser();
 
@@ -178,6 +186,12 @@ public class GererUserController implements Initializable {
         u.setPassword(pfpassword.getText());
         u.setConfirm_password(confirmpasswd.getText());
         u.setRoles(boxrole.getSelectionModel().getSelectedItem().toString());
+        String roles =boxrole.getSelectionModel().getSelectedItem().toString();
+         int Auth=1;
+            if(roles == "[\"ROLE_USER\"]" ){Auth=0;}
+            if(roles == "[\"ROLE_HEBERGEUR\"]" ){Auth=2;}
+            if(roles == "[\"ROLE_ADMIN\"]" ){Auth=1;}
+         u.setAuth(Auth);
         cr.ModifierUser(u);
         showUser();
 

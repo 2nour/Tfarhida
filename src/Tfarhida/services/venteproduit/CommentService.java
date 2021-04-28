@@ -103,6 +103,8 @@ public class CommentService {
                 U.setId(rst.getInt("ID"));
                 U.setContenue(rst.getString("contenue"));
                 U.setDatedecommentaire(rst.getDate("datedecommentaire"));
+                U.setProduit_id(p.getId());
+                U.setUser_id(rst.getInt("user_id"));
                 String sentimentRes=rst.getString("sentiment");
                  switch(sentimentRes){
                    case "P+": sentimentmeaning ="excellent";break;
@@ -115,7 +117,6 @@ public class CommentService {
                     
                         
                 U.setSentiment(sentimentmeaning);
-                U.setUsername(UserSession.getUsername());
                
                 Comments.add(U);
             }
@@ -133,13 +134,14 @@ public class CommentService {
         
          public List<Comment> getPostivesAvis(Produit p) {
 
-        List<Comment> comments = new ArrayList();
+            List<Comment> comments = new ArrayList();
 
-       
-            String req = "select * from comment where sentiment like('P%') and where produit_id="+p.getId()+"  order by id  desc";
+             System.out.println("nanana"+p.toString());
+            String req = "select * from comment where produit_id="+p.getId()+""+" and where sentiment in (?,?) ";
            
             try  {
              stm = cnx.createStatement();
+             //ste.setInt(u, u);
             ResultSet rst = stm.executeQuery(req);
 
             while(rst.next()) {
@@ -148,15 +150,15 @@ public class CommentService {
                 U.setContenue(rst.getString("contenue"));
                 U.setDatedecommentaire(rst.getDate("datedecommentaire"));
                 U.setSentiment(rst.getString("sentiment"));
-                U.setUsername(UserSession.getUsername());
                
                 comments.add(U);
+                return comments;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return comments;
+        return null;
     }
 
         
@@ -199,7 +201,7 @@ public class CommentService {
         neutre=neutre*100/as.size();  
         }
        
-        System.out.println("Avis Positive : "+nbpos+"% ,Négative : "+nbneg+"%"+" Neutre : "+neutre+"%");
+       // System.out.println("Avis Positive : "+nbpos+"% ,Négative : "+nbneg+"%"+" Neutre : "+neutre+"%");
         rev.add(0, nbpos);
         rev.add(1,nbneg);
         rev.add(2,neutre);
@@ -207,7 +209,20 @@ public class CommentService {
         
     }
         
-        
+       public String getusername(int id) throws SQLException{
+           
+           String sql="select * from user where id='"+id+"'";
+           //System.out.println(id+"id produit");
+
+            stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery(sql);
+            if(rst.next()){
+               // System.out.println(rst.getString("username"));
+                return rst.getString("username");
+            }
+        return "username";
+
+       } 
         
         
         

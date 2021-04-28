@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Organisation {
     
-    private int id , nbrjours , id_user;
+    private int id , nbrjours , user_id;
     private String commentaire , activite, nbrpersonne,Lieu;
     private String  etat ;
     private Date date;
@@ -17,16 +17,29 @@ public class Organisation {
 
     public Organisation(){};
     
-    public Organisation(int id, int nbrjours, String nbrpersonne, Date date, String activite, String commentaire,String Lieu,String etat) {
+    public Organisation(int id, int nbrjours ,String nbrpersonne, Date date, String activite, String commentaire,String Lieu,String etat, int user_id) {
         this.id = id;
         this.nbrjours = nbrjours;
         this.commentaire = commentaire;
-this.etat=etat;
+        this.etat=etat;
         this.activite = activite;
         this.nbrpersonne = nbrpersonne;
         this.Lieu = Lieu;
         this.date = date;
+        this.user_id=user_id;
     }
+    
+      public Organisation(int nbrjours ,String nbrpersonne, Date date, String activite, String commentaire,String Lieu,String etat, int user_id) {
+        this.nbrjours = nbrjours;
+        this.commentaire = commentaire;
+        this.etat=etat;
+        this.activite = activite;
+        this.nbrpersonne = nbrpersonne;
+        this.Lieu = Lieu;
+        this.date = date;
+        this.user_id=user_id;
+    }
+
 
     public int getId() {
         return id;
@@ -100,11 +113,20 @@ this.etat=etat;
     public void setNote(int note) {
         this.note = note;
     }
+       public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+ 
 
     @Override
     public String toString() {
-        return "Organisation{" + "id=" + id + ", nbrjours=" + nbrjours + ", commentaire=" + commentaire + ", activite=" + activite + ", nbrpersonne=" + nbrpersonne + ", Lieu=" + Lieu + ", etat=" + etat + ", date=" + date + ", note=" + note + '}';
+        return "Organisation{" + "id=" + id + ", nbrjours=" + nbrjours + ", commentaire=" + commentaire + ", activite=" + activite + ", nbrpersonne=" + nbrpersonne + ", Lieu=" + Lieu + ", etat=" + etat + ", date=" + date + ", note=" + note +", user_id="+ user_id +  '}';
     }
+
  
 
 } 

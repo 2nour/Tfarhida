@@ -23,27 +23,28 @@ import java.util.logging.Logger;
  * @author Nour
  */
 public class CategorieService {
-    
+
     Connection cnx;
     PreparedStatement ste;
     Statement stm;
+
     public CategorieService() {
         try {
-            cnx= MaConnexion.getinstance().getCnx();
+            cnx = MaConnexion.getinstance().getCnx();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(CategorieService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public List<Produit> AfficherProduits() {
-        List<Produit>produits = new ArrayList<>();
+        List<Produit> produits = new ArrayList<>();
 
         String query = "Select * from `produit`";
-        try  {
-             stm = cnx.createStatement();
+        try {
+            stm = cnx.createStatement();
             ResultSet rst = stm.executeQuery(query);
 
-            while(rst.next()) {
+            while (rst.next()) {
                 Produit U = new Produit();
                 U.setId(rst.getInt("ID"));
                 U.setNom(rst.getString("nom"));
@@ -56,68 +57,64 @@ public class CategorieService {
                 produits.add(U);
             }
 
-
-        } catch(Exception e){
-                Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE,null,e);
+        } catch (Exception e) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, e);
         }
-        return produits ;
+        return produits;
     }
-      
-       public void ModifierProduit(Produit p) {
 
-        String query = "UPDATE produit SET nom= '"+p.getNom()+"',quantite= '"+p.getQuantite()+"',description='"+p.getDescription()+"'"
-              + ",image='"+p.getImage()+"',prix='"+p.getPrix()+"',marque='"+p.getMarque()+"' where id='"+p.getId()+"'";
-        try {
-
-             stm = cnx.createStatement();
-
-            stm.executeUpdate(query);
-
-        } catch(SQLException ex) {
-            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE,null,ex);
-        }
- 
-    }
-       
-      public List<Categorie> AfficherCategories() {
-        List<Categorie>categories = new ArrayList<>();
+    public List<Categorie> AfficherCategories() {
+        List<Categorie> categories = new ArrayList<>();
 
         String query = "Select * from `categorie`";
-        try  {
-             stm = cnx.createStatement();
+        try {
+            stm = cnx.createStatement();
             ResultSet rst = stm.executeQuery(query);
 
-            while(rst.next()) {
+            while (rst.next()) {
                 Categorie U = new Categorie();
                 U.setId(rst.getInt("ID"));
                 U.setNom(rst.getString("nom"));
-                
+
                 categories.add(U);
             }
 
-
-        } catch(Exception e){
-                Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE,null,e);
+        } catch (Exception e) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, e);
         }
-        return categories ;
+        return categories;
     }
-      
-      
-      public void ajouterCategorie(Produit p,Categorie c){
-           try { 
-            String sql="insert into produit_categorie(produit_id,categorie_id)"+"values(?,?)";
+
+    public void ajouterCategorie(int p, Categorie c) {
+        try {
+            String sql = "insert into produit_categorie(produit_id,categorie_id)" + "values(?,?)";
             ste = cnx.prepareStatement(sql);
-            ste.setInt(1, p.getId());
-            ste.setInt(2,c.getId());
-           
+            ste.setInt(1, p);
+            ste.setInt(2, c.getId());
+
             ste.executeUpdate();
             System.out.println("Categorie ajouté");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-      }
-         
-       
-    
-    
+    }
+
+    public Categorie findbynom(String nom) throws SQLException {
+
+        String sql = "select * from categorie where nom='"+nom+"'";
+
+        stm = cnx.createStatement();
+        ResultSet rst = stm.executeQuery(sql);
+        if (rst.next()) {
+            Categorie categorie = new Categorie();
+            categorie.setId(rst.getInt("id"));
+            categorie.setNom(nom.trim());
+            System.out.println("im in service categ" + categorie.getId());
+
+            return categorie;
+
+        }
+        return null;
+    }
+
 }

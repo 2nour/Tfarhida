@@ -31,17 +31,17 @@ public class User {
 
     }
 
-    public User(String email, String username, String password, String confirm_password, String roles) {
+    public User() {
+    }
+
+    public User(String email, String username, String password, String confirm_password, String roles, int Auth) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.confirm_password = confirm_password;
         this.roles = roles;
-       
-    }
-    
+        this.Auth = Auth;
 
-    public User() {
     }
 
     public int getId() {

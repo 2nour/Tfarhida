@@ -40,6 +40,13 @@ public class CommandeService {
         try { 
             //verifier si la commande existe
             String exsist= "select * from commande where panier_id='" +pi.getId()+"'"+" and produit_id='"+p.getId()+"'";
+            
+            
+            System.out.println("panier is"+ pi.getId());
+           System.out.println("user is"+ UserSession.getId());
+
+            
+            
             stm = cnx.createStatement();
             ResultSet rst = stm.executeQuery(exsist);
             if(rst.next())
@@ -52,6 +59,7 @@ public class CommandeService {
                 c.setPanier_id(pi.getId());
                 c.setId(rst.getInt("id"));
                 c.setProduit_id(rst.getInt("Produit_id"));
+                c.setPanier_id(pi.getId());
                 c.setQuantite_produit(qtt+1);
                 c.setPrixcommande(prixCommande);
                 
@@ -62,7 +70,7 @@ public class CommandeService {
              
             }
            
-            else{
+           else{
             
             String sql="insert into commande(produit_id,panier_id,quantite_produit,prixcommande)"+"values(?,?,?,?)";
             ste = cnx.prepareStatement(sql);

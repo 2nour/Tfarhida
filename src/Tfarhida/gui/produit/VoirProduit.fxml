@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
@@ -35,18 +36,13 @@
             <JFXButton layoutX="909.0" layoutY="67.0" onAction="#ajouterComment" prefHeight="31.0" prefWidth="92.0" text="comment" />
          </children>
       </Pane>
-      <Label layoutX="179.0" layoutY="646.0" prefHeight="26.0" prefWidth="219.0" text="Tout les commentaires">
-         <font>
-            <Font name="System Italic" size="17.0" />
-         </font>
-      </Label>
       <PieChart fx:id="piechart" layoutX="969.0" layoutY="154.0" prefHeight="348.0" prefWidth="357.0" />
       <ScrollPane layoutX="179.0" layoutY="680.0" prefHeight="292.0" prefWidth="1048.0" style="-fx-background-color: white;">
          <content>
             <VBox fx:id="vbox" prefHeight="310.0" prefWidth="1020.0" style="-fx-background-color: white;" />
          </content>
       </ScrollPane>
-      <Text fx:id="nbComments" layoutX="370.0" layoutY="665.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="nbComments" layoutX="476.0" layoutY="664.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
       <Text layoutX="975.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistique commentaires" wrappingWidth="243.4169921875" />
       <Label fx:id="lqtt" layoutX="837.0" layoutY="360.0" text="Label">
          <font>
@@ -90,5 +86,6 @@
       </Text>
       <ImageView fx:id="prodImage" fitHeight="310.0" fitWidth="374.0" layoutX="374.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true" style="visibility: true;" />
       <FontAwesomeIconView glyphName="REFRESH" layoutX="1171.0" layoutY="667.0" onMouseClicked="#reload" size="25" wrappingWidth="9.714285850524902" />
+      <JFXComboBox fx:id="combo" layoutX="197.0" layoutY="643.0" onAction="#reloadlist" prefHeight="31.0" prefWidth="272.0" />
    </children>
 </AnchorPane>

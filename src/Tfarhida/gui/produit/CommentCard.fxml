@@ -9,12 +9,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="177.0" prefWidth="911.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Tfarhida.gui.produit.CommentCardController">
+<AnchorPane id="AnchorPane" prefHeight="177.0" prefWidth="911.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.produit.CommentCardController">
    <children>
       <Text fx:id="username" layoutX="103.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="96.1923828125">
          <font>
-            <Font name="Calibri" size="24.0" />
+            <Font name="Calibri" size="19.0" />
          </font>
       </Text>
       <Pane layoutX="103.0" layoutY="58.0" prefHeight="103.0" prefWidth="684.0" style="-fx-background-color: #F9EBEA;">
@@ -22,7 +21,7 @@
             <JFXTextArea fx:id="content" layoutX="61.0" layoutY="7.0" prefHeight="90.0" prefWidth="559.0" />
          </children>
       </Pane>
-      <FontAwesomeIconView fill="#c30505" glyphName="TRASH" layoutX="876.0" layoutY="172.0" onMouseClicked="#deletecomment" size="16" />
+      <FontAwesomeIconView fx:id="deletebtn" fill="#c30505" glyphName="TRASH" layoutX="876.0" layoutY="172.0" onMouseClicked="#deletecomment" size="16" />
       <Text fx:id="datecomment" layoutX="103.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
             <Font name="System Italic" size="15.0" />

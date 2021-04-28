@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Tfarhida.gui.Organisation;
+import Tfarhida.base.UserSession;
 import Tfarhida.entities.Organisation;
 import Tfarhida.services.OrganisationService;
 import java.io.IOException;
@@ -241,11 +242,11 @@ public class AfficherOrganisationController implements Initializable {
         System.out.println("Date = : " + date);
         Date dd = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 
-        
+         int user_id = UserSession.getId();
 
 
         String nbrpersonnem =  txtnbrpersonne.getText(); 
-        Organisation o = new Organisation(id,nb, nbrpersonnem, dd, activite, commentaire, lieu, "En attente");
+        Organisation o = new Organisation(id,nb, nbrpersonnem, dd, activite, commentaire, lieu, "En attente", user_id);
         orgser = new OrganisationService();
         orgser.modifierOrganisation(o);
         JOptionPane.showMessageDialog(null,"Votre demande de programme a été modifiée");

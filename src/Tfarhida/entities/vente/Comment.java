@@ -19,29 +19,23 @@ public class Comment {
     Date datedecommentaire;
     int user_id;
     String sentiment;
-    String username;
+    
 
     public Comment() {
     }
 
   
-    public Comment(int produit_id, String contenue, Date datedecommentaire, int user_id, String username) {
+    public Comment(int produit_id, String contenue, Date datedecommentaire, int user_id ) {
        
         this.produit_id = produit_id;
         this.contenue = contenue;
         this.datedecommentaire = datedecommentaire;
         this.user_id = user_id;
         
-        this.username = username;
+       
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+   
     
     
     

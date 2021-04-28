@@ -28,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -39,6 +40,11 @@ public class AfficherPanierController implements Initializable {
     Panier panier=ps.getPanier(UserSession.getId());    
     @FXML
     private VBox vbox;
+    @FXML
+    private Text nbProduit;
+    @FXML
+    private Text sommepanier;
+    
 
      /**
      * Initializes the controller class.
@@ -49,6 +55,9 @@ public class AfficherPanierController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // 
         setitems();
+        sommepanier.setText(panier.getSomme().toString());
+        nbProduit.setText(String.valueOf(panier.getNbproduit()));
+        
         
     }
     
@@ -98,6 +107,10 @@ public class AfficherPanierController implements Initializable {
     private void refresh(MouseEvent event) {
         vbox.getChildren().clear();
         setitems();
+         PanierService ps = new PanierService();
+         Panier panier=ps.getPanier(UserSession.getId());    
+         sommepanier.setText(panier.getSomme().toString());
+         nbProduit.setText(String.valueOf(panier.getNbproduit()));
     }
     
 }

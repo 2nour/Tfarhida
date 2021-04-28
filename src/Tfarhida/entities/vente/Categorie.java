@@ -12,11 +12,19 @@ package Tfarhida.entities.vente;
 public class Categorie {
     int id;
     String nom;
+   
 
     public Categorie(int id, String nom) {
         this.id = id;
         this.nom = nom;
     }
+
+    
+    
+    
+    
+
+    
 
     public Categorie() {
     }

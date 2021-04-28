@@ -49,5 +49,8 @@
             </Label>
          </children>
       </Pane>
+      <Label fx:id="MailLabel" layoutX="797.0" layoutY="258.0" prefHeight="17.0" prefWidth="210.0" />
+      <Label fx:id="UserLabel" layoutX="797.0" layoutY="329.0" prefHeight="17.0" prefWidth="210.0" />
+      <Label fx:id="PwLabel" layoutX="797.0" layoutY="413.0" prefHeight="17.0" prefWidth="210.0" />
    </children>
 </AnchorPane>

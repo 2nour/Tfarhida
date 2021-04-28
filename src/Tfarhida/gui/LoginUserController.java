@@ -70,12 +70,10 @@ public class LoginUserController implements Initializable {
         // TODO
     }
 
-    public LoginUserController()  {
-        try {
+    public LoginUserController() throws ClassNotFoundException  {
+        
             Connection cnx = MaConnexion.getinstance().getCnx();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginUserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
     }
 
 //    Connection cnx = null;
