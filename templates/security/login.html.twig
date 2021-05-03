@@ -1,0 +1,57 @@
+{% extends 'base.html.twig'%}
+{% block body %}
+
+{% for message in app.flashes('message') %}
+     <div class="alert alert-success" role="alert">
+    {{ message }}
+     </div>
+{% endfor %}
+    {% for message in app.flashes('warninig') %}
+        <div class="alert alert-warning" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+<section id="pricing" class="pricing">
+    <div class="container">
+        <h2>Connexion</h2>
+        <div class="align-content-center">
+            <form action="{{ path('security_login') }}" method="post">
+                <div class="form-login">
+                    <label class="text-center">Votre adresse mail</label>
+
+                    <input  placeholder="Adresse email..." required name="_username"
+                           type="text" class="form-control" >
+
+                </div>
+                <div class="form-login">
+                    <label class="text-center">Votre mot de passe</label>
+
+                    <input placeholder="Mot de passe..." required name="_password"
+                           type="password" class="form-control" >
+
+                </div>
+
+                <div class="form-login">
+                    <button type="submit" class="btn btn-primary">Connexion  </button>
+                    <a href="{{ path('app_forgotten_password') }}" class="btn btn-danger">Mot de passe oublié? </a>
+
+                </div>
+                <div class="form-login">
+                    <a class="help-link" href="{{ path('security_registration') }}" >Créer un compte</a>
+                </div>
+
+
+
+            </form>
+        </div>
+
+
+
+    </div>
+</section>
+{% endblock %}

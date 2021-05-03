@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des réservations{% endblock %}
+
+{% block body %}
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Liste des réservations</h2>
+                <ol>
+                    <li><a href="{{ path('home') }}">Acceuil</a></li>
+                    <li><a href="#"> Réservation</a></li>
+                </ol>
+            </div>
+
+        </div>
+    </section><br>
+
+    <table class="tableReservation">
+        <thead>
+        <tr>
+            <th>DateReservation</th>
+            <th>Nom du chambre</th>
+            <th>Montant</th>
+            <th class="bg-light">Etats</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservation %}
+            <tr>
+                <td>{{ reservation.dateReservation|date('Y-m-d') }}</td>
+                <td>{{ reservation.chambre.nom }}</td>
+                <td>{{ reservation.chambre.prix }}</td>
+                {% if (reservation.etats=="Accepter") %}
+                    <td class="bg-success"> {{ reservation.etats }}</td>
+                {% endif %}
+                {% if (reservation.etats=="Refuser") %}
+                    <td class="bg-danger"> {{ reservation.etats }}</td>
+                {% endif %}
+                {% if (reservation.etats=="En cours") %}
+                    <td class="bg-warning"> {{ reservation.etats }}</td>
+                {% endif %}
+                <td>
+                    <a href="{{ path('removeReservation', {'id': reservation.id}) }}"><button class="btn btn-danger my-3" >Supprimer</button></a>
+
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+    </div>
+
+{% endblock %}

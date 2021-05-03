@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des réservations{% endblock %}
+{% block body %}
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Liste des réservations</h2>
+                <ol>
+                    <li><a href="{{ path('home') }}">Acceuil</a></li>
+                </ol>
+            </div>
+
+        </div>
+    </section><br>
+
+    <table class="tableReservation">
+        <thead>
+        <tr>
+            <th>DateReservation</th>
+            <th>Nom du chambre</th>
+            <th>Montant</th>
+            <th class="bg-light">Etats</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservation %}
+            <tr>
+                {% if (reservation.etats=="En cours") %}
+
+                    <td>{{ reservation.dateReservation|date('Y-m-d') }}</td>
+                    <td>{{ reservation.chambre.nom }}</td>
+                    <td>{{ reservation.chambre.prix }}</td>
+
+
+                    <td>
+                        <a href="{{ path('etats', {'idReserv': reservation.id } ) }}"> <button type="submit" name="submitAction"  value="accepter" class="btn btn-success my-3">Reponse</button></a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

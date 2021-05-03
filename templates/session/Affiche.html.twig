@@ -1,0 +1,50 @@
+
+
+{% block title %} liste des favoris{% endblock %}
+
+{% block body -%}
+    <div class="bd-example">
+        <button type="button" class="btn btn-primary" id="" data-toggle="modal" data-target="#exampleModal{{ entity.id }}" data-whatever="@getbootstrap">Modfier <Personne></Personne></button>
+        <div class="modal fade" id="exampleModal{{ entity.id }}"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <br><br><br>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="exampleModalLabel">Modfier Personne</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        {{ form_start(edit_form) }}
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Nom:</label>
+                            {{ form_widget(edit_form.nom,{'attr':{'class':'form-control'}} ) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Prenom:</label>
+                            {{ form_widget(edit_form.prenom,{'attr':{'class':'form-control'}} ) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label"> Adresse Email:</label>
+                            {{ form_widget(edit_form.email,{'attr':{'class':'form-control'}} ) }}
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        {{ form_row(edit_form.submit,{'attr':{'class':'btn btn-warning'}}) }}
+
+                    </div>
+                    {{ form_rest(edit_form) }}
+                    {{ form_end(edit_form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
