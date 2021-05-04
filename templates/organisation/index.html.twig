@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+
+    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Demande programme</h2>
+                <ol>
+                    <li><a href={{ path('home') }}>Home</a></li>
+                    <li>Demande programme</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="form-group" >
+        {{ form_errors(form.nbrpersonne) }}
+        {{ form_label(form.nbrpersonne, "Nombre de personnes") }}
+        {{ form_widget (form.nbrpersonne) }}
+    </div>
+    <div class="form-group" >
+        {{ form_label(form.date,"Date de départ") }}
+        {{ form_widget (form.date) }}
+        {{ form_errors(form.date) }}
+
+    </div>
+    <div class="form-group">
+        {{ form_errors(form.nbrjours) }}
+        {{ form_label(form.nbrjours,"Nombre de jours") }}
+        {{ form_widget (form.nbrjours) }}
+    </div>
+    <div class="form-group">
+        {{ form_errors(form.activite) }}
+        {{ form_label(form.activite," Activité") }}
+
+        {{ form_widget (form.activite) }}
+    </div>
+
+
+
+    <div class="form-group">
+        {{ form_errors(form.commentaire) }}
+        {{ form_label(form.commentaire,"Commentaire") }}
+        {{ form_widget (form.commentaire) }}
+
+    </div>
+
+    <div class="form">
+    <button type="submit" name="submitAction"  value="ajouter" >Suivant</button>
+</div>
+
+
+{% endblock %}
