@@ -3,16 +3,24 @@
 namespace App\Controller;
 
 
+use App\Entity\Chambre;
 use App\Entity\comment;
 use App\Entity\Produit;
 use App\Entity\User;
+use App\Form\ChambreType;
 use App\Form\CommentType;
+use App\Repository\ChambreRepository;
 use App\Repository\CommentRepository;
+use App\Repository\MaisonRepository;
 use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommentController extends AbstractController
 {
@@ -103,6 +111,57 @@ class CommentController extends AbstractController
         return $this->redirectToRoute('voirProduit',['id'=>$comment->getProduit()->getId(),'produit'=>$comment->getProduit(),]);
        // return $this->render("produit/voirproduit.html.twig",['id'=>$comment->getProduit()->getId(),'produit'=>$comment->getProduit(),]);
 
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param MaisonRepository $repository
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/afficheCommentProduitJson", name="afficheCommentProduitJson")
+     */
+    public function afficheCommentProduitJson(NormalizerInterface $normalizer, CommentRepository $repository){
+        $comment = $repository->findAll();
+        $jsonContent = $normalizer->normalize($comment, 'json',['groups'=>'comments']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/deleteCommentProduitJSON/{id}", name="deleteCommentProduitJSON")
+     */
+    public function deleteCommentProduitJSON(Request $request,NormalizerInterface $normalizer, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comment = $em->getRepository(comment::class)->find($id);
+        $em->remove($comment);
+        $em->flush();
+        $jsonContent = $normalizer->normalize($comment, 'json', ['groups' => 'comment']);
+        return new Response("Commentaire supprimé".json_encode($jsonContent));
+    }
+
+
+    /**
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @Route("/ajoutCommentProduitJSON", name="ajoutCommentProduitJSON")
+     */
+
+    public function addCommentProduitJSON(Request $request, SerializerInterface $serializer){
+        $em = $this->getDoctrine()->getManager();
+        $content = $request->getContent();
+        $data = $serializer->deserialize($content, comment::class, 'json');
+        $em->persist($data);
+        $em->flush();
+        return new Response('Comment added successfully');
     }
 
 }

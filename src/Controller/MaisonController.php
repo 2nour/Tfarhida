@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class MaisonController extends AbstractController
@@ -238,20 +239,30 @@ class MaisonController extends AbstractController
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      * @Route("/UpdateMaisonJSON/{id}", name="UpdateMaisonJSON")
      */
+
     public function updateMaisonJSON(Request $request,NormalizerInterface $normalizer,$id)
     {
         $em = $this->getDoctrine()->getManager();
         $maison = $em->getRepository(Maison::class)->find($id);
-        $maison->setNom($request->get('nom'));
-        $maison->setAdresse($request->get('adresse'));
-        $maison->setNbrChambre($request->get('nbr_chambre'));
-        $maison->setTel($request->get('tel'));
-        $maison->setPhoto($request->get('photo'));
-        $maison->setDescription($request->get('description'));
 
-        $em->flush();
-        $jsonContent = $normalizer->normalize($maison, 'json', ['groups' => 'maison']);
-        return new Response("Maison modifiée".json_encode($jsonContent));
+        if (empty($maison)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $form = $this->createForm(MaisonsType::class, $maison);
+
+        $form->submit($request->request->all());
+
+        if ($form->isValid()) {
+            $em = $this->get('doctrine.orm.entity_manager');
+            // l'entité vient de la base, donc le merge n'est pas nécessaire.
+            // il est utilisé juste par soucis de clarté
+            $em->merge($maison);
+            $em->flush();
+            return $maison;
+        } else {
+            return $form;
+        }
     }
 
     /**

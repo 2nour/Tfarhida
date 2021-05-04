@@ -7,67 +7,79 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JsonSerializable;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
  */
-class Produit
+class Produit implements JsonSerializable
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("produit")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=25)
      * @Assert\NotBlank(message="nom est requis")
+     * @Groups("produit")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="quantite est requis")
+     * @Groups("produit")
      */
     private $quantite;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message="description est requis")
+     * @Groups("produit")
      */
     private $description;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="prix est requis")
+     * @Groups("produit")
      */
     private $prix;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("produit")
      */
     private $marque;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="image est requis")
+     * @Groups("produit")
      */
     private $image;
 
 
     /**
      * @ORM\OneToMany(targetEntity=comment::class,cascade={"persist", "remove"}, mappedBy="produit")
+     * @Groups("produit")
      */
     private $comments;
 
     /**
      * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="produit",cascade={"persist", "remove"}, orphanRemoval=true)
+     * @Groups("produit")
      */
     private $commandes;
 
     /**
      * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="produit")
+     * @Groups("produit")
      */
     private $categories;
 
@@ -250,5 +262,17 @@ class Produit
     }
 
 
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->id,
+            'nom' => $this->nom,
+            'quantite' => $this->quantite,
+            'description' => $this->description,
+            'prix' => $this->prix,
+            'marque' => $this->marque,
+            'image' => $this->image,
 
+        );
+    }
 }

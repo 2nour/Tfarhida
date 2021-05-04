@@ -4,38 +4,45 @@ namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CommentaireRepository::class)
  */
-class Commentaire
+class Commentaire implements JsonSerializable
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("comment")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("comment")
      */
     private $comment;
 
     /**
      * @ORM\ManyToOne(targetEntity=Maison::class, inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("comment")
      */
     private $maison;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("comment")
      */
     private $user;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups("comment")
      */
     private $date;
 
@@ -103,4 +110,13 @@ class Commentaire
         return $this;
     }
 
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->id,
+            'comment' => $this->comment,
+            'date' => $this->date,
+
+        );
+    }
 }

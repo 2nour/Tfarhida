@@ -10,8 +10,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints\Json;
-
 use Doctrine\Common\Collections\ArrayCollection;
+use JsonSerializable;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(
@@ -19,76 +21,88 @@ use Doctrine\Common\Collections\ArrayCollection;
  *     message= "l'email que vous avez indiqué est déja utilisé ! "
  *     )
  */
-class User implements UserInterface
+class User implements UserInterface, JsonSerializable
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("user")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Email()
+     * @Groups("user")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
+     * @Groups("user")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(min="8", minMessage="votre mot de passe doit faire mininum 8 carractéres")
+     * @Groups("user")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\EqualTo(propertyPath="password",message="vous n'avez pas tapé le meme mot de passe" )
+     * @Groups("user")
      */
     private $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Groups("user")
      */
     private $Activation_token;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups("user")
      */
     private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Groups("user")
      */
     private $reset_token;
 
     /**
      * @ORM\OneToMany(targetEntity=Favoris::class, mappedBy="user")
+     * @Groups("user")
      */
     private $favoris;
 
     /**
      * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user")
+     * @Groups("user")
      */
     private $commentaires;
 
     /**
      * @ORM\OneToOne(targetEntity=Panier::class, mappedBy="user", cascade={"persist", "remove"})
+     * @Groups("user")
      */
     private $panier;
 
     /**
      * @ORM\OneToMany(targetEntity=comment::class, mappedBy="User")
+     * @Groups("user")
      */
     private $comments;
 
     /**
      * @ORM\OneToMany(targetEntity=ReservationMaison::class, mappedBy="user", orphanRemoval=true)
+     * @Groups("user")
      */
     private $reservationMaisons;
 
@@ -345,4 +359,16 @@ class User implements UserInterface
     }
 
 
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->id,
+            'email' => $this->email,
+            'username' => $this->username,
+            'password' => $this->password,
+            'confirm_password' => $this->confirm_password,
+            'roles' => $this->roles
+
+        );
+    }
 }

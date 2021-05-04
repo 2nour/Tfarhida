@@ -9,14 +9,19 @@ use App\Entity\Commande;
 use App\Entity\User;
 use App\Form\CommandeType;
 use App\Form\PanierType;
+use App\Repository\ChambreRepository;
+use App\Repository\MaisonRepository;
 use App\Repository\PanierRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 class PanierController extends AbstractController
@@ -78,10 +83,26 @@ class PanierController extends AbstractController
             return null;
         }
 
-
-
     }
 
+    //Partie JSON
+
+
+    /**
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @Route("/ajoutPannierJSON", name="ajoutPannierJSON")
+     */
+
+    public function addPannierJSON(Request $request, SerializerInterface $serializer){
+        $em = $this->getDoctrine()->getManager();
+        $content = $request->getContent();
+        $data = $serializer->deserialize($content, Panier::class, 'json');
+        $em->persist($data);
+        $em->flush();
+        return new Response('Panier added successfully');
+    }
 
 
 }

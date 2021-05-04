@@ -14,7 +14,9 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ChambreController extends AbstractController
 {
@@ -149,4 +151,91 @@ class ChambreController extends AbstractController
             'f'=>$form->createView(), 'chambre'=>$chambre
         ]);
     }
+
+    //Partie JSON
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param MaisonRepository $repository
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/afficheChJson", name="afficheChJson")
+     */
+    public function afficheJson(NormalizerInterface $normalizer, ChambreRepository $repository){
+        $chambres = $repository->findAll();
+        $jsonContent = $normalizer->normalize($chambres, 'json',['groups'=>'maisons']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/deleteChambreJSON/{id}", name="deleteChambreJSON")
+     */
+    public function deleteChambreJSON(Request $request,NormalizerInterface $normalizer, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        // $id = $request->get("idM");
+        $chambre = $em->getRepository(Chambre::class)->find($id);
+        $em->remove($chambre);
+        $em->flush();
+        $jsonContent = $normalizer->normalize($chambre, 'json', ['groups' => 'chambre']);
+        return new Response("Chambre supprimé".json_encode($jsonContent));
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/UpdateChambreJSON/{id}", name="UpdateChambreJSON")
+     */
+    public function updateChambreJSON(Request $request,NormalizerInterface $normalizer,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $chambre = $em->getRepository(Chambre::class)->find($id);
+        if (empty($chambre)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $form = $this->createForm(ChambreType::class, $chambre);
+
+        $form->submit($request->request->all());
+
+        if ($form->isValid()) {
+            $em = $this->get('doctrine.orm.entity_manager');
+            // l'entité vient de la base, donc le merge n'est pas nécessaire.
+            // il est utilisé juste par soucis de clarté
+            $em->merge($chambre);
+            $em->flush();
+            return $chambre;
+        } else {
+            return $form;
+        }
+    }
+
+
+    /**
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @Route("/ajoutChambreJSON", name="ajoutChambreJSON")
+     */
+
+    public function addChambreJSON(Request $request, SerializerInterface $serializer){
+        $em = $this->getDoctrine()->getManager();
+        $content = $request->getContent();
+        $data = $serializer->deserialize($content, Chambre::class, 'json');
+        $em->persist($data);
+        $em->flush();
+        return new Response('Chambre added successfully');
+    }
+
 }

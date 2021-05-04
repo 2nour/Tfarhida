@@ -2,15 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
 use App\Entity\User;
+use App\Form\AjouterProduitFormType;
 use App\Form\EditRoleType;
 use App\Form\EditUserType;
 use App\Form\RegistrationType;
 use App\Form\ResetPassType;
+use App\Repository\MaisonRepository;
+use App\Repository\ProduitRepository;
 use App\Repository\UserRepository;
 use Cassandra\Type\UserType;
 use phpDocumentor\Reflection\Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +23,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class SecurityController extends AbstractController
 {
@@ -332,4 +339,90 @@ class SecurityController extends AbstractController
         return $this->render('user/user.html.twig');
 
     }
+
+// Partie JSON
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param MaisonRepository $repository
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/afficheUserJson", name="afficheUserJson")
+     */
+    public function afficheUserJson(NormalizerInterface $normalizer, UserRepository $repository){
+        $users = $repository->findAll();
+        $jsonContent = $normalizer->normalize($users, 'json',['groups'=>'users']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/deleteUserJSON/{id}", name="deleteUserJSON")
+     */
+    public function deleteUserJSON(Request $request,NormalizerInterface $normalizer, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+        $em->remove($user);
+        $em->flush();
+        $jsonContent = $normalizer->normalize($user, 'json', ['groups' => 'user']);
+        return new Response("Utilisateur supprimé".json_encode($jsonContent));
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/UpdateUserJSON/{id}", name="UpdateUserJSON")
+     */
+    public function updateUerJSON(Request $request,NormalizerInterface $normalizer,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+        if (empty($user)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $form = $this->createForm(EditUserType::class, $user);
+
+        $form->submit($request->request->all());
+
+        if ($form->isValid()) {
+            $em = $this->get('doctrine.orm.entity_manager');
+            // l'entité vient de la base, donc le merge n'est pas nécessaire.
+            // il est utilisé juste par soucis de clarté
+            $em->merge($user);
+            $em->flush();
+            return $user;
+        } else {
+            return $form;
+        }
+    }
+
+
+    /**
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @Route("/ajoutUserJSON", name="ajoutUserJSON")
+     */
+
+    public function addUserJSON(Request $request, SerializerInterface $serializer){
+        $em = $this->getDoctrine()->getManager();
+        $content = $request->getContent();
+        $data = $serializer->deserialize($content, User::class, 'json');
+        $em->persist($data);
+        $em->flush();
+        return new Response('User added successfully');
+    }
+
 }

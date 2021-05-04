@@ -6,37 +6,44 @@ use App\Repository\PanierRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PanierRepository::class)
  */
-class Panier
+class Panier implements JsonSerializable
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("panier")
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("panier")
      */
     private $nbproduit;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups("panier")
      */
     private $somme;
 
     /**
      * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="panier", orphanRemoval=true)
+     * @Groups("panier")
      */
     private $commandes;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="panier", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("panier")
      */
     private $user;
 
@@ -122,7 +129,13 @@ class Panier
     }
 
 
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->id,
+            'nbproduit' => $this->nbproduit,
+            'somme' => $this->somme
 
-
-
+        );
+    }
 }

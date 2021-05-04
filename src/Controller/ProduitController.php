@@ -3,18 +3,22 @@
 namespace App\Controller;
 
 use App\Data\SearchData;
+use App\Entity\Chambre;
 use App\Entity\Commande;
 use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\comment;
 use App\Entity\User;
 
+use App\Form\ChambreType;
 use App\Form\CommentType;
 
 use App\Form\AjouterProduitFormType;
 use App\Form\SearchForm;
+use App\Repository\ChambreRepository;
 use App\Repository\CommandeRepository;
 use App\Repository\CommentRepository;
+use App\Repository\MaisonRepository;
 use App\Repository\PanierRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\UserRepository;
@@ -27,6 +31,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ProduitController extends AbstractController
 {
@@ -176,14 +183,6 @@ class ProduitController extends AbstractController
 
 
 
-
-
-
-
-
-
-
-
     /**
      * @param Request $request
      * @param $id
@@ -238,6 +237,92 @@ class ProduitController extends AbstractController
         return $this->render("produit/update.html.twig",['produit'=>$produit,
             'form'=>$form->createView()
         ]);
+    }
+
+
+    // Partie JSON
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param MaisonRepository $repository
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/afficheProduitJson", name="afficheProduitJson")
+     */
+    public function afficheProduitJson(NormalizerInterface $normalizer, ProduitRepository $repository){
+        $produits = $repository->findAll();
+        $jsonContent = $normalizer->normalize($produits, 'json',['groups'=>'produits']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/deleteProduitJSON/{id}", name="deleteProduitJSON")
+     */
+    public function deleteProduitJSON(Request $request,NormalizerInterface $normalizer, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $produit = $em->getRepository(Produit::class)->find($id);
+        $em->remove($produit);
+        $em->flush();
+        $jsonContent = $normalizer->normalize($produit, 'json', ['groups' => 'produit']);
+        return new Response("Produit supprimé".json_encode($jsonContent));
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/UpdateProduitJSON/{id}", name="UpdateProduitJSON")
+     */
+    public function updateProduitJSON(Request $request,NormalizerInterface $normalizer,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $produit = $em->getRepository(Produit::class)->find($id);
+        if (empty($produit)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $form = $this->createForm(AjouterProduitFormType::class, $produit);
+
+        $form->submit($request->request->all());
+
+        if ($form->isValid()) {
+            $em = $this->get('doctrine.orm.entity_manager');
+            // l'entité vient de la base, donc le merge n'est pas nécessaire.
+            // il est utilisé juste par soucis de clarté
+            $em->merge($produit);
+            $em->flush();
+            return $produit;
+        } else {
+            return $form;
+        }
+    }
+
+
+    /**
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @Route("/ajoutProduitJSON", name="ajoutProduitJSON")
+     */
+
+    public function addProduitJSON(Request $request, SerializerInterface $serializer){
+        $em = $this->getDoctrine()->getManager();
+        $content = $request->getContent();
+        $data = $serializer->deserialize($content, Produit::class, 'json');
+        $em->persist($data);
+        $em->flush();
+        return new Response('Produit added successfully');
     }
 
 }

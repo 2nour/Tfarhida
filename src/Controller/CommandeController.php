@@ -2,20 +2,27 @@
 
 namespace App\Controller;
 
+use App\Entity\Chambre;
 use App\Entity\Commande;
 use App\Entity\Produit;
 use App\Entity\Panier;
 use App\Entity\User;
 
+use App\Form\ChambreType;
 use App\Form\CommandeType;
+use App\Repository\ChambreRepository;
 use App\Repository\CommandeRepository;
+use App\Repository\MaisonRepository;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\Query;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 class CommandeController extends AbstractController
@@ -144,6 +151,91 @@ class CommandeController extends AbstractController
         return $this->redirectToRoute("panierListe");
 
 
+    }
+
+    //Partie JSON
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param MaisonRepository $repository
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/afficheCommandeJson", name="afficheCommandeJson")
+     */
+    public function afficheCommandeJson(NormalizerInterface $normalizer, ChambreRepository $repository){
+        $commandes = $repository->findAll();
+        $jsonContent = $normalizer->normalize($commandes, 'json',['groups'=>'commandes']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/deleteCommandeJSON/{id}", name="deleteCommandeJSON")
+     */
+    public function deleteCommandeJSON(Request $request,NormalizerInterface $normalizer, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->getRepository(Commande::class)->find($id);
+        $em->remove($commande);
+        $em->flush();
+        $jsonContent = $normalizer->normalize($commande, 'json', ['groups' => 'commande']);
+        return new Response("Commande supprimé".json_encode($jsonContent));
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/UpdateCommandeJSON/{id}", name="UpdateCommandeJSON")
+     */
+    public function updateCommandeJSON(Request $request,NormalizerInterface $normalizer,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->getRepository(Commande::class)->find($id);
+        if (empty($commande)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $form = $this->createForm(CommandeType::class, $commande);
+
+        $form->submit($request->request->all());
+
+        if ($form->isValid()) {
+            $em = $this->get('doctrine.orm.entity_manager');
+            // l'entité vient de la base, donc le merge n'est pas nécessaire.
+            // il est utilisé juste par soucis de clarté
+            $em->merge($commande);
+            $em->flush();
+            return $commande;
+        } else {
+            return $form;
+        }
+    }
+
+
+    /**
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @Route("/ajoutCommandeJSON", name="ajoutCommandeJSON")
+     */
+
+    public function addCommandeJSON(Request $request, SerializerInterface $serializer){
+        $em = $this->getDoctrine()->getManager();
+        $content = $request->getContent();
+        $data = $serializer->deserialize($content, Commande::class, 'json');
+        $em->persist($data);
+        $em->flush();
+        return new Response('Commande added successfully');
     }
 
 

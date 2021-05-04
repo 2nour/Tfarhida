@@ -1,18 +1,24 @@
 <?php
 
 namespace App\Controller;
-use App\Entity\commentaire;
+
+use App\Entity\Commentaire;
 use App\Entity\Maison;
 use App\Entity\User;
 use App\Form\CommentaireType;
 use App\Form\SearchType;
 use App\Repository\CommentaireRepository;
+use App\Repository\CommentRepository;
+use App\Repository\MaisonRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PanierRepository;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HomeController extends AbstractController
 {
@@ -92,6 +98,57 @@ class HomeController extends AbstractController
         $maison->setNbrComment($nbrComment-1);
         $em->flush();
         return $this->redirectToRoute("read",["id"=>$maison->getId()]);
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param MaisonRepository $repository
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/afficheCommentMaisonJson", name="afficheCommentMaisonJson")
+     */
+    public function afficheCommentMaisonJson(NormalizerInterface $normalizer, CommentaireRepository $repository){
+        $comment = $repository->findAll();
+        $jsonContent = $normalizer->normalize($comment, 'json',['groups'=>'comments']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/deleteCommentMaisonPJSON/{id}", name="deleteCommentMaisonPJSON")
+     */
+    public function deleteCommentMaisonJSON(Request $request,NormalizerInterface $normalizer, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comment = $em->getRepository(Commentaire::class)->find($id);
+        $em->remove($comment);
+        $em->flush();
+        $jsonContent = $normalizer->normalize($comment, 'json', ['groups' => 'comment']);
+        return new Response("Commentaire supprimé".json_encode($jsonContent));
+    }
+
+
+    /**
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @Route("/ajoutCommentMaisonPJSON", name="ajoutCommentMaisonPJSON")
+     */
+
+    public function addCommentMaisonJSON(Request $request, SerializerInterface $serializer){
+        $em = $this->getDoctrine()->getManager();
+        $content = $request->getContent();
+        $data = $serializer->deserialize($content, Commentaire::class, 'json');
+        $em->persist($data);
+        $em->flush();
+        return new Response('Comment added successfully');
     }
 
 }
