@@ -1,88 +1,49 @@
 <?php
 
+
 namespace App\Controller;
-use App\Controller\Post;
-use App\Entity\Randonnee;
-use App\Entity\Search;
-use App\Form\ReservationType;
+
+
 use App\Entity\Reservation;
-use App\Form\SearchType;
-use App\Notifications\CreationReservationNotification;
-use App\Repository\RandonneeRepository;
+use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Dompdf\Dompdf;
-use Dompdf\Options;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
-class ReservationController extends AbstractController
+class ApiReservationController extends AbstractController
 {
-
-    /**
-     * @Route("/", name="reservation")
-     */
-    public function home()
-    {
-        return $this->render('reservation\index.html.twig');
-    }
-    /**
-     * @Route("/reservationAdmin", name="reservationAdmin")
-     */
-    public function Admin(ReservationRepository $repository)
-    {
-        if(isset($_GET["idAffected"])){
-            $repository = $this->getDoctrine()->getRepository(Reservation::class);
-            $repository->AffecterReservation();
-        }
-        if(isset($_GET["idRefuser"])){
-            $repository = $this->getDoctrine()->getRepository(Reservation::class);
-            $repository->RefuserReservation();
-        }
-        $resrvation=$repository->findAll();
-        return $this->render('reservation/reservationAdmin.html.twig',
-            ['reservation'=>$resrvation]);
-    }
-
-    /**
-     * @Route("/reservation/show/{id}", name="reservation_show")
-     */
-    public function show($id) {
-        $reservation = $this->getDoctrine()->getRepository(Reservation::class)->find($id);
-
-        return $this->render('reservation/show.html.twig', array('reservation' => $reservation));
-    }
-
-
-
     /**
      * @param ReservationRepository $repository
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/AfficheReservationRandonne", name="AfficheReservation_randonne")
+     * @Route("/api/index", name="AfficheReservation_api")
      *
      */
     public function Affiche(ReservationRepository $repository){
+        $repository = $this->getDoctrine()->getRepository(Reservation::class);
+        $reservation=$repository->findAll();
 
         if(isset($_POST["submit"])){
             $repository = $this->getDoctrine()->getRepository(Reservation::class);
             $reservation=$repository->findRandonnee($_POST["search"]);
-            return $this->render('reservation/Afficheres.html.twig',
-                ['reservation'=>$reservation]);
+            $serializer = new Serializer([new ObjectNormalizer()]);
+            $formatted = $serializer->normalize($reservation);
+            return new JsonResponse($formatted);
         }
-        $reservation=$repository->findAll();
-        return $this->render('reservation/Afficheres.html.twig',
-            ['reservation'=>$reservation]);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reservation);
+        return new JsonResponse($formatted);
 
     }
-
-
     /**
      *
-     * @Route("/reservation/listr", name="liste_reservation")
+     * @Route("/api/reservation/listr", name="liste_reservation")
      * Method{{"GET","POST"}}
      */
 
@@ -115,42 +76,28 @@ class ReservationController extends AbstractController
         $dompdf->stream("mypdf.pdf", [
             "Attachment" => false
         ]);
+        $response=array();
+        array_push($response,['code'=>200,'respose'=>'success']);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reservation);
+        return new JsonResponse($formatted);
     }
-
-
-
-
-
     /**
-     * @Route("/reservation/delete/{id}",name="deletereservation")
-
+     * @Route("/api/reservation/delete/{id}",name="deletereservation_api")
+     */
     public function delete(Request $request, $id) {
         $reservation = $this->getDoctrine()->getRepository(Reservation::class)->find($id);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($reservation);
         $entityManager->flush();
 
-        $response = new Response();
-        $response->send();
-        return $this->redirectToRoute('AfficheReservation');
+
+        $response=array();
+        array_push($response,['code'=>200,'respose'=>'success','id'=>$id]);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reservation);
+        return new JsonResponse($formatted);
     }
-
-
-    /**
-     * @Route("/reservation/delete/{id}",name="deletereservation")
-     *
-     */
-
-    public function delete($id, ReservationRepository $repository) {
-        $reservation = $repository->find($id);
-        $em=$this->getDoctrine()->getManager();
-        $em->remove($reservation);
-        $em->flush();
-        return $this->redirectToRoute('AfficheReservationRandonne');
-
-    }
-
-
     /**
      *
      * @Route("/reservation/Add", name="add_reservation")
@@ -170,17 +117,21 @@ class ReservationController extends AbstractController
             $em->persist($reservation);
             $em->flush();
             $resrvation=$repository->findAll();
-            return $this->render('reservation/Afficheres.html.twig',
-                ['reservation'=>$resrvation]);
+            $response=array();
+            array_push($response,['code'=>200,'respose'=>'success']);
+            $serializer = new Serializer([new ObjectNormalizer()]);
+            $formatted = $serializer->normalize($reservation);
+            return new JsonResponse($formatted);
         }
-        return $this->render('reservation/Addres.html.twig',[
-            'form'=>$form->createView()
-        ]);
+        $response=array();
+        array_push($response,['code'=>200,'respose'=>'success']);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reservation);
+        return new JsonResponse($formatted);
     }
-
     /**
      *
-     * @Route("/reservation/edit/{id}", name="modif")
+     * @Route("/api/reservation/edit/{id}", name="modif_api")
      * Method{{"GET","POST"}}
      */
     public function UpdateReservation(Request $request, $id,ReservationRepository $repository)
@@ -197,20 +148,17 @@ class ReservationController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             $resrvation=$repository->findAll();
-            return $this->render('reservation/Afficheres.html.twig',
-                ['reservation'=>$resrvation]);
+            $response=array();
+            array_push($response,['code'=>200,'respose'=>'success']);
+            $serializer = new Serializer([new ObjectNormalizer()]);
+            $formatted = $serializer->normalize($reservation);
+            return new JsonResponse($formatted);
         }
-        return $this->render('reservation/editres.html.twig',[
-            'form'=>$form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/loca", name="loca")
-     */
-    public function index()
-    {
-        return $this->render('reservation/localisation.html.twig');
+        $response=array();
+        array_push($response,['code'=>200,'respose'=>'success']);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reservation);
+        return new JsonResponse($formatted);
     }
 
 }
