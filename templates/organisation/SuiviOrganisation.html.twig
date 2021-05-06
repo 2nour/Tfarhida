@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+
+    <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Suivi programme</h2>
+        <ol>
+            <li><a href={{ path('home') }}>Home</a></li>
+            <li>Suivi programme</li>
+        </ol>
+    </div>
+    </div>
+    </section>
+
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+
+            <div class="row">
+                {% for p in organisation %}
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
+                        <h3>la demande n° : {{ p.id }}</h3>
+                        <span>Le nombre de personne : {{ p.nbrpersonne }}</span>
+
+                        <span>La date de départ : {{ p.date|date('Y-m-d')  }}</span>
+                        <span>Le nombre de jours: {{ p.nbrjours }}</span>
+                        <span>Activité : {{ p.activite }}</span>
+
+                        <span>Commentaire: {{ p.commentaire }}</span>
+                        <span>Etat de la demande : {{  p.etat }} </span>
+                        <span>Produits :<ul>
+                            {% for prod in p.produits %}
+                            <li>{{  prod.nom }}</li>
+                            {% endfor %}
+                            </ul>
+                        </span>
+                        <div class="portfolio-links">
+
+                            {% if p.etat=="Accepter" %}
+
+                            <button id="checkout-button">Payer</button>
+                                {% else %}
+                                    <a href="{{ path('updateOrganisation',{'id':p.id}) }}"  class="venobox"  data-vbtype="iframe" title="App 1">Modifier</a>
+                                    <a href="{{ path('deleteOrganisation',{'id':p.id}) }}">Supprimer </a>
+                            {% endif %}
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            {% endfor %}
+
+    </div>
+
+
+        </div>
+
+
+    </section>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript">
+        // Create an instance of the Stripe object with your publishable API key
+        var stripe = Stripe('pk_test_51IZiOALBv1NOmN8Ddc9w0UOhabGUoEcNzKbLda7rCtRFy1IeZyB1EC93Wp0vfkglSf3KLjEqWvzl0yglYRDnjdK600MZJrUwOS');
+        var checkoutButton = document.getElementById('checkout-button');
+
+        checkoutButton.addEventListener('click', function() {
+            // Create a new Checkout Session using the server-side endpoint you
+            // created in step 3.
+            fetch('/create-checkout-session', {
+                method: 'POST',
+            })
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(session) {
+                    return stripe.redirectToCheckout({ sessionId: session.id });
+                })
+                .then(function(result) {
+                    // If `redirectToCheckout` fails due to a browser or network
+                    // error, you should display the localized error message to your
+                    // customer using `error.message`.
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+{% endblock  %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des programmes{% endblock %}
+{% block body %}
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Liste des programmes</h2>
+
+            </div>
+
+        </div>
+    </section><br>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>nombre de personne</th>
+            <th>Date de départ</th>
+            <th>Nombre de jours</th>
+
+            <th>activite</th>
+            <th>commentaire</th>
+            <th class="bg-light">Etat</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for organisation in organisation %}
+            <tr>
+                {% if organisation.etat=="En attente" %}
+                    <td>{{ organisation.nbrpersonne }}</td>
+
+                    <td>{{ organisation.date|date('Y-m-d') }}</td>
+                    <td>{{ organisation.nbrjours }}</td>
+
+                    <td>{{ organisation.activite }}</td>
+                    <td>{{ organisation.commentaire }}</td>
+                    <td>
+                        <a href="{{ path('ProgrammeAdmin', {'idAffected': organisation.id } ) }}"> <button class="btn btn-success my-3" >Accepter</button></a>
+                        <a href="{{ path('ProgrammeAdmin', {'idRefuser': organisation.id } ) }}"> <button class="btn btn-danger my-3" >Refuser</button></a>
+                    </td>
+                {% endif %}
+
+
+            </tr> {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+{% endblock %}

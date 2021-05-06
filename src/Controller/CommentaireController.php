@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\comment;
+use App\Entity\CommentaireR;
 use App\Entity\Maison;
+use App\Entity\Randonnee;
 use App\Entity\User;
 use App\Form\CommentaireType;
 use App\Repository\CommentRepository;
@@ -23,6 +25,29 @@ class CommentaireController extends AbstractController
             'controller_name' => 'CommentaireController',
         ]);
     }
+
+    /**
+     * @Route("/comment/add", name="comment_add")
+     */
+    public function add(Request $request)
+    {
+        $randonnee_id = $request->request->get('randonnee_id');
+        $randonnee = $this->getDoctrine()
+            ->getRepository(Randonnee::class)
+            ->find((int)$randonnee_id);
+        $user=$this->getDoctrine()->getRepository(User::class)->find(1);
+        $commentaire = new CommentaireR();
+        $commentaire->setContenue($request->request->get('body'));
+        $datec=new \DateTime();
+        $commentaire->setRandonne($randonnee);
+        $commentaire->setDatedecommentaire("01-04-2021");
+        $commentaire->setUser($user);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($commentaire);
+        $entityManager->flush();
+        return $this->redirectToRoute('AfficheRandonnee');
+    }
+
 
 
 

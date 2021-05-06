@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Paiement</h2>
+            <ol>
+                <li><a href={{ path('home') }}>Home</a></li>
+                <li>Paiement</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section>
+
+    <h1>  votre paiement a été effectué avec succées </h1>
+    <a href={{ path('readOrganisation')}} > Retourner vers la liste des programmes</a>
+
+</section>
+{% endblock %}
