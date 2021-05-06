@@ -5,6 +5,8 @@
  */
 package Tfarhida.gui.MaisonDHote;
 
+import static Tfarhida.gui.MaisonDHote.SendMail.sendMail;
+import static Tfarhida.gui.MaisonDHote.SendMailRefuser.sendMailRefuser;
 import Tfarhida.base.MaConnexion;
 import Tfarhida.entities.Reservation;
 import com.teknikindustries.bulksms.SMS;
@@ -43,6 +45,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
 
@@ -179,51 +182,68 @@ public class EtatsReservationController implements Initializable {
     @FXML
     private void AccepterReservation(ActionEvent event) throws SQLException, ProtocolException, IOException {
         
-        reservation = tabListReservation.getSelectionModel().getSelectedItem();
-        int value1 = reservation.getId();
-        int value2 = reservation.getChambre_id();
-        int value3 = reservation.getUser_id();
-        
-        reservation.setEtats("Accepter");
-        String value4 = reservation.getEtats();
-        
-        //int value5 = reservation.getNbrJour();
-        double value6 = reservation.getTotalPrix();
-            
-        sql = "UPDATE reservation_maison SET id= '"+value1+"',chambre_id= '"+value2+"',user_id= '"+value3+"',etats= '"+value4+"',totalPrix= '"+value6+"' WHERE id='"+reservation.getId()+"' ";
-        ste= cnx.prepareStatement(sql);
-        ste.executeUpdate();
-        //ste.close();
-        JOptionPane.showMessageDialog(null, "Envoyer");
        
-        new myDownloader().start();
-        
-        RefreshTabReservation();
+            reservation = tabListReservation.getSelectionModel().getSelectedItem();
+            int value1 = reservation.getId();
+            int value2 = reservation.getChambre_id();
+            int value3 = reservation.getUser_id();
+            
+            reservation.setEtats("Accepter");
+            String value4 = reservation.getEtats();
+            
+            //int value5 = reservation.getNbrJour();
+            double value6 = reservation.getTotalPrix();
+            
+            sql = "UPDATE reservation_maison SET id= '"+value1+"',chambre_id= '"+value2+"',user_id= '"+value3+"',etats= '"+value4+"',totalPrix= '"+value6+"' WHERE id='"+reservation.getId()+"' ";
+            ste= cnx.prepareStatement(sql);
+            ste.executeUpdate();
+            //ste.close();
+           
+            JOptionPane.showMessageDialog(null, "Envoyer");
+            
+            try {
+            sendMail("nourehane.gharbi@esprit.tn");
+        } catch (MessagingException ex) {
+            Logger.getLogger(EtatsReservationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            new myDownloader().start();
+            
+            RefreshTabReservation();
+      
     }
 
     @FXML
     private void RefuserReservation(ActionEvent event) throws SQLException {
-        reservation = tabListReservation.getSelectionModel().getSelectedItem();
-        int value1 = reservation.getId();
-        int value2 = reservation.getChambre_id();
-        int value3 = reservation.getUser_id();
         
-        reservation.setEtats("Refuser");
-        String value4 = reservation.getEtats();
-        
-        //int value5 = reservation.getNbrJour();
-        double value6 = reservation.getTotalPrix();
+            reservation = tabListReservation.getSelectionModel().getSelectedItem();
+            int value1 = reservation.getId();
+            int value2 = reservation.getChambre_id();
+            int value3 = reservation.getUser_id();
             
-        sql = "UPDATE reservation_maison SET id= '"+value1+"',chambre_id= '"+value2+"',user_id= '"+value3+"',etats= '"+value4+"',totalPrix= '"+value6+"' WHERE id='"+reservation.getId()+"' ";
-        ste= cnx.prepareStatement(sql);
-        ste.executeUpdate();
-        //ste.close();
-        JOptionPane.showMessageDialog(null, "Envoyer");
+            reservation.setEtats("Refuser");
+            String value4 = reservation.getEtats();
+            
+            //int value5 = reservation.getNbrJour();
+            double value6 = reservation.getTotalPrix();
+            
+            sql = "UPDATE reservation_maison SET id= '"+value1+"',chambre_id= '"+value2+"',user_id= '"+value3+"',etats= '"+value4+"',totalPrix= '"+value6+"' WHERE id='"+reservation.getId()+"' ";
+            ste= cnx.prepareStatement(sql);
+            ste.executeUpdate();
+            //ste.close();
+          
+            JOptionPane.showMessageDialog(null, "Envoyer");
+            
+            try {
+            sendMailRefuser("nourehane.gharbi@esprit.tn");
+        } catch (MessagingException ex) {
+            Logger.getLogger(EtatsReservationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            new NotificationRefuser().start();
+            
+            
+            RefreshTabReservation();
         
-        new NotificationRefuser().start();
-        
-        
-        RefreshTabReservation();
     }
     
     class myDownloader extends Thread {

@@ -175,20 +175,10 @@ public class DetailsMaisonController implements Initializable {
     public void setMaison(Maison maison){
         this.maison=maison;
         showMaisonDetails(maison);
-        addRating();
-
+      
     }
 
-    public void addRating(){
-         rating.ratingProperty().addListener(new ChangeListener<Number>() {
-            @Override public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
-              msg.setText("Rating : "+ t1.toString());
-              final Rating rating = new Rating();
-              rating.setPartialRating(true);
-              rating.setUpdateOnHover(true);
-            }
-        });
-    }
+   
    
     
     private void RefreshTable() {

@@ -10,9 +10,9 @@
 
 <AnchorPane id="AnchorPane" minHeight="800.0" minWidth="1699.0" prefHeight="800.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tfarhida.gui.UserPageController">
    <children>
-      <Pane layoutX="-7.0" prefHeight="135.0" prefWidth="1712.0" style="-fx-background-color: #d9232d;">
+      <Pane layoutX="-7.0" prefHeight="135.0" prefWidth="1707.0" style="-fx-background-color: #EFE2E2;">
          <children>
-            <Label layoutX="420.0" layoutY="50.0" text="Bienvenue dans votre Compte TFARHIDA !" textFill="WHITE">
+            <Label layoutX="420.0" layoutY="50.0" text="Bienvenue dans votre Compte TFARHIDA !" textFill="#bc2121">
                <font>
                   <Font name="Javanese Text" size="21.0" />
                </font>
@@ -22,12 +22,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="AdminButton" layoutX="1151.0" layoutY="11.0" mnemonicParsing="false" onAction="#AdminButtonOnAction" prefHeight="57.0" prefWidth="190.0" style="-fx-background-color: #d9232d;" text="Espace Admin" textFill="WHITE">
+            <Button fx:id="AdminButton" layoutX="1151.0" layoutY="11.0" mnemonicParsing="false" onAction="#AdminButtonOnAction" prefHeight="57.0" prefWidth="190.0" style="-fx-background-color: #EFE2E2;" text="Espace Admin" textFill="#bc2121">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="HébergeurButton" layoutX="1151.0" layoutY="68.0" mnemonicParsing="false" onAction="#HébergeurButtonOnAction" prefHeight="57.0" prefWidth="190.0" style="-fx-background-color: #d9232d;" text="Espace Hébergeur" textFill="WHITE">
+            <Button fx:id="HébergeurButton" layoutX="1151.0" layoutY="68.0" mnemonicParsing="false" onAction="#HébergeurButtonOnAction" prefHeight="57.0" prefWidth="190.0" style="-fx-background-color: #EFE2E2;" text="Espace Hébergeur" textFill="#bc2121">
                <font>
                   <Font size="18.0" />
                </font>
@@ -39,7 +39,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutY="135.0" prefHeight="668.0" prefWidth="319.0" style="-fx-background-color: #D3D3D3;">
+      <Pane layoutX="1070.0" layoutY="135.0" prefHeight="668.0" prefWidth="319.0" style="-fx-background-color: #D3D3D3;">
          <children>
             <Button fx:id="btnAffiche" layoutY="65.0" mnemonicParsing="false" onAction="#Affiche" prefHeight="67.0" prefWidth="319.0" style="-fx-background-color: #ffffff;" text="Consulter La liste des utilisateurs">
                <font>

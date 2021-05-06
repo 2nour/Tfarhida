@@ -142,7 +142,7 @@ public class AfficherListeProduitsController implements Initializable {
                 String fileName = file.getName();
                 int doitIndex = fileName.lastIndexOf(".");
                 String imageName = fileName.substring(0, doitIndex) + new java.util.Date().getTime() + "." + fileName.substring(doitIndex + 1);
-                String imageNameTodb = constants.getImagePath() + "maison\\" + imageName;
+                String imageNameTodb = constants.getImagePath() + "produits\\" + imageName;
                 File dest = new File(imageNameTodb);
                 Files.copy(file.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 return imageName;
