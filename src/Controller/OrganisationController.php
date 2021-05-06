@@ -47,7 +47,7 @@ class OrganisationController extends AbstractController
                 'notice',
                 'Une demande de programme a été effectuée avec succée  !!!'
             );
-            return $this->redirectToRoute('produitListe',['id'=> $organisation->getId()]);
+            return $this->redirectToRoute('produitListes',['id'=> $organisation->getId()]);
         }else {
 
             return $this->render("organisation/index.html.twig",['form'=>$form->createView()]);

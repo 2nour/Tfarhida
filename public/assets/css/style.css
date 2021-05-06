@@ -8,7 +8,7 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-<<<<<<< HEAD
+
 .form{
   text-align: center;
   margin-bottom: 10px;
@@ -117,7 +117,7 @@ body {
 
 
 
->>>>>>> origin/web
+
 
 
 
@@ -125,7 +125,7 @@ body {
 .form_errors {
   color: red;
 }
-<<<<<<< HEAD
+
 .card{
   padding: 20px;
   margin-bottom: 60px;
@@ -185,7 +185,6 @@ text-center {
   margin-left: 450px;
   font-size: 18px;
 }
->>>>>>> origin/web
 a {
   color: #d9232d;
 }
@@ -194,29 +193,19 @@ a:hover {
   color: #e24d55;
   text-decoration: none;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/web
 h2{
   text-align: center;
   margin-top: 100px;
   padding: 15px;
-<<<<<<< HEAD
-}
-=======
+
   color: #1d2124;
 }
 
->>>>>>> origin/web
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/web
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -325,9 +314,6 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu .drop-down ul {
   display: block;
   position: absolute;
-<<<<<<< HEAD
-  left: 15px;
-=======
   left: -35px;
 >>>>>>> origin/web
   top: calc(100% + 30px);
@@ -787,11 +773,9 @@ section {
   list-style: none;
   padding: 0;
   margin: 0;
-<<<<<<< HEAD
+
   font-size: 14px;
-=======
-  font-size: 16px;
->>>>>>> origin/web
+
 }
 
 .breadcrumbs ol li + li {
@@ -885,7 +869,7 @@ section {
 
 @media (max-width: 768px) {
   .clients img {
-<<<<<<< HEAD
+
     max-width: 40%;
 =======
     max-width: 80%;
@@ -1390,7 +1374,6 @@ section {
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
   position: relative;
   background: #fff;
-<<<<<<< HEAD
   display: flex;
   flex-direction: column;
 =======
@@ -1986,15 +1969,14 @@ section {
 
 .blog .blog-comments .reply-form .form-group {
   margin-bottom: 25px;
-<<<<<<< HEAD
-=======
+
   margin-right: 10px;
   margin-left: 100px;
->>>>>>> origin/web
+
 }
 
 .blog .blog-comments .reply-form .btn-primary {
-  border-radius: 4;
+  border-radius: 4%;
   padding: 10px 20px;
   border: 0;
   background-color: #556270;
@@ -2199,7 +2181,7 @@ section {
 --------------------------------------------------------------*/
 #footer {
   background: #4a5562;
-<<<<<<< HEAD
+
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
@@ -2236,7 +2218,7 @@ section {
 
 #footer .footer-top .footer-info {
   margin-bottom: 10px;
->>>>>>> origin/web
+
 }
 
 #footer .footer-top .footer-info h3 {
@@ -2253,10 +2235,8 @@ section {
   margin-bottom: 0;
   font-family: "Raleway", sans-serif;
   color: #fff;
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/web
+
 }
 
 #footer .footer-top .social-links a {
@@ -2282,7 +2262,7 @@ section {
 
 #footer .footer-top h4 {
   font-size: 16px;
-<<<<<<< HEAD
+
   font-weight: 600;
 =======
   font-weight: 300;
@@ -2331,17 +2311,17 @@ section {
 }
 
 #footer .footer-top .footer-newsletter form {
-<<<<<<< HEAD
+
   margin-top: 30px;
   background: #fff;
   padding: 6px 10px;
   position: relative;
-=======
+
   margin-top: 15px;
   background: #fff;
   padding: 6px 10px;
   margin-bottom: 200px;
->>>>>>> origin/web
+
   border-radius: 4px;
 }
 
@@ -2372,11 +2352,9 @@ section {
 
 #footer .copyright {
   text-align: center;
-<<<<<<< HEAD
+
   padding-top: 30px;
-=======
-  padding-top: 10px;
->>>>>>> origin/web
+
 }
 
 #footer .credits {
