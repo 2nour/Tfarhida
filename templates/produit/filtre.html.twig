@@ -2,17 +2,16 @@
 {{ form_row(form.q) }}
 
 <h5>Categories</h5>
+<div class="btn-group-vertical"
 {{ form_row(form.categories) }}
-
-<h5>Prix</h5>
-<div class="row">
-    <div class="col-md-6">
-        {{ form_row(form.min) }}
-    </div>
-    <div class="col-md-6">
-        {{ form_row(form.max) }}
-    </div>
 </div>
+<h5>Prix</h5>
+
+        {{ form_row(form.min) }}
+
+        {{ form_row(form.max) }}
+
+
 
 <button type="submit" class="btn btn-danger w-100">Filtrer</button>
 {{ form_end(form) }}

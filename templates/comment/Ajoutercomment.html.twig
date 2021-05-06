@@ -1,0 +1,14 @@
+
+    {% if form is defined %}
+        {{ form_start(form,{'attr': {'novalidate' : 'novalidate'}} ) }}
+        <h5>Ajouter un commentaire</h5>
+
+        <div class="form-group">
+            {{ form_widget(form.contenue) }}
+            {{ form_errors(form.contenue) }}
+        </div>
+        {{ form_end(form) }}
+    {% endif %}
+
+
+

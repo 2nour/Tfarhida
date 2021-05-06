@@ -23,9 +23,17 @@
     "doctrine/common": {
         "version": "3.1.1"
     },
+
+    "doctrine/data-fixtures": {
+        "version": "1.5.0"
+    },
     "doctrine/dbal": {
         "version": "2.12.1"
     },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
+    },
+>>>>>>> origin/web
     "doctrine/doctrine-bundle": {
         "version": "2.0",
         "recipe": {
@@ -41,6 +49,21 @@
             "./src/Repository/.gitignore"
         ]
     },
+<<<<<<< HEAD
+=======
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "e5b542d4ef47d8a003c91beb35650c76907f7e53"
+        },
+        "files": [
+            "./src/DataFixtures/AppFixtures.php"
+        ]
+    },
+>>>>>>> origin/web
     "doctrine/doctrine-migrations-bundle": {
         "version": "2.2",
         "recipe": {
@@ -79,11 +102,50 @@
         "version": "1.1.1"
     },
     "egulias/email-validator": {
+<<<<<<< HEAD
         "version": "2.1.25"
+=======
+        "version": "3.1.0"
+    },
+    "fakerphp/faker": {
+        "version": "v1.14.1"
+>>>>>>> origin/web
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
+<<<<<<< HEAD
+=======
+    "hamcrest/hamcrest-php": {
+        "version": "v2.0.1"
+    },
+    "hautelook/alice-bundle": {
+        "version": "2.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.1",
+            "ref": "71822522faf7ed2792d86b7f94ce73443358ccb9"
+        },
+        "files": [
+            "./config/packages/dev/hautelook_alice.yaml",
+            "./config/packages/test/hautelook_alice.yaml",
+            "./fixtures/.gitignore"
+        ]
+    },
+    "knplabs/knp-components": {
+        "version": "v3.0.2"
+    },
+    "knplabs/knp-menu": {
+        "version": "v3.1.3"
+    },
+    "knplabs/knp-menu-bundle": {
+        "version": "v3.1.0"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.4.2"
+    },
+>>>>>>> origin/web
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -93,13 +155,45 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.2.0"
     },
+<<<<<<< HEAD
     "monolog/monolog": {
         "version": "1.26.0"
     },
+=======
+    "mercuryseries/flashy-bundle": {
+        "version": "v3.0.2"
+    },
+    "mgilet/notification-bundle": {
+        "version": "4.0"
+    },
+    "mockery/mockery": {
+        "version": "1.4.3"
+    },
+    "monolog/monolog": {
+        "version": "1.26.0"
+    },
+    "myclabs/deep-copy": {
+        "version": "1.10.2"
+    },
+    "nelmio/alice": {
+        "version": "3.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.2",
+            "ref": "0b9900ece737bec7752e4155c0164639dd9b0cb0"
+        },
+        "files": [
+            "./config/packages/dev/nelmio_alice.yaml",
+            "./config/packages/test/nelmio_alice.yaml"
+        ]
+    },
+>>>>>>> origin/web
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
     "php": {
+<<<<<<< HEAD
         "version": "7.2"
     },
     "phpdocumentor/reflection-common": {
@@ -110,6 +204,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.4.0"
+=======
+        "version": "7.4"
+>>>>>>> origin/web
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -123,6 +220,21 @@
     "psr/log": {
         "version": "1.1.3"
     },
+<<<<<<< HEAD
+=======
+    "sebastian/comparator": {
+        "version": "4.0.6"
+    },
+    "sebastian/diff": {
+        "version": "4.0.4"
+    },
+    "sebastian/exporter": {
+        "version": "4.0.3"
+    },
+    "sebastian/recursion-context": {
+        "version": "4.0.4"
+    },
+>>>>>>> origin/web
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -135,8 +247,13 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+<<<<<<< HEAD
     "stripe/stripe-php": {
         "version": "v7.76.0"
+=======
+    "swiftmailer/swiftmailer": {
+        "version": "v6.2.7"
+>>>>>>> origin/web
     },
     "symfony/asset": {
         "version": "v4.4.19"
@@ -423,6 +540,23 @@
     "symfony/stopwatch": {
         "version": "v4.4.19"
     },
+<<<<<<< HEAD
+=======
+    "symfony/swiftmailer-bundle": {
+        "version": "2.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "ae4d22af30bbd484506bc1817c5a3ef72c855b93"
+        },
+        "files": [
+            "./config/packages/dev/swiftmailer.yaml",
+            "./config/packages/swiftmailer.yaml",
+            "./config/packages/test/swiftmailer.yaml"
+        ]
+    },
+>>>>>>> origin/web
     "symfony/test-pack": {
         "version": "v1.0.7"
     },
@@ -510,13 +644,30 @@
     "symfony/yaml": {
         "version": "v4.4.19"
     },
+<<<<<<< HEAD
+=======
+    "theofidry/alice-data-fixtures": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fe5a50faf580eb58f08ada2abe8afbd2d4941e05"
+        }
+    },
+>>>>>>> origin/web
     "twig/extra-bundle": {
         "version": "v3.3.0"
     },
     "twig/twig": {
         "version": "v3.3.0"
     },
+<<<<<<< HEAD
     "webmozart/assert": {
         "version": "1.9.1"
+=======
+    "vangrg/profanity-bundle": {
+        "version": "v1.1.6"
+>>>>>>> origin/web
     }
 }

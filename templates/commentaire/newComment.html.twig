@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(f,{'attr': {'novalidate': 'novalidate'}}) }}
+    <h2>Ajouter Commentaire</h2>
+
+    <div class="form-group">
+        <label for="">Prix</label>
+        {{ form_widget(f.comment)}}
+        {{ form_errors(f.comment) }}
+        <br>
+        <button type="submit" name="submitAction"  value="ajouter"  class="btn btn-info">Ajouter</button>
+    </div>
+
+  {{ form_end(f) }}
+
+{% endblock %}

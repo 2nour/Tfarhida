@@ -17,9 +17,11 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class ProduitRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry )
+    public function __construct(ManagerRegistry $registry,PaginatorInterface $paginator )
     {
+
         parent::__construct($registry, Produit::class);
+        $this->paginator=$paginator;
 
     }
 
@@ -52,5 +54,47 @@ class ProduitRepository extends ServiceEntityRepository
     }
     */
 
+    public function findSearch(SearchData $search):PaginationInterface
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('c', 'p')
+            ->join('p.categories', 'c');
+
+        if (!empty($search->q)) {
+            $query = $query
+                ->andWhere('p.nom LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        if (!empty($search->min)) {
+            $query = $query
+                ->andWhere('p.prix >= :min')
+                ->setParameter('min', $search->min);
+        }
+
+        if (!empty($search->max)) {
+            $query = $query
+                ->andWhere('p.prix <= :max')
+                ->setParameter('max', $search->max);
+        }
+
+
+        if (!empty($search->categories)) {
+            $query = $query
+                ->andWhere('c.id IN (:categories)')
+                ->setParameter('categories', $search->categories);
+        }
+
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            9
+        );
+    }
+
+    private function getSearchQuery(SearchData $search, $ignorePrice = false): QueryBuilder
+    {
+    }
 
 }
