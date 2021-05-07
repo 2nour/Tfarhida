@@ -43,7 +43,7 @@ class Reservation
     private $montant;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $idRandonnee;
 

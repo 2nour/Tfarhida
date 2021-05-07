@@ -46,13 +46,13 @@ class Randonnee
     private $villearrivee;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date")
      * * @Assert\NotBlank(message="nom est requis")
      */
     private $datedepart;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date")
      * * @Assert\NotBlank(message="nom est requis")
      */
     private $dateretour;

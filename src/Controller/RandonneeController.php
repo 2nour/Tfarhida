@@ -116,8 +116,7 @@ class RandonneeController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-            $dated=$request->request->get("datedepart");
-            $datea=$request->request->get("datearrive");
+
 
             $file =$randonnee->getImage();
             $filename = md5(uniqid().'.'.$file->guessExtension());
@@ -128,11 +127,9 @@ class RandonneeController extends AbstractController
             }
             $em=$this->getDoctrine()->getManager();
             $randonnee->setImage($filename);
-            $da=date("Y-m-d", strtotime($datea) );
-            $dd=date("Y-m-d", strtotime($dated) );
 
-            $randonnee->setDatedepart($dated);
-            $randonnee->setDateretour($datea);
+
+
 
             $em->persist($randonnee);
             $em->flush();

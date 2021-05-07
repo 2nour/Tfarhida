@@ -146,7 +146,7 @@ class ReservationController extends AbstractController
         $em=$this->getDoctrine()->getManager();
         $em->remove($reservation);
         $em->flush();
-        return $this->redirectToRoute('AfficheReservationRandonne');
+        return $this->redirectToRoute('AfficheReservation_randonne');
 
     }
 
