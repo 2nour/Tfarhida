@@ -36,20 +36,20 @@
       </Pane>
       <ImageView fitHeight="700.0" fitWidth="1585.0" layoutX="-169.0" layoutY="174.0" pickOnBounds="true">
          <image>
-            <Image url="@reservation.jpg" />
+            <Image url="@randone.jpg" />
          </image>
       </ImageView>
-      <TableView fx:id="tbreservation" layoutX="209.0" layoutY="235.0" prefHeight="486.0" prefWidth="879.0" stylesheets="@../../../../../9/Tfarhida/src/Tfarhida/gui/afficherandonnee.css">
+      <TableView fx:id="tbreservation" layoutX="14.0" layoutY="240.0" prefHeight="486.0" prefWidth="823.0" stylesheets="@../../../../../9/Tfarhida/src/Tfarhida/gui/afficherandonnee.css">
          <columns>
             <TableColumn fx:id="colnumres" prefWidth="107.0" text="NumReservation" />
             <TableColumn fx:id="coldateres" prefWidth="138.0" text="DateReservation" />
-            <TableColumn fx:id="colobs" prefWidth="114.0" text="Observation" />
-            <TableColumn fx:id="colmontant" prefWidth="154.0" text="Montant" />
-            <TableColumn fx:id="colnbpersonne" prefWidth="192.0" text="NombrePersonne" />
-            <TableColumn fx:id="coletat" prefWidth="172.0" text="Etat" />
+            <TableColumn fx:id="colobs" prefWidth="154.0" text="Observation" />
+            <TableColumn fx:id="colmontant" prefWidth="148.0" text="Montant" />
+            <TableColumn fx:id="colnbpersonne" prefWidth="147.0" text="NombrePersonne" />
+            <TableColumn fx:id="coletat" prefWidth="128.0" text="Etat" />
          </columns>
       </TableView>
-      <Button fx:id="ImprimerReservation" layoutX="308.0" layoutY="188.0" mnemonicParsing="false" onAction="#ImprimerReservation" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: CadetBlue;" text="Imprimer" textFill="#f5f0f0" />
-      <Button fx:id="suppReservation" layoutX="209.0" layoutY="188.0" mnemonicParsing="false" onAction="#DeleteReservation" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: red;" text="Supprimer" textFill="#f5f0f0" />
+      <Button fx:id="ImprimerReservation" layoutX="646.0" layoutY="188.0" mnemonicParsing="false" onAction="#ImprimerReservation" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: CadetBlue;" text="Imprimer" textFill="#f5f0f0" />
+      <Button fx:id="suppReservation" layoutX="544.0" layoutY="188.0" mnemonicParsing="false" onAction="#DeleteReservation" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: red;" text="Supprimer" textFill="#f5f0f0" />
    </children>
 </AnchorPane>

@@ -37,21 +37,21 @@
       </Pane>
       <ImageView fitHeight="519.0" fitWidth="1396.0" layoutX="-3.0" layoutY="183.0" pickOnBounds="true">
          <image>
-            <Image url="@reservation.jpg" />
+            <Image url="@randone.jpg" />
          </image>
       </ImageView>
-      <TableView fx:id="tbreservation" layoutX="158.0" layoutY="265.0" onMouseClicked="#test" prefHeight="404.0" prefWidth="943.0" stylesheets="@../../../../../9/Tfarhida/src/Tfarhida/gui/afficherandonnee.css">
+      <TableView fx:id="tbreservation" layoutX="49.0" layoutY="259.0" onMouseClicked="#test" prefHeight="404.0" prefWidth="822.0" stylesheets="@../../../../../9/Tfarhida/src/Tfarhida/gui/afficherandonnee.css">
          <columns>
             <TableColumn fx:id="colnumres" prefWidth="107.0" text="NumReservation" />
             <TableColumn fx:id="coldateres" prefWidth="138.0" text="DateReservation" />
             <TableColumn fx:id="colobs" prefWidth="114.0" text="Observation" />
-            <TableColumn fx:id="colmontant" prefWidth="154.0" text="Montant" />
-            <TableColumn fx:id="colnbpersonne" prefWidth="225.0" text="NombrePersonne" />
-            <TableColumn fx:id="coletat" prefWidth="204.0" text="Etat" />
+            <TableColumn fx:id="colmontant" prefWidth="121.0" text="Montant" />
+            <TableColumn fx:id="colnbpersonne" prefWidth="167.0" text="NombrePersonne" />
+            <TableColumn fx:id="coletat" prefWidth="173.0" text="Etat" />
          </columns>
       </TableView>
-      <Button fx:id="accepterReserv" layoutX="265.0" layoutY="229.0" mnemonicParsing="false" onAction="#AccepterReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #3CB371;" text="Accepter" textFill="WHITE" />
-      <Button fx:id="refuserReserv" layoutX="351.0" layoutY="229.0" mnemonicParsing="false" onAction="#RefuserReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #d01616;" text="Refuser" textFill="#fcf9f9" />
+      <Button fx:id="accepterReserv" layoutX="693.0" layoutY="217.0" mnemonicParsing="false" onAction="#AccepterReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #3CB371;" text="Accepter" textFill="WHITE" />
+      <Button fx:id="refuserReserv" layoutX="775.0" layoutY="217.0" mnemonicParsing="false" onAction="#RefuserReservation" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #d01616;" text="Refuser" textFill="#fcf9f9" />
     
    </children>
 </AnchorPane>

@@ -121,7 +121,7 @@ public class AjouterRandonneController implements Initializable {
      
       
      FileChooser fc = new FileChooser();
-       fc.setInitialDirectory(new File("C:\\Users\\NJR\\Downloads\\Tfarhida-TfarhidaDesktop2\\Tfarhida-TfarhidaDesktopFinal\\Tfarhida\\src\\Tfarhida\\images\\"));
+       fc.setInitialDirectory(new File("C:/Users/PC/Desktop/Nouveau dossier (12)/Tfarhida/src/Tfarhida/images/"));
        fc.getExtensionFilters().add(new ExtensionFilter("Image Files", "*.png","*.jpg" ));
      File f = fc.showOpenDialog(null);
      if(f != null){
@@ -141,7 +141,7 @@ public class AjouterRandonneController implements Initializable {
         System.out.println(path.replace(toBeReplaced, replacement));
         String namePhoto=path.replace(toBeReplaced, replacement);
         Path src = Paths.get(path); 
-        Path dest = Paths.get("C:\\Users\\NJR\\Downloads\\Tfarhida-TfarhidaDesktop2\\Tfarhida-TfarhidaDesktopFinal\\Tfarhida\\src\\Tfarhida\\images\\img\\"+namePhoto);
+        Path dest = Paths.get("C:/Users/PC/Desktop/Nouveau dossier (12)/Tfarhida/src/Tfarhida/images/"+namePhoto);
           try {
               Files.copy(src,dest);
               //System.out.println(str.substring(startIndex+1, endIndex));

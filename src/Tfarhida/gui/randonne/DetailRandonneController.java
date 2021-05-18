@@ -119,13 +119,13 @@ public class DetailRandonneController implements Initializable {
         Text_villedepart.setText(r.getVilledepart());
         Text_villearrivee.setText(r.getVillearrivee());
         Datepicker_depart.setValue(LocalDate.parse(r.getDatedepart()));
-        Datepicker_retour.setValue(LocalDate.parse(r.getDateretour()));
+       Datepicker_retour.setValue(LocalDate.parse(r.getDateretour()));
         Text_difficulte.setText(r.getDifficulte());
         Text_budget.setText(Integer.toString(r.getBudget()));
         Text_description.setText(r.getDescription());
          String img=r.getImage();
-        System.out.println(img);
-        Image image1 = new Image("/images/img/"+img); 
+         System.out.println(img);
+         Image image1 = new Image("/Tfarhida/images/"+img); 
         image_Randonnee.setImage(image1);
        
         // TODO
@@ -387,7 +387,7 @@ public class DetailRandonneController implements Initializable {
     @FXML
     private void importerImage(MouseEvent event) {
         FileChooser fc = new FileChooser();
-       fc.setInitialDirectory(new File("C:\\Users\\PC\\Desktop\\copie java\\14\\TfarhidaJavaFx\\src\\images"));
+       fc.setInitialDirectory(new File("C:\\Users\\PC\\Desktop\\Nouveau dossier (12)\\Tfarhida\\src\\Tfarhida\\images\\img"));
        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png","*.jpg" ));
      File f = fc.showOpenDialog(null);
      if(f != null){

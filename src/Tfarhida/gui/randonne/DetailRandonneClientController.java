@@ -123,7 +123,7 @@ public class DetailRandonneClientController implements Initializable {
         Text_description.setText(r.getDescription());
         String img=r.getImage();
         System.out.println(img);
-        Image image1 = new Image("/images/"+img); 
+        Image image1 = new Image("/Tfarhida/images/"+img); 
      image_Randonnee.setImage(image1);
        
         
@@ -217,7 +217,7 @@ public class DetailRandonneClientController implements Initializable {
          try {
            RandonneService randonneService=new RandonneService();
       FileChooser fc = new FileChooser();
-       fc.setInitialDirectory(new File("C:\\Users\\PC\\Desktop\\copie java\\14\\TfarhidaJavaFx\\src\\images"));
+       fc.setInitialDirectory(new File("C:\\Users\\PC\\Desktop\\Nouveau dossier (12)\\Tfarhida\\src\\Tfarhida\\images\\img"));
        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png","*.jpg" ));
      File f = fc.showOpenDialog(null);
      if(f != null){

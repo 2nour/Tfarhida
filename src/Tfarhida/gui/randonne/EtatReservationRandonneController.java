@@ -205,11 +205,12 @@ public class EtatReservationRandonneController implements Initializable {
 
     @FXML
     private void RefuserReservation(ActionEvent event) {
-         reservation = tbreservation.getSelectionModel().getSelectedItem();
-         
-        reservation.setEtat("refuser");
+
         ReservationService reservationService;
         try {
+                     reservation = tbreservation.getSelectionModel().getSelectedItem();
+         
+        reservation.setEtat("refuser");
             reservationService = new ReservationService();
             reservationService.delete(reservation.getId());
         } catch (ClassNotFoundException ex) {
