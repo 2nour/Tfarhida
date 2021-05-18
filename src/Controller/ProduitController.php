@@ -107,6 +107,21 @@ class ProduitController extends AbstractController
 
     }
 
+    //organisation
+    /**
+     * @Route("produitListe/{id}", name="produitListe")
+     * @return Response
+     */
+    public function afficherlistesProduit(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $produits=$em->getRepository(Produit::class)->findAll();
+        $org = $em->getRepository(Organisation::class)->find($id);
+        return $this->render('org_produit/AfficheProduit.html.twig',
+            ['controller_name' => 'ProduitController','produits'=> $produits,'org'=>$org]);
+
+    }
+
     /**
      * @param ProduitRepository $repo,$id
      * @Route("voirProduit", name="voirProduit",defaults={"id"})

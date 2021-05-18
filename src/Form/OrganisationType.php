@@ -51,6 +51,23 @@ class OrganisationType extends AbstractType
                 ]
 
             ])
+            ->add('Lieu', ChoiceType::class, [
+                'choices' => [
+                    'Bizerte' => 'Bizerte',
+                    'Tunis' => 'Tunis',
+                    'Tozeur'=>'Tozeur',
+                    'kef'=>'kef',
+                    'Sousse'=>'Sousse',
+
+
+                ],
+                'attr'=> [
+                    'placeholder' => 'Saisir le lieu',
+                    'class' => 'form-control'
+                ]
+
+            ])
+
 
             ->add('commentaire', TextType::class, [
                 'attr'=> [

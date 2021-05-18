@@ -66,10 +66,16 @@ class Organisation implements JsonSerializable
 
     /**
      *@ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="type de lit est requis")
+     * @Assert\NotBlank(message="activite obligatoire")
      * @Groups ("organisation")
      */
     private $activite;
+    /**
+     *@ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="lieu obligatoire ")
+     * @Groups ("organisation")
+     */
+    private $Lieu;
 
     /**
      * @ORM\ManyToMany(targetEntity=Produit::class, inversedBy="organisation")
@@ -91,7 +97,8 @@ class Organisation implements JsonSerializable
             'etat' => $this->etat,
             'commentaire' => $this->commentaire,
             'date' => $this->date,
-            'activite' => $this->activite
+            'activite' => $this->activite,
+            'Lieu' => $this->Lieu
         );
     }
 
@@ -203,6 +210,18 @@ class Organisation implements JsonSerializable
     public function setActivite(?string $activite): self
     {
         $this->activite = $activite;
+
+        return $this;
+    }
+
+    public function getLieu(): ?string
+    {
+        return $this->Lieu;
+    }
+
+    public function setLieu(?string $Lieu): self
+    {
+        $this->Lieu = $Lieu;
 
         return $this;
     }

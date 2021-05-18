@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+        <script src="https://js.stripe.com/v3/"></script>
         <!-- Template Main CSS File -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     {% endblock %}
@@ -68,9 +69,21 @@
                 {% if is_granted('ROLE_USER')  %}
 
                 <li><a href="{{ path('randonnee')}}">Randonnée</a></li>
-                {% if is_granted('ROLE_HEBERGEUR')  %}
 
-                <li><a href="{{ path('AfficheRandonnee')}}">Organiser votre événement</a></li>
+
+                    <li  {% if is_granted('ROLE_USER') %} class="drop-down"   {% endif %}>
+                        {% if is_granted('ROLE_USER') %}
+                <ul>
+                        <li><a href={{ path('addorganisation') }}>Demande un programme</a>
+                        <li><a href={{ path('readOrganisation') }}>Suivie programme</a>
+
+
+                    </ul>
+                        {% endif %}
+                </li>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href={{ path('ProgrammeAdmin') }}>Admin</a>
                 {% endif %}
 
 

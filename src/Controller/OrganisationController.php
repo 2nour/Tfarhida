@@ -51,14 +51,14 @@ class OrganisationController extends AbstractController
         }else {
 
             return $this->render("organisation/index.html.twig",['form'=>$form->createView()]);
-    }}
+        }}
     /**
      * @Route("/readOrganisation",name="readOrganisation")
      */
     public function readOrganisation(Request $request){
 
         $listOrganisation=$this->getDoctrine()
-        ->getRepository(Organisation::class)
+            ->getRepository(Organisation::class)
             ->findAll();
         return $this->render('organisation/SuiviOrganisation.html.twig',
             ['controller_name' => 'OrganisationController','organisation'=>$listOrganisation]);
@@ -69,14 +69,14 @@ class OrganisationController extends AbstractController
     /**
      * @Route("deleteOrganisation/{id}",name="deleteOrganisation")
      */
-public function deleteOrganisation($id){
-    $organisation=$this->getDoctrine()
-    ->getRepository(Organisation::class)->find($id);
-     $em=$this->getDoctrine()->getManager();
-     $em->remove($organisation);
-     $em->flush();
-return $this->redirectToRoute('readOrganisation');
-}
+    public function deleteOrganisation($id){
+        $organisation=$this->getDoctrine()
+            ->getRepository(Organisation::class)->find($id);
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($organisation);
+        $em->flush();
+        return $this->redirectToRoute('readOrganisation');
+    }
 
 
 
@@ -86,9 +86,9 @@ return $this->redirectToRoute('readOrganisation');
     public function updateOrganisation(Request $request, $id)
     {
 
-            $organisation = $this->getDoctrine()
+        $organisation = $this->getDoctrine()
             ->getRepository(Organisation::class)
-                ->find($id);
+            ->find($id);
         $form = $this->createForm(OrganisationType::class, $organisation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && ($form->isValid()) ){
@@ -122,13 +122,19 @@ return $this->redirectToRoute('readOrganisation');
      * @param Request $request
      * @param SerializerInterface $serializer
      * @return Response
-     * @Route("/addOrganisationJson", name="addOrganisationJson")
+     * @Route("/addOrganisationJson/{nbrpersonne}/{nbrjours}/{commentaire}/{date}/{activite}/{Lieu}", name="addOrganisationJson")
      */
-    public function addOrganisationJson(Request $request, SerializerInterface $serializer){
+    public function addOrganisationJson(Request $request, SerializerInterface $serializer, $nbrpersonne ,$nbrjours,$commentaire ,$date,$activite, $Lieu){
+        $organisation= new Organisation();
         $em=$this->getDoctrine()->getManager();
-        $content=$request->getContent();
-        $data =$serializer->deserialize($content, Organisation::class, 'json');
-        $em->persist($data);
+        $organisation->setNbrpersonne($nbrpersonne);
+        $organisation->setnbrjours($nbrjours);
+        $organisation->setetat('En attente');
+        $organisation->setCommentaire($commentaire);
+        $organisation->setDate(new \DateTime($date));
+        $organisation->setActivite($activite);
+        $organisation->setLieu($Lieu);
+        $em->persist($organisation);
         $em->flush();
         return new Response('Organisation ajoutée avec succée');
     }
@@ -159,6 +165,31 @@ return $this->redirectToRoute('readOrganisation');
         $json=$normalizer->normalize($listOrganisation,'json',['groups'=>'$listOrganisations']);
         $retour=json_encode($json);
         return new Response($retour);
+    }
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("/updateOrganisationJSON/{id}/{nbrpersonne}/{nbrjours}/{commentaire}/{date}/{activite}/{Lieu}", name="updateOrganisationJSON" ,methods={"PUT"} )
+     *
+     */
+    public function updateOrganisationJSON(Request $request, OrganisationRepository  $repository , $id,$nbrpersonne ,$nbrjours,$commentaire ,$date,$activite, $Lieu)
+    {
+        $organisationUpdate = $repository->find($id);
+        $organisationUpdate ->setNbrpersonne($nbrpersonne);
+        $organisationUpdate ->setnbrjours($nbrjours);
+        $organisationUpdate ->setCommentaire($commentaire);
+        $organisationUpdate ->setDate($date);
+        $organisationUpdate ->setActivite($activite);
+        $organisationUpdate ->setLieu($Lieu);
+        $this->getDoctrine()->getManager()->flush();
+        $data = [
+            'status' => 200,
+            'message' => 'L organisation a bien ete mis a jour'
+        ];
+        return new JsonResponse($data);
     }
 }
 
