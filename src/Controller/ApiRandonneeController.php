@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use App\Repository\RandonneeRepository;
@@ -27,9 +28,17 @@ class ApiRandonneeController extends AbstractController
      */
     public function indexAction(){
         $randonnes=$this->getDoctrine()->getRepository(Randonnee::class)->findAll();
-        $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($randonnes);
-        return new JsonResponse($formatted);
+        $encoders = [new JsonEncoder()]; // If no need for XmlEncoder
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+
+// Serialize your object in Json
+        $jsonObject = $serializer->serialize($randonnes, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
     }
     /**
      * @Route("/api/randonnee/show/{id}", name="randonnee_show_api")
@@ -45,10 +54,11 @@ class ApiRandonneeController extends AbstractController
      *
      */
     function Delete($id, RandonneeRepository $repository){
-        $randonnee = $repository->find($id);
+        $randonnee =  $this->getDoctrine()->getRepository(Randonnee::class)->find($id);
         $em=$this->getDoctrine()->getManager();
         $id=$randonnee->getId();
         $em->remove($randonnee);
+        $em->flush();
         $response=array();
         array_push($response,['code'=>200,'respose'=>'success','id'=>$id]);
         $serializer = new Serializer([new ObjectNormalizer()]);
@@ -65,26 +75,27 @@ class ApiRandonneeController extends AbstractController
     {
         $randonnee = new Randonnee();
         $form = $this->createForm(RandonneeeType::class,$randonnee);
+        $randonnee->setVilledepart($request->get('vd'));
+        $randonnee->setVillearrivee($request->get('va'));
+        $randonnee->setDateretour($request->get('dr'));
+        $randonnee->setDatedepart($request->get('dd'));
+        $randonnee->setDescription($request->get('d'));
+        $randonnee->setDifficulte($request->get('diff'));
+        $randonnee->setDuree($request->get('dur'));
+        $randonnee->setBudget($request->get('b'));
+        $randonnee->setImage($request->get('img'));
+        $randonnee->setActivite($request->get('act'));
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            $dated=$request->request->get("datedepart");
-            $datea=$request->request->get("datearrive");
 
-            $file =$randonnee->getImage();
-            $filename = md5(uniqid().'.'.$file->guessExtension());
-            try {
-                $file->move($this->getParameter('randonnee_image_directory'), $filename);
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
-            }
+
+
+
+
             $em=$this->getDoctrine()->getManager();
-            $randonnee->setImage($filename);
-            $da=date("Y-m-d", strtotime($datea) );
-            $dd=date("Y-m-d", strtotime($dated) );
 
-            $randonnee->setDatedepart(new  \DateTime($dd));
-            $randonnee->setDateretour(new \DateTime($da));
+
+
 
             $em->persist($randonnee);
             $em->flush();
@@ -94,7 +105,7 @@ class ApiRandonneeController extends AbstractController
             $serializer = new Serializer([new ObjectNormalizer()]);
             $formatted = $serializer->normalize($response);
             return new JsonResponse($formatted);
-        }
+
         $response=array();
         array_push($response,['code'=>200,'respose'=>'success']);
         $serializer = new Serializer([new ObjectNormalizer()]);
@@ -172,5 +183,23 @@ class ApiRandonneeController extends AbstractController
         $formatted = $serializer->normalize($response);
         return new JsonResponse($formatted);
     }
+    /**
+     *
+     * @Route("/api/randonnee/find/{name}", name="find_randoonne_api")
+     * Method{{"GET","POST"}}
+     */
+    public function findByNameAction($name){
+        $randonnes=$this->getDoctrine()->getRepository(Randonnee::class)->findBy(
+            ['villedepart' => $name]
+
+        );
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($randonnes);
+        return new JsonResponse($formatted);
+    }
+
+
+
 
 }

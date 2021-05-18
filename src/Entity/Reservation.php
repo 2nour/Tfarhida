@@ -25,7 +25,7 @@ class Reservation
     private $numreservation;
 
     /**
-     * @ORM\Column(type="date", type="datetime")
+     * @ORM\Column(type="date", length=255)
      * * @Assert\NotBlank(message="nom est requis")
      */
     private $datereservation;

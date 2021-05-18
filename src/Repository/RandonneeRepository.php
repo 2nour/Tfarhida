@@ -18,6 +18,17 @@ class RandonneeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Randonnee::class);
     }
+    public function findByNameParametre($name){
+        $query=$this->getEntityManager()
+            ->createQuery("SELECT m FROM Randonnee m where m.villedepart LIKE :d OR m.villearrivee=:d")
+            ->setParameter('d',"%".$name."%");
+
+
+
+        return $query->getResult();
+
+
+    }
 
     // /**
     //  * @return Randonnee[] Returns an array of Randonnee objects

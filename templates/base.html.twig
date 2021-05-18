@@ -63,9 +63,12 @@
                     {% endif %}
                 </li>
 
-                <li><a href="{{ path('AfficheRandonnee')}}">Randonnée</a></li>
-                {% if is_granted('ROLE_HEBERGEUR')  %}
 
+                <li><a href="{{ path('AfficheRandonnee')}}">Randonnée</a></li>
+                {% if is_granted('ROLE_USER')  %}
+
+                <li><a href="{{ path('randonnee')}}">Randonnée</a></li>
+                {% if is_granted('ROLE_HEBERGEUR')  %}
 
                 <li><a href="{{ path('AfficheRandonnee')}}">Organiser votre événement</a></li>
                 {% endif %}

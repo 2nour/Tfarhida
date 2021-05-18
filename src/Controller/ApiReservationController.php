@@ -100,29 +100,27 @@ class ApiReservationController extends AbstractController
     }
     /**
      *
-     * @Route("/reservation/Add", name="add_reservation")
-     * Method{{"GET","POST"}}
+     * @Route("/api/reservation/Add/{numr}/{dater}/{ob}/{mon}/{nbr}/{id}", name="add_reservation_api")
+     * Method{{"POST"}}
      */
 
-    public function addReservation(Request $request,ReservationRepository $repository)
+    public function addReservation(Request $request,$numr,$dater,$ob,$mon,$nbr,$id)
     {
         $reservation= new Reservation();
-        $form =$this->createFormBuilder($reservation);
-        $form = $this->createForm(ReservationType::class,$reservation);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $reservation = $form->getData();
-            $reservation->setEtat("En cours");
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($reservation);
-            $em->flush();
-            $resrvation=$repository->findAll();
-            $response=array();
-            array_push($response,['code'=>200,'respose'=>'success']);
-            $serializer = new Serializer([new ObjectNormalizer()]);
-            $formatted = $serializer->normalize($reservation);
-            return new JsonResponse($formatted);
-        }
+        $reservation->setNumreservation($numr);
+        $reservation->setDatereservation($dater);
+        $reservation->setObservation($ob);
+        $reservation->setMontant($mon);
+        $reservation->setNombrepersonne($nbr);
+        $reservation->setIdRandonnee($id);
+        $reservation->setEtat("en cours");
+        $em=$this->getDoctrine()->getManager();
+
+
+
+
+        $em->persist($reservation);
+        $em->flush();
         $response=array();
         array_push($response,['code'=>200,'respose'=>'success']);
         $serializer = new Serializer([new ObjectNormalizer()]);
@@ -161,4 +159,24 @@ class ApiReservationController extends AbstractController
         return new JsonResponse($formatted);
     }
 
+    /**
+     * @Route("api/reservationmail", name="api_reservation_mail")
+     */
+
+    public function getReservationByEmail(Request $request) {
+
+        $email = $request->get('email');
+        $reservation = $this->getDoctrine()->getManager()->getRepository(Reservation::class)->findOneBy(['email'=>$email]);
+        if($reservation) {
+            $password = $reservation->getPassword();
+            $serializer = new Serializer([new ObjectNormalizer()]);
+            $formatted = $serializer->normalize($password);
+            return new JsonResponse($formatted);
+        }
+        return new Response("Reservation not found");
+
+
+
+
+    }
 }
