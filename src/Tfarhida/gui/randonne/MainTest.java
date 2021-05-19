@@ -31,7 +31,7 @@ public class MainTest extends Application {
        try {
            
            
-            Parent root = FXMLLoader.load(getClass().getResource(("AfficherRandonne.fxml")));
+            Parent root = FXMLLoader.load(getClass().getResource(("AfficherRandonneClient.fxml")));
              Scene scene = new Scene(root);
             System.err.println("ahh");
         primaryStage.setTitle("Tfarhida");

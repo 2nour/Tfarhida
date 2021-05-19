@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -105,10 +104,9 @@
                </children>
             </Pane>
             <TextField fx:id="Text_duree" layoutX="106.0" layoutY="235.0" prefHeight="25.0" prefWidth="318.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebeef2" height="179.0" layoutX="438.0" layoutY="14.0" stroke="#fff7f7" strokeType="INSIDE" width="265.0" />
             <TextField fx:id="lab_url" layoutX="110.0" layoutY="468.0" prefHeight="27.0" prefWidth="223.0" promptText="Image" style="-fx-border-color: Pink;" />
             <Button fx:id="image" layoutX="333.0" layoutY="469.0" mnemonicParsing="false" onAction="#importerImage" onMouseClicked="#importerImage" prefHeight="25.0" prefWidth="91.0" style="-fx-border-color: Pink;" text="Parcourir" />
-            <ImageView fx:id="image_Randonnee" fitHeight="208.0" fitWidth="265.0" layoutX="438.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image_Randonnee" fitHeight="234.0" fitWidth="270.0" layoutX="438.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="768.0" layoutY="233.0" prefHeight="325.0" prefWidth="529.0" style="-fx-background-color: #EFE2E2;">

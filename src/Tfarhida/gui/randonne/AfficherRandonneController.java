@@ -92,8 +92,6 @@ public class AfficherRandonneController implements Initializable {
     @FXML
     private TableColumn<Randonnee, Integer> rand_budget;
     
-    @FXML
-    private AnchorPane anchropane;
     
     
     
@@ -140,12 +138,10 @@ public class AfficherRandonneController implements Initializable {
      
     
     private TextField textimg;
-    @FXML
     private ImageView image_Randonnee;
-    @FXML
-    private Button image;
-    @FXML
     private TextField lab_url;
+    @FXML
+    private FontAwesomeIconView deleterand;
     
     
     /**
@@ -261,7 +257,12 @@ public class AfficherRandonneController implements Initializable {
             ste = cnx.prepareStatement(sql);
              rs = ste.executeQuery();
             while(rs.next()){
-                data.add(new Randonnee(rs.getInt("id"),rs.getString("villedepart"), rs.getString("villearrivee"), rs.getString("datedepart"), rs.getString("dateretour"), rs.getString("activite"), rs.getString("description"), rs.getString("image"), rs.getInt("duree"), rs.getString("difficulte"), rs.getInt("budget")));
+                System.out.println(rs.getString("dateretour"));
+                String[] dr = rs.getString("dateretour").split(" ");
+                                String[] dd = rs.getString("datedepart").split(" ");
+
+
+                data.add(new Randonnee(rs.getInt("id"),rs.getString("villedepart"), rs.getString("villearrivee"), dd[0], dr[0], rs.getString("activite"), rs.getString("description"), rs.getString("image"), rs.getInt("duree"), rs.getString("difficulte"), rs.getInt("budget")));
                 
             }
         } catch (SQLException ex) {
@@ -426,7 +427,28 @@ public class AfficherRandonneController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-}
+
+    @FXML
+    private void deleterand(MouseEvent event) {
+              randonne = tableRand.getSelectionModel().getSelectedItem();
+           RandonneService randonneService=null;
+     try {
+            randonneService=new RandonneService ();
+      randonneService.delete(randonne.getId());
+      RefreshTable();
+              Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Randonne a été supprimer avec success");
+            a.show(); 
+      
+       
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AfficherRandonneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+       
+    }
+    }
+
 
 
 

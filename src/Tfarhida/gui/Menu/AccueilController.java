@@ -90,7 +90,7 @@ public class AccueilController implements Initializable {
                             break;  
                             
                         case "randonnée":
-                            Node randonnée = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/randonne/AfficherRandonne.fxml"));
+                            Node randonnée = FXMLLoader.load(getClass().getResource("/Tfarhida/gui/randonne/AfficherRandonneClient.fxml"));
 
                             content.getChildren().setAll(randonnée);
                             break;   

@@ -86,8 +86,13 @@ public class AjouterReservationController implements Initializable {
          try {
              reservationService =new ReservationService();
          RandonneService randonneService=new RandonneService();
-         int id =DetailRandonneClientController.id;
-            rand=randonneService.findById(id);
+        // int id =DetailRandonneClientController.id;
+            // System.out.println(id+" aaa");
+            rand=randonneService.findById(19);
+             System.out.println(rand);
+              Reservation r=new Reservation(Integer.parseInt(tfnumres.getText()),datepickeresr.getValue().toString(),tfobs.getText(),Double.parseDouble(tfmont.getText()),rand,Integer.parseInt(tfnbperrsonne2.getText()),"en cours");
+             System.out.println(r);
+              reservationService.insert(r);
              } catch (ClassNotFoundException ex) {
             Logger.getLogger(AjouterReservationController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 
 public class MaConnexion {
-    public String url = "jdbc:mysql://localhost:3306/tfarhida?useSSL=false";
+    public String url = "jdbc:mysql://localhost:3308/tfarhida?useSSL=false";
     public String user = "root";
     public String pwd = "";
     private Connection cnx;
@@ -17,7 +17,7 @@ public class MaConnexion {
     public MaConnexion() throws ClassNotFoundException{
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cnx = DriverManager.getConnection("jdbc:mysql://localhost:3306/tfarhida?useSSL=false", user, pwd);
+            cnx = DriverManager.getConnection("jdbc:mysql://localhost:3308/tfarhida?useSSL=false", user, pwd);
             System.out.println("Connexion établie");
         } catch (SQLException ex) {
             System.out.println("Non Connexion");

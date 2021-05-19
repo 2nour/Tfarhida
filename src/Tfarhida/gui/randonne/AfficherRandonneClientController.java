@@ -218,7 +218,12 @@ public class AfficherRandonneClientController implements Initializable {
             ste = cnx.prepareStatement(sql);
              rs = ste.executeQuery();
             while(rs.next()){
-                data.add(new Randonnee(rs.getInt("id"),rs.getString("villedepart"), rs.getString("villearrivee"), rs.getString("datedepart"), rs.getString("dateretour"), rs.getString("activite"), rs.getString("description"), rs.getString("image"), rs.getInt("duree"), rs.getString("difficulte"), rs.getInt("budget")));
+                 System.out.println(rs.getString("dateretour"));
+                String[] dr = rs.getString("dateretour").split(" ");
+                                String[] dd = rs.getString("datedepart").split(" ");
+
+
+                data.add(new Randonnee(rs.getInt("id"),rs.getString("villedepart"), rs.getString("villearrivee"), dd[0], dr[0], rs.getString("activite"), rs.getString("description"), rs.getString("image"), rs.getInt("duree"), rs.getString("difficulte"), rs.getInt("budget")));
                 
             }
         } catch (SQLException ex) {

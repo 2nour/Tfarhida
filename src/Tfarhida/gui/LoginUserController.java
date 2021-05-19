@@ -123,7 +123,7 @@ public class LoginUserController implements Initializable {
         else
         {
             boolean exist = su.ValidateLogin(user,password);
-            if (exist==false) {
+            if (exist==true) {
                 loginMessageLabel.setText("Veuillez verifier les champs");
                 
                 // recursivité
