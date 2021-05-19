@@ -41,9 +41,7 @@
 
 </head>
 
-<body>
-<!-- ======= Header ======= -->
-<header id="header" class="fixed-top ">
+<body><header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
         <h1 class="logo"><a href="{{ path('home')}}">Tfarhida</a></h1>
@@ -114,10 +112,14 @@
            <a href="{{ path('security_logout') }}" class="get-started-btn ml-auto">Déconnexion</a>
         {% endif %}
     </div>
-</header><!-- End Header -->
+</header>{% block body %}<!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
-{% block body %}
+
+
+
+
+
     <section id="hero">
         <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
@@ -165,8 +167,8 @@
             </a>
 
         </div>
-    </section><!-- End Hero -->
-{% endblock %}
+    </section>{% endblock %}<!-- End Hero -->
+
 
 <main id="main">
 
@@ -209,9 +211,7 @@
         </div>
 
     </div>
-</footer><!-- End Footer -->
 
-<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 {% block js %}
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/jquery/jquery.min.js')}}"></script>
@@ -222,16 +222,14 @@
     <script src="{{ asset('assets/vendor/venobox/venobox.min.js')}}"></script>
     <script src="{{ asset('assets/vendor/waypoints/jquery.waypoints.min.js')}}"></script>
     <script src="{{ asset('assets/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
-
-
-    <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js')}}"></script>
-
 
 {% endblock %}
 
-{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 
-</body>
+
+    <!-- Template Main JS File -->
+
+</footer><a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a><!-- End Footer --></body>
 
 </html>
