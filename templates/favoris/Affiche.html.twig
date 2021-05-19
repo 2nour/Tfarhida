@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} liste des Favoris{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <title>Liste des Favoris</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+
+    </head>
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Favoris</h2>
+                    <ol>
+                        <li><a href="{{ path('home') }}">Accueil</a></li>
+                        <li><a href="{{ path('aff') }}">Maison d'hote</a></li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+
+
+        <!-- ======= Blog Section ======= -->
+        <section id="blog" class="blog">
+            <div class="container">
+
+                <div class="row" {% for f in favoris %}>
+
+                    <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                        <article class="entry">
+
+                            <div class="entry-img">
+                                <img src="{{ asset('uploads/images/maison/' ~ f.maison.photo) }}" class="img-fluid" alt="">
+                            </div>
+
+                            <h2 class="entry-title">
+                                <a href="blog-single.html">{{ f.maison.nom }}</a>
+                            </h2>
+
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="icofont-key"></i> <a href="blog-single.html">{{ f.maison.nbrChambre }}</a></li>
+                                    <li class="d-flex align-items-center"><i class="icofont-map-pins"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{ f.maison.adresse }}</time></a></li>
+                                    <li class="d-flex align-items-center"><a href="{{ path('remove',{'id':f.id}) }}"><i class="icofont-ui-love-remove"></i></a></li>
+                                </ul>
+                            </div>
+
+                            <div class="entry-content">
+                                <p>
+                                    {{ f.maison.description }}
+                                </p>
+                                <div class="read-more">
+                                    <a href="{{ path('read',{'id':f.maison.id}) }}">Voir plus</a>
+                                </div>
+                            </div>
+
+                        </article><!-- End blog entry -->
+                    </div {% endfor %}>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

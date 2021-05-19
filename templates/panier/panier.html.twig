@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Panier{% endblock %}
+
+
+
+{% block css%}
+    <!-- Vendor CSS Files -->
+    <link href="assets/img/logo/logo.png" rel="icon">
+
+    <!-- Favicons -->
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+<main id="main">
+
+<div class="panier">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h5><span class="glyphicon glyphicon-shopping-cart"></span> Mon Panier ({{ panier.nbproduit }})</h5>
+                                    <a></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" {% for i,produit in produits %}}>
+                        <div class="row">
+                            <div class="col-xs-2"><img class="img-responsive" src="{{ asset('uploads/images/produits/' ~ produit.image) }}">
+                            </div>
+                            <div class="col-xs-4">
+                                <h4 class="product-name"><strong>{{ produit.nom }}</strong></h4><h4><small>{{ produit.description }}</small></h4>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="col-xs-6 text-right">
+                                    <h6> <strong>{{ produit.prix }} <span class="text-muted">dt x</span></strong></h6>
+                                </div>
+                                <div class="col-xs-4">
+
+
+                                    <input type="number" min="1" max="{{ produit.quantite }}" class="form-control input-sm" name="qtt" value="" placeholder="{{ commandes[i].quantiteProduit }}">
+
+                                </div >
+                                <div class="col-xs-2">
+                                    <a href="{{ path("suppPanier",{ 'id': produit.id }) }}"><span class="glyphicon glyphicon-trash"> </span></a>
+
+                                </div>
+                            </div>
+                        </div {% endfor %} >
+
+                    </div >
+                    <div class="panel-footer">
+                        <div class="row text-center">
+                            <div class="col-xs-9">
+                                <h4 class="text-right">Total <strong>{{ panier.somme }}</strong></h4>
+                            </div>
+                            <div class="col-xs-3">
+                                <button type="button" class="btn btn-success btn-block">
+                                    payer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock %}
+
+
+
+
+{% block js %}
+    <!-- Vendor JS Files -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+{% endblock %}

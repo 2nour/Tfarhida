@@ -1,0 +1,304 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} liste des Randonnées{% endblock %}
+
+{% block body %}
+
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Randonnée</h2>
+                <ol>
+                    <li><a href="index.html">Acceuil</a></li>
+                    <li>Randonnée</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up" >
+            <div class="row">
+                <div class="col-lg-8 entries">
+                    <tbody id="all">
+                    {% for r in randonnee %}
+
+                    <article class="entry" >
+
+                        <div class="entry-img">
+                            <img src="{{ asset('uploads/images/randonnee/' ~ r.image) }}" alt="" class="img-fluid">
+                        </div>
+
+                        <h2 class="entry-title">
+                            {{  r.villedepart }} vers {{  r.villearrivee }}
+                        </h2>
+
+                        <div class="entry-meta">
+                            <ul>
+                                <li class="d-flex align-items-center"><i class="bi bi-person"></i>{{ app.user.username }}</li>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><b>DEPART:&nbsp;&nbsp; </b></a><span> {{ r.datedepart|date("Y-m-d") }}</span> <a><b> &nbsp;==>&nbsp;RETOUR:&nbsp; </b>&nbsp;</a> <span> {{ r.dateretour|date("Y-m-d") }}</span></li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="entry-content">
+                            <p>
+                         <b> Description: </b>  <span>{{ r.description}}</span>.<br>
+                               <b> Activite: </b> <span>&nbsp;{{ r.activite }}</span><br>
+                                <b> Budget: </b> <span>&nbsp;{{ r.budget }} Dt</span><br>
+                               <b> Durée: </b> <span>&nbsp;{{ r.duree }} jours</span><br>
+                               <b> Difficulte: </b>&nbsp; <span>{{ r.difficulte }}</span>
+
+                            </p>
+
+                            <div class="read-more">
+                                <a href="{{ path('add_reservation',{'idRandonnee':r.id}) }}">Réserver</a>
+                            </div>
+                            <a href="{{ path('post_like', {'id': r.id}) }}" class="btn btn-link js-like">
+                                {% if app.user and r.isLikedByUser(app.user) %}
+                                    <i class="fa fa-thumbs-up"></i>
+                                {% else %}
+                                    <i class="fa fa-thumbs-up"></i>
+                                {% endif %}
+                                <span class="js-likes"> {{ r.likes | length }}</span>
+                                <span class="js-label">J'aime</span>
+
+                            </a>
+
+
+
+                            <div class="stars">
+                                <i  class="lar la-star" data-value="1"></i>
+                                <i  class="lar la-star" data-value="2"></i>
+                                <i  class="lar la-star" data-value="3"></i>
+                                <i  class="lar la-star" data-value="4"></i>
+                                <i  class="lar la-star" data-value="5"></i>
+                            </div>
+                            <onchange="myFunction()">
+
+                            <script src="{{ asset('assets/js/scripts.js') }}" ></script>
+
+                        </div>
+
+
+                            <div class="blog-comments"><br>
+
+                                <h4 class="comments-count">Commentaire {{ commentaires | length }}</h4>
+
+                                <div >
+
+                                    {% for c in commentaires %}
+                                        <p>
+                                            {{ c.contenue }}
+                                        </p>
+                                        {% if c.randonne.id==r.id %}
+                                            <div id="comment-1" class="comment">
+                                                <div class="d-flex">
+                                                    <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div>
+                                                    <div>
+                                                        <h5><a href="">{{ c.user.username }}</a> </h5>
+                                                        <time datetime="2020-01-01">{{ c.datedecommentaire |date("Y-m-d") }}</time>
+                                                        <p>
+                                                            {{ c.contenue }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </div>
+
+                                <!-- End comment #1 -->
+
+                                <div class="reply-form">
+
+
+                                    <form action="{{ path('comment_add') }}" method="post">
+
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                <textarea name="body" id="body" class="form-control" placeholder="Ajouter votre Commentaire*"></textarea>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="randonnee_id" value="{{ r.id }}">
+
+                                        <input type="submit" class="btn btn-primary" value="Envoyer" />
+
+                                    </form>
+
+                                </div>
+                            </div>
+                    </article><!-- End blog entry -->
+
+                    {% endfor %}
+                    </tbody>
+                    <tbody id="search">
+                    </tbody>
+
+                    <div class="blog-pagination">
+                        <ul class="justify-content-center">
+                            <li><a href="">1</a></li>
+                            <li class="active"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </div>
+
+                </div><!-- End blog entries list -->
+
+                <div class="col-lg-4">
+
+                    <div class="sidebar">
+
+                        <h3 class="sidebar-title">Search</h3>
+                        <div class="sidebar-item search-form">
+                            <form action="{{ path('AfficheRandonnee') }}" method="post">
+                                <input type="text" id="search" name="search">
+                                <button type="submit" name="submit"><i class="bi bi-search"></i></button>
+                            </form>
+                        </div>
+
+                        <h3 class="sidebar-title">Recherche par critére</h3>
+                        <div class="sidebar-item categories">
+                            <ul>
+                                <li><a>VilleDepart <span>Tunis</span></a></li>
+                                <li><a>Date depart <span>'Y-m-d H:i'</span></a></li>
+                                <li><a>Date retour <span>'Y-m-d H:i'</span></a></li>
+                                <li><a>Budget <span></span></a></li>
+                                <li><a>Dificulte <span>Moyen / Facile / Difficile</span></a></li>
+                                <li><a>Activite <span>promenade, Camping...</span></a></li>
+                                <li><a>Durée <span> </span></a></li>
+                            </ul>
+                        </div>
+                        <h3 class="sidebar-title">Recent Posts</h3>
+                        <tbody id="all">
+                        {% for r in randonnee %}
+                            <div class="sidebar-item recent-posts">
+                                <div class="post-item clearfix">
+                                    <img src="{{ asset('uploads/images/randonnee/' ~ r.image) }}" alt="" class="img-fluid">
+                                    <h4><a href="blog-single.html">   {{  r.villedepart }} vers {{  r.villearrivee }}</a></h4>
+                                    <time datetime="2020-01-01">{{ r.datedepart|date('Y-m-d H:i')}}</time>
+                                </div>
+
+
+                            </div>
+                        {% endfor %}
+                        </tbody>
+
+
+
+</main>
+
+
+{% endblock %}
+{% block JS %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+     function onClickBtnLike(event){
+         event.preventDefault();
+
+         const url = this.href;
+         const spanCount = this.querySelector('span.js-likes');
+         const icone = this.querySelector('i');
+
+         axios.get(url).then(function (response) {
+             spanCount.textContent = response.data.likes;
+
+             if (icone.classList.contains('fas')) {
+                 icone.classList.replace('fas', 'far');
+             } else {
+                 icone.classList.replace('fas', 'far');
+             }
+         }).catch(function(error) {
+             if (error.response.status === 403){
+                 window.alert("Vous ne pouvez pas liker une rondonnée si vous n'etes pas connecté!");
+             } else {
+                 window.alert("Une erreur s'est produite, réessayez plus tard");
+             }
+         });
+     }
+        document.querySelectorAll('a.js-like').forEach(function(like) {
+            link.addEventListener('click', onclickBtnLike);
+        })
+
+    </script>
+
+
+<script>
+    $( document ).ready(function() {
+        $("#search").keyup(function(e){
+            /* La variable value va prendre la valeur insérer dans le champ de texte
+            afin d’effectuer la recherche */
+            var value = $(this).val();
+    /* Ajax est lancé lors du remplissage du champ texte dont l’id est
+    « search » pour faire la recherche */
+            $.ajax({
+                /* l’url est une chaine de caractères contenant l’adresse où la requête est
+                            envoyée */
+            url : "{{ path('searchVilleArrivee') }}",
+                /* La méthode utilisée pour transférer les données est GET */
+                type : 'GET',
+                /*Ici search value va prendre la chaine entrée par un utilisateur dans la
+                zone de recherche et sera placée après l’url */
+                data: {
+                'searchValue' : value
+            },
+            /*Cette fonction permet de vider le contenu du tableau pour recevoir le
+            nouveau contenu
+
+            */
+            success : function(retour){
+                if(retour){
+                    $('#t tbody#search').empty();
+                    $.each(JSON.parse(retour), function(i, obj) {
+                        $('#t tbody#all').hide();
+                        $('#t tbody#search').append('<tr><td> '+obj.description+'</td><td> '+obj.activite+' </td><td>'+obj.budget+' </td><td>' +
+                            ' </td><td>'+obj.duree+' </td><td>' +' </td><td>'+obj.difficulte+' </td><td>' +
+                            '<a href="add_reservation/'+obj.id+'">Réserver</a> </br>' +
+                            '</td></tr>');
+                    });
+                }
+                else
+                {
+                    $('#t tbody#all').show();
+                    $('#t tbody#search').empty();
+                    $('#t tbody#search').fadeIn('fast');
+                }
+            },
+        });
+        return false;
+    });
+    });
+
+
+
+</script>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

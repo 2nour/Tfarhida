@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+
+        {{ form_start(f,{'attr': {'novalidate': 'novalidate'}}) }}
+        <h3 class="resH3">Demande de réservation</h3>
+        <div class="form-res">
+            {{ form_widget(f.etats) }}
+            {{ form_errors(f.etats) }}
+            <div class="text-center"><button class="btn btn-info my-3" type="submit">Envoyer</button></div><br>
+        </div>
+        {{ form_end(f) }}
+    {% endblock %}

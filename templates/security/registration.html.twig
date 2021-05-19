@@ -1,0 +1,40 @@
+{% extends 'base.html.twig'%}
+{% block body %}
+
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="ml-5 align-content-sm-center text-center">Inscription ! </h2>
+
+            <div class="row">
+                <div class="col-md-8">
+
+                    {{ form_start(form) }}
+                    <div class="nessrine">
+                        {{ form_row(form.username, {'label':'Nom d\'utilisateur'}) }}
+                    </div>
+                    <div class="nessrine">
+                        {{ form_row(form.email, {'label':'Adresse email'}) }}
+                    </div>
+                    <div class="nessrine">
+                        {{ form_row(form.password, {'label':'Mot de passe'}) }}
+                    </div>
+
+                    <div>
+                    <div class="nessrine">
+                        {{ form_row(form.confirm_password, {'label':'Confiration du mot de passe'}) }}
+
+                    </div>
+                        <div class="nessrine">
+                            {{ form_row(form.roles, {'label':'Choisir votre Role' }) }}
+                            {{ form_end(form) }}
+                        </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+{% endblock %}

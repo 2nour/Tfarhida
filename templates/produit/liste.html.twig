@@ -1,0 +1,151 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} liste des Produit{% endblock %}
+
+
+
+{% block css%}
+    <!-- Vendor CSS Files -->
+
+    <!-- Favicons -->
+    <link href="assets/img/logo/logo.png" rel="icon">
+
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Produits</h2>
+                <ol>
+                    <li><a href="/home">Acceuil</a></li>
+                    <li>Produit</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Section x
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">tout</li>
+                        <li data-filter="*">Tentes et couchage</li>
+                        <li data-filter="*">Mobilier de camping</li>
+                        <li data-filter="*">Boir et manger</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <section id="portfolio" class="portfolio">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        {% include 'produit/filtre.html.twig' with {form: form} only %}
+                    </div>
+                    <div class="col-md-9">
+                    <div class="row" {% for produit in produits %}>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-grid6  mb-5">
+                                <div class="card d-flex">
+                                    <div class="product-image6">
+                                        <a href="#">
+                                            <img class="card-image" src="{{ asset('uploads/images/produits/' ~ produit.image) }}">
+                                        </a>
+                                    </div>
+                                    <div class="product-content">
+                                        <h3 class="title"><a href="#">{{ produit.nom }}</a></h3>
+                                        <div class="price">prix :<strong>{{ produit.prix  }}</strong> dt</div>
+                                    </div>
+                                    <ul class="social">
+                                        <li><a href="{{ path("voirProduit",{ 'id': produit.id }) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                                       {% if is_granted('ROLE_ADMIN') %} <li><a href="{{ path("suppProduit",{ 'id': produit.id }) }}" data-tip="delete"><i class="bx bxs-trash"></i></a></li> {% endif %}
+                                        {% if is_granted('ROLE_USER') %} <li><a href="{{ path("ajouterCommande",{ 'id': produit.id }) }}" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>{% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div {% endfor %}>
+                    </div>
+                    </div>
+
+
+
+
+
+                </div>
+                </div>
+
+
+</section>
+
+
+            {# display navigation #}
+            <div class="navigation ">
+                {{ knp_pagination_render(produits) }}
+            </div>
+
+
+
+
+        </div>
+
+</main>
+
+
+
+{% endblock %}
+
+
+
+
+{% block js %}
+    <!-- Vendor JS Files -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+{% endblock %}
