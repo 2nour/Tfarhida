@@ -19,6 +19,7 @@
     <image name="on-off-on.png" type="multi"  />
     <image name="profile-background.jpg"  />
     <image name="profile-pic.jpg" type="multi"  />
+    <image name="rand.jpg"  />
     <image name="signin-background.jpg"  />
     <image name="signup-background.jpg"  />
     <image name="smily.png" type="multi"  />
@@ -40,13 +41,13 @@
         <val key="BottomPad.padding" value="0,0,0,0" />
         <val key="BottomPad.transparency" value="0" />
         <val key="Button.align" value="4" />
-        <border key="Button.border" type="round" roundBorderColor="16723285" opacity="255" strokeColor="0" strokeOpacity="255" strokeThickness="0.0" strokeMM="false" shadowSpread="10" shadowOpacity="0" shadowX="0.5" shadowY="0.5" shadowBlur="10.0" shadowMM="false" rectangle="true" />
+        <border key="Button.border" type="round" roundBorderColor="16711680" opacity="255" strokeColor="0" strokeOpacity="255" strokeThickness="0.0" strokeMM="false" shadowSpread="10" shadowOpacity="0" shadowX="0.5" shadowY="0.5" shadowBlur="10.0" shadowMM="false" rectangle="true" />
         <val key="Button.fgColor" value="ffffff" />
         <font key="Button.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.5" />
         <val key="Button.marUnit" value="2,2,2,2" />
-        <val key="Button.margin" value="3,3,2,2" />
+        <val key="Button.margin" value="3.0,3.0,2.0,2.0" />
         <val key="Button.padUnit" value="2,2,2,2" />
-        <val key="Button.padding" value="2,2,2,2" />
+        <val key="Button.padding" value="2.0,2.0,2.0,2.0" />
         <val key="Button.press#align" value="4" />
         <border key="Button.press#border" type="round" roundBorderColor="12982329" opacity="255" strokeColor="0" strokeOpacity="255" strokeThickness="0.0" strokeMM="false" shadowSpread="10" shadowOpacity="0" shadowX="0.5" shadowY="0.5" shadowBlur="10.0" shadowMM="false" rectangle="true" />
         <val key="Button.press#fgColor" value="ffffff" />
@@ -170,15 +171,15 @@
         <val key="PictureWhiteBackgrond.padding" value="1,1,1,1" />
         <val key="PictureWhiteBackgrond.transparency" value="255" />
         <val key="SelectBar.align" value="4" />
-        <val key="SelectBar.bgColor" value="ff2d55" />
+        <val key="SelectBar.bgColor" value="ff0000" />
         <val key="SelectBar.bgImage" value="news-tab-down.png" />
         <val key="SelectBar.bgType" value="30" />
         <border key="SelectBar.border" type="empty" />
-        <val key="SelectBar.fgColor" value="feb2c1" />
+        <val key="SelectBar.fgColor" value="ffffff" />
         <font key="SelectBar.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.5" />
-        <val key="SelectBar.margin" value="0,0,0,0" />
+        <val key="SelectBar.margin" value="0.0,0.0,0.0,0.0" />
         <val key="SelectBar.padUnit" value="2,0,2,0" />
-        <val key="SelectBar.padding" value="2,3,0,0" />
+        <val key="SelectBar.padding" value="2.0,3.0,0.0,0.0" />
         <val key="SelectBar.press#align" value="4" />
         <val key="SelectBar.press#bgColor" value="ff2d55" />
         <val key="SelectBar.press#bgImage" value="news-tab-down.png" />

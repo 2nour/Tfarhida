@@ -162,9 +162,9 @@ public class AddReservationRandonneForm extends BaseForm {
         tfNombrepersonne.setUIID("textFieldBack");
         addStringValue("tfNombrepersonne", tfNombrepersonne);
 
-        TextField tfEtat = new TextField("", "etat");
-        tfEtat.setUIID("textFieldBack");
-        addStringValue("tfEtat", tfEtat);
+        //TextField tfEtat = new TextField("", "etat");
+       // tfEtat.setUIID("textFieldBack");
+       // addStringValue("tfEtat", tfEtat);
 
         Button btnAjouterRec = new Button("Ajouter");
         addStringValue("", btnAjouterRec);
@@ -186,7 +186,7 @@ public class AddReservationRandonneForm extends BaseForm {
                     Date ddebut = Date.getDate();
                     String dated = ddd.format(ddebut);
 
-                    ReservationRandonne r = new ReservationRandonne(Integer.parseInt(tfNumreservation.getText()), ddd.format(dated), tfObservation.getText(), Double.parseDouble(tfMontant.getText()), Integer.parseInt(tfNombrepersonne.getText()), tfEtat.getText());
+                    ReservationRandonne r = new ReservationRandonne(Integer.parseInt(tfNumreservation.getText()), ddd.format(dated), tfObservation.getText(), Double.parseDouble(tfMontant.getText()), Integer.parseInt(tfNombrepersonne.getText()), "encours");
 
                     System.out.println("Data ==> " + r);
 

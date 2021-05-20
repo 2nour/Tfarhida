@@ -231,12 +231,12 @@ public class ListeRandonneForm extends BaseForm {
         Label VilleDepartTxt = new Label("VilleDepart :" + rec.getVilledepart(), "NewsTopLine2");
         Label VilleArriveeTxt = new Label("VilleArrivee :" + rec.getVillearrivee(), "NewsTopLine2");
         Label DateDepartTxt = new Label("DateDepart :" + rec.getDatedepart(), "NewsTopLine2");
-        Label DateRetourTxt = new Label("DateRetour :" + rec.getDateretour(), "NewsTopLine2");
+      //  Label DateRetourTxt = new Label("DateRetour :" + rec.getDateretour(), "NewsTopLine2");
         Label ActiviteTxt = new Label("Activite :" + rec.getActivite(), "NewsTopLine2");
-        Label DureeTxt = new Label("Duree :" + rec.getDuree(), "NewsTopLine2");
-        Label DifficulteTxt = new Label("Difficulte :" + rec.getDifficulte(), "NewsTopLine2");
-        Label BudgetTxt = new Label("Budget :" + rec.getBudget(), "NewsTopLine2");
-        Label DescriptionTxt = new Label("Description :" + rec.getDescription(), "NewsTopLine2");
+      //  Label DureeTxt = new Label("Duree :" + rec.getDuree(), "NewsTopLine2");
+      //  Label DifficulteTxt = new Label("Difficulte :" + rec.getDifficulte(), "NewsTopLine2");
+      //  Label BudgetTxt = new Label("Budget :" + rec.getBudget(), "NewsTopLine2");
+       // Label DescriptionTxt = new Label("Description :" + rec.getDescription(), "NewsTopLine2");
 
         createLineSeparator();
 
@@ -275,12 +275,12 @@ public class ListeRandonneForm extends BaseForm {
                 BoxLayout.encloseX(VilleDepartTxt),
                 BoxLayout.encloseX(VilleArriveeTxt),
                 BoxLayout.encloseX(DateDepartTxt),
-                BoxLayout.encloseX(DateRetourTxt),
+              //  BoxLayout.encloseX(DateRetourTxt),
                 BoxLayout.encloseX(ActiviteTxt),
-                BoxLayout.encloseX(DureeTxt),
-                BoxLayout.encloseX(DifficulteTxt),
-                BoxLayout.encloseX(BudgetTxt),
-                BoxLayout.encloseX(DescriptionTxt),
+             //   BoxLayout.encloseX(DureeTxt),
+              //  BoxLayout.encloseX(DifficulteTxt),
+              //  BoxLayout.encloseX(BudgetTxt),
+             //   BoxLayout.encloseX(DescriptionTxt),
                 BoxLayout.encloseX(Deltails,Reserver)
         ));
 
