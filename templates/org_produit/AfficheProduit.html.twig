@@ -1,5 +1,6 @@
 
 
+
   {% block css%}
       <!-- Vendor CSS Files -->
       <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -13,9 +14,10 @@
       <!-- Template Main CSS File -->
       <link href="/assets/css/style.css" rel="stylesheet">
   {% endblock %}
-<title>{% block title %} Liste des Produits{% endblock %} </title>
 
 {% block body %}
+    <title>{% block title %} Liste des Produits{% endblock %} </title>
+
     <style>
         .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
@@ -44,29 +46,46 @@
                 </div>
 
 
+                <section id="portfolio" class="portfolio">
+                    <div class="container">
+                        <div class="row">
 
+                            <div class="col-md-9">
+                                <div class="row" {% for produit in produits %}>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="product-grid6  mb-5">
+                                            <div class="card d-flex">
+                                                <div class="product-image6">
+                                                    <a href="#">
+                                                        <img class="card-image" src="{{ asset('uploads/images/produits/' ~ produit.image) }}">
+                                                    </a>
+                                                </div>
+                                                <div class="product-content">
+                                                    <h3 class="title"><a href="#">{{ produit.nom }}</a></h3>
+                                                    <div class="price">prix :<strong>{{ produit.prix  }}</strong> dt</div>
+                                                </div>
+                                                <ul class="social">
+                                                    <a href="{{ path("selectProduit",{ 'id': produit.id ,'id_Org':org.id}) }}"  ><i class="bx bxs-shopping-bag-alt"></i></a>
 
-                <div class="row portfolio-container">
-                    {% for produit in produits %}>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app" >
-                        <div class="portfolio-wrap" >
-                            <a href="{{ path("selectProduit",{ 'id': produit.id ,'id_Org':org.id}) }}"  >
-                                <img src="{{  asset('uploads/images/produit/' ~ produit.image) }}" class="img-fluid" alt="">
-                                </a>
-                            <div class="portfolio-info">
-                                <h4>{{ produit.nom }}</h4>
-                                <p>{{ produit.prix }}</p>
-                                <div class="portfolio-links">
-                                    <a href="{{ path("selectProduit",{ 'id': produit.id ,'id_Org':org.id}) }}"  ><i class="bx bxs-shopping-bag-alt"></i></a>
+                                                </ul>
+                                            </div>
+                                           
+                                        </div>
+                                    </div {% endfor %}>
                                 </div>
                             </div>
 
 
-                        </div >
 
-                    </div {% endfor %}>
 
-                </div >
+
+                        </div>
+                    </div>
+
+
+                </section>
+
+
 
             </div>
         </section><!-- End Portfolio Section -->

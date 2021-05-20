@@ -32,7 +32,7 @@
                             <ul>
                                 <li class="drop-down"><i class="icofont-navigation-menu"></i>
                                     <ul>
-                                        <li class="current first"><a href="{{ path('mais',{'id':maison.id}) }}">Voir chambres</a></li>
+                                        {% if is_granted('ROLE_USER') %} <li class="current first"><a href="{{ path('mais',{'id':maison.id}) }}">Voir chambres</a></li>{% endif %}
                                         {% if is_granted('ROLE_HEBERGEUR') %}  <li class="current_ancestor"><a href="{{ path('add',{'id':maison.id}) }}">Ajouter Chambre</a></li>
                                         <li class="current_ancestor"><a href="{{ path('u',{'idM':maison.id}) }}">Modifier Maison</a></li>{% endif %}
                                     </ul>
@@ -105,7 +105,7 @@
                   {{ c.comment }}
                 </p>
                 <div class="redCom">
-                    <a href="{{ path('dComment',{'id':c.id}) }}"><i class="icofont-garbage"> Supprimer</i></a>
+                    {%  if is_granted('ROLE_HEBERGEUR') or c.user.username == user %} <a href="{{ path('dComment',{'id':c.id}) }}"><i class="icofont-garbage"> Supprimer</i></a>
                 </div>
                 {% endfor %}
             </div><!-- End comment #1 -->

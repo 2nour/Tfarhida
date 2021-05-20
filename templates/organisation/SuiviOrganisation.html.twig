@@ -22,16 +22,16 @@
             <div class="row">
                 {% for p in organisation %}
                 <div class="col-lg-6">
-                    <div class="testimonial-item">
+                    <br class="testimonial-item">
                         <h3>la demande n° : {{ p.id }}</h3>
-                        <span>Le nombre de personne : {{ p.nbrpersonne }}</span>
+                        <span>Le nombre de personne : {{ p.nbrpersonne }}</span></br>
 
-                        <span>La date de départ : {{ p.date|date('Y-m-d')  }}</span>
-                        <span>Le nombre de jours: {{ p.nbrjours }}</span>
-                        <span>Activité : {{ p.activite }}</span>
+                        <span>La date de départ : {{ p.date|date('Y-m-d')  }}</span></br>
+                        <span>Le nombre de jours: {{ p.nbrjours }}</span></br>
+                        <span>Activité : {{ p.activite }}</span></br>
 
-                        <span>Commentaire: {{ p.commentaire }}</span>
-                        <span>Etat de la demande : {{  p.etat }} </span>
+                        <span>Commentaire: {{ p.commentaire }}</span></br>
+                        <span>Etat de la demande : {{  p.etat }} </span></br>
                         <span>Produits :<ul>
                             {% for prod in p.produits %}
                             <li>{{  prod.nom }}</li>
@@ -65,6 +65,7 @@
     </section>
 {% endblock %}
 {% block js %}
+    <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
         // Create an instance of the Stripe object with your publishable API key
         var stripe = Stripe('pk_test_51IZiOALBv1NOmN8Ddc9w0UOhabGUoEcNzKbLda7rCtRFy1IeZyB1EC93Wp0vfkglSf3KLjEqWvzl0yglYRDnjdK600MZJrUwOS');

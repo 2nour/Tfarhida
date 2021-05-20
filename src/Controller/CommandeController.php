@@ -37,40 +37,29 @@ class CommandeController extends AbstractController
     public function ajouteruneCommande(\Symfony\Component\HttpFoundation\Request $request,FlashyNotifier $flashyNotifier)
     {
         $em = $this->getDoctrine()->getManager();
-        $username=$this->getUser()->getUsername();
         $idproduit = $request->get("id");
 
         $produit = $em->find(Produit::class, $idproduit);
-
+        $username=$this->getUser()->getUsername();
         $userr=$em->getRepository(User::class)->findOneBy(array('username'=>$username));
-        $user=$em->find(User::class,$userr->getId());
-        $panierId=$user->getPanier();
+        $panierId=$userr->getPanier();
 
-        if($panierId== null){
-            $panier =new Panier();
-            $panier->setUser($user);
-            $panier->setSomme($produit->getPrix());
-            $panier->setNbproduit(1);
-            $em->persist($panier);
-            $em->flush();
-            $panierId=$user->getPanier();
-        }
 
-        $panier =$em->find(Panier::class,$panierId);
+
         /*verifier si le produit est deja dans le panier*/
-        $commande=$em->getRepository(Commande::class)->findOneBy(array('panier'=>$panier,'produit'=>$produit));
+        $commande=$em->getRepository(Commande::class)->findOneBy(array('panier'=>$panierId,'produit'=>$produit));
 
         /*si le produit n'est pas dans le panier*/
         if($commande== null)
         {
             $c=new Commande();
             $c->setProduit($produit);
-            $c->setPanier($panier);
-            $c->setQuantiteProduit($c->getQuantiteProduit()+1);
-            $c->setPrixcommande($produit->getPrix() * $c->getQuantiteProduit());
+            $c->setPanier($panierId);
+            $c->setQuantiteProduit(1);
+            $c->setPrixcommande($produit->getPrix());
 
-            $panier->setNbproduit($panier->getNbproduit()+1);
-            $panier->setSomme($panier->getSomme() + $produit->getPrix() );
+            $panierId->setNbproduit($panierId->getNbproduit()+1);
+            $panierId->setSomme($panierId->getSomme()+$produit->getPrix());
             $em->persist($c);
             $em->flush();
         }
@@ -79,11 +68,11 @@ class CommandeController extends AbstractController
                 $commande->setQuantiteProduit($commande->getQuantiteProduit()+1);
                 $commande->setPrixcommande($produit->getPrix() * $commande->getQuantiteProduit());
                 $em->persist($commande);
-                $panier->setNbproduit($panier->getNbproduit()+1);
-                $panier->setSomme($panier->getSomme() + $produit->getPrix());
+                $panierId->setNbproduit($panierId->getNbproduit()+1);
+                $panierId->setSomme($panierId->getSomme() + $produit->getPrix());
 
 
-                $em->persist($panier);
+                $em->persist($panierId);
                 $em->flush();
 
 
@@ -96,6 +85,26 @@ class CommandeController extends AbstractController
 
     }
 
+//    public function  getPanier(){
+//        $username=$this->getUser()->getUsername();
+//        $em = $this->getDoctrine()->getManager();
+//        $panier =new Panier();
+//        $userr=$em->getRepository(User::class)->findOneBy(array('username'=>$username));
+//        $panierId=$userr->getPanier();
+//        if($panierId == null){
+//
+//            $panier->setUser($userr);
+//            $panier->setNbproduit(0);
+//            $panier->setSomme(0);
+//            $em->persist($panier);
+//            $em->flush();
+//            return $panier;
+//        }
+//        else{
+//            return $panierId;
+//        }
+//
+//    }
 
 
     /**
@@ -108,8 +117,10 @@ class CommandeController extends AbstractController
         $em=$this->getDoctrine()->getManager();
         $emm=$this->getDoctrine()->getRepository(Commande::class);
         $produit=$em->find(Produit::class,$id);
-        $panierId=2;
-        $panier=$em->find(Panier::class,$panierId);
+        $username=$this->getUser()->getUsername();
+        $userr=$em->getRepository(User::class)->findOneBy(array('username'=>$username));
+        $panier=$userr->getPanier();
+
         $commande=$emm->findOneBy(array('produit'=>$produit,'panier'=>$panier));
 
         $panier->setSomme($panier->getSomme() - $produit->getPrix() * $commande->getQuantiteProduit());

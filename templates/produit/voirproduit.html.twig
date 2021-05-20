@@ -65,14 +65,14 @@
                 <div class="col-lg-6 mb-4">
                     <div class="testimonial-item mt-4 mt-lg-0">
                         <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                        <h5>{{ user }}</h5>
+                        <h5>{{ comment.user.username }}</h5>
                         <h4>{{ comment.datedecommentaire | date('d-m-Y') }}</h4>
                         <p>
                             <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                             <strong>{{comment.contenue}}</strong>
                             <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                         </p>
-                        {%  if is_granted('ROLE_ADMIN') %}<a href="{{ path("commentaireSupprimer",{ 'id': comment.id }) }}"  ><i class="btn btn-danger">supprimer</i></a> {% endif %}
+                        {%  if is_granted('ROLE_ADMIN') or comment.user.username == user %}<a href="{{ path("commentaireSupprimer",{ 'id': comment.id }) }}"  ><i class="btn btn-danger">supprimer</i></a> {% endif %}
 
                     </div>
 

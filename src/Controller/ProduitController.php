@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Data\SearchData;
 use App\Entity\Chambre;
 use App\Entity\Commande;
+use App\Entity\Organisation;
 use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\comment;
@@ -45,6 +46,21 @@ class ProduitController extends AbstractController
         return $this->render('produit/index.html.twig', [
             'controller_name' => 'ProduitController',
         ]);
+    }
+
+
+    /**
+     * @Route("produitListee/{id}", name="produitListee")
+     * @return Response
+     */
+    public function afficherlistesProduit(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $produits=$em->getRepository(Produit::class)->findAll();
+        $org = $em->getRepository(Organisation::class)->find($id);
+        return $this->render('org_produit/AfficheProduit.html.twig',
+            ['produits'=> $produits,'org'=>$org]);
+
     }
 
     /**

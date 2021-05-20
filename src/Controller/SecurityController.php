@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\User;
 use App\Form\AjouterProduitFormType;
@@ -54,6 +55,7 @@ class SecurityController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
+            $panier  =new Panier();
 
             //generer le token d'activation
             $user->setActivationToken(md5(uniqid()));
@@ -61,6 +63,13 @@ class SecurityController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+            $panier->setUser($user);
+            $panier->setSomme(0);
+            $panier->setNbproduit(0);
+            $em->persist($panier);
+            $em->flush();
+
+
 
             $message = (new \Swift_Message('Activation de votre compte'))
                 ->setFrom('votre@adresse.tn')
