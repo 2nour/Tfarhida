@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} liste des Randonnées{% endblock %}
+
+{% block body %}
+
+
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Randonnée</h2>
+                    <ol>
+                        <li><a href="index.html">Acceuil</a></li>
+                        <li>Randonnée</li>
+                        <li><a href="{{ path('addrandonnee') }}"><button class="btn btn-success" type="submit">Ajouter</button></a>
+                        </li>
+                    </ol>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ======= Blog Section ======= -->
+        <section id="blog" class="blog">
+            <div class="container" data-aos="fade-up" >
+                <div class="row">
+                    <div class="col-lg-8 entries">
+                        <tbody id="all">
+                        {% for r in randonnee %}
+                            <article class="entry" >
+
+                                <div class="entry-img">
+                                    <img src="{{ asset('uploads/images/randonnee/' ~ r.image) }}" alt="" class="img-fluid">
+                                </div>
+
+                                <h2 class="entry-title">
+                                    {{  r.villedepart }} vers {{  r.villearrivee }}
+                                </h2>
+
+                                <div class="entry-meta">
+                                    <ul>
+                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i>{{ app.user.username }}</li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a><b>DEPART:&nbsp;&nbsp; </b></a><span> {{ r.datedepart|date('Y-m-d H:i')}}</span> <a><b> &nbsp;==>&nbsp;RETOUR:&nbsp; </b>&nbsp;</a> <span> {{ r.dateretour|date('Y-m-d H:i:s') }}</span></li>
+
+
+                                    </ul>
+                                </div>
+
+                                <div class="entry-content">
+                                    <p>
+                                        {{ r.description}}.<br>
+                                        <b> Activite: </b> <span>&nbsp;{{ r.activite }}</span><br>
+                                        <b> Budget: </b> <span>&nbsp;{{ r.budget }} Dt</span><br>
+                                        <b> Durée: </b> <span>&nbsp;{{ r.duree }} jours</span><br>
+                                        <b> Difficulte: </b>&nbsp; <span>{{ r.difficulte }}</span>
+
+                                    </p>
+
+
+                                    <a href="{{ path('modifrand',{'id':r.id}) }}">  <button class="btn btn-warning" type="submit">Modifier</button></a>
+
+
+
+
+                                    <a href="{{ path('rand',{'id':r.id}) }}"><button class="btn btn-danger" type="submit">Supprimer</button></a>
+
+                                </div>
+
+
+                            </article><!-- End blog entry -->
+
+                        {% endfor %}
+                        </tbody>
+                        <tbody id="search">
+                        </tbody>
+
+                        <div class="blog-pagination">
+                            <ul class="justify-content-center">
+                                <li><a href="">1</a></li>
+                                <li class="active"><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                            </ul>
+                        </div>
+
+                    </div><!-- End blog entries list -->
+
+                    <div class="col-lg-4">
+
+                        <div class="sidebar">
+
+                            <h3 class="sidebar-title">Search</h3>
+                            <div class="sidebar-item search-form">
+                                <form action="{{ path('randonnee') }}" method="post">
+                                    <input type="text" id="search" name="search">
+                                    <button type="submit" name="submitAdmin"><i class="bi bi-search"></i></button>
+                                </form>
+                            </div>
+
+                            <h3 class="sidebar-title">Recherche par critére</h3>
+                            <div class="sidebar-item categories">
+                                <ul>
+                                    <li><a>VilleDepart <span>Tunis</span></a></li>
+                                    <li><a>Date depart <span>'Y-m-d H:i'</span></a></li>
+                                    <li><a>Date retour <span>'Y-m-d H:i'</span></a></li>
+                                    <li><a>Budget <span></span></a></li>
+                                    <li><a>Dificulte <span>Moyen / Facile / Difficile</span></a></li>
+                                    <li><a>Activite <span>promenade, Camping...</span></a></li>
+                                    <li><a>Durée <span> </span></a></li>
+                                </ul>
+                            </div>
+
+                            <h3 class="sidebar-title">Recent Posts</h3>
+                            <tbody id="all">
+                            {% for r in randonnee %}
+                                <div class="sidebar-item recent-posts">
+                                    <div class="post-item clearfix">
+                                        <img src="{{ asset('uploads/images/randonnee/' ~ r.image) }}" alt="" class="img-fluid">
+                                        <h4><a href="blog-single.html">   {{  r.villedepart }} vers {{  r.villearrivee }}</a></h4>
+                                        <time datetime="2020-01-01">{{ r.datedepart|date('Y-m-d H:i')}}</time>
+                                    </div>
+
+
+                                </div>
+                            {% endfor %}
+                            </tbody>
+
+
+
+    </main>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
